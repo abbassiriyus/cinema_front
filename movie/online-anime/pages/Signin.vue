@@ -77,8 +77,16 @@ export default {
      data.append("password",document.querySelector('#password_data').value)
 
       try {
-        const response = await axios.post('https://cinema-kbz5.onrender.com/login', { data: 'Malumotlar' });
+        const response = await axios.post('http://localhost:4001/login', data);
         console.log(response.data);
+        localStorage.setItem('token',response.data.token)
+        const user= await axios.get('http://localhost:4001/user', {
+          headers: {
+            Authorization: `Bearer ${response.data.token}`
+          }
+        });
+        console.log(user.data)
+        localStorage.setItem("user_data",JSON.stringify(user.data))
       } catch (error) {
         console.error(error);
       }

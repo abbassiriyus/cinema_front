@@ -159,7 +159,7 @@
 					<div id="tab-1" class="tab-pane fade show active" role="tabpanel" aria-labelledby="1-tab" tabindex="0">
 						<div class="row">
 							<!-- item -->
-							<div class="col-6 col-sm-12 col-lg-6 col-xxl-4">
+							<div v-for="cinema in cinemaData"  :key="cinema.id" class="col-6 col-sm-12 col-lg-6 col-xxl-4">
 								<div class="item item--list">
 									<NuxtLink to="watching" class="item__cover">
 										<div class="d-flex aligin-items-center justify-content-center premium-icon">
@@ -175,279 +175,31 @@
 									</NuxtLink>
 									<div class="item__content">
 										<h3 class="item__title">
-											<NuxtLink to="watching">The Lost City</NuxtLink>
+											<NuxtLink to="watching">{{ cinema.title }}</NuxtLink>
 										</h3>
 										<span class="item__category">
-											<NuxtLink to="#">Action</NuxtLink>
-											<NuxtLink to="#">Triler</NuxtLink>
+											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">
+											{{ item1.title }}
+											</NuxtLink>
 										</span>
 										<div class="item__wrap">
-											<span class="item__rate"> 8.4</span>
+											<span class="item__rate"> {{cinema.mark}}</span>
 
 											<ul class="item__list">
-												<li>HD</li>
-												<li>16+</li>
+												<li>{{cinema.type}}</li>
+												<li>{{cinema.age_limit}}+</li>
 											</ul>
 										</div>
 										<div class="item__description">
 											<p>
-												When a renowned archaeologist goes missing, his daughter
-												sets out on a perilous journey to the heart of the
-												Amazon rainforest to find him. Along the way, she
-												discovers a hidden city and a dangerous conspiracy that
-												threatens the very balance of power in the world. With
-												the help of a charming rogue, she must navigate
-												treacherous terrain and outwit powerful enemies to save
-												her father and uncover the secrets of the lost city.
+										{{cinema.description}}
 											</p>
 										</div>
 									</div>
 								</div>
 							</div>
 							<!-- end item -->
-							<!-- item -->
-							<div class="col-6 col-sm-12 col-lg-6 col-xxl-4">
-								<div class="item item--list">
-									<NuxtLink to="watching" class="item__cover">
-										<div class="d-flex aligin-items-center justify-content-center premium-icon">
-											<img src="/img/USD.svg" alt="" />
-										</div>
-										<img src="/img/covers/2.png" alt="" />
-										<span class="item__play">
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-												<path
-													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-											</svg>
-										</span>
-									</NuxtLink>
-
-									<div class="item__content">
-										<h3 class="item__title">
-											<NuxtLink to="watching">Undercurrents</NuxtLink>
-										</h3>
-										<span class="item__category">
-											<NuxtLink to="#">Comedy</NuxtLink>
-										</span>
-
-										<div class="item__wrap">
-											<span class="item__rate"> 7.1</span>
-
-											<ul class="item__list">
-												<li>FHD</li>
-												<li>18+</li>
-											</ul>
-										</div>
-
-										<div class="item__description">
-											<p>
-												A brilliant scientist discovers a way to harness the
-												power of the ocean's currents to create a new, renewable
-												energy source. But when her groundbreaking technology
-												falls into the wrong hands, she must race against time
-												to stop it from being used for evil. Along the way, she
-												must navigate complex political alliances and confront
-												her own past to save the world from disaster.
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end item -->
-
-							<!-- item -->
-							<div class="col-6 col-sm-12 col-lg-6 col-xxl-4">
-								<div class="item item--list">
-									<NuxtLink to="watching" class="item__cover">
-										<img src="/img/covers/3.png" alt="" />
-										<span class="item__play">
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-												<path
-													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-											</svg>
-										</span>
-									</NuxtLink>
-
-									<div class="item__content">
-										<h3 class="item__title">
-											<NuxtLink to="watching">Redemption Road</NuxtLink>
-										</h3>
-										<span class="item__category">
-											<NuxtLink to="#">Romance</NuxtLink>
-											<NuxtLink to="#">Drama</NuxtLink>
-											<NuxtLink to="#">Music</NuxtLink>
-										</span>
-
-										<div class="item__wrap">
-											<span class="item__rate"> 6.3</span>
-
-											<ul class="item__list">
-												<li>HD</li>
-												<li>12+</li>
-											</ul>
-										</div>
-
-										<div class="item__description">
-											<p>
-												A down-on-his-luck boxer struggles to make ends meet
-												while raising his young son. When an old friend offers
-												him a chance to make some quick cash by fighting in an
-												illegal underground boxing tournament, he sees it as his
-												last shot at redemption. But as the stakes get higher
-												and the fights get more brutal, he must confront his own
-												demons and find the strength to win not just for
-												himself, but for his son.
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end item -->
-
-							<!-- item -->
-							<div class="col-6 col-sm-12 col-lg-6 col-xxl-4">
-								<div class="item item--list">
-									<NuxtLink to="watching" class="item__cover">
-										<img src="/img/covers/4.png" alt="" />
-										<span class="item__play">
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-												<path
-													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-											</svg>
-										</span>
-									</NuxtLink>
-
-									<div class="item__content">
-										<h3 class="item__title">
-											<NuxtLink to="watching">Tales from the Underworld</NuxtLink>
-										</h3>
-										<span class="item__category">
-											<NuxtLink to="#">Comedy</NuxtLink>
-											<NuxtLink to="#">Drama</NuxtLink>
-										</span>
-
-										<div class="item__wrap">
-											<span class="item__rate"> 7.9</span>
-
-											<ul class="item__list">
-												<li>HD</li>
-												<li>16+</li>
-											</ul>
-										</div>
-
-										<div class="item__description">
-											<p>
-												When a luxury cruise ship sets sail on its final voyage
-												before retirement, the passengers and crew expect
-												nothing but relaxation and indulgence. But when a
-												mysterious illness spreads through the ship, they find
-												themselves fighting for survival in the middle of the
-												ocean. As tensions rise and resources dwindle, they must
-												confront their own mortality and make impossible choices
-												to stay alive.
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end item -->
-
-							<!-- item -->
-							<div class="col-6 col-sm-12 col-lg-6 col-xxl-4">
-								<div class="item item--list">
-									<NuxtLink to="watching" class="item__cover">
-										<img src="/img/covers/5.png" alt="" />
-										<span class="item__play">
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-												<path
-													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-											</svg>
-										</span>
-									</NuxtLink>
-
-									<div class="item__content">
-										<h3 class="item__title">
-											<NuxtLink to="watching">Voices from the Other Side</NuxtLink>
-										</h3>
-										<span class="item__category">
-											<NuxtLink to="#">Action</NuxtLink>
-											<NuxtLink to="#">Triler</NuxtLink>
-										</span>
-
-										<div class="item__wrap">
-											<span class="item__rate"> 8.4</span>
-
-											<ul class="item__list">
-												<li>HD</li>
-												<li>12+</li>
-											</ul>
-										</div>
-
-										<div class="item__description">
-											<p>
-												In a world where magic is outlawed and hunted, a young
-												witch must use her powers to fight back against the
-												corrupt authorities who seek to destroy her kind. With
-												the help of a rogue witch hunter, she sets out on a
-												dangerous mission to uncover the truth about the
-												government's dark secrets and restore balance to the
-												world. But as the stakes get higher and the risks get
-												greater, she must confront her own fears and decide what
-												she's willing to sacrifice for the greater good.
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end item -->
-
-							<!-- item -->
-							<div class="col-6 col-sm-12 col-lg-6 col-xxl-4">
-								<div class="item item--list">
-									<NuxtLink to="watching" class="item__cover">
-										<img src="/img/covers/6.png" alt="" />
-										<span class="item__play">
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-												<path
-													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-											</svg>
-										</span>
-									</NuxtLink>
-
-									<div class="item__content">
-										<h3 class="item__title">
-											<NuxtLink to="watching">The Unseen World</NuxtLink>
-										</h3>
-										<span class="item__category">
-											<NuxtLink to="#">Comedy</NuxtLink>
-										</span>
-
-										<div class="item__wrap">
-											<span class="item__rate"> 7.1</span>
-
-											<ul class="item__list">
-												<li>HD</li>
-												<li>16+</li>
-											</ul>
-										</div>
-
-										<div class="item__description">
-											<p>
-												When a brilliant scientist invents a machine that can
-												access parallel universes, she unwittingly unleashes a
-												dangerous force that threatens to destroy everything she
-												holds dear. With the help of her trusted colleagues, she
-												must race against time to stop the machine from falling
-												into the wrong hands and prevent a catastrophic chain
-												reaction that could unravel the fabric of reality
-												itself. But as she delves deeper into the unseen world,
-												she realizes that the greatest danger may be closer than
-												she ever imagined.
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end item -->
+						
 						</div>
 					</div>
 
@@ -1778,9 +1530,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: 'IndexPage',
-	mounted() {
+	  data() {
+    return {
+      cinemaData: null
+    };
+  },
+	mounted() { 
+		this.getCinemaData();
 		if (document.querySelector('.hero__slide')) {
 			document.querySelectorAll('.hero__slide').forEach(function (element) {
 				if (element.getAttribute('data-bg')) {
@@ -1935,6 +1695,18 @@ export default {
 				}).mount()
 			}
 		}
+		
 	},
+	methods: {
+    async getCinemaData() {
+      try {
+        const response = await axios.get('http://localhost:4001/api/v1/cinema');
+        this.cinemaData = response.data;
+        console.log(this.cinemaData);
+      } catch (error) {
+        console.error(error,"xato");
+      }
+    }
+  }
 }
 </script>
