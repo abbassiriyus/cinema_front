@@ -85,8 +85,8 @@ export default {
             Authorization: `Bearer ${response.data.token}`
           }
         });
-        console.log(user.data)
         localStorage.setItem("user_data",JSON.stringify(user.data))
+        window.location="/"
       } catch (error) {
         console.error(error);
       }

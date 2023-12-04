@@ -1,5 +1,6 @@
 <template>
 	<div>
+	
 		<!-- home -->
 		<section class="home">
 			<div class="container">
@@ -23,60 +24,11 @@
 
 							<div class="splide__track">
 								<ul class="splide__list">
-									<li class="splide__slide">
-										<div class="hero__slide" data-bg="/img/bg/slide__bg-1.jpg">
+									<li v-for="item in carousel"   class="splide__slide">
+										<div class="hero__slide" data-bg="https://avatars.githubusercontent.com/u/3607926?s=80&v=4">
 											<div class="hero__content">
 												<h2 class="hero__title">
-													Savage Beauty <sub>9.8</sub>
-												</h2>
-												<p class="hero__text">
-													A brilliant scientist discovers a way to harness the
-													power of the ocean's currents to create a new,
-													renewable energy source. But when her groundbreaking
-													technology falls into the wrong hands, she must race
-													against time to stop it from being used for evil.
-												</p>
-												<p class="hero__category">
-													<NuxtLink to="#">Action</NuxtLink>
-													<NuxtLink to="#">Drama</NuxtLink>
-													<NuxtLink to="#">Comedy</NuxtLink>
-												</p>
-												<div class="hero__actions">
-													<NuxtLink to="watching" class="hero__btn">
-														<span>Ko'rish</span>
-													</NuxtLink>
-												</div>
-											</div>
-										</div>
-									</li>
-									<li class="splide__slide">
-										<div class="hero__slide" data-bg="/img/bg/slide__bg-2.jpg">
-											<div class="hero__content">
-												<h2 class="hero__title">
-													Voices from the Other Side <sub>7.1</sub>
-												</h2>
-												<p class="hero__text">
-													In a world where magic is outlawed and hunted, a young
-													witch must use her powers to fight back against the
-													corrupt authorities who seek to destroy her kind.
-												</p>
-												<p class="hero__category">
-													<NuxtLink to="#">Adventure</NuxtLink>
-													<NuxtLink to="#">Triler</NuxtLink>
-												</p>
-												<div class="hero__actions">
-													<NuxtLink to="watching" class="hero__btn">
-														<span>Ko'rish</span>
-													</NuxtLink>
-												</div>
-											</div>
-										</div>
-									</li>
-									<li class="splide__slide">
-										<div class="hero__slide" data-bg="/img/bg/slide__bg-3.jpg">
-											<div class="hero__content">
-												<h2 class="hero__title">
-													Endless Horizon <sub>8.6</sub>
+													item.title<sub>8.6</sub>
 												</h2>
 												<p class="hero__text">
 													When a renowned archaeologist goes missing, his
@@ -165,7 +117,7 @@
 										<div class="d-flex aligin-items-center justify-content-center premium-icon">
 											<img src="/img/USD.svg" alt="" />
 										</div>
-										<img src="/img/covers/1.png" alt="" />
+										<img :src="cinema.images[0].image" alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -209,7 +161,7 @@
 							<div  v-for="cinema in Serial"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<NuxtLink to="watching" class="item__cover">
-										<img src="/img/covers/7.png" alt="" />
+										<img :src="cinema.images[0].image"  alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -239,7 +191,7 @@
 							<div  v-for="cinema in ongoin"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<NuxtLink to="watching" class="item__cover">
-										<img src="/img/covers/7.png" alt="" />
+										<img :src="cinema.images[0].image" alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -267,7 +219,7 @@
 								<div  v-for="cinema in ova"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<NuxtLink to="watching" class="item__cover">
-										<img src="/img/covers/7.png" alt="" />
+										<img :src="cinema.images[0].image"  alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -332,10 +284,10 @@
 
 							<div class="splide__track">
 								<ul class="splide__list">
-									<li class="splide__slide">
+									<li v-for="item in top_look" class="splide__slide">
 										<div class="item item--carousel">
 											<NuxtLink to="watching" class="item__cover">
-												<img src="img/covers/7.png" alt="" />
+												<img style="width:100%;max-width:300px" :src="item.images[0].image" alt="" />
 												<span class="item__play">
 													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 														<path
@@ -345,135 +297,18 @@
 											</NuxtLink>
 											<div class="item__content">
 												<h3 class="item__title">
-													<NuxtLink to="watching">I Dream in Another Language</NuxtLink>
+													<NuxtLink to="watching">{{item.title}}</NuxtLink>
 												</h3>
 												<span class="item__category">
-													<NuxtLink to="#">Action</NuxtLink>
-													<NuxtLink to="#">Triler</NuxtLink>
-												</span>
-												<span class="item__rate">8.4</span>
-											</div>
-										</div>
-									</li>
-
-									<li class="splide__slide">
-										<div class="item item--carousel">
-											<NuxtLink to="watching" class="item__cover">
-												<img src="img/covers/8.png" alt="" />
-												<span class="item__play">
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-														<path
-															d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-													</svg>
-												</span>
+													<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
+											{{ item1.title }}
 											</NuxtLink>
-											<div class="item__content">
-												<h3 class="item__title">
-													<NuxtLink to="watching">Undercurrents</NuxtLink>
-												</h3>
-												<span class="item__category">
-													<NuxtLink to="#">Comedy</NuxtLink>
 												</span>
-												<span class="item__rate">7.1</span>
+												<span class="item__rate">{{item.mark}}</span>
 											</div>
 										</div>
 									</li>
-
-									<li class="splide__slide">
-										<div class="item item--carousel">
-											<NuxtLink to="watching" class="item__cover">
-												<img src="/img/covers/9.png" alt="" />
-												<span class="item__play">
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-														<path
-															d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-													</svg>
-												</span>
-											</NuxtLink>
-											<div class="item__content">
-												<h3 class="item__title">
-													<NuxtLink to="watching">Tales from the Underworld</NuxtLink>
-												</h3>
-												<span class="item__category">
-													<NuxtLink to="#">Romance</NuxtLink>
-													<NuxtLink to="#">Drama</NuxtLink>
-													<NuxtLink to="#">Music</NuxtLink>
-												</span>
-												<span class="item__rate">6.3</span>
-											</div>
-										</div>
-									</li>
-
-									<li class="splide__slide">
-										<div class="item item--carousel">
-											<NuxtLink to="watching" class="item__cover">
-												<img src="/img/covers/10.png" alt="" />
-												<span class="item__play">
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-														<path
-															d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-													</svg>
-												</span>
-											</NuxtLink>
-											<div class="item__content">
-												<h3 class="item__title">
-													<NuxtLink to="watching">Savage Beauty</NuxtLink>
-												</h3>
-												<span class="item__category">
-													<NuxtLink to="#">Comedy</NuxtLink>
-													<NuxtLink to="#">Drama</NuxtLink>
-												</span>
-												<span class="item__rate">7.9</span>
-											</div>
-										</div>
-									</li>
-
-									<li class="splide__slide">
-										<div class="item item--carousel">
-											<NuxtLink to="watching" class="item__cover">
-												<img src="/img/covers/11.png" alt="" />
-												<span class="item__play">
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-														<path
-															d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-													</svg>
-												</span>
-											</NuxtLink>
-											<div class="item__content">
-												<h3 class="item__title">
-													<NuxtLink to="watching">The Unseen Journey</NuxtLink>
-												</h3>
-												<span class="item__category">
-													<NuxtLink to="#">Action</NuxtLink>
-													<NuxtLink to="#">Triler</NuxtLink>
-												</span>
-												<span class="item__rate">8.4</span>
-											</div>
-										</div>
-									</li>
-
-									<li class="splide__slide">
-										<div class="item item--carousel">
-											<NuxtLink to="watching" class="item__cover">
-												<img src="/img/covers/12.png" alt="" />
-												<span class="item__play">
-													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-														<path
-															d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
-													</svg>
-												</span>
-											</NuxtLink>
-											<div class="item__content">
-												<h3 class="item__title">
-													<NuxtLink to="watching">Endless Horizon</NuxtLink>
-												</h3>
-												<span class="item__category">
-													<NuxtLink to="#">Comedy</NuxtLink>
-												</span>
-												<span class="item__rate">7.1</span>
-											</div>
-										</div>
-									</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -677,12 +512,30 @@ export default {
       cinemaData: null,
 	  Serial:null,
 	  ongoin:null,
-	  ova:null
+	  ova:null,
+	  top_look:null,
+	  carousel:null
     };
   },
-	mounted() { 
-		this.getCinemaData();
-		if (document.querySelector('.hero__slide')) {
+
+	methods: {
+    async getCinemaData() {
+      try {
+        const response = await axios.get('http://localhost:4001/api/v1/cinema');
+		this.top_look=response.data.sort((a,b)=>a.more_loking - b.more_loking)
+        this.cinemaData = response.data.filter(item=>item.appearance==1);
+        this.Serial = response.data.filter(item=>item.appearance==2);
+        this.ongoin = response.data.filter(item=>item.appearance==1);
+        this.ova = response.data.filter(item=>item.appearance==1);
+	const carousel= await axios.get('http://localhost:4001/api/v1/carousel')
+    this.carousel=carousel.data
+	this.slider1()
+      } catch (error) {
+        console.error(error,"xato");
+      }
+    },
+	slider1(){
+			if (document.querySelector('.hero__slide')) {
 			document.querySelectorAll('.hero__slide').forEach(function (element) {
 				if (element.getAttribute('data-bg')) {
 					element.style.background =
@@ -836,21 +689,12 @@ export default {
 				}).mount()
 			}
 		}
+	}
+  },
+  	mounted() { 
+		this.getCinemaData();
+	 this.slider1()
 		
 	},
-	methods: {
-    async getCinemaData() {
-      try {
-        const response = await axios.get('http://localhost:4001/api/v1/cinema');
-        this.cinemaData = response.data.filter(item=>item.appearance==1);
-        this.Serial = response.data.filter(item=>item.appearance==1);
-        this.ongoin = response.data.filter(item=>item.appearance==1);
-        this.ova = response.data.filter(item=>item.appearance==1);
-        console.log(this.cinemaData);
-      } catch (error) {
-        console.error(error,"xato");
-      }
-    }
-  }
 }
 </script>
