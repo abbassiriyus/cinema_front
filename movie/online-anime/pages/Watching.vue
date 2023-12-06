@@ -1,5 +1,5 @@
-<template>
-  <div>
+  <template>
+  <div >
     <!-- details -->
     <section class="section section--details">
       <!-- details background -->
@@ -11,8 +11,8 @@
         <div class="row">
           <!-- title -->
           <div class="col-12">
-            <h1 class="section__title section__title--head">
-              I Dream in Another Language
+            <h1 v-if="data_get" class="section__title section__title--head">
+              {{data_get.title}}
             </h1>
           </div>
           <!-- end title -->
@@ -21,7 +21,10 @@
           <div class="col-12 col-xl-6">
             <div class="item item--details">
               <!-- card cover -->
-              <div class="item__cover">
+              <div v-if="data_get && data_get.allimage.length>0" class="item__cover">
+                <img :src="data_get.allimage[0].image" alt="" />
+              </div>
+              <div v-else class="item__cover">
                 <img src="img/covers/14.png" alt="" />
               </div>
               <!-- end card cover -->
@@ -29,70 +32,43 @@
               <!-- card content -->
               <div class="item__content">
                 <div class="item__wrap">
-                  <span class="item__rate">8.4</span>
-
+                  <span v-if="data_get"  class="item__rate">{{data_get.mark}}</span>
                   <ul class="item__list">
-                    <li>Full HD</li>
-                    <li>16+</li>
-                    <li>Premium</li>
+                    <li v-if="data_get" >{{data_get.type}}</li>
+                    <li  v-if="data_get" >{{data_get.age_limit}}+</li>
+                    <li  v-if="data_get" >{{data_get.payment}}</li>
                   </ul>
                 </div>
 
                 <ul class="item__meta">
-                  <li>
-                    <span>Janr:</span> <a role="button">Action</a>
-                    <a role="button">Triler</a>
+                  <li  v-if="data_get" >
+                    <span>Janr:</span> 
+                    <a v-for="item in data_get.janr" role="button">{{ item.title }}</a>
                   </li>
-                  <li><span>Davomiyligi:</span> 120 min</li>
-                  <li><span>Mamlakat:</span> <a role="button">USA</a></li>
-                  <li><span>Tarjima:</span>O'zbek tilida</li>
+                  <li  v-if="data_get" ><span>Davomiyligi:</span> {{ data_get.time }} min</li>
+                  <li  v-if="data_get" ><span>Mamlakat:</span> <a role="button">{{data_get.country}}</a></li>
+                  <li  v-if="data_get" ><span>Tarjima:</span>{{data_get.language}}</li>
                 </ul>
 
                 <ul class="item__meta">
-                  <li>
+                  <li  v-if="data_get" >
                     <span>Ovoz berdi:</span>
-                    <a role="button">Louis Leterrier</a>
+                    <a role="button">{{ data_get.ovoz_berdi }}</a>
                   </li>
-                  <li>
+                  <li  v-if="data_get" >
                     <span>Tarjimon:</span>
-                    <a role="button">Son Gun</a>
-                    <a role="button">Michelle Rodriguez</a>
-                    <a role="button">Jordana Brewster</a>
-                    <a role="button">Tyreese Gibson</a>
-                    <a role="button">Charlize Theron</a>
+                    <a v-for="item in data_get.tarjima" role="button">{{ item.title }}</a>
                   </li>
-                  <li>
+                  <li  v-if="data_get" >
                     <span>Tayming:</span>
-                    <a role="button">Son Gun</a>
+                    <a role="button">{{ data_get.Tayming }}</a>
                   </li>
                 </ul>
               </div>
 
-              <div class="item__description item__description--details">
-                <p>
-                  When a renowned archaeologist goes missing, his daughter sets
-                  out on a perilous journey to the heart of the Amazon
-                  rainforest to find him. Along the way, she discovers a hidden
-                  city and a dangerous conspiracy that threatens the very
-                  balance of power in the world. With the help of a charming
-                  rogue, she must navigate treacherous terrain and outwit
-                  powerful enemies to save her father and uncover the secrets of
-                  the lost city. A down-on-his-luck boxer struggles to make ends
-                  meet while raising his young son. When an old friend offers
-                  him a chance to make some quick cash by fighting in an illegal
-                  underground boxing tournament, he sees it as his last shot at
-                  redemption. But as the stakes get higher and the fights get
-                  more brutal, he must confront his own demons and find the
-                  strength to win not just for himself, but for his son.
-                </p>
-                <p>
-                  A brilliant scientist discovers a way to harness the power of
-                  the ocean's currents to create a new, renewable energy source.
-                  But when her groundbreaking technology falls into the wrong
-                  hands, she must race against time to stop it from being used
-                  for evil. Along the way, she must navigate complex political
-                  alliances and confront her own past to save the world from
-                  disaster.
+              <div v-if="data_get"  class="item__description item__description--details">
+                <p style="max-height: 150px;overflow: auto;">
+                 {{ data_get.description }}
                 </p>
               </div>
               <!-- end card content -->
@@ -102,11 +78,22 @@
 
           <!-- player -->
           <div class="col-12 col-xl-6">
-            <div class="cinema-iframe">
+            <div class="cinema-iframe" v-if="data_get && data_get.video">
               <iframe
                 width="100%"
                 height="100%"
                 src="https://kinescope.io/embed/sppLFtmKoUar14Q2y737wg"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media;"
+                frameborder="0"
+                allowfullscreen
+                style="position: absolute; top: 0; left: 0"
+              ></iframe>
+            </div>
+            <div v-else-if="data_get" class="cinema-iframe">
+              <iframe
+                width="100%"
+                height="100%"
+                :src="data_get.treler"
                 allow="autoplay; fullscreen; picture-in-picture; encrypted-media;"
                 frameborder="0"
                 allowfullscreen
@@ -1072,8 +1059,7 @@
 
 <script>
 import lightGallery from 'lightgallery'
-
-// Plugins
+import axios from 'axios'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import lgZoom from 'lightgallery/plugins/zoom'
 import lgRotate from 'lightgallery/plugins/rotate'
@@ -1081,13 +1067,17 @@ import lgVideo from 'lightgallery/plugins/video'
 import lgFullscreen from 'lightgallery/plugins/fullscreen'
 export default {
   name: 'WatchingPage',
-
+data(){
+  return{
+    data_get:null
+  }
+},
   mounted() {
+    this.getData()
     lightGallery(document.getElementById('lightgallery'), {
       plugins: [lgZoom, lgThumbnail, lgRotate, lgVideo, lgFullscreen],
       licenseKey: 'your_license_key',
       speed: 500,
-      // ... other settings
     })
     var Scrollbar = window.Scrollbar
 
@@ -1110,5 +1100,21 @@ export default {
       }
     }
   },
+  methods: {
+    getData() {
+      axios.get(`http://localhost:4002/api/v1/cinema/${localStorage.getItem("selectedItemData")}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}` 
+      }
+    })
+    .then(response => {
+      this.data_get=response.data
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.error(error)
+    })
+    }
+  }
 }
 </script>

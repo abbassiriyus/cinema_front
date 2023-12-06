@@ -890,6 +890,7 @@ body::-webkit-scrollbar-thumb {
 	font-size: 36px;
 	line-height: 46px;
 	color: #fff;
+	scrollbar-width: 1px;
 	font-weight: 300;
 	margin-bottom: 20px;
 }
@@ -4699,8 +4700,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .comments__rate button svg {
-	width: 18px;
-	height: auto;
+	width: 23px;
+	height: 24px;
 	opacity: 0.7;
 	transition: opacity 0.4s ease;
 }

@@ -24,32 +24,29 @@
 
 							<div class="splide__track">
 								<ul class="splide__list">
-									<li v-for="item in carousel"   class="splide__slide">
-										<div class="hero__slide" data-bg="https://avatars.githubusercontent.com/u/3607926?s=80&v=4">
+									<li v-for="item in carousel2" :key="item.id"  class="splide__slide">
+										<div class="hero__slide" :data-bg="`${item.images[0].image}`">
 											<div class="hero__content">
 												<h2 class="hero__title">
-													item.title<sub>8.6</sub>
+													{{ item.title }} <sub>{{ item.mark }}</sub>
 												</h2>
-												<p class="hero__text">
-													When a renowned archaeologist goes missing, his
-													daughter sets out on a perilous journey to the heart
-													of the Amazon rainforest to find him. Along the way,
-													she discovers a hidden city and a dangerous conspiracy
-													that threatens the very balance of power in the world.
+												<p class="hero__text" style="max-height: 150px;overflow: auto;">
+													{{ item.description }}
 												</p>
 												<p class="hero__category">
-													<NuxtLink to="#">Action</NuxtLink>
-													<NuxtLink to="#">Drama</NuxtLink>
-													<NuxtLink to="#">Triler</NuxtLink>
+								      <NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
+											{{ item1.title }}
+											</NuxtLink>
 												</p>
 												<div class="hero__actions">
-													<NuxtLink to="watching" class="hero__btn">
+													<button @click="handleClick(item.id)"  class="hero__btn">
 														<span>Ko'rish</span>
-													</NuxtLink>
+													</button>
 												</div>
 											</div>
 										</div>
 									</li>
+								
 								</ul>
 							</div>
 						</div>
@@ -113,7 +110,7 @@
 							<!-- item -->
 							<div v-for="cinema in cinemaData"  :key="cinema.id" class="col-6 col-sm-12 col-lg-6 col-xxl-4">
 								<div class="item item--list">
-									<NuxtLink to="watching" class="item__cover">
+									<div @click="handleClick(cinema.id)" class="item__cover">
 										<div class="d-flex aligin-items-center justify-content-center premium-icon">
 											<img src="/img/USD.svg" alt="" />
 										</div>
@@ -124,13 +121,13 @@
 													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
 											</svg>
 										</span>
-									</NuxtLink>
+									</div>
 									<div class="item__content">
 										<h3 class="item__title">
-											<NuxtLink to="watching">{{ cinema.title }}</NuxtLink>
+											<button style="color:white" @click="handleClick(cinema.id)">{{ cinema.title }}</button>
 										</h3>
 										<span class="item__category">
-											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">
+											<NuxtLink style="color:white" v-for="item1 in cinema.janrlar" :key="item1.id" to="#">
 											{{ item1.title }}
 											</NuxtLink>
 										</span>
@@ -160,7 +157,7 @@
 							<!-- item -->
 							<div  v-for="cinema in Serial"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
-									<NuxtLink to="watching" class="item__cover">
+									<div @click="handleClick(cinema.id)"  class="item__cover">
 										<img :src="cinema.images[0].image"  alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -168,10 +165,10 @@
 													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
 											</svg>
 										</span>
-									</NuxtLink>
+									</div>
 									<div class="item__content">
 										<h3 class="item__title">
-											<NuxtLink to="watching">{{cinema.title}}</NuxtLink>
+											<button style="color:white" @click="handleClick(cinema.id)">{{cinema.title}}</button>
 										</h3>
 										<span class="item__category">
 											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">	{{ item1.title }}</NuxtLink>
@@ -190,7 +187,7 @@
 						<!-- item -->
 							<div  v-for="cinema in ongoin"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
-									<NuxtLink to="watching" class="item__cover">
+									<div @click="handleClick(cinema.id)" class="item__cover">
 										<img :src="cinema.images[0].image" alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -198,10 +195,10 @@
 													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
 											</svg>
 										</span>
-									</NuxtLink>
+									</div>
 									<div class="item__content">
 										<h3 class="item__title">
-											<NuxtLink to="watching">{{cinema.title}}</NuxtLink>
+											<button style="color:white" @click="handleClick(cinema.id)">{{cinema.title}}</button>
 										</h3>
 										<span class="item__category">
 											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">	{{ item1.title }}</NuxtLink>
@@ -218,7 +215,7 @@
 						<div class="row">
 								<div  v-for="cinema in ova"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
-									<NuxtLink to="watching" class="item__cover">
+									<div  @click="handleClick(cinema.id)" class="item__cover">
 										<img :src="cinema.images[0].image"  alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -226,10 +223,10 @@
 													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
 											</svg>
 										</span>
-									</NuxtLink>
+									</div>
 									<div class="item__content">
 										<h3 class="item__title">
-											<NuxtLink to="watching">{{cinema.title}}</NuxtLink>
+											<button style="color:white" @click="handleClick(cinema.id)">{{cinema.title}}</button>
 										</h3>
 										<span class="item__category">
 											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">	{{ item1.title }}</NuxtLink>
@@ -287,7 +284,7 @@
 									<li v-for="item in top_look" class="splide__slide">
 										<div class="item item--carousel">
 											<NuxtLink to="watching" class="item__cover">
-												<img style="width:100%;max-width:300px" :src="item.images[0].image" alt="" />
+												<img :src="item.images[0].image" alt="" />
 												<span class="item__play">
 													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 														<path
@@ -304,11 +301,10 @@
 											{{ item1.title }}
 											</NuxtLink>
 												</span>
-												<span class="item__rate">{{item.mark}}</span>
+												<span class="item__rate">8.4</span>
 											</div>
 										</div>
 									</li>
-									
 								</ul>
 							</div>
 						</div>
@@ -514,28 +510,40 @@ export default {
 	  ongoin:null,
 	  ova:null,
 	  top_look:null,
-	  carousel:null
+	  carousel2:null
     };
   },
-
+	mounted() { 
+	this.getCinemaData();
+	
+	
+			
+	},
 	methods: {
+	handleClick(index) {
+      const selectedItem =index;
+      localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
+	  window.location="/watching"
+    },
     async getCinemaData() {
       try {
-        const response = await axios.get('http://localhost:4001/api/v1/cinema');
+        const response = await axios.get('http://localhost:4002/api/v1/cinema');
 		this.top_look=response.data.sort((a,b)=>a.more_loking - b.more_loking)
         this.cinemaData = response.data.filter(item=>item.appearance==1);
         this.Serial = response.data.filter(item=>item.appearance==2);
         this.ongoin = response.data.filter(item=>item.appearance==1);
         this.ova = response.data.filter(item=>item.appearance==1);
-	const carousel= await axios.get('http://localhost:4001/api/v1/carousel')
-    this.carousel=carousel.data
-	this.slider1()
+	const carousel2= await axios.get('http://localhost:4002/api/v1/carousel')
+    this.carousel2=carousel2.data
+	setTimeout(() => {
+      this.getData()
+    }, 1000);
       } catch (error) {
         console.error(error,"xato");
       }
     },
-	slider1(){
-			if (document.querySelector('.hero__slide')) {
+	getData(){
+	    if (document.querySelector('.hero__slide')) {
 			document.querySelectorAll('.hero__slide').forEach(function (element) {
 				if (element.getAttribute('data-bg')) {
 					element.style.background =
@@ -690,11 +698,6 @@ export default {
 			}
 		}
 	}
-  },
-  	mounted() { 
-		this.getCinemaData();
-	 this.slider1()
-		
-	},
+  }
 }
 </script>
