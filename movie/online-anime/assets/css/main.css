@@ -4656,8 +4656,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .comments__actions button svg {
-	width: 16px;
-	height: auto;
+	width: 23px;
+	height: 23px;
 	fill: #fff;
 	opacity: 0.7;
 	transition: opacity 0.4s ease;
@@ -4835,8 +4835,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .reviews__rating svg {
-	width: 16px;
-	height: auto;
+	width: 23px;
+	height: 23px;
 	margin-right: 5px;
 	fill: #ff55a5;
 }

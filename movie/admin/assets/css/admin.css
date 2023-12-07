@@ -2012,8 +2012,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .reviews__rating svg {
-  width: 16px;
-  height: auto;
+  width: 23px;
+  height: 23px;
   margin-right: 5px;
   fill: #ff55a5;
 }
