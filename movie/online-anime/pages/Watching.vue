@@ -695,8 +695,20 @@ data.append('supcomment',this.comment_id)
 data.append('description',document.querySelector(".sign__textarea").value)
 data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
 data.append('quanty',this.quote)
-console.log(data);
-console.log(JSON.parse(localStorage.getItem("data")));
+axios.post('http://localhost:4002/api/v1/comment/', data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+      })
+        .then(response => {
+          console.log(response);
+          this.getData()
+          // Muvaffaqiyatli amalga oshirildi
+        })
+        .catch(error => {
+          console.log(error);
+          // Xatolik yuz berdi
+        });
   }else{
 alert("user not")
   }
