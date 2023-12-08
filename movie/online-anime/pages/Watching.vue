@@ -414,6 +414,7 @@
                           ></textarea>
                         </div>
                         <button
+                        @click="send_message"
                           type="button"
                           class="sign__btn sign__btn--small"
                         >
@@ -576,7 +577,8 @@
               <div v-for="cinema in top_look" class="col-6 col-sm-4 col-lg-6">
                 <div class="item">
                   <NuxtLink to="details1" class="item__cover">
-                    <img :src="img/covers/7.png" alt="" />
+                 <img v-if="cinema.images.length>0" :src="`${cinema.images[0].image}`" alt="" />
+                 <img v-else src="img/covers/14.png" alt="" />
                     <span class="cinema.image">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -625,7 +627,10 @@ export default {
 data(){
   return{
     data_get:null,
-    top_look:null
+    top_look:null,
+    one_user:null,
+    comment_id:0,
+    quote:false
   }
 },
   mounted() {
@@ -681,6 +686,26 @@ console.log(this.top_look);
         console.error(error,"xato");
       }
     },
+    send_message(){
+  if(localStorage.getItem("data")){
+var data=new FormData()
+
+data.append('cinema_id', JSON.parse(localStorage.getItem("selectedItemData")))
+data.append('supcomment',this.comment_id)
+data.append('description',document.querySelector(".sign__textarea").value)
+data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
+data.append('quanty',this.quote)
+console.log(data);
+console.log(JSON.parse(localStorage.getItem("data")));
+  }else{
+alert("user not")
+  }
+
+
+
+
+
+    }
   }
 }
 </script>
