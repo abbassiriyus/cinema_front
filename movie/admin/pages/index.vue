@@ -24,7 +24,7 @@
           <div class="col-12 col-sm-6 col-xl-3">
             <div class="stats">
               <span>Bu oyda noyob tomoshalar</span>
-              <p>5 678</p>
+              <p id="tomoshalar_diogramma">0</p>
               <img src="img/graph-bar.svg" alt="" />
             </div>
           </div>
@@ -34,7 +34,7 @@
           <div class="col-12 col-sm-6 col-xl-3">
             <div class="stats">
               <span>Bu oy qo'shilgan medialar</span>
-              <p>172</p>
+              <p id="kinolar_diogramma">0</p>
               <img src="img/film.svg" alt="" />
             </div>
           </div>
@@ -44,7 +44,7 @@
           <div class="col-12 col-sm-6 col-xl-3">
             <div class="stats">
               <span>Yangi izohlar</span>
-              <p>2 573</p>
+              <p id="izohlar_diogramma">0</p>
               <img src="img/comments.svg" alt="" />
             </div>
           </div>
@@ -54,7 +54,7 @@
           <div class="col-12 col-sm-6 col-xl-3">
             <div class="stats">
               <span>Yangi sharhlar</span>
-              <p>1 021</p>
+              <p id="sharhlar_diogramma">0</p>
               <img src="img/star-half-alt.svg" alt="" />
             </div>
           </div>
@@ -91,27 +91,27 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr v-for="item in yaxshiMedia" :key="item.id">
                       <td>
-                        <div class="dashbox__table-text">321</div>
+                        <div class="dashbox__table-text">{{ item.id }}</div>
                       </td>
                       <td>
                         <div class="dashbox__table-text">
-                          <NuxtLink to="#">The Lost City</NuxtLink>
+                          <NuxtLink to="#">{{ item.title }}</NuxtLink>
                         </div>
                       </td>
                       <td>
-                        <div class="dashbox__table-text">Movie</div>
+                        <div class="dashbox__table-text">{{ item.category }}</div>
                       </td>
                       <td>
                         <div
                           class="dashbox__table-text dashbox__table-text--rate"
                         >
-                          9.2
+                          {{ item.mark }}
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>
                         <div class="dashbox__table-text">54</div>
                       </td>
@@ -190,7 +190,7 @@
                           8.9
                         </div>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -229,27 +229,27 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr v-for="item in songgiMedia" :key="item.id">
                       <td>
-                        <div class="dashbox__table-text">749</div>
+                        <div class="dashbox__table-text">{{item.id}}</div>
                       </td>
                       <td>
                         <div class="dashbox__table-text">
-                          <NuxtLink to="#">I Dream in Another Language</NuxtLink>
+                          <NuxtLink to="#">{{ item.title }}</NuxtLink>
                         </div>
                       </td>
                       <td>
-                        <div class="dashbox__table-text">TV Series</div>
+                        <div class="dashbox__table-text">{{ item.category }}</div>
                       </td>
                       <td>
                         <div
                           class="dashbox__table-text dashbox__table-text--rate"
                         >
-                          7.7
+                          {{ item.mark }}
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>
                         <div class="dashbox__table-text">750</div>
                       </td>
@@ -328,7 +328,7 @@
                           6.5
                         </div>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -370,21 +370,21 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr v-for="item in User" :key="item.id">
                       <td>
-                        <div class="dashbox__table-text">1023</div>
+                        <div class="dashbox__table-text">{{ item.id }}</div>
                       </td>
                       <td>
-                        <div class="dashbox__table-text">Matt Jones</div>
+                        <div class="dashbox__table-text">{{ item.name }}</div>
                       </td>
                       <td>
-                        <div class="dashbox__table-text">email@email.com</div>
+                        <div class="dashbox__table-text">{{ item.email }}</div>
                       </td>
                       <td>
-                        <div class="dashbox__table-text">Username</div>
+                        <div class="dashbox__table-text">{{ item.name }}</div>
                       </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>
                         <div class="dashbox__table-text">1024</div>
                       </td>
@@ -439,7 +439,7 @@
                       <td>
                         <div class="dashbox__table-text">Username</div>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -596,5 +596,107 @@
 <script>
 export default {
   name: 'IndexPage',
+  data() {
+    return {
+      yaxshiMedia: [],
+      songgiMedia: [],
+      User:[],
+    };
+  },
+  async mounted() {
+    try {
+      var a=new Date()
+      var b=(a.getMonth()*1)+1
+      var date=a.getFullYear()+"-"+b
+      var day=date+"-"+`${a.getDate()}`.padStart(2,"0")
+      console.log(day,"kun")
+      const response = await this.$axios.get('http://localhost:4002/api/v1/cinema');
+      var korish=0
+      var kinolar=0
+      var sharhlar=0
+      for (let i = 0; i < response.data.length; i++) {
+        if((response.data[i].time_create).slice(0,7)==date){
+          korish=korish+response.data[i].more_loking
+          sharhlar=sharhlar+response.data[i].mark
+          var s=0
+          s=response.data[i]?1:0
+          kinolar=kinolar+s
+        }
+      }
+      var izohlar=0
+      const izoh=await this.$axios.get('http://localhost:4002/api/v1/comment');
+      for (let i = 0; i < izoh.data.length; i++) {
+        if((izoh.data[i].time_create).slice(0,7)==date){
+          var s=0
+          s=izoh.data[i]?1:0
+          izohlar=izohlar+s
+        }
+      }
+      document.querySelector("#izohlar_diogramma").innerHTML=izohlar
+      document.querySelector("#kinolar_diogramma").innerHTML=kinolar
+      document.querySelector("#tomoshalar_diogramma").innerHTML=korish
+      document.querySelector("#sharhlar_diogramma").innerHTML=sharhlar
+      var madiaYaxshi=[]
+      for (let i = 0; i < response.data.length; i++) {
+        if((response.data[i].time_create).slice(0,7)==date && response.data[i].mark>=8){
+          madiaYaxshi.push(response.data[i])
+        }
+      }
+      for (let i = 0; i < madiaYaxshi.length; i++) {
+        if(madiaYaxshi[i].appearance==1){
+          madiaYaxshi[i].category="Movie"
+        }else{
+          if(madiaYaxshi[i].appearance==2){
+          madiaYaxshi[i].category="Series"
+          }else{
+            if(madiaYaxshi[i].appearance==3){
+            madiaYaxshi[i].category="TV Series"
+            }else{
+               if(madiaYaxshi[i].appearance==4){
+               madiaYaxshi[i].category="Cartoon"
+               }
+            }
+          }
+        }
+      }
+      this.yaxshiMedia=madiaYaxshi
+      var mediaSonggi=[]
+      for (let i = 0; i < response.data.length; i++) {
+        if((response.data[i].time_create).slice(0,10)==day){
+          mediaSonggi.push(response.data[i])
+        }
+      }
+      for (let i = 0; i < mediaSonggi.length; i++) {
+        if(mediaSonggi[i].appearance==1){
+          mediaSonggi[i].category="Movie"
+        }else{
+          if(mediaSonggi[i].appearance==2){
+          mediaSonggi[i].category="Series"
+          }else{
+            if(mediaSonggi[i].appearance==3){
+            mediaSonggi[i].category="TV Series"
+            }else{
+               if(mediaSonggi[i].appearance==4){
+               mediaSonggi[i].category="Cartoon"
+               }
+            }
+          }
+        }
+      }
+      this.songgiMedia=mediaSonggi
+       
+      var usersData=[]
+      const users=await this.$axios.get('http://localhost:4002/users');
+      for (let i = 0; i < users.data.data.length; i++) {
+        if((users.data.data[i].time_create).slice(0,10)==day){
+          usersData.push(users.data.data[i])
+        }
+      }
+      this.User=usersData
+
+    } catch (error) {
+      console.error(error);
+    }
+  },
 }
 </script>
