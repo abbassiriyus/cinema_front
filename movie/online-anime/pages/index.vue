@@ -112,9 +112,9 @@
 								<div class="item item--list">
 									<div @click="handleClick(cinema.id)" class="item__cover">
 										<div class="d-flex aligin-items-center justify-content-center premium-icon">
-											<img src="/img/USD.svg" alt="" />
+											<img v-if="cinema.images && cinema.images[0].image" src="/img/USD.svg" alt="" />
 										</div>
-										<img :src="cinema.images[0].image" alt="" />
+										<img  :src="cinema.images[0].image" alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -158,7 +158,7 @@
 							<div  v-for="cinema in Serial"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<div @click="handleClick(cinema.id)"  class="item__cover">
-										<img :src="cinema.images[0].image"  alt="" />
+										<img v-if="cinema.images && cinema.images[0].image" :src="cinema.images[0].image"  alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -188,7 +188,7 @@
 							<div  v-for="cinema in ongoin"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<div @click="handleClick(cinema.id)" class="item__cover">
-										<img :src="cinema.images[0].image" alt="" />
+										<img v-if="cinema.images && cinema.images[0].image" :src="cinema.images[0].image" alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path

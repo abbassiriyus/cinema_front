@@ -189,8 +189,7 @@
                   <!-- comments -->
                   <div class="col-12">
                     <div class="comments" v-if="data_get">
-                    
-                      <ul v-for="commnet in data_get.comment"  class="comments__list">
+                   <ul v-for="commnet in data_get.comment"  class="comments__list">
                         <li  class="comments__item" >
                           <div class="comments__autor">
                             <img
@@ -216,6 +215,7 @@
                             <div class="comments__rate">
                               <button type="button">
                                 <svg
+                                  @click="click_like(true,commnet.id)"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewbox="0 0 24 24"
                                 >
@@ -227,8 +227,9 @@
 
                               <button type="button">
                                 {{ commnet.min }}<svg
+                                @click="click_like(false,commnet.id)"
                                   xmlns="http://www.w3.org/2000/svg"
-                                  viewbox="0 0 24 24"
+                                  viewbox="0 0 24 24" 
                                 >
                                   <path
                                     d="M19,2H6.27A3,3,0,0,0,3.32,4.46l-1.27,7A3,3,0,0,0,5,15H9.56L9,16.43A4.13,4.13,0,0,0,12.89,22a1,1,0,0,0,.91-.59L16.65,15H19a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM15,13.79l-2.72,6.12a2.13,2.13,0,0,1-1.38-2.78l.53-1.43A2,2,0,0,0,9.56,13H5a1,1,0,0,1-.77-.36A1,1,0,0,1,4,11.82l1.27-7a1,1,0,0,1,1-.82H15ZM20,12a1,1,0,0,1-1,1H17V4h2a1,1,0,0,1,1,1Z"
@@ -237,7 +238,7 @@
                               </button>
                             </div>
 
-                            <button type="button">
+                       <button type="button" @click="updateData(commnet)">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewbox="0 0 24 24"
@@ -259,7 +260,7 @@
                             </button>
                           </div>
                         </li> 
-                        <div v-for="cinema in commnet.subcomment">
+                       <div v-for="cinema in commnet.subcomment">
                         <li v-if="!cinema.quanty"  class="comments__item comments__item--answer">
                           <div class="comments__autor">
                             <img
@@ -283,7 +284,7 @@
                           <div class="comments__actions">
                             <div class="comments__rate">
                               <button type="button">
-                                <svg
+                                <svg @click="click_like(true,cinema.id)"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewbox="0 0 24 24"
                                 >
@@ -294,7 +295,7 @@
                               </button>
 
                               <button type="button">
-                                {{ cinema.min }}<svg
+                                {{ cinema.min }}<svg @click="click_like(false,cinema.id)"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewbox="0 0 24 24"
                                 >
@@ -355,7 +356,7 @@
                           <div class="comments__actions">
                             <div class="comments__rate">
                               <button type="button">
-                                <svg
+                                <svg @click="click_like(true,cinema.id)"
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewbox="0 0 24 24"
                                 >
@@ -368,7 +369,7 @@
                               <button type="button">
                                 {{ cinema.min }}<svg
                                   xmlns="http://www.w3.org/2000/svg"
-                                  viewbox="0 0 24 24"
+                                  viewbox="0 0 24 24" @click="click_like(false,cinema.id)"
                                 >
                                   <path
                                     d="M19,2H6.27A3,3,0,0,0,3.32,4.46l-1.27,7A3,3,0,0,0,5,15H9.56L9,16.43A4.13,4.13,0,0,0,12.89,22a1,1,0,0,0,.91-.59L16.65,15H19a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM15,13.79l-2.72,6.12a2.13,2.13,0,0,1-1.38-2.78l.53-1.43A2,2,0,0,0,9.56,13H5a1,1,0,0,1-.77-.36A1,1,0,0,1,4,11.82l1.27-7a1,1,0,0,1,1-.82H15ZM20,12a1,1,0,0,1-1,1H17V4h2a1,1,0,0,1,1,1Z"
@@ -406,6 +407,7 @@
 
                       <form action="#" class="sign__form sign__form--comments">
                         <div class="sign__group">
+                          <h6 style="color: white;">{{ this.string_data }}</h6>
                           <textarea
                             id="text"
                             name="text"
@@ -463,7 +465,7 @@
                                 <path
                                   d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"
                                 ></path></svg
-                              >8.0</span
+                              >{{ sharx.rating }}</span
                             >
                           </div>
                           <p class="reviews__text">
@@ -480,6 +482,7 @@
                                 type="text"
                                 class="sign__input"
                                 placeholder="Sarlavha"
+                                id="sharx_d"
                               />
                             </div>
                           </div>
@@ -509,6 +512,7 @@
                           <div class="col-12">
                             <div class="sign__group">
                               <textarea
+                              id="sharx_m"
                                 class="sign__textarea"
                                 placeholder="Sharh yozing"
                               ></textarea>
@@ -517,6 +521,7 @@
 
                           <div class="col-12">
                             <button
+                              @click="clicksharx"
                               type="button"
                               class="sign__btn sign__btn--small"
                             >
@@ -577,7 +582,7 @@
               <div v-for="cinema in top_look" class="col-6 col-sm-4 col-lg-6">
                 <div class="item">
                   <NuxtLink to="details1" class="item__cover">
-                 <img v-if="cinema.images.length>0" :src="`${cinema.images[0].image}`" alt="" />
+                 <img v-if="cinema.images.length>0" :src="cinema.images[0].image"    alt="" />
                  <img v-else src="img/covers/14.png" alt="" />
                     <span class="cinema.image">
                       <svg
@@ -595,10 +600,9 @@
                       <NuxtLink to="details1">The Lost Key</NuxtLink>
                     </h3>
                     <span class="item__category">
-                      <NuxtLink to="#">Action</NuxtLink>
-                      <NuxtLink to="#">Triler</NuxtLink>
+                      <NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">	{{ item1.title }}</NuxtLink>
                     </span>
-                    <span class="item__rate">8.4</span>
+                    <span class="item__rate">{{ cinema.mark }}</span>
                   </div>
                 </div>
               </div>
@@ -630,7 +634,8 @@ data(){
     top_look:null,
     one_user:null,
     comment_id:0,
-    quote:false
+    quote:false,
+    string_data:""
   }
 },
   mounted() {
@@ -687,7 +692,7 @@ console.log(this.top_look);
       }
     },
     send_message(){
-  if(localStorage.getItem("data")){
+  if(localStorage.getItem("user_data")){
 var data=new FormData()
 
 data.append('cinema_id', JSON.parse(localStorage.getItem("selectedItemData")))
@@ -701,8 +706,10 @@ axios.post('http://localhost:4002/api/v1/comment/', data, {
         }
       })
         .then(response => {
-          console.log(response);
           this.getData()
+          this.comment_id=0
+    this.string_data=""
+    document.querySelector(".sign__textarea").value=""
           // Muvaffaqiyatli amalga oshirildi
         })
         .catch(error => {
@@ -711,12 +718,69 @@ axios.post('http://localhost:4002/api/v1/comment/', data, {
         });
   }else{
 alert("user not")
-  }
+  }},
+   click_like(bol,id){
+    const url = 'http://localhost:4002/api/v1/comment_mark';
+    if(localStorage.getItem("user_data")){
+data.append("dislike",bol)
+data.append('comment_id',id)
+data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
+axios.post(url, data)
+  .then(response => {
+    console.log(response);
+    this.getData()
+  //  window.location.reload()
+  })
+  .catch(error => {
+    // window.location.reload()
+    console.log(error);
+    
+  })
+ }else{
+alert("user not")
+    }
+var data =new FormData()
 
 
+   },
+   clicksharx(){
+  
+   if(localStorage.getItem("user_data")){ 
+    var data=new FormData()
+data.append("rating",document.querySelector('#rating').value)
+data.append("cinema_id",JSON.parse(localStorage.getItem("selectedItemData")))
+data.append("description",document.querySelector('#sharx_m').value)
+data.append("title",document.querySelector('#sharx_d').value)
+data.append("creator",JSON.parse((localStorage.getItem("user_data"))).id)
+axios.post('http://localhost:4002/api/v1/sharx/', data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+      })
+        .then(response => {
+          document.querySelector('#sharx_m').value=""
+          document.querySelector('#sharx_d').value=""
+          this.getData()
+          this.comment_id=0
+    this.string_data=""
+    document.querySelector(".sign__textarea").value=""
+          // Muvaffaqiyatli amalga oshirildi
+        })
+        .catch(error => {
+          console.log(error);
+          // Xatolik yuz berdi
+        });
+  
+   }else{
+alert("user not")
+   }
 
-
-
+    
+   },
+    updateData(data) {
+      console.log(data);
+      this.comment_id=data.id
+      this.string_data=data.description
     }
   }
 }
