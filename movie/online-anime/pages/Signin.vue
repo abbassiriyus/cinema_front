@@ -86,7 +86,7 @@ export default {
           }
         });
         localStorage.setItem("user_data",JSON.stringify(user.data))
-        window.location="/"
+        window.location="/profile"
       } catch (error) {
         console.error(error);
       }
