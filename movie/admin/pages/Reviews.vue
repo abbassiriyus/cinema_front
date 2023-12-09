@@ -537,7 +537,7 @@
 	<!-- end main content -->
 
 	<!-- view modal -->
-	<div v-for="item in sharhModal" ::key="item.id" class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
+	<div v-for="item in sharhModal"  class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">

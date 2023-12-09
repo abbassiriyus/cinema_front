@@ -9,7 +9,7 @@
 					<div class="main__title">
 						<h2>Foydalanuvchilar</h2>
 
-						<span class="main__title-stat">Jami 3 702</span>
+						<span class="main__title-stat">Jami {{ this.user.length }}</span>
 
 						<div class="main__title-wrap">
 							<select class="filter__select" name="sort" id="filter__sort">
@@ -54,9 +54,9 @@
 							</thead>
 
 							<tbody>
-								<tr>
+								<tr v-for="item in user">
 									<td>
-										<div class="catalog__text">11</div>
+										<div class="catalog__text">{{ item.id }}</div>
 									</td>
 									<td>
 										<div class="catalog__user">
@@ -64,28 +64,31 @@
 												<img src="img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
-												<h3>Tess Harper</h3>
-												<span>email@email.com</span>
+												<h3>{{ item.name }}</h3>
+												<span>{{ item.email }}</span>
 											</div>
 										</div>
 									</td>
 									<td>
-										<div class="catalog__text">Username</div>
+										<div class="catalog__text">{{ item.name }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">Premium</div>
 									</td>
 									<td>
-										<div class="catalog__text">13</div>
+										<div class="catalog__text">{{ (item.commentLength).length }}</div>
 									</td>
 									<td>
-										<div class="catalog__text">1</div>
+										<div class="catalog__text">{{ (item.sharhLength).length }}</div>
 									</td>
-									<td>
+									<td v-if="item.pan">
 										<div class="catalog__text catalog__text--green">Approved</div>
 									</td>
+									<td v-if="!item.pan">
+										<div class="catalog__text catalog__text--red">Banned</div>
+									</td>
 									<td>
-										<div class="catalog__text">05.02.2023</div>
+										<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 									</td>
 									<td>
 										<div class="catalog__btns">
@@ -112,7 +115,7 @@
 										</div>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>
 										<div class="catalog__text">12</div>
 									</td>
@@ -633,7 +636,7 @@
 											</button>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -644,7 +647,7 @@
 				<div class="col-12">
 					<div class="main__paginator">
 						<!-- amount -->
-						<span class="main__paginator-pages">3702 tadan 10 tasi</span>
+						<span class="main__paginator-pages">{{ this.user.length }} tadan 10 tasi</span>
 						<!-- end amount -->
 
 						<ul class="main__paginator-list">
@@ -745,8 +748,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "ReviewsPage",
+	data(){
+    	return{
+			user:[],
+		}
+	},
     mounted() {
         if (document.querySelector('#filter__sort')) {
 		new SlimSelect({
@@ -755,7 +765,36 @@ export default {
 				showSearch: false,
 			}
 		});
-	}
+	    }
+		try{
+        axios.get('http://localhost:4002/users').then(res=>{
+			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
+				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
+				   for (let i = 0; i < res.data.length; i++) {
+						res.data[i].commentLength=[]
+						for (let j = 0; j < res1.data.length; j++) {
+					 		if(res.data[i].id==res1.data[j].creator){
+                        	var a=res1.data[j].creator
+							res.data[i].commentLength.push(res1.data[j])
+					 		}
+						}
+				   }
+				   for (let i = 0; i < res.data.length; i++) {
+						res.data[i].sharhLength=[]
+						for (let j = 0; j < res2.data.length; j++) {
+					 		if(res.data[i].id==res2.data[j].creator){
+							res.data[i].sharhLength.push(res2.data[j])
+					 		}
+						}
+				   }
+				   this.user=res.data
+				   console.log(res.data,"salom");
+				})
+			})
+		})
+		}catch(err){
+			console.log(err);
+		}
     }
 }
 </script>
