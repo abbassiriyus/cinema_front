@@ -641,9 +641,9 @@ export default {
             this.deleteId=id
 		},
 		CommentDelete(){
-           axios.delete(`http://localhost:4002/api/v1/sharx/${this.deleteId}`).then(res=>{
+           axios.delete(`http://localhost:4002/api/v1/comment/${this.deleteId}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
-			// window.location.reload()
+			window.location.reload()
 			// axios.get('http://localhost:4002/api/v1/comment').then(res=>{
             // axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
 			// 	axios.get('http://localhost:4002/users').then(res2=>{
