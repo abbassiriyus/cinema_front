@@ -563,9 +563,16 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'CommentsPage',
-
+	data(){
+		return{
+			izoh:[],
+		}
+	},
+	
     mounted() {
         if (document.querySelector('#filter__sort')) {
 	new SlimSelect({
@@ -574,7 +581,14 @@ export default {
 			showSearch: false,
 		}
 	});
-}
+        }
+		try{
+         axios.get('').then(res=>{
+
+		 })
+		}catch(err){
+			console.log(err);
+		}
     }
 }
 </script>

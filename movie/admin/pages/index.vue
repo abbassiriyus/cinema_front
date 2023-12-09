@@ -612,7 +612,6 @@ export default {
       var b=(a.getMonth()*1)+1
       var date=a.getFullYear()+"-"+b
       var day=date+"-"+`${a.getDate()}`.padStart(2,"0")
-      console.log(day,"kun")
       const response = await axios.get('http://localhost:4002/api/v1/cinema');
       var korish=0
       var kinolar=0
@@ -690,9 +689,9 @@ export default {
        
       var usersData=[]
       const users=await axios.get('http://localhost:4002/users');
-      for (let i = 0; i < users.data.data.length; i++) {
-        if((users.data.data[i].time_create).slice(0,10)==day){
-          usersData.push(users.data.data[i])
+      for (let i = 0; i < users.data.length; i++) {
+        if((users.data[i].time_create).slice(0,10)==day){
+          usersData.push(users.data[i])
         }
       }
       this.User=usersData
