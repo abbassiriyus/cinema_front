@@ -46,14 +46,15 @@
                   </div>
                   <div class="profile__meta">
                     <h3
+                    v-if="one_user"
                       class="d-flex aligin-items-center justify-content-center"
                     >
-                      Username
+                      {{ one_user.name }}
                       <span class="moder-user">
                         <img src="img/verify.svg" alt="" />
                       </span>
                     </h3>
-                    <span>DUBGO ID: 23562</span>
+                    <span v-if="one_user && one_user.id">DUBGO ID:{{ one_user.id }}</span>
                   </div>
                 </div>
 
@@ -148,7 +149,7 @@
               <div class="col-12 col-sm-6 col-xl-3">
                 <div class="stats">
                   <span>Ko'rilgan animelar</span>
-                  <p>1 172</p>
+                  <p v-if="cinema_data">{{ cinema_data.length }}</p>
                   <img src="img/film.svg" alt="" />
                 </div>
               </div>
@@ -158,7 +159,7 @@
               <div class="col-12 col-sm-6 col-xl-3">
                 <div class="stats">
                   <span>Sizning sharhlaringiz</span>
-                  <p>2 573</p>
+                  <p v-if="sharx">{{ sharx.length }}</p>
                   <img src="img/comments.svg" alt="" />
                 </div>
               </div>
@@ -168,7 +169,7 @@
               <div class="col-12 col-sm-6 col-xl-3">
                 <div class="stats">
                   <span>Sizning fikringiz</span>
-                  <p>1 021</p>
+                  <p>{{ fikr_length }}</p>
                   <img src="img/star-half-alt.svg" alt="" />
                 </div>
               </div>
@@ -207,110 +208,30 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <tr v-for="item in cinema_data" >
                           <td>
-                            <div class="dashbox__table-text">321</div>
+                            <div class="dashbox__table-text">{{ item.id }}</div>
                           </td>
                           <td>
                             <div class="dashbox__table-text">
-                              <NuxtLink to="details1">The Lost City</NuxtLink>
+                              <NuxtLink to="details1">{{ item.title }}</NuxtLink>
                             </div>
                           </td>
                           <td>
-                            <div class="dashbox__table-text">Movie</div>
+                            <div v-if="item.appearance==1" class="dashbox__table-text">Movie</div>
+                            <div v-if="item.appearance==2" class="dashbox__table-text">Serial</div>
+                            <div v-if="item.appearance==3" class="dashbox__table-text">TV Serial</div>
+                            <div v-if="item.appearance==4" class="dashbox__table-text">Cartoon</div>
                           </td>
                           <td>
                             <div
                               class="dashbox__table-text dashbox__table-text--rate"
                             >
-                              9.2
+                             {{ item.mark }}
                             </div>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">54</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1">Undercurrents</NuxtLink>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">Anime</div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              9.1
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">670</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1"
-                                >Tales from the Underworld</NuxtLink
-                              >
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">TV Show</div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              9.0
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">241</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1"
-                                >The Unseen World</NuxtLink
-                              >
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">TV Show</div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              8.9
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">22</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1">Redemption Road</NuxtLink>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">Movie</div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              8.9
-                            </div>
-                          </td>
-                        </tr>
+                       
                       </tbody>
                     </table>
                   </div>
@@ -354,111 +275,25 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <tr v-for="item in sharx">
                           <td>
-                            <div class="dashbox__table-text">126</div>
+                            <div class="dashbox__table-text">{{ item.id }}</div>
                           </td>
                           <td>
                             <div class="dashbox__table-text">
                               <NuxtLink to="details1"
-                                >I Dream in Another Language</NuxtLink
+                                >{{ item.titlea }}</NuxtLink
                               >
                             </div>
                           </td>
                           <td>
-                            <div class="dashbox__table-text">Jackson Brown</div>
+                            <div class="dashbox__table-text">{{ item.title }}</div>
                           </td>
                           <td>
                             <div
                               class="dashbox__table-text dashbox__table-text--rate"
                             >
-                              7.2
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">125</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1">Benched</NuxtLink>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">Quang</div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              6.3
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">124</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1">Whitney</NuxtLink>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              Brian Cranston
-                            </div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              8.4
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">123</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1">Blindspotting</NuxtLink>
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">Ketut</div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              9.0
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="dashbox__table-text">122</div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              <NuxtLink to="details1"
-                                >I Dream in Another Language</NuxtLink
-                              >
-                            </div>
-                          </td>
-                          <td>
-                            <div class="dashbox__table-text">
-                              Eliza Josceline
-                            </div>
-                          </td>
-                          <td>
-                            <div
-                              class="dashbox__table-text dashbox__table-text--rate"
-                            >
-                              7.7
+                              {{ item.rating }}
                             </div>
                           </td>
                         </tr>
@@ -998,20 +833,44 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Faq',
-
-  mounted() {
+data(){
+return{
+  one_user:null,
+  fikr_length:0,
+  sharx:null,
+  cinema_data:null,
+}
+},
+methods: {
+    async fetchData() {
+      try {
+        const response = await axios.get(`http://localhost:4002/api/lookme/${(JSON.parse(localStorage.getItem("user_data")).id)}`);
+        this.fikr_length=response.data.fikr
+        this.sharx=response.data.sharx
+        this.cinema_data=response.data.all
+        console.log(response.data.fikr,response.data.sharx)
+        console.log(response.data.all)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+mounted() {
+this.one_user=JSON.parse(localStorage.getItem("user_data"))
     if (document.querySelector('.section--bg')) {
       var mainBg = document.querySelector('.section--bg')
-
       if (mainBg.getAttribute('data-bg')) {
         mainBg.style.background = `url(${mainBg.getAttribute('data-bg')})`
         mainBg.style.backgroundPosition = 'center center'
         mainBg.style.backgroundRepeat = 'no-repeat'
         mainBg.style.backgroundSize = 'cover'
       }
-    }
+    };
+     this.fetchData()
   },
+ 
 }
 </script>

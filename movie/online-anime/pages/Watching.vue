@@ -720,21 +720,18 @@ axios.post('http://localhost:4002/api/v1/comment/', data, {
 alert("user not")
   }},
    click_like(bol,id){
+    var data=new FormData()
     const url = 'http://localhost:4002/api/v1/comment_mark';
     if(localStorage.getItem("user_data")){
-data.append("dislike",bol)
-data.append('comment_id',id)
-data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
+    data.append("dislike",bol)
+    data.append('comment_id',id)
+   data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
 axios.post(url, data)
   .then(response => {
-    console.log(response);
     this.getData()
-  //  window.location.reload()
   })
   .catch(error => {
-    // window.location.reload()
-    console.log(error);
-    
+    console.log(error);  
   })
  }else{
 alert("user not")
