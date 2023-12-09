@@ -480,27 +480,27 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr v-for="item in songgiSharx" :key="item.id">
                       <td>
-                        <div class="dashbox__table-text">126</div>
+                        <div class="dashbox__table-text">{{ item.id }}</div>
                       </td>
                       <td>
                         <div class="dashbox__table-text">
-                          <NuxtLink to="#">I Dream in Another Language</NuxtLink>
+                          <NuxtLink to="#">{{ item.title }}</NuxtLink>
                         </div>
                       </td>
                       <td>
-                        <div class="dashbox__table-text">Jackson Brown</div>
+                        <div class="dashbox__table-text">{{ item.name }}</div>
                       </td>
                       <td>
                         <div
                           class="dashbox__table-text dashbox__table-text--rate"
                         >
-                          7.2
+                          {{ item.rating }}
                         </div>
                       </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>
                         <div class="dashbox__table-text">125</div>
                       </td>
@@ -579,7 +579,7 @@
                           7.7
                         </div>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -594,6 +594,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'IndexPage',
   data() {
@@ -601,6 +603,7 @@ export default {
       yaxshiMedia: [],
       songgiMedia: [],
       User:[],
+      songgiSharx:[],
     };
   },
   async mounted() {
@@ -610,7 +613,7 @@ export default {
       var date=a.getFullYear()+"-"+b
       var day=date+"-"+`${a.getDate()}`.padStart(2,"0")
       console.log(day,"kun")
-      const response = await this.$axios.get('http://localhost:4002/api/v1/cinema');
+      const response = await axios.get('http://localhost:4002/api/v1/cinema');
       var korish=0
       var kinolar=0
       var sharhlar=0
@@ -624,7 +627,7 @@ export default {
         }
       }
       var izohlar=0
-      const izoh=await this.$axios.get('http://localhost:4002/api/v1/comment');
+      const izoh=await axios.get('http://localhost:4002/api/v1/comment');
       for (let i = 0; i < izoh.data.length; i++) {
         if((izoh.data[i].time_create).slice(0,7)==date){
           var s=0
@@ -686,13 +689,29 @@ export default {
       this.songgiMedia=mediaSonggi
        
       var usersData=[]
-      const users=await this.$axios.get('http://localhost:4002/users');
+      const users=await axios.get('http://localhost:4002/users');
       for (let i = 0; i < users.data.data.length; i++) {
         if((users.data.data[i].time_create).slice(0,10)==day){
           usersData.push(users.data.data[i])
         }
       }
       this.User=usersData
+      
+      var SharhGetM=[]
+      const SharhGet=await axios.get('http://localhost:4002/api/v1/sharx');
+      for (let i = 0; i < SharhGet.data.length; i++) {
+        for (let j = 0; j < users.data.data.length; j++) {
+         if(SharhGet.data[i].creator==users.data.data[j].id){
+            SharhGet.data[i].name=users.data.data[j].name
+         }
+        }
+      }
+      for (let i = 0; i < SharhGet.data.length; i++) {
+        if((SharhGet.data[i].time_create).slice(0,10)==day){
+          SharhGetM.push(SharhGet.data[i])
+        }
+      }
+      this.songgiSharx=SharhGetM
 
     } catch (error) {
       console.error(error);

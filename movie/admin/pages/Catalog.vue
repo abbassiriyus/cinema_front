@@ -12,7 +12,7 @@
 							<span class="main__title-stat">Jami 14 452</span>
 
 							<div class="main__title-wrap">
-								<select class="filter__select" name="sort" id="filter__sort">
+								<select @click="ReytingFilter" class="filter__select" name="sort" id="filter__sort">
 									<option value="0">Yaratilgan sana</option>
 									<option value="1">Reyring</option>
 									<option value="2">Ko'rishlar</option>
@@ -52,29 +52,29 @@
 								</thead>
 
 								<tbody>
-									<tr>
+									<tr v-for="item in media" :key="item.id">
 										<td>
-											<div class="catalog__text">11</div>
+											<div class="catalog__text">{{ item.id }}</div>
 										</td>
 										<td>
 											<div class="catalog__text">
-												<NuxtLink to="#">I Dream in Another Language</NuxtLink>
+												<NuxtLink to="#">{{ item.title }}</NuxtLink>
 											</div>
 										</td>
 										<td>
-											<div class="catalog__text catalog__text--rate">7.9</div>
+											<div class="catalog__text catalog__text--rate">{{ item.mark }}</div>
 										</td>
 										<td>
-											<div class="catalog__text">Movie</div>
+											<div class="catalog__text">{{ item.category }}</div>
 										</td>
 										<td>
-											<div class="catalog__text">1392</div>
+											<div class="catalog__text">{{ item.more_loking }}</div>
 										</td>
 										<td>
 											<div class="catalog__text catalog__text--green">Visible</div>
 										</td>
 										<td>
-											<div class="catalog__text">05.02.2023</div>
+											<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 										</td>
 										<td>
 											<div class="catalog__btns">
@@ -107,7 +107,7 @@
 											</div>
 										</td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td>
 											<div class="catalog__text">12</div>
 										</td>
@@ -601,7 +601,7 @@
 												</button>
 											</div>
 										</td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>
@@ -722,3 +722,57 @@
 	</div>
 	<!-- end delete modal -->
 </div></template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'IndexPage',
+  data() {
+    return {
+      media:[]
+    };
+  },
+  async mounted() {
+    try {
+     const kino=await axios.get('http://localhost:4002/api/v1/cinema')
+	 for (let i = 0; i < kino.data.length; i++) {
+        if(kino.data[i].appearance==1){
+          kino.data[i].category="Movie"
+        }else{
+          if(kino.data[i].appearance==2){
+          kino.data[i].category="Series"
+          }else{
+            if(kino.data[i].appearance==3){
+            kino.data[i].category="TV Series"
+            }else{
+               if(kino.data[i].appearance==4){
+               kino.data[i].category="Cartoon"
+               }
+            }
+          }
+        }
+     }
+	 this.media=kino.data
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  methods:{
+    ReytingFilter(){
+		if(document.querySelector("#filter__sort").value==1){
+        this.media.sort((a, b) => b.mark-a.mark);
+		this.media.map(item => item.mark).join(', ');
+		}
+		if(document.querySelector("#filter__sort").value==2){
+        this.media.sort((a, b) => b.more_loking-a.more_loking);
+		this.media.map(item => item.more_loking).join(', ');
+		}
+		// if(document.querySelector("#filter__sort").value==0){
+        // this.media.sort((a, b) => (b.time_create).slice(0,10)-(a.time_create).slice(0,10));
+		// this.media.map(item => (item.time_create).slice(0,10)).join(', ');
+		// }
+    }	
+  }
+}
+</script>
