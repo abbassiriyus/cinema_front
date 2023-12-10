@@ -109,13 +109,13 @@
                 </ul>
                 <!-- end content tabs nav -->
 
-                <button class="profile__logout" type="button">
+                <button @click="chiqish()" class="profile__logout" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
                       d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"
                     />
                   </svg>
-                  <span>CHIQISH</span>
+                  <span >CHIQISH</span>
                 </button>
               </div>
             </div>
@@ -139,7 +139,8 @@
               <div class="col-12 col-sm-6 col-xl-3">
                 <div class="stats">
                   <span>Premium tarif</span>
-                  <p>135 000 so'm</p>
+                  <p v-if="pay">Premium</p>
+                  <p v-else>Free</p>
                   <img src="img/credit-card.svg" alt="" />
                 </div>
               </div>
@@ -622,7 +623,8 @@
                           type="text"
                           name="username"
                           class="sign__input"
-                          placeholder="Foydalanuvchi 123"
+                          disabled
+                          :placeholder="`Foydalanuvchi ${one_user.id}`"
                         />
                       </div>
                     </div>
@@ -635,7 +637,7 @@
                           type="text"
                           name="email"
                           class="sign__input"
-                          placeholder="email@email.com"
+                          :placeholder="one_user.email"
                         />
                       </div>
                     </div>
@@ -648,7 +650,7 @@
                           type="text"
                           name="firstname"
                           class="sign__input"
-                          placeholder="John"
+                          :placeholder="one_user.name"
                         />
                       </div>
                     </div>
@@ -663,13 +665,13 @@
                           type="text"
                           name="lastname"
                           class="sign__input"
-                          placeholder="Doe"
+                          :placeholder="one_user.familiya"
                         />
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <button class="sign__btn sign__btn--small" type="button">
+                      <button @click="postDataWithToken" class="sign__btn sign__btn--small" type="button">
                         <span>SAQLASH</span>
                       </button>
                     </div>
@@ -729,7 +731,7 @@
                     </div>
 
                     <div class="col-12">
-                      <button class="sign__btn sign__btn--small" type="button">
+                      <button @click="reset_passwort" class="sign__btn sign__btn--small" type="button">
                         <span>O'ZGARISH</span>
                       </button>
                     </div>
@@ -841,6 +843,8 @@ return{
   one_user:null,
   fikr_length:0,
   sharx:null,
+  pay:false,
+  one_user:{},
   cinema_data:null,
 }
 },
@@ -851,12 +855,77 @@ methods: {
         this.fikr_length=response.data.fikr
         this.sharx=response.data.sharx
         this.cinema_data=response.data.all
-        console.log(response.data.fikr,response.data.sharx)
-        console.log(response.data.all)
+        this.pay=response.data.pay
       } catch (error) {
         console.error(error);
       }
     },
+async fetchDataWithToken(token){
+    try {
+    const response = await axios.get('http://localhost:4002/user', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+this.one_user=response.data
+  } catch (error) {
+    // Xatolikni qaytarish
+    console.error(error);
+  }
+},
+chiqish(){
+localStorage.clear()
+window.location="/"
+},
+async  postDataWithToken(){
+  try {
+    var data= new FormData()
+    if(document.querySelector('#firstname').value){
+      data.append("name",document.querySelector('#firstname').value)
+    }else{
+      data.append("name",this.one_user.name)
+
+    }
+    if(document.querySelector('#email2').value){
+      data.append("email",document.querySelector('#email2').value)
+    }else{
+      data.append("email",this.one_user.email)
+    }
+    if(document.querySelector('#lastname').value){
+      data.append("familiya",document.querySelector('#lastname').value)
+    }else{
+      data.append("familiya",this.one_user.familiya)
+    }
+    console.log(data)
+    const response = await axios.put(`http://localhost:4002/user_one/${this.one_user.id}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    this.fetchDataWithToken(localStorage.getItem('token'))
+    alert("malumot yangilandi")
+  } catch (error) {
+    console.error(error);
+    alert('xatolik yuz berdi')
+  }
+
+},
+async reset_passwort(){
+  var data= new FormData()
+  data.append("old_password",document.querySelector('#oldpass').value)
+  data.append("password",document.querySelector('#newpass').value)
+  data.append("repit_password",document.querySelector('#confirmpass').value)
+  axios.put(`http://localhost:4002/reset/${this.one_user.id}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }).then(res=>{
+      alert("malumot yangilandi")
+    }).catch(err=>{
+      alert('xatolik yuz berdi')
+
+    })
+}
   },
 mounted() {
 this.one_user=JSON.parse(localStorage.getItem("user_data"))
@@ -870,6 +939,7 @@ this.one_user=JSON.parse(localStorage.getItem("user_data"))
       }
     };
      this.fetchData()
+     this.fetchDataWithToken(localStorage.getItem('token'))
   },
  
 }
