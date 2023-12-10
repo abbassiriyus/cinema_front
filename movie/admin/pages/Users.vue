@@ -99,8 +99,8 @@
 														d="M12,13a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0V14A1,1,0,0,0,12,13Zm5-4V7A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9ZM9,7a3,3,0,0,1,6,0V9H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z" />
 												</svg>
 											</button>
-											<NuxtLink @click="Idfunc1(item.id)" to="edit-user" class="catalog__btn catalog__btn--edit">
-												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+											<NuxtLink  to="" class="catalog__btn catalog__btn--edit">
+												<svg @click="IdfuncEdit(item.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
 														d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
 												</svg>
@@ -799,12 +799,10 @@ export default {
 	methods:{
 		Idfunc(id){
             this.deleteId=id
-			const Filter=this.user.filter(item=>item.id==id)
-			sessionStorage.setItem("userEdit",JSON.stringify(Filter))
 		},
-		Idfunc1(id){
-			const Filter=this.user.filter(item=>item.id==id)
-			sessionStorage.setItem("userEdit",JSON.stringify(Filter))
+		IdfuncEdit(id){
+			sessionStorage.setItem("userEdit",id)
+			window.location="edit-user"
 		},
 		UserDelete(){
            axios.delete(`http://localhost:4002/users/${this.deleteId}`).then(res=>{
