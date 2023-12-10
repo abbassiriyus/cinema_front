@@ -9,7 +9,7 @@
 					<div class="main__title">
 						<h2>Foydalanuvchilar</h2>
 
-						<span class="main__title-stat">Jami 3 702</span>
+						<span class="main__title-stat">Jami {{ this.user.length }}</span>
 
 						<div class="main__title-wrap">
 							<select class="filter__select" name="sort" id="filter__sort">
@@ -20,7 +20,7 @@
 
 							<!-- search -->
 							<form action="#" class="main__title-form">
-								<input type="text" placeholder="Foydalanuvchini toping..">
+								<input @input="UserSearch()" id="userSearch" type="text" placeholder="Foydalanuvchini toping..">
 								<button type="button">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
@@ -54,9 +54,9 @@
 							</thead>
 
 							<tbody>
-								<tr>
+								<tr v-for="item in user">
 									<td>
-										<div class="catalog__text">11</div>
+										<div class="catalog__text">{{ item.id }}</div>
 									</td>
 									<td>
 										<div class="catalog__user">
@@ -64,45 +64,48 @@
 												<img src="img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
-												<h3>Tess Harper</h3>
-												<span>email@email.com</span>
+												<h3>{{ item.name }}</h3>
+												<span>{{ item.email }}</span>
 											</div>
 										</div>
 									</td>
 									<td>
-										<div class="catalog__text">Username</div>
+										<div class="catalog__text">{{ item.name }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">Premium</div>
 									</td>
 									<td>
-										<div class="catalog__text">13</div>
+										<div class="catalog__text">{{ (item.commentLength).length }}</div>
 									</td>
 									<td>
-										<div class="catalog__text">1</div>
+										<div class="catalog__text">{{ (item.sharhLength).length }}</div>
 									</td>
-									<td>
+									<td v-if="item.pan">
 										<div class="catalog__text catalog__text--green">Approved</div>
 									</td>
+									<td v-if="!item.pan">
+										<div class="catalog__text catalog__text--red">Banned</div>
+									</td>
 									<td>
-										<div class="catalog__text">05.02.2023</div>
+										<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 									</td>
 									<td>
 										<div class="catalog__btns">
-											<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--banned"
+											<button @click="UserBanned(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--banned"
 												data-bs-target="#modal-status">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
 														d="M12,13a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0V14A1,1,0,0,0,12,13Zm5-4V7A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9ZM9,7a3,3,0,0,1,6,0V9H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z" />
 												</svg>
 											</button>
-											<NuxtLink to="edit-user" class="catalog__btn catalog__btn--edit">
-												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+											<NuxtLink  to="" class="catalog__btn catalog__btn--edit">
+												<svg @click="IdfuncEdit(item.id)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
 														d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
 												</svg>
 											</NuxtLink>
-											<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
+											<button @click="Idfunc(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
 												data-bs-target="#modal-delete">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
@@ -112,7 +115,7 @@
 										</div>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>
 										<div class="catalog__text">12</div>
 									</td>
@@ -633,7 +636,7 @@
 											</button>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -644,7 +647,7 @@
 				<div class="col-12">
 					<div class="main__paginator">
 						<!-- amount -->
-						<span class="main__paginator-pages">3702 tadan 10 tasi</span>
+						<span class="main__paginator-pages">{{ this.user.length }} tadan 10 tasi</span>
 						<!-- end amount -->
 
 						<ul class="main__paginator-list">
@@ -731,7 +734,7 @@
 						<p class="modal__text">Bu foydalanuvchini butunlay oʻchirib tashlamoqchimisiz?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>OʻCHIRISH</span></button>
+							<button @click="UserDelete()" class="modal__btn modal__btn--apply" type="button"><span>OʻCHIRISH</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>Qoldirish</span></button>
 						</div>
@@ -745,8 +748,16 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "ReviewsPage",
+	data(){
+    	return{
+			user:[],
+			deleteId:0,
+		}
+	},
     mounted() {
         if (document.querySelector('#filter__sort')) {
 		new SlimSelect({
@@ -755,7 +766,84 @@ export default {
 				showSearch: false,
 			}
 		});
+	    }
+		try{
+        axios.get('http://localhost:4002/users').then(res=>{
+			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
+				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
+				   for (let i = 0; i < res.data.length; i++) {
+						res.data[i].commentLength=[]
+						for (let j = 0; j < res1.data.length; j++) {
+					 		if(res.data[i].id==res1.data[j].creator){
+                        	var a=res1.data[j].creator
+							res.data[i].commentLength.push(res1.data[j])
+					 		}
+						}
+				   }
+				   for (let i = 0; i < res.data.length; i++) {
+						res.data[i].sharhLength=[]
+						for (let j = 0; j < res2.data.length; j++) {
+					 		if(res.data[i].id==res2.data[j].creator){
+							res.data[i].sharhLength.push(res2.data[j])
+					 		}
+						}
+				   }
+				   this.user=res.data
+				})
+			})
+		})
+		}catch(err){
+			console.log(err);
+		}
+    },
+	methods:{
+		Idfunc(id){
+            this.deleteId=id
+		},
+		IdfuncEdit(id){
+			sessionStorage.setItem("userEdit",id)
+			window.location="edit-user"
+		},
+		UserDelete(){
+           axios.delete(`http://localhost:4002/users/${this.deleteId}`).then(res=>{
+			alert("Ma'lumot o'chirildi")
+            window.location.reload()
+		   }).catch(err=>{
+			alert("Ma'lumot o'chirilmadi")
+		   })
+		},
+		UserBanned(id){
+        
+		},
+		UserSearch(){
+			axios.get('http://localhost:4002/users').then(res=>{
+			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
+				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
+				   for (let i = 0; i < res.data.length; i++) {
+						res.data[i].commentLength=[]
+						for (let j = 0; j < res1.data.length; j++) {
+					 		if(res.data[i].id==res1.data[j].creator){
+                        	var a=res1.data[j].creator
+							res.data[i].commentLength.push(res1.data[j])
+					 		}
+						}
+				   }
+				   for (let i = 0; i < res.data.length; i++) {
+						res.data[i].sharhLength=[]
+						for (let j = 0; j < res2.data.length; j++) {
+					 		if(res.data[i].id==res2.data[j].creator){
+							res.data[i].sharhLength.push(res2.data[j])
+					 		}
+						}
+				   }
+				   
+				   const users=res.data.filter(item=>((item.name).toLowerCase()).includes((document.querySelector("#userSearch").value).toLowerCase()))
+                   this.user=users
+				})
+			})
+		})
+		}
+
 	}
-    }
 }
 </script>

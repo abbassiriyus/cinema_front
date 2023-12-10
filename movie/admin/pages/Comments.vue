@@ -9,7 +9,7 @@
 					<div class="main__title">
 						<h2>Izohlar</h2>
 
-						<span class="main__title-stat">Jami 21 356</span>
+						<span class="main__title-stat">Jami {{ this.izoh.length }}</span>
 
 						<div class="main__title-wrap">
 							<select class="filter__select" name="sort" id="filter__sort">
@@ -19,7 +19,7 @@
 
 							<!-- search -->
 							<form action="#" class="main__title-form">
-								<input type="text" placeholder="Kalit so'z..">
+								<input @input="CommentSearch()" id="commentSearch" type="text" placeholder="Kalit so'z..">
 								<button type="button">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
@@ -51,28 +51,28 @@
 							</thead>
 
 							<tbody>
-								<tr>
+								<tr v-for="item in izoh" ::key="item.id">
 									<td>
-										<div class="catalog__text">11</div>
+										<div class="catalog__text">{{ item.id }}</div>
 									</td>
 									<td>
-										<div class="catalog__text"><NuxtLink to="#">I Dream in Another Language</NuxtLink></div>
+										<div class="catalog__text"><NuxtLink to="">{{ item.cinemaName }}</NuxtLink></div>
 									</td>
 									<td>
-										<div class="catalog__text">Charlize Theron</div>
+										<div class="catalog__text">{{ item.creatorName }}</div>
 									</td>
 									<td>
-										<div class="catalog__text">When a renowned archaeologist goes...</div>
+										<div class="catalog__text">{{ (item.description).length>28?(item.description).slice(0,28)+"...":item.description }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">12 / 7</div>
 									</td>
 									<td>
-										<div class="catalog__text">05.02.2023</div>
+										<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 									</td>
 									<td>
 										<div class="catalog__btns">
-											<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
+											<button @click="WiewModal(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
 												data-bs-target="#modal-view">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
@@ -80,7 +80,7 @@
 												</svg>
 											</button>
 
-											<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
+											<button @click="Idfunc(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
 												data-bs-target="#modal-delete">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
@@ -90,7 +90,7 @@
 										</div>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>
 										<div class="catalog__text">12</div>
 									</td>
@@ -440,7 +440,7 @@
 											</button>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -451,7 +451,7 @@
 				<div class="col-12">
 					<div class="main__paginator">
 						<!-- amount -->
-						<span class="main__paginator-pages">2356 tadan 10 tasi</span>
+						<span class="main__paginator-pages">{{ this.izoh.length }} tadan 10 tasi</span>
 						<!-- end amount -->
 
 						<ul class="main__paginator-list">
@@ -506,19 +506,16 @@
 	<!-- end main content -->
 
 	<!-- view modal -->
-	<div class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
+	<div v-for="item in izohModal" class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">
 					<div class="comments__autor">
 						<img class="comments__avatar" src="img/user.svg" alt="">
-						<span class="comments__name">John Doe</span>
-						<span class="comments__time">30.08.2023, 17:53</span>
+						<span class="comments__name">{{ item.creatorName }}</span>
+						<span class="comments__time">{{ (item.time_create).slice(0,10) }}, {{ (item.time_create).slice(11,16) }}</span>
 					</div>
-					<p class="comments__text">There are many variations of passages of Lorem Ipsum available, but the majority
-						have suffered alteration in some form, by injected humour, or randomised words which don't look even
-						slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-						anything embarrassing hidden in the middle of text.</p>
+					<p class="comments__text">{{ item.description }}</p>
 					<div class="comments__actions">
 						<div class="comments__rate">
 							<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -549,7 +546,7 @@
 						<p class="modal__text">Bu fikrni butunlay o‘chirib tashlamoqchimisiz?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>OʻCHIRISH</span></button>
+							<button @click="CommentDelete()" class="modal__btn modal__btn--apply" type="button"><span>OʻCHIRISH</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>QOLDIRISH</span></button>
 						</div>
@@ -563,8 +560,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'CommentsPage',
+	data(){
+		return{
+			izoh:[],
+			izohModal:[],
+			deleteId:0,
+		}
+	},
 
     mounted() {
         if (document.querySelector('#filter__sort')) {
@@ -574,7 +580,95 @@ export default {
 			showSearch: false,
 		}
 	});
-}
-    }
+        }
+		try{
+         axios.get('http://localhost:4002/api/v1/comment').then(res=>{
+            axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
+				axios.get('http://localhost:4002/users').then(res2=>{
+                  for (let i = 0; i < res.data.length; i++) {
+					for (let j = 0; j < res1.data.length; j++) {
+						if(res.data[i].cinema_id==res1.data[j].id){
+							res.data[i].cinemaName=res1.data[j].title
+						}
+					}
+				  }
+				  for (let i = 0; i < res.data.length; i++) {
+					for (let j = 0; j < res2.data.length; j++) {
+					  if(res.data[i].creator==res2.data[j].id){
+						res.data[i].creatorName=res2.data[j].name
+					  }
+					}
+				  }
+				  this.izoh=res.data
+				})
+			})
+		 })
+		}catch(err){
+			console.log(err);
+		}
+    },
+	methods:{
+		CommentSearch(){
+			axios.get('http://localhost:4002/api/v1/comment').then(res=>{
+            axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
+				axios.get('http://localhost:4002/users').then(res2=>{
+                  for (let i = 0; i < res.data.length; i++) {
+					for (let j = 0; j < res1.data.length; j++) {
+						if(res.data[i].cinema_id==res1.data[j].id){
+							res.data[i].cinemaName=res1.data[j].title
+						}
+					}
+				  }
+				  for (let i = 0; i < res.data.length; i++) {
+					for (let j = 0; j < res2.data.length; j++) {
+					  if(res.data[i].creator==res2.data[j].id){
+						res.data[i].creatorName=res2.data[j].name
+					  }
+					}
+				  }
+				  
+				  const a=res.data.filter(item=>((item.creatorName).toLowerCase()).includes((document.querySelector("#commentSearch").value).toLowerCase()))
+				  this.izoh=a
+				})
+			})
+		 })
+		},
+		WiewModal(id){
+        const Filter=this.izoh.filter(item=>item.id==id)
+        this.izohModal=Filter
+		},
+		Idfunc(id){
+            this.deleteId=id
+		},
+		CommentDelete(){
+           axios.delete(`http://localhost:4002/api/v1/comment/${this.deleteId}`).then(res=>{
+			alert("Ma'lumot o'chirildi")
+			window.location.reload()
+			// axios.get('http://localhost:4002/api/v1/comment').then(res=>{
+            // axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
+			// 	axios.get('http://localhost:4002/users').then(res2=>{
+            //       for (let i = 0; i < res.data.length; i++) {
+			// 		for (let j = 0; j < res1.data.length; j++) {
+			// 			if(res.data[i].cinema_id==res1.data[j].id){
+			// 				res.data[i].cinemaName=res1.data[j].title
+			// 			}
+			// 		}
+			// 	  }
+			// 	  for (let i = 0; i < res.data.length; i++) {
+			// 		for (let j = 0; j < res2.data.length; j++) {
+			// 		  if(res.data[i].creator==res2.data[j].id){
+			// 			res.data[i].creatorName=res2.data[j].name
+			// 		  }
+			// 		}
+			// 	  }
+			// 	  this.izoh=res.data
+			// 	})
+			// })
+		    // })
+		   }).catch(err=>{
+			alert("Ma'lumot o'chirilmadi")
+		   })
+		}
+	}
 }
 </script>

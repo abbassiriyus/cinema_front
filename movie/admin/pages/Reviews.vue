@@ -9,17 +9,17 @@
 					<div class="main__title">
 						<h2>Sharhlar</h2>
 
-						<span class="main__title-stat">Jami 9,071</span>
+						<span class="main__title-stat">Jami {{ sharh.length }}</span>
 
 						<div class="main__title-wrap">
-							<select class="filter__select" name="sort" id="filter__sort">
+							<select @click="ReviewFilter()" class="filter__select" name="sort" id="filter__sort">
 								<option value="0">Yaratilgan sana</option>
 								<option value="1">Reyting</option>
 							</select>
 
 							<!-- search -->
-							<form action="#" class="main__title-form">
-								<input type="text" placeholder="Kalit so'z..">
+							<form class="main__title-form">
+								<input @input="ReviewSearch()" id="reviewSearch" type="text" placeholder="Kalit so'z..">
 								<button type="button">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
@@ -52,31 +52,31 @@
 							</thead>
 
 							<tbody>
-								<tr>
+								<tr v-for="item in sharh" :key="item.id">
 									<td>
-										<div class="catalog__text">11</div>
+										<div class="catalog__text">{{ item.id }}</div>
 									</td>
 									<td>
-										<div class="catalog__text"><NuxtLink to="#">I Dream in Another Language</NuxtLink></div>
+										<div class="catalog__text"><NuxtLink to="">{{ item.cinemaName }}</NuxtLink></div>
 									</td>
 									<td>
-										<div class="catalog__text">Gene Graham</div>
+										<div class="catalog__text">{{ item.creatorName }}</div>
 									</td>
 									<td>
-										<div class="catalog__text">Her father and uncover the secrets...</div>
+										<div class="catalog__text">{{ (item.description).length>28?(item.description).slice(0,28)+"...":item.description }}</div>
 									</td>
 									<td>
-										<div class="catalog__text catalog__text--rate">7.9</div>
+										<div class="catalog__text catalog__text--rate">{{ item.rating }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">12 / 7</div>
 									</td>
 									<td>
-										<div class="catalog__text">06.02.2023</div>
+										<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 									</td>
 									<td>
 										<div class="catalog__btns">
-											<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
+											<button type="button" @click="WiewModal(item.id)" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
 												data-bs-target="#modal-view">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
@@ -84,7 +84,7 @@
 												</svg>
 											</button>
 
-											<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
+											<button type="button" @click="Idfunc(item.id)" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
 												data-bs-target="#modal-delete">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
@@ -94,7 +94,7 @@
 										</div>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td>
 										<div class="catalog__text">12</div>
 									</td>
@@ -471,7 +471,7 @@
 											</button>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
@@ -482,7 +482,7 @@
 				<div class="col-12">
 					<div class="main__paginator">
 						<!-- amount -->
-						<span class="main__paginator-pages">9071 tadan 10 tasi</span>
+						<span class="main__paginator-pages">{{ sharh.length }} tadan 10 tasi</span>
 						<!-- end amount -->
 
 						<ul class="main__paginator-list">
@@ -537,26 +537,23 @@
 	<!-- end main content -->
 
 	<!-- view modal -->
-	<div class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
+	<div v-for="item in sharhModal"  class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">
 					<div class="reviews__autor">
 						<img class="reviews__avatar" src="img/user.svg" alt="">
-						<span class="reviews__name">Best Marvel movie in my opinion</span>
-						<span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+						<span class="reviews__name">{{ item.creatorName }}</span>
+						<span class="reviews__time">{{ (item.time_create).slice(0,10) }}, {{ (item.time_create).slice(11,16) }} by {{ item.creatorName }}</span>
 
 						<span class="reviews__rating"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
 								viewBox="0 0 24 24">
 								<path
 									d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z">
 								</path>
-							</svg>8.4</span>
+							</svg>{{ item.rating }}</span>
 					</div>
-					<p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have
-						suffered alteration in some form, by injected humour, or randomised words which don't look even slightly
-						believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-						embarrassing hidden in the middle of text.</p>
+					<p class="reviews__text">{{ item.description }}</p>
 				</div>
 			</div>
 		</div>
@@ -574,7 +571,7 @@
 						<p class="modal__text">Are you sure to permanently delete this review?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>Delete</span></button>
+							<button @click="ReviewDelete()" class="modal__btn modal__btn--apply" type="button"><span>Delete</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>Dismiss</span></button>
 						</div>
@@ -588,8 +585,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "ReviewsPage",
+	data() {
+      return {
+         sharh: [],
+		 sharhModal: [],
+		 deleteId:0,
+      };
+    },
     mounted() {
         if (document.querySelector('#filter__sort')) {
 		new SlimSelect({
@@ -598,7 +604,104 @@ export default {
 				showSearch: false,
 			}
 		});
+	    }
+		try{
+        axios.get('http://localhost:4002/api/v1/sharx').then(sharhGet=>{
+            axios.get('http://localhost:4002/api/v1/cinema').then(cinema=>{
+				axios.get('http://localhost:4002/users').then(res=>{
+					for (let i = 0; i < sharhGet.data.length; i++) {
+		      			for (let j = 0; j < cinema.data.length; j++) {
+							if(sharhGet.data[i].cinema_id==cinema.data[j].id){
+								sharhGet.data[i].cinemaName=cinema.data[j].title
+							}
+						}
+					}
+					for (let i = 0; i < res.data.length; i++) {
+					   for (let j = 0; j < sharhGet.data.length; j++) {
+						if(res.data[i].id==sharhGet.data[j].creator){
+							sharhGet.data[j].creatorName=res.data[i].name
+						}
+					   }						
+					}
+					
+					this.sharh=sharhGet.data
+				})
+			})
+		})
+        
+		// this.sharh=sharhGet
+
+		}catch(err){
+          console.log(err);
+		}
+
+    },
+	methods:{
+		ReviewSearch(){
+			axios.get('http://localhost:4002/api/v1/sharx').then(sharhGet=>{
+            	axios.get('http://localhost:4002/api/v1/cinema').then(cinema=>{
+					axios.get('http://localhost:4002/users').then(res=>{
+						for (let i = 0; i < sharhGet.data.length; i++) {
+		      			for (let j = 0; j < cinema.data.length; j++) {
+							if(sharhGet.data[i].cinema_id==cinema.data[j].id){
+								sharhGet.data[i].cinemaName=cinema.data[j].title
+							}
+						}
+						}
+						for (let i = 0; i < res.data.length; i++) {
+					   for (let j = 0; j < sharhGet.data.length; j++) {
+						if(res.data[i].id==sharhGet.data[j].creator){
+							sharhGet.data[j].creatorName=res.data[i].name
+						}
+					   }						
+						}
+					
+						const a=sharhGet.data.filter(item=>((item.creatorName).toLowerCase()).includes((document.querySelector("#reviewSearch").value).toLowerCase()))
+						this.sharh=a
+					})
+				})
+			})
+	    },
+		WiewModal(id){
+        const Filter=this.sharh.filter(item=>item.id==id)
+        this.sharhModal=Filter
+		},
+		ReviewFilter(){
+			console.log("zor");
+		},
+		Idfunc(id){
+            this.deleteId=id
+		},
+		ReviewDelete(){
+           axios.delete(`http://localhost:4002/api/v1/sharx/${this.deleteId}`).then(res=>{
+			alert("Ma'lumot o'chirildi")
+			window.location.reload()
+			// axios.get('http://localhost:4002/api/v1/sharx').then(sharhGet=>{
+            // axios.get('http://localhost:4002/api/v1/cinema').then(cinema=>{
+			// 	axios.get('http://localhost:4002/users').then(res=>{
+			// 		for (let i = 0; i < sharhGet.data.length; i++) {
+		    //   			for (let j = 0; j < cinema.data.length; j++) {
+			// 				if(sharhGet.data[i].cinema_id==cinema.data[j].id){
+			// 					sharhGet.data[i].cinemaName=cinema.data[j].title
+			// 				}
+			// 			}
+			// 		}
+			// 		for (let i = 0; i < res.data.length; i++) {
+			// 		   for (let j = 0; j < sharhGet.data.length; j++) {
+			// 			if(res.data[i].id==sharhGet.data[j].creator){
+			// 				sharhGet.data[j].creatorName=res.data[i].name
+			// 			}
+			// 		   }						
+			// 		}
+					
+			// 		this.sharh=sharhGet.data
+			// 	})
+			// })
+		    // })
+		   }).catch(err=>{
+			alert("Ma'lumot o'chirilmadi")
+		   })
+		}
 	}
-    }
 }
 </script>

@@ -21,9 +21,13 @@
 								<img src="img/user.svg" alt="">
 							</div>
 							<!-- or red -->
-							<div class="profile__meta profile__meta--green">
-								<h3>Username <span>(Tasdiqlangan)</span></h3>
-								<span>DUBGO ID: 23562</span>
+							<div v-if="this.user.pan" class="profile__meta profile__meta--green">
+								<h3>{{ this.user.name }} <span>(Tasdiqlangan)</span></h3>
+								<span>DUBGO ID: {{ this.user.id }}</span>
+							</div>
+							<div v-if="!this.user.pan" class="profile__meta profile__meta--red">
+								<h3>{{ this.user.name }} <span>(Taqiqlangan)</span></h3>
+								<span>DUBGO ID: {{ this.user.id }}</span>
 							</div>
 						</div>
 						<!-- end profile user -->
@@ -81,7 +85,7 @@
 											<div class="col-12 col-md-6 col-lg-12 col-xl-6">
 												<div class="sign__group">
 													<label class="sign__label" for="username">Login</label>
-													<input id="username" type="text" name="username" class="sign__input" placeholder="User 123">
+													<input id="username"  type="text" name="username" class="sign__input" placeholder="User 123">
 												</div>
 											</div>
 
@@ -194,28 +198,28 @@
 									</thead>
 
 									<tbody>
-										<tr>
+										<tr v-for="item in user.commentLength">
 											<td>
-												<div class="catalog__text">11</div>
+												<div class="catalog__text">{{ item.id }}</div>
 											</td>
 											<td>
-												<div class="catalog__text"><NuxtLink to="#">I Dream in Another Language</NuxtLink></div>
+												<div class="catalog__text"><NuxtLink to="">{{ item.cinemaName }}</NuxtLink></div>
 											</td>
 											<td>
-												<div class="catalog__text">Charlize Theron</div>
+												<div class="catalog__text">{{ item.creatorName }}</div>
 											</td>
 											<td>
-												<div class="catalog__text">When a renowned archaeologist goes...</div>
+												<div class="catalog__text">{{ (item.description).length>28?(item.description).slice(0,28)+"...":item.description }}</div>
 											</td>
 											<td>
 												<div class="catalog__text">12 / 7</div>
 											</td>
 											<td>
-												<div class="catalog__text">05.02.2023</div>
+												<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 											</td>
 											<td>
 												<div class="catalog__btns">
-													<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
+													<button @click="WiewModal(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
 														data-bs-target="#modal-view">
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 															<path
@@ -223,7 +227,7 @@
 														</svg>
 													</button>
 
-													<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
+													<button @click="Idfunc(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
 														data-bs-target="#modal-delete">
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 															<path
@@ -233,7 +237,7 @@
 												</div>
 											</td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>
 												<div class="catalog__text">12</div>
 											</td>
@@ -583,7 +587,7 @@
 													</button>
 												</div>
 											</td>
-										</tr>
+										</tr> -->
 									</tbody>
 								</table>
 							</div>
@@ -594,7 +598,7 @@
 						<div class="col-12">
 							<div class="main__paginator">
 								<!-- amount -->
-								<span class="main__paginator-pages">2356 tadan 10 tasi</span>
+								<span class="main__paginator-pages">{{ this.user.commentLength?(this.user.commentLength).length:"0" }} tadan 10 tasi</span>
 								<!-- end amount -->
 
 								<ul class="main__paginator-list">
@@ -664,31 +668,31 @@
 									</thead>
 
 									<tbody>
-										<tr>
+										<tr v-for="item in user.sharhLength">
 											<td>
-												<div class="catalog__text">11</div>
+												<div class="catalog__text">{{ item.id }}</div>
 											</td>
 											<td>
-												<div class="catalog__text"><NuxtLink to="#">I Dream in Another Language</NuxtLink></div>
+												<div class="catalog__text"><NuxtLink to="">{{ item.cinemaName1 }}</NuxtLink></div>
 											</td>
 											<td>
-												<div class="catalog__text">Gene Graham</div>
+												<div class="catalog__text">{{ item.creatorName1 }}</div>
 											</td>
 											<td>
-												<div class="catalog__text">Her father and uncover the secrets...</div>
+												<div class="catalog__text">{{ (item.description).length>28?(item.description).slice(0,28)+"...":item.description }}</div>
 											</td>
 											<td>
-												<div class="catalog__text catalog__text--rate">7.9</div>
+												<div class="catalog__text catalog__text--rate">{{ item.rating }}</div>
 											</td>
 											<td>
 												<div class="catalog__text">12 / 7</div>
 											</td>
 											<td>
-												<div class="catalog__text">06.02.2023</div>
+												<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 											</td>
 											<td>
 												<div class="catalog__btns">
-													<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
+													<button @click="WiewModal1(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--view"
 														data-bs-target="#modal-view2">
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 															<path
@@ -696,7 +700,7 @@
 														</svg>
 													</button>
 
-													<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
+													<button @click="Idfunc(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete"
 														data-bs-target="#modal-delete2">
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 															<path
@@ -706,7 +710,7 @@
 												</div>
 											</td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>
 												<div class="catalog__text">12</div>
 											</td>
@@ -1083,7 +1087,7 @@
 													</button>
 												</div>
 											</td>
-										</tr>
+										</tr> -->
 									</tbody>
 								</table>
 							</div>
@@ -1094,7 +1098,7 @@
 						<div class="col-12">
 							<div class="main__paginator">
 								<!-- amount -->
-								<span class="main__paginator-pages">9071 tadan 10 tasi</span>
+								<span class="main__paginator-pages">{{ this.user.sharhLength?(this.user.sharhLength).length:"0" }} tadan 10 tasi</span>
 								<!-- end amount -->
 
 								<ul class="main__paginator-list">
@@ -1152,19 +1156,16 @@
 	<!-- end main content -->
 
 	<!-- view modal -->
-	<div class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
+	<div v-for="item in userIzoh" class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">
 					<div class="comments__autor">
 						<img class="comments__avatar" src="img/user.svg" alt="">
-						<span class="comments__name">John Doe</span>
-						<span class="comments__time">30.08.2023, 17:53</span>
+						<span class="comments__name">{{ item.creatorName }}</span>
+						<span class="comments__time">{{ (item.time_create).slice(0,10) }}, {{ (item.time_create).slice(11,16) }}</span>
 					</div>
-					<p class="comments__text">There are many variations of passages of Lorem Ipsum available, but the majority
-						have suffered alteration in some form, by injected humour, or randomised words which don't look even
-						slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-						anything embarrassing hidden in the middle of text.</p>
+					<p class="comments__text">{{ item.description }}</p>
 					<div class="comments__actions">
 						<div class="comments__rate">
 							<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -1195,7 +1196,7 @@
 						<p class="modal__text">Bu fikrni butunlay o‘chirib tashlamoqchimisiz?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>O'chirish</span></button>
+							<button @click="userCommentDelete()" class="modal__btn modal__btn--apply" type="button"><span>O'chirish</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>Qoldirish</span></button>
 						</div>
@@ -1207,26 +1208,23 @@
 	<!-- end delete modal -->
 
 	<!-- view modal -->
-	<div class="modal fade" id="modal-view2" tabindex="-1" aria-labelledby="modal-view2" aria-hidden="true">
+	<div v-for="item in userSharh" class="modal fade" id="modal-view2" tabindex="-1" aria-labelledby="modal-view2" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">
 					<div class="reviews__autor">
 						<img class="reviews__avatar" src="img/user.svg" alt="">
-						<span class="reviews__name">Best Marvel movie in my opinion</span>
-						<span class="reviews__time">24.08.2018, 17:53 by John Doe</span>
+						<span class="reviews__name">{{ item.creatorName1 }}</span>
+						<span class="reviews__time">{{ (item.time_create).slice(0,10) }}, {{ (item.time_create).slice(11,16) }} by {{ item.creatorName1 }}</span>
 
 						<span class="reviews__rating"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
 								viewBox="0 0 24 24">
 								<path
 									d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z">
 								</path>
-							</svg>8.4</span>
+							</svg>{{ item.rating }}</span>
 					</div>
-					<p class="reviews__text">There are many variations of passages of Lorem Ipsum available, but the majority have
-						suffered alteration in some form, by injected humour, or randomised words which don't look even slightly
-						believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-						embarrassing hidden in the middle of text.</p>
+					<p class="reviews__text">{{ item.description }}</p>
 				</div>
 			</div>
 		</div>
@@ -1244,7 +1242,7 @@
 						<p class="modal__text">Bu sharhni butunlay oʻchirib tashlamoqchimisiz?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>Oʻchirish</span></button>
+							<button @click="userReviewDelete()" class="modal__btn modal__btn--apply" type="button"><span>Oʻchirish</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>Qoldirish</span></button>
 						</div>
@@ -1300,3 +1298,117 @@
 	<!-- end delete modal -->
     </div>
 </template>
+
+<script>
+import axios from 'axios';
+
+
+export default {
+    name: "Edit-UserPage",
+	data(){
+    	return{
+			user:[],
+			userIzoh:[],
+			deleteId:[],
+			userSharh:[],
+		}
+	},
+    mounted() {
+		try{
+		axios.get('http://localhost:4002/users').then(res=>{
+			const Filter=res.data.filter(item=>item.id==sessionStorage.getItem("userEdit"))
+			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
+				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
+				   for (let i = 0; i < Filter.length; i++) {
+						Filter[i].commentLength=[]
+						for (let j = 0; j < res1.data.length; j++) {
+					 		if(Filter[i].id==res1.data[j].creator){
+                        	var a=res1.data[j].creator
+							Filter[i].commentLength.push(res1.data[j])
+					 		}
+						}
+				   }
+				   for (let i = 0; i < Filter.length; i++) {
+						Filter[i].sharhLength=[]
+						for (let j = 0; j < res2.data.length; j++) {
+					 		if(Filter[i].id==res2.data[j].creator){
+							Filter[i].sharhLength.push(res2.data[j])
+					 		}
+						}
+				   }
+				   Filter.map(item=>{
+					axios.get('http://localhost:4002/api/v1/cinema').then(res3=>{
+                  			for (let i = 0; i < item.commentLength.length; i++) {
+								for (let j = 0; j < res3.data.length; j++) {
+									if(item.commentLength[i].cinema_id==res3.data[j].id){
+										item.commentLength[i].cinemaName=res3.data[j].title
+									}
+								}
+				  			}
+				  			for (let i = 0; i < item.commentLength.length; i++) {
+								for (let j = 0; j < res.data.length; j++) {
+					  				if(item.commentLength[i].creator==res.data[j].id){
+										item.commentLength[i].creatorName=res.data[j].name
+					  				}
+								}
+				  			}
+							for (let i = 0; i < item.sharhLength.length; i++) {
+								for (let j = 0; j < res3.data.length; j++) {
+									if(item.sharhLength[i].cinema_id==res3.data[j].id){
+										item.sharhLength[i].cinemaName1=res3.data[j].title
+									}
+								}
+				  			}
+				  			for (let i = 0; i < item.sharhLength.length; i++) {
+								for (let j = 0; j < res.data.length; j++) {
+					  				if(item.sharhLength[i].creator==res.data[j].id){
+										item.sharhLength[i].creatorName1=res.data[j].name
+					  				}
+								}
+				  			}
+				  			this.user=item
+							document.querySelector("#username").value=item.name
+							document.querySelector("#email2").value=item.email
+					})
+				   })
+				})
+			})
+		})
+
+		
+		}catch(err){
+			console.log(err);
+		}
+    },
+	methods:{
+		WiewModal(id){
+			const Filter=this.user.commentLength.filter(item=>item.id==id)
+			this.userIzoh=Filter
+		},
+		Idfunc(id){
+            this.deleteId=id
+		},
+		userCommentDelete(){
+			axios.delete(`http://localhost:4002/api/v1/comment/${this.deleteId}`).then(res=>{
+			alert("Ma'lumot o'chirildi")
+			window.location.reload()
+		   }).catch(err=>{
+			alert("Ma'lumot o'chirilmadi")
+		   })
+		},
+		WiewModal1(id){
+			const Filter=this.user.sharhLength.filter(item=>item.id==id)
+			this.userSharh=Filter
+		},
+		userReviewDelete(){
+           axios.delete(`http://localhost:4002/api/v1/sharx/${this.deleteId}`).then(res=>{
+			alert("Ma'lumot o'chirildi")
+			window.location.reload()
+		   }).catch(err=>{
+			alert("Ma'lumot o'chirilmadi")
+		   })
+		}
+	}
+
+}
+</script>

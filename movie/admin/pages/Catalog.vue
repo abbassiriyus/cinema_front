@@ -612,7 +612,7 @@
 					<div class="col-12">
 						<div class="main__paginator">
 							<!-- amount -->
-							<span class="main__paginator-pages">169 tadan 10 tasi</span>
+							<span class="main__paginator-pages">{{ this.media.length }} tadan 10 tasi</span>
 							<!-- end amount -->
 
 							<ul class="main__paginator-list">
