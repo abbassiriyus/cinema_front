@@ -281,7 +281,7 @@
 
 							<div class="splide__track">
 								<ul class="splide__list">
-									<li v-for="item in top_look" class="splide__slide">
+									<li v-for="item in top_look" :key="item.id" class="splide__slide">
 										<div class="item item--carousel">
 											<NuxtLink to="watching" class="item__cover">
 												<img :src="item.images[0].image" alt="" />

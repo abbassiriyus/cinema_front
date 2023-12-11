@@ -209,7 +209,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="item in cinema_data" >
+                        <tr v-for="item in cinema_data" :key="item.id">
                           <td>
                             <div class="dashbox__table-text">{{ item.id }}</div>
                           </td>
@@ -276,7 +276,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr v-for="item in sharx">
+                        <tr v-for="item in sharx" :key="item.id">
                           <td>
                             <div class="dashbox__table-text">{{ item.id }}</div>
                           </td>

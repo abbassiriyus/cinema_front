@@ -9,10 +9,10 @@
 						<div class="main__title">
 							<h2>KATALOG</h2>
 
-							<span class="main__title-stat">Jami 14 452</span>
+							<span class="main__title-stat">Jami {{ this.media.length }}</span>
 
 							<div class="main__title-wrap">
-								<select @click="ReytingFilter" class="filter__select" name="sort" id="filter__sort">
+								<select @click="ReytingFilter()" class="filter__select" name="sort" id="filter__sort">
 									<option value="0">Yaratilgan sana</option>
 									<option value="1">Reyring</option>
 									<option value="2">Ko'rishlar</option>
@@ -70,15 +70,19 @@
 										<td>
 											<div class="catalog__text">{{ item.more_loking }}</div>
 										</td>
-										<td>
+										<td v-if="item.looking">
 											<div class="catalog__text catalog__text--green">Visible</div>
 										</td>
+										<td v-if="!item.looking">
+											<div class="catalog__text catalog__text--red">Hidden</div>
+										</td>
+
 										<td>
 											<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 										</td>
 										<td>
 											<div class="catalog__btns">
-												<button type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--banned"
+												<button @click="bannedCinema1(item.id,item.looking)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--banned"
 													data-bs-target="#modal-status">
 													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 														<path
@@ -689,7 +693,7 @@
 							<p class="modal__text">Holatni darhol o'zgartirishga ishonchingiz komilmi?</p>
 
 							<div class="modal__btns">
-								<button class="modal__btn modal__btn--apply" type="button"><span>O'zgartirish</span></button>
+								<button @click="bannedCinema()" class="modal__btn modal__btn--apply" type="button"><span>O'zgartirish</span></button>
 								<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 									aria-label="Close"><span>Qoldirish</span></button>
 						</div>
@@ -730,7 +734,9 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      media:[]
+      media:[],
+      Id:"",
+	  Looking:"",
     };
   },
   async mounted() {
@@ -772,7 +778,22 @@ export default {
         // this.media.sort((a, b) => (b.time_create).slice(0,10)-(a.time_create).slice(0,10));
 		// this.media.map(item => (item.time_create).slice(0,10)).join(', ');
 		// }
-    }	
+    },
+	bannedCinema1(id,cinema){
+    this.Id=id
+	this.Looking=cinema
+	},
+	bannedCinema(){
+	 var formData=new FormData()
+	 formData.append("looking",this.Looking?true:false)
+     axios.put(`http://localhost:4002/api/v1/cinema/look/${this.Id}`,formData).then(res=>{
+        alert("Kino holati o'zgartirildi")
+		window.location.reload()
+	 }).catch(err=>{
+        alert("Kino holati o'zgartirilmadi")
+	 })
+	}	
+
   }
 }
 </script>

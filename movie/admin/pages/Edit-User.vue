@@ -668,7 +668,7 @@
 									</thead>
 
 									<tbody>
-										<tr v-for="item in user.sharhLength">
+										<tr v-for="item in user.sharhLength"   >
 											<td>
 												<div class="catalog__text">{{ item.id }}</div>
 											</td>
@@ -1156,7 +1156,7 @@
 	<!-- end main content -->
 
 	<!-- view modal -->
-	<div v-for="item in userIzoh" class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
+	<div v-for="item in userIzoh"    class="modal fade" id="modal-view" tabindex="-1" aria-labelledby="modal-view" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">
@@ -1208,7 +1208,7 @@
 	<!-- end delete modal -->
 
 	<!-- view modal -->
-	<div v-for="item in userSharh" class="modal fade" id="modal-view2" tabindex="-1" aria-labelledby="modal-view2" aria-hidden="true">
+	<div v-for="item in userSharh"   class="modal fade" id="modal-view2" tabindex="-1" aria-labelledby="modal-view2" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">
@@ -1286,7 +1286,7 @@
 						<p class="modal__text">Are you sure to permanently delete this user?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>Delete</span></button>
+							<button @click="UserDelete()" class="modal__btn modal__btn--apply" type="button"><span>Delete</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>Dismiss</span></button>
 						</div>
@@ -1369,6 +1369,7 @@ export default {
 				  			this.user=item
 							document.querySelector("#username").value=item.name
 							document.querySelector("#email2").value=item.email
+							document.querySelector("#lastname").value=item.familiya
 					})
 				   })
 				})
@@ -1407,7 +1408,15 @@ export default {
 		   }).catch(err=>{
 			alert("Ma'lumot o'chirilmadi")
 		   })
-		}
+		},
+		UserDelete(){
+           axios.delete(`http://localhost:4002/users/${sessionStorage.getItem("userEdit")}`).then(res=>{
+			alert("Ma'lumot o'chirildi")
+            window.location="users"
+		   }).catch(err=>{
+			alert("Ma'lumot o'chirilmadi")
+		   })
+		},
 	}
 
 }

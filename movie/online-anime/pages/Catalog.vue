@@ -48,42 +48,9 @@
 
               <!-- filter desk -->
               <div class="filter__items">
-                <select id="filter__genre" class="filter__select" name="genre">
+                <select v-if="janr" id="filter__genre" class="filter__select" name="genre">
                   <option value="0">Barcha janrlar</option>
-                  <option value="1">Action/Adventure</option>
-                  <option value="2">Animals</option>
-                  <option value="3">Animation</option>
-                  <option value="4">Biography</option>
-                  <option value="5">Comedy</option>
-                  <option value="6">Cooking</option>
-                  <option value="7">yulduzce</option>
-                  <option value="8">Documentary</option>
-                  <option value="9">Drama</option>
-                  <option value="10">Education</option>
-                  <option value="11">Entertainment</option>
-                  <option value="12">Family</option>
-                  <option value="13">Fantasy</option>
-                  <option value="14">History</option>
-                  <option value="15">Horror</option>
-                  <option value="16">Independent</option>
-                  <option value="17">International</option>
-                  <option value="18">Kids</option>
-                  <option value="19">Medical</option>
-                  <option value="20">Military/War</option>
-                  <option value="21">Music</option>
-                  <option value="22">Mystery/Crime</option>
-                  <option value="23">Nature</option>
-                  <option value="24">Paranormal</option>
-                  <option value="25">Politics</option>
-                  <option value="26">Racing</option>
-                  <option value="27">Romance</option>
-                  <option value="28">Sci-Fi/Horror</option>
-                  <option value="29">Science</option>
-                  <option value="30">Science Fiction</option>
-                  <option value="31">Science/Nature</option>
-                  <option value="32">Spanish</option>
-                  <option value="33">Travel</option>
-                  <option value="34">Western</option>
+                  <option v-for="item in janr" :value="item.id" :key="item.id">{{ item.title }}</option>
                 </select>
 
                 <select
@@ -775,40 +742,8 @@
         <div class="sign__group">
           <select class="filter__select" name="mgenre" id="mfilter__genre">
             <option value="0">Barcha janrlar</option>
-            <option value="1">Action/Adventure</option>
-            <option value="2">Animals</option>
-            <option value="3">Animation</option>
-            <option value="4">Biography</option>
-            <option value="5">Comedy</option>
-            <option value="6">Cooking</option>
-            <option value="7">yulduzce</option>
-            <option value="8">Documentary</option>
-            <option value="9">Drama</option>
-            <option value="10">Education</option>
-            <option value="11">Entertainment</option>
-            <option value="12">Family</option>
-            <option value="13">Fantasy</option>
-            <option value="14">History</option>
-            <option value="15">Horror</option>
-            <option value="16">Independent</option>
-            <option value="17">International</option>
-            <option value="18">Kids</option>
-            <option value="19">Medical</option>
-            <option value="20">Military/War</option>
-            <option value="21">Music</option>
-            <option value="22">Mystery/Crime</option>
-            <option value="23">Nature</option>
-            <option value="24">Paranormal</option>
-            <option value="25">Politics</option>
-            <option value="26">Racing</option>
-            <option value="27">Romance</option>
-            <option value="28">Sci-Fi/Horror</option>
-            <option value="29">Science</option>
-            <option value="30">Science Fiction</option>
-            <option value="31">Science/Nature</option>
-            <option value="32">Spanish</option>
-            <option value="33">Travel</option>
-            <option value="34">Western</option>
+            <option v-for="item in janr" :key="item.id" :value="item.id">{{item.title}}</option>
+            
           </select>
         </div>
 
@@ -839,10 +774,34 @@
 </template>
 
 <script>
+  import axios from "axios"
 export default {
-  name: 'CatalogPage',
-  mounted() {
-    if (document.querySelector('#filter__genre')) {
+  name: 'CatalogPage', 
+   data(){
+    return{
+      catalog:null,
+      janr:[]
+    }
+  },
+  methods:{
+    async getData() {
+  try {
+    const catalog = await axios.get('http://localhost:4002/api/v1/cinema');
+    const category = await axios.get('http://localhost:4002/api/v1/janr');
+this.catalog=catalog.cata
+this.janr=category.data
+console.log(catalog.data,category.data)
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+},
+
+
+
+
+allfunction(){
+  if (document.querySelector('#filter__genre')) {
       new SlimSelect({
         select: '#filter__genre',
       })
@@ -938,6 +897,19 @@ export default {
         mainBg.style.backgroundSize = 'cover'
       }
     }
+}
+
+
+
+
+
   },
+  mounted() {
+    this.getData()
+    setTimeout(() => {
+    this.allfunction()
+    }, 2000);
+  },
+
 }
 </script>
