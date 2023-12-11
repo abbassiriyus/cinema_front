@@ -3973,6 +3973,23 @@ body::-webkit-scrollbar-thumb {
 .paginator__item:hover a {
 	color: #fff;
 }
+.paginator__item button {
+	font-size: 14px;
+	height: 50px;
+	width: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	color: #c7c7c7;
+	text-align: center;
+	border-radius: 8px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.paginator__item:hover button {
+	color: #fff;
+}
 
 .paginator__item--prev svg,
 .paginator__item--next svg {
@@ -3995,6 +4012,18 @@ body::-webkit-scrollbar-thumb {
 }
 
 .paginator__item--active a:hover {
+	color: #fff;
+}
+
+.paginator__item--active button {
+	color: #fff;
+	cursor: default;
+	font-weight: 600;
+	background: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+	box-shadow: 0 0 16px 0 rgba(255, 88, 96, 0.3);
+}
+
+.paginator__item--active button:hover {
 	color: #fff;
 }
 

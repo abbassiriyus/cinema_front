@@ -81,7 +81,7 @@
               <!-- end apply btn -->
 
               <!-- amount -->
-              <span class="filter__amount">169 tadan 12 tasi</span>
+              <span class="filter__amount" v-if="catalog" >jami {{catalog.length}} ta film</span>
               <!-- end amount -->
             </div>
           </div>
@@ -95,10 +95,12 @@
       <div class="container">
         <div class="row">
           <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
+          <div v-for=" ( item , index ) in catalog"
+           :key="item.id" 
+           v-if="index<select_page*page_card && index>=(select_page-1)*page_card"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
             <div class="item">
               <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/7.png" alt="" />
+                <img v-if="item.images && item.images[0].image" :src="item.images[0].image" alt="" />
                 <span class="item__play">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
@@ -109,320 +111,12 @@
               </NuxtLink>
               <div class="item__content">
                 <h3 class="item__title">
-                  <NuxtLink to="watching">The Lost Key</NuxtLink>
+                  <NuxtLink to="watching">{{ item.title }}</NuxtLink>
                 </h3>
                 <span class="item__category">
-                  <NuxtLink to="#">Action</NuxtLink>
-                  <NuxtLink to="#">Triler</NuxtLink>
+                  <NuxtLink v-for="item2 in item.janrlar" :key="item2.id" to="#">{{ item2.title }}</NuxtLink>
                 </span>
-                <span class="item__rate">8.4</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/8.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">Red Sky at Night</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Comedy</NuxtLink>
-                </span>
-                <span class="item__rate">7.1</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/9.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">The Forgotten Road</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Romance</NuxtLink>
-                  <NuxtLink to="#">Drama</NuxtLink>
-                  <NuxtLink to="#">Music</NuxtLink>
-                </span>
-                <span class="item__rate">6.3</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <div
-                  class="d-flex aligin-items-center justify-content-center premium-icon"
-                >
-                  <img src="img/USD.svg" alt="" />
-                </div>
-                <img src="img/covers/10.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">Dark Horizons</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Comedy</NuxtLink>
-                  <NuxtLink to="#">Drama</NuxtLink>
-                </span>
-                <span class="item__rate">7.9</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/11.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">Echoes of Yesterday</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Action</NuxtLink>
-                  <NuxtLink to="#">Triler</NuxtLink>
-                </span>
-                <span class="item__rate">8.4</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <div
-                  class="d-flex aligin-items-center justify-content-center premium-icon"
-                >
-                  <img src="img/USD.svg" alt="" />
-                </div>
-                <img src="img/covers/12.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">Into the Unknown</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Comedy</NuxtLink>
-                </span>
-                <span class="item__rate">7.1</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/13.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">The Broken Path</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Romance</NuxtLink>
-                  <NuxtLink to="#">Drama</NuxtLink>
-                  <NuxtLink to="#">Music</NuxtLink>
-                </span>
-                <span class="item__rate">6.3</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/14.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">A Light in the Darkness</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Comedy</NuxtLink>
-                  <NuxtLink to="#">Drama</NuxtLink>
-                </span>
-                <span class="item__rate">7.9</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/15.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">Endless Horizon</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Action</NuxtLink>
-                  <NuxtLink to="#">Triler</NuxtLink>
-                </span>
-                <span class="item__rate">8.4</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/16.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">The Unseen Journey</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Comedy</NuxtLink>
-                </span>
-                <span class="item__rate">7.1</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/17.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">Reckoning</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Romance</NuxtLink>
-                  <NuxtLink to="#">Drama</NuxtLink>
-                  <NuxtLink to="#">Music</NuxtLink>
-                </span>
-                <span class="item__rate">6.3</span>
-              </div>
-            </div>
-          </div>
-          <!-- end item -->
-
-          <!-- item -->
-          <div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div class="item">
-              <NuxtLink to="watching" class="item__cover">
-                <img src="img/covers/18.png" alt="" />
-                <span class="item__play">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                      d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                    />
-                  </svg>
-                </span>
-              </NuxtLink>
-              <div class="item__content">
-                <h3 class="item__title">
-                  <NuxtLink to="watching">Savage Beauty</NuxtLink>
-                </h3>
-                <span class="item__category">
-                  <NuxtLink to="#">Comedy</NuxtLink>
-                  <NuxtLink to="#">Drama</NuxtLink>
-                </span>
-                <span class="item__rate">7.9</span>
+                <span class="item__rate">{{ item.mark }}</span>
               </div>
             </div>
           </div>
@@ -434,7 +128,7 @@
           <div class="col-12">
             <div class="section__paginator">
               <!-- amount -->
-              <span class="section__paginator-pages">169 tadan 12 tasi</span>
+              <span class="section__paginator-pages" v-if="catalog" >jami {{catalog.length}} ta film</span>
               <!-- end amount -->
 
               <ul class="section__paginator-list">
@@ -460,7 +154,7 @@
 
               <ul class="paginator">
                 <li class="paginator__item paginator__item--prev">
-                  <NuxtLink to="#"
+                  <button @click="count_minus()"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       enable-background="new 0 0 24 24"
@@ -469,29 +163,26 @@
                       <path
                         d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z"
                       /></svg
-                  ></NuxtLink>
+                  ></button>
                 </li>
-                <li class="paginator__item">
-                  <NuxtLink to="#">1</NuxtLink>
+                <div v-for="item in length_page" :key="item">
+                <li  v-if="item!=select_page" class="paginator__item">
+                  <button @click="get_page(item)" v-if="item==1 || item+1==select_page || item-1==select_page" >{{ item }}</button>
+                  <button @click="get_page(item)"  v-else-if="item==length_page.length" >{{ item }}</button>
+                  <span  @click="get_page(item)" v-else-if="item-select_page==2">...</span>
+                  <span  @click="get_page(item)" v-else-if="select_page-item==2">...</span>
+
+                </li> 
+                <li v-else class="paginator__item paginator__item--active">
+                  <button @click="get_page(item)"  >{{ item }}</button>
                 </li>
-                <li class="paginator__item paginator__item--active">
-                  <NuxtLink to="#">2</NuxtLink>
-                </li>
-                <li class="paginator__item">
-                  <NuxtLink to="#">3</NuxtLink>
-                </li>
-                <li class="paginator__item">
-                  <NuxtLink to="#">4</NuxtLink>
-                </li>
-                <li class="paginator__item"><span>...</span></li>
-                <li class="paginator__item">
-                  <NuxtLink to="#">29</NuxtLink>
-                </li>
-                <li class="paginator__item">
-                  <NuxtLink to="#">30</NuxtLink>
-                </li>
+              </div>
+               
+           
+                <li class="paginator__item"></li>
+              
                 <li class="paginator__item paginator__item--next">
-                  <NuxtLink to="#"
+                  <button @click="count_plus()"
                     ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -499,7 +190,7 @@
                       <path
                         d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z"
                       /></svg
-                  ></NuxtLink>
+                  ></button>
                 </li>
               </ul>
             </div>
@@ -544,10 +235,10 @@
 
               <div class="splide__track">
                 <ul class="splide__list">
-                  <li class="splide__slide">
+                  <li v-for="item in top_look" :key="item.id" class="splide__slide">
                     <div class="item item--carousel">
                       <NuxtLink to="watching" class="item__cover">
-                        <img src="img/covers/7.png" alt="" />
+                        <img v-if="item.images && item.images[0].image" :src="item.images[0].image" alt="" />
                         <span class="item__play">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -562,155 +253,13 @@
                       <div class="item__content">
                         <h3 class="item__title">
                           <NuxtLink to="watching"
-                            >I Dream in Another Language</NuxtLink
+                            >{{ item.title }}</NuxtLink
                           >
                         </h3>
                         <span class="item__category">
-                          <NuxtLink to="#">Action</NuxtLink>
-                          <NuxtLink to="#">Triler</NuxtLink>
+                          <NuxtLink v-for="item2 in item.janrlar" :key="item2.id" to="#">{{item2.title}}</NuxtLink>
                         </span>
-                        <span class="item__rate">8.4</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="splide__slide">
-                    <div class="item item--carousel">
-                      <NuxtLink to="watching" class="item__cover">
-                        <img src="img/covers/8.png" alt="" />
-                        <span class="item__play">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                            />
-                          </svg>
-                        </span>
-                      </NuxtLink>
-                      <div class="item__content">
-                        <h3 class="item__title">
-                          <NuxtLink to="watching">Undercurrents</NuxtLink>
-                        </h3>
-                        <span class="item__category">
-                          <NuxtLink to="#">Comedy</NuxtLink>
-                        </span>
-                        <span class="item__rate">7.1</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="splide__slide">
-                    <div class="item item--carousel">
-                      <NuxtLink to="watching" class="item__cover">
-                        <img src="img/covers/9.png" alt="" />
-                        <span class="item__play">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                            />
-                          </svg>
-                        </span>
-                      </NuxtLink>
-                      <div class="item__content">
-                        <h3 class="item__title">
-                          <NuxtLink to="watching"
-                            >Tales from the Underworld</NuxtLink
-                          >
-                        </h3>
-                        <span class="item__category">
-                          <NuxtLink to="#">Romance</NuxtLink>
-                          <NuxtLink to="#">Drama</NuxtLink>
-                          <NuxtLink to="#">Music</NuxtLink>
-                        </span>
-                        <span class="item__rate">6.3</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="splide__slide">
-                    <div class="item item--carousel">
-                      <NuxtLink to="watching" class="item__cover">
-                        <img src="img/covers/10.png" alt="" />
-                        <span class="item__play">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                            />
-                          </svg>
-                        </span>
-                      </NuxtLink>
-                      <div class="item__content">
-                        <h3 class="item__title">
-                          <NuxtLink to="watching">Savage Beauty</NuxtLink>
-                        </h3>
-                        <span class="item__category">
-                          <NuxtLink to="#">Comedy</NuxtLink>
-                          <NuxtLink to="#">Drama</NuxtLink>
-                        </span>
-                        <span class="item__rate">7.9</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="splide__slide">
-                    <div class="item item--carousel">
-                      <NuxtLink to="watching" class="item__cover">
-                        <img src="img/covers/11.png" alt="" />
-                        <span class="item__play">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                            />
-                          </svg>
-                        </span>
-                      </NuxtLink>
-                      <div class="item__content">
-                        <h3 class="item__title">
-                          <NuxtLink to="watching">The Unseen Journey</NuxtLink>
-                        </h3>
-                        <span class="item__category">
-                          <NuxtLink to="#">Action</NuxtLink>
-                          <NuxtLink to="#">Triler</NuxtLink>
-                        </span>
-                        <span class="item__rate">8.4</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="splide__slide">
-                    <div class="item item--carousel">
-                      <NuxtLink to="watching" class="item__cover">
-                        <img src="img/covers/12.png" alt="" />
-                        <span class="item__play">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"
-                            />
-                          </svg>
-                        </span>
-                      </NuxtLink>
-                      <div class="item__content">
-                        <h3 class="item__title">
-                          <NuxtLink to="watching">Endless Horizon</NuxtLink>
-                        </h3>
-                        <span class="item__category">
-                          <NuxtLink to="#">Comedy</NuxtLink>
-                        </span>
-                        <span class="item__rate">7.1</span>
+                        <span class="item__rate">{{item.mark}}</span>
                       </div>
                     </div>
                   </li>
@@ -780,7 +329,11 @@ export default {
    data(){
     return{
       catalog:null,
-      janr:[]
+      janr:[],
+      top_look:null,
+      select_page:1,
+      page_card:12,
+      length_page:[]
     }
   },
   methods:{
@@ -788,15 +341,37 @@ export default {
   try {
     const catalog = await axios.get('http://localhost:4002/api/v1/cinema');
     const category = await axios.get('http://localhost:4002/api/v1/janr');
-this.catalog=catalog.cata
+    this.top_look=catalog.data.sort((a,b)=>a.more_loking - b.more_loking)
+this.catalog=catalog.data
 this.janr=category.data
-console.log(catalog.data,category.data)
+var for_w=catalog.data.length/this.page_card
+var daad=[]
+for (let i = 0; i < for_w; i++) {
+daad.push(i+1)
+}
+this.length_page=daad
   } catch (error) {
     console.error(error);
     throw error;
   }
 },
+get_page(id){
+this.select_page=id
 
+},
+count_plus(){
+if(this.length_page.length>this.select_page){
+  this.select_page++
+}
+  
+
+},
+count_minus(){
+  if(this.select_page>1){
+  this.select_page--  
+  }
+  
+},
 
 
 
