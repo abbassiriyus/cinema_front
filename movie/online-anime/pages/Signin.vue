@@ -88,8 +88,8 @@ export default {
         localStorage.setItem("user_data",JSON.stringify(user.data))
         window.location="/profile"
       } catch (error) {
-        console.error(error);
-      }
+        alert("xato kiritildi")
+        console.error(error)  }
     }
   }
 }
