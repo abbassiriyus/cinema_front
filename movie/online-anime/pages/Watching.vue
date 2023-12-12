@@ -43,7 +43,7 @@
                 <ul class="item__meta">
                   <li  v-if="data_get" >
                     <span>Janr:</span> 
-                    <a v-for="item in data_get.janr" role="button">{{ item.title }}</a>
+                    <a v-for="item in data_get.janr" :key="item.id"  role="button">{{ item.title }}</a>
                   </li>
                   <li  v-if="data_get" ><span>Davomiyligi:</span> {{ data_get.time }} min</li>
                   <li  v-if="data_get" ><span>Mamlakat:</span> <a role="button">{{data_get.country}}</a></li>
@@ -57,7 +57,7 @@
                   </li>
                   <li  v-if="data_get" >
                     <span>Tarjimon:</span>
-                    <a v-for="item in data_get.tarjima" role="button">{{ item.title }}</a>
+                    <a v-for="item in data_get.tarjima" :key="item.id" role="button">{{ item.title }}</a>
                   </li>
                   <li  v-if="data_get" >
                     <span>Tayming:</span>
@@ -189,7 +189,7 @@
                   <!-- comments -->
                   <div class="col-12">
                     <div class="comments" v-if="data_get">
-                   <ul v-for="commnet in data_get.comment"  class="comments__list">
+                   <ul v-for="commnet in data_get.comment" :key="commnet.id"   class="comments__list">
                         <li  class="comments__item" >
                           <div class="comments__autor">
                             <img
@@ -260,7 +260,7 @@
                             </button>
                           </div>
                         </li> 
-                       <div v-for="cinema in commnet.subcomment">
+                       <div v-for="cinema in commnet.subcomment" :key="cinema.id" >
                         <li v-if="!cinema.quanty"  class="comments__item comments__item--answer">
                           <div class="comments__autor">
                             <img
@@ -268,7 +268,7 @@
                               src="img/user.svg"
                               alt=""
                             />
-                            <span class="comments__name" v-if="cinema.creators && cinema.creators.name">{{ cinema.creators.name }}     <span v-if="cinema.ptichka"
+                            <span class="comments__name" v-if="cinema.creators && cinema.creators.name">{{ cinema.creators.name }} <span v-if="cinema.ptichka"
                                  class="d-flex aligin-items-center justify-content-center moder-user"
                               >
                                 <img  src="img/verify.svg" alt="" /> </span
@@ -441,7 +441,7 @@
                   <div class="col-12">
                     <div class="reviews">
                       <ul class="reviews__list">
-                        <li v-for="sharx in data_get.sharx" class="reviews__item">
+                        <li v-for="sharx in data_get.sharx" :key="sharx.id" class="reviews__item">
                           <div class="reviews__autor">
                             <img
                               class="reviews__avatar"
@@ -548,6 +548,7 @@
                   <div v-if="data_get" class="row row--grid gallery_in" id="lightgallery">
                     <!-- gallery item -->
                     <a v-for="img in data_get.allimage"
+                    :key="img.id" 
                       :href="img.image"
                       itemprop="contentUrl"
                       data-size="1920x1280"
@@ -579,7 +580,7 @@
               <!-- end section title -->
 
               <!-- item -->
-              <div v-for="cinema in top_look" class="col-6 col-sm-4 col-lg-6">
+              <div v-for="cinema in top_look" :key="cinema.id" class="col-6 col-sm-4 col-lg-6">
                 <div class="item">
                   <NuxtLink to="details1" class="item__cover">
                  <img v-if="cinema.images.length>0" :src="cinema.images[0].image"    alt="" />
@@ -684,9 +685,9 @@ data(){
     },
     async getCinemaData() {
       try {
-        const data12= await axios,post()
+      var data12=await axios.post("http://localhost:4002/api/lookme",{cinema_id:JSON.parse(localStorage.getItem("selectedItemData")), user_id:JSON.parse((localStorage.getItem("user_data"))).id})
         const response = await axios.get('http://localhost:4002/api/v1/cinema');
-		    this.top_look=response.data.sort((a,b)=>a.more_loking - b.more_loking)
+		    this.top_look=response.data.sort((a,b)=>a.more_loking-b.more_loking)
 console.log(this.top_look);
       } catch (error) {
         console.error(error,"xato");
