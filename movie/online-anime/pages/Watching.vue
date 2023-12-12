@@ -684,6 +684,7 @@ data(){
     },
     async getCinemaData() {
       try {
+        const data12= await axios,post()
         const response = await axios.get('http://localhost:4002/api/v1/cinema');
 		    this.top_look=response.data.sort((a,b)=>a.more_loking - b.more_loking)
 console.log(this.top_look);
@@ -706,6 +707,7 @@ axios.post('http://localhost:4002/api/v1/comment/', data, {
         }
       })
         .then(response => {
+          alert("saqlandi")
           this.getData()
           this.comment_id=0
     this.string_data=""
@@ -728,9 +730,12 @@ alert("user not")
    data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
 axios.post(url, data)
   .then(response => {
+  alert("saqlandi")
     this.getData()
+  
   })
   .catch(error => {
+    alert("xato")
     console.log(error);  
   })
  }else{
@@ -756,6 +761,7 @@ axios.post('http://localhost:4002/api/v1/sharx/', data, {
       })
         .then(response => {
           document.querySelector('#sharx_m').value=""
+          alert("saqlandi")
           document.querySelector('#sharx_d').value=""
           this.getData()
           this.comment_id=0
@@ -765,6 +771,7 @@ axios.post('http://localhost:4002/api/v1/sharx/', data, {
         })
         .catch(error => {
           console.log(error);
+          alert('xarolik')
           // Xatolik yuz berdi
         });
   

@@ -48,9 +48,16 @@
 
               <!-- filter desk -->
               <div class="filter__items">
-                <select v-if="janr" id="filter__genre" class="filter__select" name="genre">
+                <select
+                  v-if="janr"
+                  id="filter__genre"
+                  class="filter__select"
+                  name="genre"
+                >
                   <option value="0">Barcha janrlar</option>
-                  <option v-for="item in janr" :value="item.id" :key="item.id">{{ item.title }}</option>
+                  <option v-for="item in janr" :value="item.id" :key="item.id">
+                    {{ item.title }}
+                  </option>
                 </select>
 
                 <select
@@ -59,9 +66,9 @@
                   id="filter__quality"
                 >
                   <option value="0">Har qanday sifat</option>
-                  <option value="1">HD 1080</option>
+                  <option value="1">Full HD</option>
                   <option value="2">HD 720</option>
-                  <option value="2">420 P</option>
+                  <option value="3">420 P</option>
                 </select>
 
                 <select class="filter__select" name="rate" id="filter__rate">
@@ -75,13 +82,15 @@
               <!-- end filter desk -->
 
               <!-- apply btn -->
-              <button class="filter__btn" type="button">
+              <button @click="Allfilter()" class="filter__btn" type="button">
                 <span>Filtr</span>
               </button>
               <!-- end apply btn -->
 
               <!-- amount -->
-              <span class="filter__amount" v-if="catalog" >jami {{catalog.length}} ta film</span>
+              <span class="filter__amount" v-if="catalog"
+                >jami {{ catalog.length }} ta film</span
+              >
               <!-- end amount -->
             </div>
           </div>
@@ -95,12 +104,22 @@
       <div class="container">
         <div class="row">
           <!-- item -->
-          <div v-for=" ( item , index ) in catalog"
-           :key="item.id" 
-           v-if="index<select_page*page_card && index>=(select_page-1)*page_card"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
+          <div
+            v-for="(item, index) in catalog"
+            :key="item.id"
+            v-if="
+              index < select_page * page_card &&
+              index >= (select_page - 1) * page_card
+            "
+            class="col-6 col-sm-4 col-lg-3 col-xl-2"
+          >
             <div class="item">
               <NuxtLink to="watching" class="item__cover">
-                <img v-if="item.images && item.images[0].image" :src="item.images[0].image" alt="" />
+                <img
+                  v-if="item.images && item.images[0].image"
+                  :src="item.images[0].image"
+                  alt=""
+                />
                 <span class="item__play">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path
@@ -114,7 +133,12 @@
                   <NuxtLink to="watching">{{ item.title }}</NuxtLink>
                 </h3>
                 <span class="item__category">
-                  <NuxtLink v-for="item2 in item.janrlar" :key="item2.id" to="#">{{ item2.title }}</NuxtLink>
+                  <NuxtLink
+                    v-for="item2 in item.janrlar"
+                    :key="item2.id"
+                    to="#"
+                    >{{ item2.title }}</NuxtLink
+                  >
                 </span>
                 <span class="item__rate">{{ item.mark }}</span>
               </div>
@@ -128,7 +152,9 @@
           <div class="col-12">
             <div class="section__paginator">
               <!-- amount -->
-              <span class="section__paginator-pages" v-if="catalog" >jami {{catalog.length}} ta film</span>
+              <span class="section__paginator-pages" v-if="catalog"
+                >jami {{ catalog.length }} ta film</span
+              >
               <!-- end amount -->
 
               <ul class="section__paginator-list">
@@ -154,43 +180,62 @@
 
               <ul class="paginator">
                 <li class="paginator__item paginator__item--prev">
-                  <button @click="count_minus()"
-                    ><svg
+                  <button @click="count_minus()">
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       enable-background="new 0 0 24 24"
                       viewBox="0 0 24 24"
                     >
                       <path
                         d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z"
-                      /></svg
-                  ></button>
+                      />
+                    </svg>
+                  </button>
                 </li>
                 <div v-for="item in length_page" :key="item">
-                <li  v-if="item!=select_page" class="paginator__item">
-                  <button @click="get_page(item)" v-if="item==1 || item+1==select_page || item-1==select_page" >{{ item }}</button>
-                  <button @click="get_page(item)"  v-else-if="item==length_page.length" >{{ item }}</button>
-                  <span  @click="get_page(item)" v-else-if="item-select_page==2">...</span>
-                  <span  @click="get_page(item)" v-else-if="select_page-item==2">...</span>
-
-                </li> 
-                <li v-else class="paginator__item paginator__item--active">
-                  <button @click="get_page(item)"  >{{ item }}</button>
-                </li>
-              </div>
-               
-           
-                <li class="paginator__item"></li>
-              
-                <li class="paginator__item paginator__item--next">
-                  <button @click="count_plus()"
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
+                  <li v-if="item != select_page" class="paginator__item">
+                    <button
+                      @click="get_page(item)"
+                      v-if="
+                        item == 1 ||
+                        item + 1 == select_page ||
+                        item - 1 == select_page
+                      "
                     >
+                      {{ item }}
+                    </button>
+                    <button
+                      @click="get_page(item)"
+                      v-else-if="item == length_page.length"
+                    >
+                      {{ item }}
+                    </button>
+                    <span
+                      @click="get_page(item)"
+                      v-else-if="item - select_page == 2"
+                      >...</span
+                    >
+                    <span
+                      @click="get_page(item)"
+                      v-else-if="select_page - item == 2"
+                      >...</span
+                    >
+                  </li>
+                  <li v-else class="paginator__item paginator__item--active">
+                    <button @click="get_page(item)">{{ item }}</button>
+                  </li>
+                </div>
+
+                <li class="paginator__item"></li>
+
+                <li class="paginator__item paginator__item--next">
+                  <button @click="count_plus()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <path
                         d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z"
-                      /></svg
-                  ></button>
+                      />
+                    </svg>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -235,10 +280,18 @@
 
               <div class="splide__track">
                 <ul class="splide__list">
-                  <li v-for="item in top_look" :key="item.id" class="splide__slide">
+                  <li
+                    v-for="item in top_look"
+                    :key="item.id"
+                    class="splide__slide"
+                  >
                     <div class="item item--carousel">
                       <NuxtLink to="watching" class="item__cover">
-                        <img v-if="item.images && item.images[0].image" :src="item.images[0].image" alt="" />
+                        <img
+                          v-if="item.images && item.images[0].image"
+                          :src="item.images[0].image"
+                          alt=""
+                        />
                         <span class="item__play">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -252,14 +305,17 @@
                       </NuxtLink>
                       <div class="item__content">
                         <h3 class="item__title">
-                          <NuxtLink to="watching"
-                            >{{ item.title }}</NuxtLink
-                          >
+                          <NuxtLink to="watching">{{ item.title }}</NuxtLink>
                         </h3>
                         <span class="item__category">
-                          <NuxtLink v-for="item2 in item.janrlar" :key="item2.id" to="#">{{item2.title}}</NuxtLink>
+                          <NuxtLink
+                            v-for="item2 in item.janrlar"
+                            :key="item2.id"
+                            to="#"
+                            >{{ item2.title }}</NuxtLink
+                          >
                         </span>
-                        <span class="item__rate">{{item.mark}}</span>
+                        <span class="item__rate">{{ item.mark }}</span>
                       </div>
                     </div>
                   </li>
@@ -291,15 +347,16 @@
         <div class="sign__group">
           <select class="filter__select" name="mgenre" id="mfilter__genre">
             <option value="0">Barcha janrlar</option>
-            <option v-for="item in janr" :key="item.id" :value="item.id">{{item.title}}</option>
-            
+            <option v-for="item in janr" :key="item.id" :value="item.id">
+              {{ item.title }}
+            </option>
           </select>
         </div>
 
         <div class="sign__group">
           <select class="filter__select" name="mquality" id="mfilter__quality">
             <option value="0">Har qanday sifat</option>
-            <option value="1">HD 1080</option>
+            <option value="1">Full HD</option>
             <option value="2">HD 720</option>
             <option value="3">420 P</option>
           </select>
@@ -323,168 +380,240 @@
 </template>
 
 <script>
-  import axios from "axios"
+import axios from 'axios'
 export default {
-  name: 'CatalogPage', 
-   data(){
-    return{
-      catalog:null,
-      janr:[],
-      top_look:null,
-      select_page:1,
-      page_card:12,
-      length_page:[]
+  name: 'CatalogPage',
+  data() {
+    return {
+      catalog: null,
+      janr: [],
+      top_look: null,
+      select_page: 1,
+      page_card: 12,
+      length_page: [],
     }
   },
-  methods:{
+  methods: {
     async getData() {
-  try {
-    const catalog = await axios.get('http://localhost:4002/api/v1/cinema');
-    const category = await axios.get('http://localhost:4002/api/v1/janr');
-    this.top_look=catalog.data.sort((a,b)=>a.more_loking - b.more_loking)
-this.catalog=catalog.data
-this.janr=category.data
-var for_w=catalog.data.length/this.page_card
-var daad=[]
-for (let i = 0; i < for_w; i++) {
-daad.push(i+1)
+      try {
+        const catalog = await axios.get('http://localhost:4002/api/v1/cinema')
+        const category = await axios.get('http://localhost:4002/api/v1/janr')
+        this.top_look = catalog.data.sort(
+          (a, b) => a.more_loking - b.more_loking
+        )
+        this.catalog = catalog.data
+        this.janr = category.data
+        var for_w = catalog.data.length / this.page_card
+        var daad = []
+        for (let i = 0; i < for_w; i++) {
+          daad.push(i + 1)
+        }
+        this.length_page = daad
+      } catch (error) {
+        console.error(error)
+        throw error
+      }
+    },
+    get_page(id) {
+      this.select_page = id
+    },
+    count_plus() {
+      if (this.length_page.length > this.select_page) {
+        this.select_page++
+      }
+    },
+    count_minus() {
+      if (this.select_page > 1) {
+        this.select_page--
+      }
+    },
+    filter_janr(data) {
+      console.log(data)
+      var value1 = document.querySelector('#filter__genre').value
+      var send_data=[]
+      for (let i = 0; i < data.length; i++) {
+        var push=false
+        for (let j = 0; j < data[i].janrlar.length; j++) {
+           if(value1==data[i].janrlar[j].id || value1==0){
+             push=true
+           }
+        }
+     if(push){
+      send_data.push(data[i])
+      }
 }
-this.length_page=daad
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-},
-get_page(id){
-this.select_page=id
-
-},
-count_plus(){
-if(this.length_page.length>this.select_page){
-  this.select_page++
+if(value1==0){
+send_data=data
 }
-  
+  return send_data
+    },
 
-},
-count_minus(){
-  if(this.select_page>1){
-  this.select_page--  
+    filter_mark(data) {
+var value1=document.querySelector('#filter__rate').value
+   var mark_f
+   if(value1==0){
+mark_f=0
+   }
+   if(value1==1){
+mark_f=3
+}
+if(value1==2){
+mark_f=5
+}
+if(value1==3){
+mark_f=7
+}
+if(value1==4){
+mark_f=9
+}
+var send_data=[]
+console.log(mark_f)
+for(let i=0 ; i< data.length ; i++){
+  if(data[i].mark>=mark_f){
+  send_data.push(data[i])
   }
-  
-},
+}
+return send_data
 
-
-
-allfunction(){
-  if (document.querySelector('#filter__genre')) {
-      new SlimSelect({
-        select: '#filter__genre',
+    },
+    filter_vid(data) {
+     var value1=document.querySelector('#filter__quality').value
+     var mark_f
+   if(value1==0){
+mark_f=0
+   }
+   if(value1==1){
+mark_f="Full HD"
+}
+if(value1==2){
+mark_f="HD 720"
+}
+if(value1==3){
+mark_f="420 P"
+}
+var send_data=[]
+for(let i=0 ; i< data.length ; i++){
+  if(data[i].type==mark_f){
+    send_data.push(data[i])
+  }
+}
+if(value1==0){
+  send_data=data
+}
+return send_data
+    },
+    Allfilter() {
+      axios.get('http://localhost:4002/api/v1/cinema').then(res => {
+      var data1=this.filter_vid(res.data)
+      var data2=this.filter_janr(data1)
+      var data3=this.filter_mark(data2)
+      this.catalog=data3
       })
-    }
+    },
 
-    if (document.querySelector('#filter__quality')) {
-      new SlimSelect({
-        select: '#filter__quality',
-        settings: {
-          showSearch: false,
-        },
-      })
-    }
+    allfunction() {
+      if (document.querySelector('#filter__genre')) {
+        new SlimSelect({
+          select: '#filter__genre',
+        })
+      }
 
-    if (document.querySelector('#filter__rate')) {
-      new SlimSelect({
-        select: '#filter__rate',
-        settings: {
-          showSearch: false,
-        },
-      })
-    }
-    if (document.querySelector('#mfilter__genre')) {
-      new SlimSelect({
-        select: '#mfilter__genre',
-      })
-    }
-
-    if (document.querySelector('#mfilter__quality')) {
-      new SlimSelect({
-        select: '#mfilter__quality',
-        settings: {
-          showSearch: false,
-        },
-      })
-    }
-
-    if (document.querySelector('#mfilter__rate')) {
-      new SlimSelect({
-        select: '#mfilter__rate',
-        settings: {
-          showSearch: false,
-        },
-      })
-    }
-    if (document.querySelector('.section__carousel')) {
-      const elms = document.getElementsByClassName('section__carousel')
-
-      for (let i = 0; i < elms.length; i++) {
-        new Splide(elms[i], {
-          type: 'loop',
-          perPage: 6,
-          drag: true,
-          pagination: false,
-          autoWidth: false,
-          autoHeight: false,
-          speed: 800,
-          gap: 24,
-          arrows: true,
-          focus: 0,
-          breakpoints: {
-            575: {
-              gap: 24,
-              pagination: true,
-              perPage: 2,
-            },
-            767: {
-              gap: 24,
-              pagination: true,
-              perPage: 3,
-            },
-            991: {
-              pagination: true,
-              perPage: 3,
-              gap: 24,
-            },
-            1199: {
-              pagination: true,
-              perPage: 4,
-              gap: 24,
-            },
+      if (document.querySelector('#filter__quality')) {
+        new SlimSelect({
+          select: '#filter__quality',
+          settings: {
+            showSearch: false,
           },
-        }).mount()
+        })
       }
-    }
-    if (document.querySelector('.section--bg')) {
-      const mainBg = document.querySelector('.section--bg')
 
-      if (mainBg.getAttribute('data-bg')) {
-        mainBg.style.background = `url(${mainBg.getAttribute('data-bg')})`
-        mainBg.style.backgroundPosition = 'center center'
-        mainBg.style.backgroundRepeat = 'no-repeat'
-        mainBg.style.backgroundSize = 'cover'
+      if (document.querySelector('#filter__rate')) {
+        new SlimSelect({
+          select: '#filter__rate',
+          settings: {
+            showSearch: false,
+          },
+        })
       }
-    }
-}
+      if (document.querySelector('#mfilter__genre')) {
+        new SlimSelect({
+          select: '#mfilter__genre',
+        })
+      }
 
+      if (document.querySelector('#mfilter__quality')) {
+        new SlimSelect({
+          select: '#mfilter__quality',
+          settings: {
+            showSearch: false,
+          },
+        })
+      }
 
+      if (document.querySelector('#mfilter__rate')) {
+        new SlimSelect({
+          select: '#mfilter__rate',
+          settings: {
+            showSearch: false,
+          },
+        })
+      }
+      if (document.querySelector('.section__carousel')) {
+        const elms = document.getElementsByClassName('section__carousel')
+        for (let i = 0; i < elms.length; i++) {
+          new Splide(elms[i], {
+            type: 'loop',
+            perPage: 6,
+            drag: true,
+            pagination: false,
+            autoWidth: false,
+            autoHeight: false,
+            speed: 800,
+            gap: 24,
+            arrows: true,
+            focus: 0,
+            breakpoints: {
+              575: {
+                gap: 24,
+                pagination: true,
+                perPage: 2,
+              },
+              767: {
+                gap: 24,
+                pagination: true,
+                perPage: 3,
+              },
+              991: {
+                pagination: true,
+                perPage: 3,
+                gap: 24,
+              },
+              1199: {
+                pagination: true,
+                perPage: 4,
+                gap: 24,
+              },
+            },
+          }).mount()
+        }
+      }
+      if (document.querySelector('.section--bg')) {
+        const mainBg = document.querySelector('.section--bg')
 
-
-
+        if (mainBg.getAttribute('data-bg')) {
+          mainBg.style.background = `url(${mainBg.getAttribute('data-bg')})`
+          mainBg.style.backgroundPosition = 'center center'
+          mainBg.style.backgroundRepeat = 'no-repeat'
+          mainBg.style.backgroundSize = 'cover'
+        }
+      }
+    },
   },
   mounted() {
     this.getData()
     setTimeout(() => {
-    this.allfunction()
-    }, 2000);
+      this.allfunction()
+    }, 2000)
   },
-
 }
 </script>
