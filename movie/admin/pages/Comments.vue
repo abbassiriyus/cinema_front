@@ -12,22 +12,22 @@
 						<span class="main__title-stat">Jami {{ this.izoh.length }}</span>
 
 						<div class="main__title-wrap">
-							<select class="filter__select" name="sort" id="filter__sort">
+							<select @click="FilterReyting()" class="filter__select" name="sort" id="filter__sort">
 								<option value="0">Yaratilgan sana</option>
 								<option value="1">Reyting</option>
 							</select>
 
 							<!-- search -->
-							<form action="#" class="main__title-form">
+							<div action="" class="main__title-form">
 								<input @input="CommentSearch()" id="commentSearch" type="text" placeholder="Kalit so'z..">
-								<button type="button">
+								<button @click="CommentSearch()" type="button">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
 											d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z">
 										</path>
 									</svg>
 								</button>
-							</form>
+							</div>
 							<!-- end search -->
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 							</thead>
 
 							<tbody>
-								<tr v-for="item in izoh" ::key="item.id">
+								<tr v-for="(item,index) in izoh" ::key="item.id" v-if="index<select_page*page_card && index>=(select_page-1)*page_card">
 									<td>
 										<div class="catalog__text">{{ item.id }}</div>
 									</td>
@@ -65,7 +65,7 @@
 										<div class="catalog__text">{{ (item.description).length>28?(item.description).slice(0,28)+"...":item.description }}</div>
 									</td>
 									<td>
-										<div class="catalog__text">12 / 7</div>
+										<div class="catalog__text">{{ item.commentLike }} / {{ item.commentFalse }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
@@ -456,47 +456,66 @@
 
 						<ul class="main__paginator-list">
 							<li>
-								<NuxtLink to="#">
+								<button @click="count_minus()">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
 											d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z" />
 									</svg>
 									<span>Prev</span>
-								</NuxtLink>
+								</button>
 							</li>
 							<li>
-								<NuxtLink to="#">
+								<button @click="count_plus()">
 									<span>Next</span>
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
 											d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z" />
 									</svg>
-								</NuxtLink>
+								</button>
 							</li>
 						</ul>
 
 						<ul class="paginator">
-							<li class="paginator__item paginator__item--prev">
-								<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-										viewBox="0 0 24 24">
-										<path
-											d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z" />
-									</svg></NuxtLink>
-							</li>
-							<li class="paginator__item"><NuxtLink to="#">1</NuxtLink></li>
-							<li class="paginator__item paginator__item--active"><NuxtLink to="#">2</NuxtLink></li>
-							<li class="paginator__item"><NuxtLink to="#">3</NuxtLink></li>
-							<li class="paginator__item"><NuxtLink to="#">4</NuxtLink></li>
-							<li class="paginator__item"><span>...</span></li>
-							<li class="paginator__item"><NuxtLink to="#">29</NuxtLink></li>
-							<li class="paginator__item"><NuxtLink to="#">30</NuxtLink></li>
-							<li class="paginator__item paginator__item--next">
-								<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-										<path
-											d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z" />
-									</svg></NuxtLink>
-							</li>
-						</ul>
+                <li class="paginator__item paginator__item--prev">
+                  <button @click="count_minus()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      enable-background="new 0 0 24 24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z"
+                      /></svg
+                  ></button>
+                </li>
+                <div v-for="item in length_page" :key="item">
+                <li  v-if="item!=select_page" class="paginator__item">
+                  <button @click="get_page(item)" v-if="item==1 || item+1==select_page || item-1==select_page" >{{ item }}</button>
+                  <button @click="get_page(item)"  v-else-if="item==length_page.length" >{{ item }}</button>
+                  <span  @click="get_page(item)" v-else-if="item-select_page==2">...</span>
+                  <span  @click="get_page(item)" v-else-if="select_page-item==2">...</span>
+
+                </li> 
+                <li v-else class="paginator__item paginator__item--active">
+                  <button @click="get_page(item)"  >{{ item }}</button>
+                </li>
+              </div>
+               
+           
+                <li class="paginator__item"></li>
+              
+                <li class="paginator__item paginator__item--next">
+                  <button @click="count_plus()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z"
+                      /></svg
+                  ></button>
+                </li>
+                        </ul>
 					</div>
 				</div>
 				<!-- end paginator -->
@@ -521,9 +540,9 @@
 							<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path
 										d="M21.3,10.08A3,3,0,0,0,19,9H14.44L15,7.57A4.13,4.13,0,0,0,11.11,2a1,1,0,0,0-.91.59L7.35,9H5a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17.73a3,3,0,0,0,2.95-2.46l1.27-7A3,3,0,0,0,21.3,10.08ZM7,20H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H7Zm13-7.82-1.27,7a1,1,0,0,1-1,.82H9V10.21l2.72-6.12A2.11,2.11,0,0,1,13.1,6.87L12.57,8.3A2,2,0,0,0,14.44,11H19a1,1,0,0,1,.77.36A1,1,0,0,1,20,12.18Z" />
-								</svg>12</span>
+								</svg>{{ item.commentLike }}</span>
 
-							<span>7<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+							<span>{{ item.commentFalse }}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path
 										d="M19,2H6.27A3,3,0,0,0,3.32,4.46l-1.27,7A3,3,0,0,0,5,15H9.56L9,16.43A4.13,4.13,0,0,0,12.89,22a1,1,0,0,0,.91-.59L16.65,15H19a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM15,13.79l-2.72,6.12a2.13,2.13,0,0,1-1.38-2.78l.53-1.43A2,2,0,0,0,9.56,13H5a1,1,0,0,1-.77-.36A1,1,0,0,1,4,11.82l1.27-7a1,1,0,0,1,1-.82H15ZM20,12a1,1,0,0,1-1,1H17V4h2a1,1,0,0,1,1,1Z" />
 								</svg></span>
@@ -569,37 +588,60 @@ export default {
 			izoh:[],
 			izohModal:[],
 			deleteId:0,
+			select_page:1,
+     		page_card:10,
+      		length_page:[]
 		}
 	},
 
     mounted() {
         if (document.querySelector('#filter__sort')) {
-	new SlimSelect({
+	    new SlimSelect({
 		select: '#filter__sort',
 		settings: {
 			showSearch: false,
 		}
-	});
+	    });
+		document.querySelector(".filter__select").addEventListener("change",this.FilterReyting)
         }
 		try{
          axios.get('http://localhost:4002/api/v1/comment').then(res=>{
             axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
 				axios.get('http://localhost:4002/users').then(res2=>{
-                  for (let i = 0; i < res.data.length; i++) {
-					for (let j = 0; j < res1.data.length; j++) {
-						if(res.data[i].cinema_id==res1.data[j].id){
-							res.data[i].cinemaName=res1.data[j].title
+                    axios.get('http://localhost:4002/api/v1/comment_mark').then(res3=>{
+					for (let i = 0; i < res.data.length; i++) {
+						for (let j = 0; j < res1.data.length; j++) {
+							if(res.data[i].cinema_id==res1.data[j].id){
+								res.data[i].cinemaName=res1.data[j].title
+							}
 						}
+				  	}
+				  	for (let i = 0; i < res.data.length; i++) {
+						for (let j = 0; j < res2.data.length; j++) {
+					  		if(res.data[i].creator==res2.data[j].id){
+								res.data[i].creatorName=res2.data[j].name
+					  		}
+						}
+						res.data[i].commentLike=0
+						res.data[i].commentFalse=0
+						for (let j = 0; j < res3.data.length; j++) {
+								if(res.data[i].id==res3.data[j].comment_id){
+                                   if(res3.data[j].dislike){
+									res.data[i].commentLike=res.data[i].commentLike+1
+								   }else{
+									res.data[i].commentFalse=res.data[i].commentFalse+1
+								   }
+								}
+						}
+				  	}
+				  	this.izoh=res.data
+					var for_w=this.izoh.length/this.page_card
+            		var daad=[]
+            		for (let i = 0; i < for_w; i++) {
+					daad.push(i+1)
 					}
-				  }
-				  for (let i = 0; i < res.data.length; i++) {
-					for (let j = 0; j < res2.data.length; j++) {
-					  if(res.data[i].creator==res2.data[j].id){
-						res.data[i].creatorName=res2.data[j].name
-					  }
-					}
-				  }
-				  this.izoh=res.data
+					this.length_page=daad
+					})
 				})
 			})
 		 })
@@ -612,23 +654,36 @@ export default {
 			axios.get('http://localhost:4002/api/v1/comment').then(res=>{
             axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
 				axios.get('http://localhost:4002/users').then(res2=>{
-                  for (let i = 0; i < res.data.length; i++) {
-					for (let j = 0; j < res1.data.length; j++) {
-						if(res.data[i].cinema_id==res1.data[j].id){
-							res.data[i].cinemaName=res1.data[j].title
+                    axios.get('http://localhost:4002/api/v1/comment_mark').then(res3=>{
+					for (let i = 0; i < res.data.length; i++) {
+						for (let j = 0; j < res1.data.length; j++) {
+							if(res.data[i].cinema_id==res1.data[j].id){
+								res.data[i].cinemaName=res1.data[j].title
+							}
 						}
-					}
-				  }
-				  for (let i = 0; i < res.data.length; i++) {
-					for (let j = 0; j < res2.data.length; j++) {
-					  if(res.data[i].creator==res2.data[j].id){
-						res.data[i].creatorName=res2.data[j].name
-					  }
-					}
-				  }
-				  
-				  const a=res.data.filter(item=>((item.creatorName).toLowerCase()).includes((document.querySelector("#commentSearch").value).toLowerCase()))
-				  this.izoh=a
+				  	}
+				  	for (let i = 0; i < res.data.length; i++) {
+						for (let j = 0; j < res2.data.length; j++) {
+					  		if(res.data[i].creator==res2.data[j].id){
+								res.data[i].creatorName=res2.data[j].name
+					  		}
+						}
+						res.data[i].commentLike=0
+						res.data[i].commentFalse=0
+						for (let j = 0; j < res3.data.length; j++) {
+								if(res.data[i].id==res3.data[j].comment_id){
+                                   if(res3.data[j].dislike){
+									res.data[i].commentLike=res.data[i].commentLike+1
+								   }else{
+									res.data[i].commentFalse=res.data[i].commentFalse+1
+								   }
+								}
+						}
+				  	}
+					const a=res.data.filter(item=>((item.creatorName).toLowerCase()).includes((document.querySelector("#commentSearch").value).toLowerCase()))
+					console.log(a,"s")
+			        this.izoh=a
+					})
 				})
 			})
 		 })
@@ -668,6 +723,29 @@ export default {
 		   }).catch(err=>{
 			alert("Ma'lumot o'chirilmadi")
 		   })
+		},
+		get_page(id){
+		this.select_page=id
+		},
+		count_plus(){
+		if(this.length_page.length>this.select_page){
+  		this.select_page++
+		}
+		},
+		count_minus(){
+  		if(this.select_page>1){
+  		this.select_page--  
+  		}
+		},
+		FilterReyting(){
+		if(document.querySelector(".filter__select").value==0){
+        this.izoh.sort((a, b) =>(b.time_create).slice(0,4)-(a.time_create).slice(0,4) || (b.time_create).slice(5,7)-(a.time_create).slice(5,7) || (b.time_create).slice(8,10)-(a.time_create).slice(8,10));
+		this.izoh.map(item => (b.time_create).slice(0,4)-(a.time_create).slice(0,4) || (b.time_create).slice(5,7)-(a.time_create).slice(5,7) || (b.time_create).slice(8,10)-(a.time_create).slice(8,10)).join(', ');
+		}
+		if(document.querySelector(".filter__select").value==1){
+        this.izoh.sort((a, b) => b.commentLike-a.commentLike || b.commentFalse-a.commentFalse);
+		this.izoh.map(item => item.commentLike || item.commentFalse).join(', ');
+		}
 		}
 	}
 }

@@ -1327,8 +1327,6 @@ export default {
 							Filter[i].commentLength.push(res1.data[j])
 					 		}
 						}
-				   }
-				   for (let i = 0; i < Filter.length; i++) {
 						Filter[i].sharhLength=[]
 						for (let j = 0; j < res2.data.length; j++) {
 					 		if(Filter[i].id==res2.data[j].creator){
@@ -1344,8 +1342,6 @@ export default {
 										item.commentLength[i].cinemaName=res3.data[j].title
 									}
 								}
-				  			}
-				  			for (let i = 0; i < item.commentLength.length; i++) {
 								for (let j = 0; j < res.data.length; j++) {
 					  				if(item.commentLength[i].creator==res.data[j].id){
 										item.commentLength[i].creatorName=res.data[j].name
@@ -1358,8 +1354,7 @@ export default {
 										item.sharhLength[i].cinemaName1=res3.data[j].title
 									}
 								}
-				  			}
-				  			for (let i = 0; i < item.sharhLength.length; i++) {
+				  			
 								for (let j = 0; j < res.data.length; j++) {
 					  				if(item.sharhLength[i].creator==res.data[j].id){
 										item.sharhLength[i].creatorName1=res.data[j].name

@@ -786,7 +786,41 @@ body::-webkit-scrollbar-thumb {
   border: 1px solid rgba(255, 85, 165, 0.4);
   font-family: 'Open Sans', sans-serif;
 }
+.main__paginator-list button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 8px;
+  background-color: #28282d;
+  border: 1px solid rgba(255, 85, 165, 0.4);
+  font-family: 'Open Sans', sans-serif;
+}
+.main__paginator-list button span {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 400;
+  transition: color 0.5s ease;
+  text-transform: uppercase;
+}
 
+.main__paginator-list button svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  transition: fill 0.5s ease;
+}
+
+.main__paginator-list button:hover {
+  border-color: rgba(255, 85, 165, 0.8);
+}
+
+.main__paginator-list button:hover svg {
+  fill: #ff55a5;
+}
 .main__paginator-list a span {
   font-size: 12px;
   color: #fff;
