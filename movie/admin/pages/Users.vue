@@ -92,7 +92,7 @@
 									</td>
 									<td>
 										<div class="catalog__btns">
-											<button @click="UserBanned(item.id)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--banned"
+											<button @click="Idfunc(item.id,item.pan)" type="button" data-bs-toggle="modal" class="catalog__btn catalog__btn--banned"
 												data-bs-target="#modal-status">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
@@ -712,7 +712,7 @@
 						<p class="modal__text">Holatni darhol o'zgartirishga ishonchingiz komilmi?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>O'zgartirish</span></button>
+							<button @click="UserBanned()" class="modal__btn modal__btn--apply" type="button"><span>O'zgartirish</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>Qoldirish</span></button>
 						</div>
@@ -756,6 +756,7 @@ export default {
     	return{
 			user:[],
 			deleteId:0,
+			Ban:true,
 		}
 	},
     mounted() {
@@ -797,11 +798,13 @@ export default {
 		}
     },
 	methods:{
-		Idfunc(id){
+		Idfunc(id,ban){
             this.deleteId=id
+			this.Ban=ban
 		},
 		IdfuncEdit(id){
 			sessionStorage.setItem("userEdit",id)
+			sessionStorage.setItem("userEditBan",this.Ban?1:0)
 			window.location="edit-user"
 		},
 		UserDelete(){
@@ -812,8 +815,15 @@ export default {
 			alert("Ma'lumot o'chirilmadi")
 		   })
 		},
-		UserBanned(id){
-        
+		UserBanned(){
+		var formdata=new FormData()
+		formdata.append("pan",this.Ban?false:true)
+        axios.put(`http://localhost:4002/panu/${this.deleteId}`,formdata).then(res=>{
+			alert("User holati o'zgartirildi")
+			window.location.reload()
+		}).catch(err=>{
+			alert("User holati o'zgartirilmadi")
+		})
 		},
 		UserSearch(){
 			axios.get('http://localhost:4002/users').then(res=>{

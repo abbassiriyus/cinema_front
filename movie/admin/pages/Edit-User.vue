@@ -85,7 +85,7 @@
 											<div class="col-12 col-md-6 col-lg-12 col-xl-6">
 												<div class="sign__group">
 													<label class="sign__label" for="username">Login</label>
-													<input id="username"  type="text" name="username" class="sign__input" placeholder="User 123">
+													<input id="username"   type="text" name="username" class="sign__input" placeholder="User 123" disabled>
 												</div>
 											</div>
 
@@ -125,9 +125,8 @@
 												<div class="sign__group">
 													<label class="sign__label" for="rights">Huquqlar</label>
 													<select class="sign__select" id="rights">
-														<option value="User">Foydalanuvchi</option>
-														<option value="Moderator">Moderator</option>
-														<option value="Admin">Admin</option>
+														<option value="false">Foydalanuvchi</option>
+														<option value="true">Admin</option>
 													</select>
 												</div>
 											</div>
@@ -170,7 +169,7 @@
 											</div>
 
 											<div class="col-12">
-												<button class="sign__btn sign__btn--small" type="button"><span>O'ZGARTIRISH</span></button>
+												<button @click="userResetPassword()" class="sign__btn sign__btn--small" type="button"><span>O'ZGARTIRISH</span></button>
 											</div>
 										</div>
 									</form>
@@ -1264,7 +1263,7 @@
 						<p class="modal__text">Are you sure about immediately change status?</p>
 
 						<div class="modal__btns">
-							<button class="modal__btn modal__btn--apply" type="button"><span>Apply</span></button>
+							<button @click="UserBanned()" class="modal__btn modal__btn--apply" type="button"><span>Apply</span></button>
 							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal"
 								aria-label="Close"><span>Dismiss</span></button>
 						</div>
@@ -1317,6 +1316,7 @@ export default {
 		try{
 		axios.get('http://localhost:4002/users').then(res=>{
 			const Filter=res.data.filter(item=>item.id==sessionStorage.getItem("userEdit"))
+			sessionStorage.setItem("userEditBan",Filter[0].pan?1:0)
 			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
 				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
 				   for (let i = 0; i < Filter.length; i++) {
@@ -1362,9 +1362,11 @@ export default {
 								}
 				  			}
 				  			this.user=item
-							document.querySelector("#username").value=item.name
+							document.querySelector("#username").value=`${item.name},${item.id}`
+							document.querySelector("#firstname").value=item.name
 							document.querySelector("#email2").value=item.email
 							document.querySelector("#lastname").value=item.familiya
+							document.querySelector("#oldpass").value=item.password
 					})
 				   })
 				})
@@ -1412,6 +1414,29 @@ export default {
 			alert("Ma'lumot o'chirilmadi")
 		   })
 		},
+		UserBanned(){
+		var a=sessionStorage.getItem("userEditBan")
+		var formdata=new FormData()
+		formdata.append("pan",a==1?false:true)
+        axios.put(`http://localhost:4002/panu/${sessionStorage.getItem("userEdit")}`,formdata).then(res=>{
+			alert("User holati o'zgartirildi")
+			window.location.reload()
+		}).catch(err=>{
+			alert("User holati o'zgartirilmadi")
+		})
+		},
+		userResetPassword(){
+			var formdata=new FormData()
+			formdata.append("old_password",document.querySelector("#oldpass").value)
+			formdata.append("password",document.querySelector("#newpass").value)
+			formdata.append("repit_password",document.querySelector("#confirmpass").value)
+
+			axios.put(`http://localhost:4002/reset/${sessionStorage.getItem("userEdit")}`,formdata).then(res=>{
+             alert("User paroli o'zgardi")
+			}).catch(err=>{
+			 alert("User paroli o'zgarmadi")
+			})
+		}
 	}
 
 }
