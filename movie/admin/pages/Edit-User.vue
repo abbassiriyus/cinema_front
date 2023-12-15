@@ -1557,8 +1557,8 @@ export default {
 					axios.post(`http://localhost:4003/api/pay`,formdata1).then(res=>{
 					}).catch(err=>{console.log(err)})
 				}
-				// window.location.reload()
 				alert("User ma'lumoti o'zgartirildi")
+				window.location.reload()
 				
 			}).catch(err=>{
 				alert("User ma'lumoti o'zgartirilmadi")

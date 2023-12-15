@@ -571,6 +571,7 @@ export default {
 				}
 			});
 		}
+
 		if (document.querySelector('#sign__tayming')) {
 			new SlimSelect({
 				select: '#sign__tayming',
@@ -588,6 +589,7 @@ export default {
 				}
 			});
 		}
+		
 	}
 }
 </script>

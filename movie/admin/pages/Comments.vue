@@ -681,7 +681,6 @@ export default {
 						}
 				  	}
 					const a=res.data.filter(item=>((item.creatorName).toLowerCase()).includes((document.querySelector("#commentSearch").value).toLowerCase()))
-					console.log(a,"s")
 			        this.izoh=a
 					})
 				})
