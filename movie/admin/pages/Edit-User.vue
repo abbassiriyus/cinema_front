@@ -114,9 +114,8 @@
 												<div class="sign__group">
 													<label class="sign__label" for="subscription">Obuna</label>
 													<select class="sign__select" id="subscription">
-														<option value="Basic">Standart</option>
-														<option value="Premium">Premium</option>
-														<option value="Cinematic">PRO</option>
+														<option value="0">Free</option>
+														<option value="1">Premium</option>
 													</select>
 												</div>
 											</div>
@@ -132,7 +131,7 @@
 											</div>
 
 											<div class="col-12">
-												<button class="sign__btn sign__btn--small" type="button"><span>SAQLASH</span></button>
+												<button @click="UserEdit()" class="sign__btn sign__btn--small" type="button"><span>SAQLASH</span></button>
 											</div>
 										</div>
 									</form>
@@ -197,7 +196,7 @@
 									</thead>
 
 									<tbody>
-										<tr v-for="item in user.commentLength">
+										<tr v-for="(item,index) in user.commentLength" v-if="index<select_page*page_card && index>=(select_page-1)*page_card">
 											<td>
 												<div class="catalog__text">{{ item.id }}</div>
 											</td>
@@ -211,7 +210,7 @@
 												<div class="catalog__text">{{ (item.description).length>28?(item.description).slice(0,28)+"...":item.description }}</div>
 											</td>
 											<td>
-												<div class="catalog__text">12 / 7</div>
+												<div class="catalog__text">{{ item.commentLike }} / {{ item.commentFalse }}</div>
 											</td>
 											<td>
 												<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
@@ -602,47 +601,66 @@
 
 								<ul class="main__paginator-list">
 									<li>
-										<NuxtLink to="#">
+										<button @click="count_minus()">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
 													d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z" />
 											</svg>
 											<span>Prev</span>
-										</NuxtLink>
+										</button>
 									</li>
 									<li>
-										<NuxtLink to="#">
+										<button @click="count_plus()">
 											<span>Next</span>
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
 													d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z" />
 											</svg>
-										</NuxtLink>
+										</button>
 									</li>
 								</ul>
 
 								<ul class="paginator">
-									<li class="paginator__item paginator__item--prev">
-										<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-												viewBox="0 0 24 24">
-												<path
-													d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z" />
-											</svg></NuxtLink>
-									</li>
-									<li class="paginator__item"><NuxtLink to="#">1</NuxtLink></li>
-									<li class="paginator__item paginator__item--active"><NuxtLink to="#">2</NuxtLink></li>
-									<li class="paginator__item"><NuxtLink to="#">3</NuxtLink></li>
-									<li class="paginator__item"><NuxtLink to="#">4</NuxtLink></li>
-									<li class="paginator__item"><span>...</span></li>
-									<li class="paginator__item"><NuxtLink to="#">29</NuxtLink></li>
-									<li class="paginator__item"><NuxtLink to="#">30</NuxtLink></li>
-									<li class="paginator__item paginator__item--next">
-										<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-												<path
-													d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z" />
-											</svg></NuxtLink>
-									</li>
-								</ul>
+                <li class="paginator__item paginator__item--prev">
+                  <button @click="count_minus()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      enable-background="new 0 0 24 24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z"
+                      /></svg
+                  ></button>
+                </li>
+                <div v-for="item in length_page" :key="item">
+                <li  v-if="item!=select_page" class="paginator__item">
+                  <button @click="get_page(item)" v-if="item==1 || item+1==select_page || item-1==select_page" >{{ item }}</button>
+                  <button @click="get_page(item)"  v-else-if="item==length_page.length" >{{ item }}</button>
+                  <span  @click="get_page(item)" v-else-if="item-select_page==2">...</span>
+                  <span  @click="get_page(item)" v-else-if="select_page-item==2">...</span>
+
+                </li> 
+                <li v-else class="paginator__item paginator__item--active">
+                  <button @click="get_page(item)"  >{{ item }}</button>
+                </li>
+              </div>
+               
+           
+                <li class="paginator__item"></li>
+              
+                <li class="paginator__item paginator__item--next">
+                  <button @click="count_plus()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z"
+                      /></svg
+                  ></button>
+                </li>
+                        </ul>
 							</div>
 						</div>
 						<!-- end paginator -->
@@ -660,14 +678,14 @@
 											<th>MUALLIF</th>
 											<th>MATN</th>
 											<th>REYTING</th>
-											<th>LIKE / DISLIKE</th>
+											<!-- <th>LIKE / DISLIKE</th> -->
 											<th>YARATILGAN KUNI</th>
 											<th>TAHRIRLASH</th>
 										</tr>
 									</thead>
 
 									<tbody>
-										<tr v-for="item in user.sharhLength"   >
+										<tr v-for="(item,index) in user.sharhLength" v-if="index<select_page1*page_card1 && index>=(select_page1-1)*page_card1">
 											<td>
 												<div class="catalog__text">{{ item.id }}</div>
 											</td>
@@ -683,9 +701,9 @@
 											<td>
 												<div class="catalog__text catalog__text--rate">{{ item.rating }}</div>
 											</td>
-											<td>
+											<!-- <td>
 												<div class="catalog__text">12 / 7</div>
-											</td>
+											</td> -->
 											<td>
 												<div class="catalog__text">{{ (item.time_create).slice(0,10) }}</div>
 											</td>
@@ -1102,47 +1120,66 @@
 
 								<ul class="main__paginator-list">
 									<li>
-										<NuxtLink to="#">
+										<button @click="count_minus1()">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
 													d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z" />
 											</svg>
 											<span>Prev</span>
-										</NuxtLink>
+										</button>
 									</li>
 									<li>
-										<NuxtLink to="#">
+										<button @click="count_plus1()">
 											<span>Next</span>
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
 													d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z" />
 											</svg>
-										</NuxtLink>
+										</button>
 									</li>
 								</ul>
 
 								<ul class="paginator">
-									<li class="paginator__item paginator__item--prev">
-										<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-												viewBox="0 0 24 24">
-												<path
-													d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z" />
-											</svg></NuxtLink>
-									</li>
-									<li class="paginator__item"><NuxtLink to="#">1</NuxtLink></li>
-									<li class="paginator__item paginator__item--active"><NuxtLink to="#">2</NuxtLink></li>
-									<li class="paginator__item"><NuxtLink to="#">3</NuxtLink></li>
-									<li class="paginator__item"><NuxtLink to="#">4</NuxtLink></li>
-									<li class="paginator__item"><span>...</span></li>
-									<li class="paginator__item"><NuxtLink to="#">29</NuxtLink></li>
-									<li class="paginator__item"><NuxtLink to="#">30</NuxtLink></li>
-									<li class="paginator__item paginator__item--next">
-										<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-												<path
-													d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z" />
-											</svg></NuxtLink>
-									</li>
-								</ul>
+                <li class="paginator__item paginator__item--prev">
+                  <button @click="count_minus1()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      enable-background="new 0 0 24 24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z"
+                      /></svg
+                  ></button>
+                </li>
+                <div v-for="item in length_page1" :key="item">
+                <li  v-if="item!=select_page1" class="paginator__item">
+                  <button @click="get_page1(item)" v-if="item==1 || item+1==select_page1 || item-1==select_page1" >{{ item }}</button>
+                  <button @click="get_page1(item)"  v-else-if="item==length_page1.length" >{{ item }}</button>
+                  <span  @click="get_page1(item)" v-else-if="item-select_page1==2">...</span>
+                  <span  @click="get_page1(item)" v-else-if="select_page1-item==2">...</span>
+
+                </li> 
+                <li v-else class="paginator__item paginator__item--active">
+                  <button @click="get_page1(item)"  >{{ item }}</button>
+                </li>
+              </div>
+               
+           
+                <li class="paginator__item"></li>
+              
+                <li class="paginator__item paginator__item--next">
+                  <button @click="count_plus1()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z"
+                      /></svg
+                  ></button>
+                </li>
+                        </ul>
 							</div>
 						</div>
 						<!-- end paginator -->
@@ -1170,9 +1207,9 @@
 							<span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path
 										d="M21.3,10.08A3,3,0,0,0,19,9H14.44L15,7.57A4.13,4.13,0,0,0,11.11,2a1,1,0,0,0-.91.59L7.35,9H5a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17.73a3,3,0,0,0,2.95-2.46l1.27-7A3,3,0,0,0,21.3,10.08ZM7,20H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H7Zm13-7.82-1.27,7a1,1,0,0,1-1,.82H9V10.21l2.72-6.12A2.11,2.11,0,0,1,13.1,6.87L12.57,8.3A2,2,0,0,0,14.44,11H19a1,1,0,0,1,.77.36A1,1,0,0,1,20,12.18Z" />
-								</svg>12</span>
+								</svg>{{ item.commentLike }}</span>
 
-							<span>7<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+							<span>{{ item.commentFalse }}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 									<path
 										d="M19,2H6.27A3,3,0,0,0,3.32,4.46l-1.27,7A3,3,0,0,0,5,15H9.56L9,16.43A4.13,4.13,0,0,0,12.89,22a1,1,0,0,0,.91-.59L16.65,15H19a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM15,13.79l-2.72,6.12a2.13,2.13,0,0,1-1.38-2.78l.53-1.43A2,2,0,0,0,9.56,13H5a1,1,0,0,1-.77-.36A1,1,0,0,1,4,11.82l1.27-7a1,1,0,0,1,1-.82H15ZM20,12a1,1,0,0,1-1,1H17V4h2a1,1,0,0,1,1,1Z" />
 								</svg></span>
@@ -1310,15 +1347,21 @@ export default {
 			userIzoh:[],
 			deleteId:[],
 			userSharh:[],
+			select_page:1,
+     		page_card:10,
+      		length_page:[],
+			select_page1:1,
+     		page_card1:10,
+      		length_page1:[]
 		}
 	},
     mounted() {
 		try{
-		axios.get('http://localhost:4002/users').then(res=>{
+		axios.get('http://localhost:4003/users').then(res=>{
 			const Filter=res.data.filter(item=>item.id==sessionStorage.getItem("userEdit"))
 			sessionStorage.setItem("userEditBan",Filter[0].pan?1:0)
-			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
-				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
+			axios.get('http://localhost:4003/api/v1/comment').then(res1=>{
+				axios.get('http://localhost:4003/api/v1/sharx').then(res2=>{
 				   for (let i = 0; i < Filter.length; i++) {
 						Filter[i].commentLength=[]
 						for (let j = 0; j < res1.data.length; j++) {
@@ -1335,8 +1378,9 @@ export default {
 						}
 				   }
 				   Filter.map(item=>{
-					axios.get('http://localhost:4002/api/v1/cinema').then(res3=>{
-                  			for (let i = 0; i < item.commentLength.length; i++) {
+					axios.get('http://localhost:4003/api/v1/cinema').then(res3=>{
+                  		axios.get("http://localhost:4003/api/v1/comment_mark").then(res4=>{
+							for (let i = 0; i < item.commentLength.length; i++) {
 								for (let j = 0; j < res3.data.length; j++) {
 									if(item.commentLength[i].cinema_id==res3.data[j].id){
 										item.commentLength[i].cinemaName=res3.data[j].title
@@ -1347,7 +1391,19 @@ export default {
 										item.commentLength[i].creatorName=res.data[j].name
 					  				}
 								}
-				  			}
+								item.commentLength[i].commentLike=0
+								item.commentLength[i].commentFalse=0
+								for (let j = 0; j < res4.data.length; j++) {
+									if(item.commentLength[i].id==res4.data[j].comment_id){
+                                   		if(res4.data[j].dislike){
+											item.commentLength[i].commentLike=item.commentLength[i].commentLike+1
+								   		}else{
+											item.commentLength[i].commentFalse=item.commentLength[i].commentFalse+1
+								   		}
+									}
+								}
+				  			}	
+							
 							for (let i = 0; i < item.sharhLength.length; i++) {
 								for (let j = 0; j < res3.data.length; j++) {
 									if(item.sharhLength[i].cinema_id==res3.data[j].id){
@@ -1362,11 +1418,26 @@ export default {
 								}
 				  			}
 				  			this.user=item
+							var for_w=this.user.commentLength.length/this.page_card
+            		        var daad=[]
+            		        for (let i = 0; i < for_w; i++) {
+					        daad.push(i+1)
+					        }
+					        this.length_page=daad
+							var for_w=this.user.sharhLength.length/this.page_card1
+            		        var daad=[]
+            		        for (let i = 0; i < for_w; i++) {
+					        daad.push(i+1)
+					        }
+					        this.length_page1=daad
 							document.querySelector("#username").value=`${item.name},${item.id}`
 							document.querySelector("#firstname").value=item.name
 							document.querySelector("#email2").value=item.email
 							document.querySelector("#lastname").value=item.familiya
 							document.querySelector("#oldpass").value=item.password
+							document.querySelector("#rights").value=item.superadmin
+							document.querySelector("#subscription").value=item.pay?1:0
+						})
 					})
 				   })
 				})
@@ -1387,7 +1458,7 @@ export default {
             this.deleteId=id
 		},
 		userCommentDelete(){
-			axios.delete(`http://localhost:4002/api/v1/comment/${this.deleteId}`).then(res=>{
+			axios.delete(`http://localhost:4003/api/v1/comment/${this.deleteId}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
 			window.location.reload()
 		   }).catch(err=>{
@@ -1399,7 +1470,7 @@ export default {
 			this.userSharh=Filter
 		},
 		userReviewDelete(){
-           axios.delete(`http://localhost:4002/api/v1/sharx/${this.deleteId}`).then(res=>{
+           axios.delete(`http://localhost:4003/api/v1/sharx/${this.deleteId}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
 			window.location.reload()
 		   }).catch(err=>{
@@ -1407,7 +1478,7 @@ export default {
 		   })
 		},
 		UserDelete(){
-           axios.delete(`http://localhost:4002/users/${sessionStorage.getItem("userEdit")}`).then(res=>{
+           axios.delete(`http://localhost:4003/users/${sessionStorage.getItem("userEdit")}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
             window.location="users"
 		   }).catch(err=>{
@@ -1418,7 +1489,7 @@ export default {
 		var a=sessionStorage.getItem("userEditBan")
 		var formdata=new FormData()
 		formdata.append("pan",a==1?false:true)
-        axios.put(`http://localhost:4002/panu/${sessionStorage.getItem("userEdit")}`,formdata).then(res=>{
+        axios.put(`http://localhost:4003/panu/${sessionStorage.getItem("userEdit")}`,formdata).then(res=>{
 			alert("User holati o'zgartirildi")
 			window.location.reload()
 		}).catch(err=>{
@@ -1431,10 +1502,66 @@ export default {
 			formdata.append("password",document.querySelector("#newpass").value)
 			formdata.append("repit_password",document.querySelector("#confirmpass").value)
 
-			axios.put(`http://localhost:4002/reset/${sessionStorage.getItem("userEdit")}`,formdata).then(res=>{
+			axios.put(`http://localhost:4003/reset/${sessionStorage.getItem("userEdit")}`,formdata).then(res=>{
              alert("User paroli o'zgardi")
+			 window.location.reload()
 			}).catch(err=>{
 			 alert("User paroli o'zgarmadi")
+			})
+		},
+		get_page(id){
+		this.select_page=id
+		},
+		count_plus(){
+		if(this.length_page.length>this.select_page){
+  		this.select_page++
+		}
+		},
+		count_minus(){
+  		if(this.select_page>1){
+  		this.select_page--  
+  		}
+		},
+		get_page1(id){
+		this.select_page1=id
+		},
+		count_plus1(){
+		if(this.length_page1.length>this.select_page1){
+  		this.select_page1++
+		}
+		},
+		count_minus1(){
+  		if(this.select_page1>1){
+  		this.select_page1--  
+  		}
+		},
+		UserEdit(){
+			var formdata=new FormData()
+			formdata.append("name",document.querySelector("#firstname").value)
+			formdata.append("email",document.querySelector("#email2").value)
+			formdata.append("familiya",document.querySelector("#lastname").value)
+			formdata.append("superadmin",document.querySelector("#rights").value)
+			axios.put(`http://localhost:4003/users/${sessionStorage.getItem("userEdit")}`,formdata).then(res=>{
+				if(document.querySelector("#subscription").value==0){
+					axios.get('http://localhost:4003/api/pay').then(res=>{
+                        const Filter=res.data.filter(item=>item.user_id==sessionStorage.getItem("userEdit"))
+						axios.delete(`http://localhost:4003/api/pay/${Filter[0].id}`).then(res=>{
+							// alert("User ma'lumoti o'zgartirildi")
+					        // window.location.reload()
+						})
+					})
+				}else{
+					var formdata1=new FormData()
+			    	formdata1.append("month",document.querySelector("#subscription").value)
+					formdata1.append("user_id",sessionStorage.getItem("userEdit"))
+					axios.post(`http://localhost:4003/api/pay`,formdata1).then(res=>{
+					}).catch(err=>{console.log(err)})
+				}
+				// window.location.reload()
+				alert("User ma'lumoti o'zgartirildi")
+				
+			}).catch(err=>{
+				alert("User ma'lumoti o'zgartirilmadi")
 			})
 		}
 	}

@@ -527,13 +527,13 @@ export default {
     },
     async getCinemaData() {
       try {
-        const response = await axios.get('http://localhost:4002/api/v1/cinema');
+        const response = await axios.get('http://localhost:4003/api/v1/cinema');
 		this.top_look=response.data.sort((a,b)=>a.more_loking - b.more_loking)
         this.cinemaData = response.data.filter(item=>item.appearance==1);
         this.Serial = response.data.filter(item=>item.appearance==2);
         this.ongoin = response.data.filter(item=>item.appearance==1);
         this.ova = response.data.filter(item=>item.appearance==1);
-	const carousel2= await axios.get('http://localhost:4002/api/v1/carousel')
+	const carousel2= await axios.get('http://localhost:4003/api/v1/carousel')
     this.carousel2=carousel2.data
 	setTimeout(() => {
       this.getData()

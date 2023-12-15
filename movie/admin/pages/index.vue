@@ -612,7 +612,7 @@ export default {
       var b=(a.getMonth()*1)+1
       var date=a.getFullYear()+"-"+b
       var day=date+"-"+`${a.getDate()}`.padStart(2,"0")
-      const response = await axios.get('http://localhost:4002/api/v1/cinema');
+      const response = await axios.get('http://localhost:4003/api/v1/cinema');
       var korish=0
       var kinolar=0
       var sharhlar=0
@@ -626,7 +626,7 @@ export default {
         }
       }
       var izohlar=0
-      const izoh=await axios.get('http://localhost:4002/api/v1/comment');
+      const izoh=await axios.get('http://localhost:4003/api/v1/comment');
       for (let i = 0; i < izoh.data.length; i++) {
         if((izoh.data[i].time_create).slice(0,7)==date){
           var s=0
@@ -688,7 +688,7 @@ export default {
       this.songgiMedia=mediaSonggi
        
       var usersData=[]
-      const users=await axios.get('http://localhost:4002/users');
+      const users=await axios.get('http://localhost:4003/users');
       for (let i = 0; i < users.data.length; i++) {
         if((users.data[i].time_create).slice(0,10)==day){
           usersData.push(users.data[i])
@@ -697,7 +697,7 @@ export default {
       this.User=usersData
       
       var SharhGetM=[]
-      const SharhGet=await axios.get('http://localhost:4002/api/v1/sharx');
+      const SharhGet=await axios.get('http://localhost:4003/api/v1/sharx');
       for (let i = 0; i < SharhGet.data.length; i++) {
         for (let j = 0; j < users.data.data.length; j++) {
          if(SharhGet.data[i].creator==users.data.data[j].id){

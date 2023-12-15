@@ -77,10 +77,10 @@ export default {
      data.append("password",document.querySelector('#password_data').value)
 
       try {
-        const response = await axios.post('http://localhost:4002/login', data);
+        const response = await axios.post('http://localhost:4003/login', data);
         console.log(response.data);
         localStorage.setItem('token',response.data.token)
-        const user= await axios.get('http://localhost:4002/user', {
+        const user= await axios.get('http://localhost:4003/user', {
           headers: {
             Authorization: `Bearer ${response.data.token}`
           }

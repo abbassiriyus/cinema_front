@@ -851,7 +851,7 @@ return{
 methods: {
     async fetchData() {
       try {
-        const response = await axios.get(`http://localhost:4002/api/lookme/${(JSON.parse(localStorage.getItem("user_data")).id)}`);
+        const response = await axios.get(`http://localhost:4003/api/lookme/${(JSON.parse(localStorage.getItem("user_data")).id)}`);
         this.fikr_length=response.data.fikr
         this.sharx=response.data.sharx
         this.cinema_data=response.data.all
@@ -862,7 +862,7 @@ methods: {
     },
 async fetchDataWithToken(token){
     try {
-    const response = await axios.get('http://localhost:4002/user', {
+    const response = await axios.get('http://localhost:4003/user', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -897,7 +897,7 @@ async  postDataWithToken(){
       data.append("familiya",this.one_user.familiya)
     }
     console.log(data)
-    const response = await axios.put(`http://localhost:4002/user_one/${this.one_user.id}`, data, {
+    const response = await axios.put(`http://localhost:4003/user_one/${this.one_user.id}`, data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -915,7 +915,7 @@ async reset_passwort(){
   data.append("old_password",document.querySelector('#oldpass').value)
   data.append("password",document.querySelector('#newpass').value)
   data.append("repit_password",document.querySelector('#confirmpass').value)
-  axios.put(`http://localhost:4002/reset/${this.one_user.id}`, data, {
+  axios.put(`http://localhost:4003/reset/${this.one_user.id}`, data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },

@@ -605,10 +605,10 @@ export default {
 		document.querySelector(".filter__select").addEventListener("change",this.FilterReyting)
         }
 		try{
-         axios.get('http://localhost:4002/api/v1/comment').then(res=>{
-            axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
-				axios.get('http://localhost:4002/users').then(res2=>{
-                    axios.get('http://localhost:4002/api/v1/comment_mark').then(res3=>{
+         axios.get('http://localhost:4003/api/v1/comment').then(res=>{
+            axios.get('http://localhost:4003/api/v1/cinema').then(res1=>{
+				axios.get('http://localhost:4003/users').then(res2=>{
+                    axios.get('http://localhost:4003/api/v1/comment_mark').then(res3=>{
 					for (let i = 0; i < res.data.length; i++) {
 						for (let j = 0; j < res1.data.length; j++) {
 							if(res.data[i].cinema_id==res1.data[j].id){
@@ -651,10 +651,10 @@ export default {
     },
 	methods:{
 		CommentSearch(){
-			axios.get('http://localhost:4002/api/v1/comment').then(res=>{
-            axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
-				axios.get('http://localhost:4002/users').then(res2=>{
-                    axios.get('http://localhost:4002/api/v1/comment_mark').then(res3=>{
+			axios.get('http://localhost:4003/api/v1/comment').then(res=>{
+            axios.get('http://localhost:4003/api/v1/cinema').then(res1=>{
+				axios.get('http://localhost:4003/users').then(res2=>{
+                    axios.get('http://localhost:4003/api/v1/comment_mark').then(res3=>{
 					for (let i = 0; i < res.data.length; i++) {
 						for (let j = 0; j < res1.data.length; j++) {
 							if(res.data[i].cinema_id==res1.data[j].id){
@@ -696,12 +696,12 @@ export default {
             this.deleteId=id
 		},
 		CommentDelete(){
-           axios.delete(`http://localhost:4002/api/v1/comment/${this.deleteId}`).then(res=>{
+           axios.delete(`http://localhost:4003/api/v1/comment/${this.deleteId}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
 			window.location.reload()
-			// axios.get('http://localhost:4002/api/v1/comment').then(res=>{
-            // axios.get('http://localhost:4002/api/v1/cinema').then(res1=>{
-			// 	axios.get('http://localhost:4002/users').then(res2=>{
+			// axios.get('http://localhost:4003/api/v1/comment').then(res=>{
+            // axios.get('http://localhost:4003/api/v1/cinema').then(res1=>{
+			// 	axios.get('http://localhost:4003/users').then(res2=>{
             //       for (let i = 0; i < res.data.length; i++) {
 			// 		for (let j = 0; j < res1.data.length; j++) {
 			// 			if(res.data[i].cinema_id==res1.data[j].id){

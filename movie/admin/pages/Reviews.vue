@@ -629,9 +629,9 @@ export default {
 	    }
 		document.querySelector(".filter__select").addEventListener("change",this.ReviewFilter)
 		try{
-        axios.get('http://localhost:4002/api/v1/sharx').then(sharhGet=>{
-            axios.get('http://localhost:4002/api/v1/cinema').then(cinema=>{
-				axios.get('http://localhost:4002/users').then(res=>{
+        axios.get('http://localhost:4003/api/v1/sharx').then(sharhGet=>{
+            axios.get('http://localhost:4003/api/v1/cinema').then(cinema=>{
+				axios.get('http://localhost:4003/users').then(res=>{
 					for (let i = 0; i < sharhGet.data.length; i++) {
 		      			for (let j = 0; j < cinema.data.length; j++) {
 							if(sharhGet.data[i].cinema_id==cinema.data[j].id){
@@ -665,9 +665,9 @@ export default {
     },
 	methods:{
 		ReviewSearch(){
-			axios.get('http://localhost:4002/api/v1/sharx').then(sharhGet=>{
-            axios.get('http://localhost:4002/api/v1/cinema').then(cinema=>{
-				axios.get('http://localhost:4002/users').then(res=>{
+			axios.get('http://localhost:4003/api/v1/sharx').then(sharhGet=>{
+            axios.get('http://localhost:4003/api/v1/cinema').then(cinema=>{
+				axios.get('http://localhost:4003/users').then(res=>{
 					for (let i = 0; i < sharhGet.data.length; i++) {
 		      			for (let j = 0; j < cinema.data.length; j++) {
 							if(sharhGet.data[i].cinema_id==cinema.data[j].id){
@@ -709,12 +709,12 @@ export default {
             this.deleteId=id
 		},
 		ReviewDelete(){
-           axios.delete(`http://localhost:4002/api/v1/sharx/${this.deleteId}`).then(res=>{
+           axios.delete(`http://localhost:4003/api/v1/sharx/${this.deleteId}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
 			window.location.reload()
-			// axios.get('http://localhost:4002/api/v1/sharx').then(sharhGet=>{
-            // axios.get('http://localhost:4002/api/v1/cinema').then(cinema=>{
-			// 	axios.get('http://localhost:4002/users').then(res=>{
+			// axios.get('http://localhost:4003/api/v1/sharx').then(sharhGet=>{
+            // axios.get('http://localhost:4003/api/v1/cinema').then(cinema=>{
+			// 	axios.get('http://localhost:4003/users').then(res=>{
 			// 		for (let i = 0; i < sharhGet.data.length; i++) {
 		    //   			for (let j = 0; j < cinema.data.length; j++) {
 			// 				if(sharhGet.data[i].cinema_id==cinema.data[j].id){

@@ -741,7 +741,7 @@ export default {
   },
   async mounted() {
     try {
-     const kino=await axios.get('http://localhost:4002/api/v1/cinema')
+     const kino=await axios.get('http://localhost:4003/api/v1/cinema')
 	 for (let i = 0; i < kino.data.length; i++) {
         if(kino.data[i].appearance==1){
           kino.data[i].category="Movie"
@@ -786,7 +786,7 @@ export default {
 	bannedCinema(){
 	 var formData=new FormData()
 	 formData.append("looking",this.Looking?true:false)
-     axios.put(`http://localhost:4002/api/v1/cinema/look/${this.Id}`,formData).then(res=>{
+     axios.put(`http://localhost:4003/api/v1/cinema/look/${this.Id}`,formData).then(res=>{
         alert("Kino holati o'zgartirildi")
 		window.location.reload()
 	 }).catch(err=>{

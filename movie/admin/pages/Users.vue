@@ -54,7 +54,7 @@
 							</thead>
 
 							<tbody>
-								<tr v-for="item in user">
+								<tr v-for="(item,index) in user" v-if="index<select_page*page_card && index>=(select_page-1)*page_card">
 									<td>
 										<div class="catalog__text">{{ item.id }}</div>
 									</td>
@@ -73,7 +73,7 @@
 										<div class="catalog__text">{{ item.name }}</div>
 									</td>
 									<td>
-										<div class="catalog__text">Premium</div>
+										<div class="catalog__text">{{ item.pay?"Premium":"Free" }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">{{ (item.commentLength).length }}</div>
@@ -652,47 +652,66 @@
 
 						<ul class="main__paginator-list">
 							<li>
-								<NuxtLink to="#">
+								<button @click="count_minus()">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
 											d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z" />
 									</svg>
 									<span>Prev</span>
-								</NuxtLink>
+								</button>
 							</li>
 							<li>
-								<NuxtLink to="#">
+								<button @click="count_plus()">
 									<span>Next</span>
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 										<path
 											d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z" />
 									</svg>
-								</NuxtLink>
+								</button>
 							</li>
 						</ul>
 
 						<ul class="paginator">
-							<li class="paginator__item paginator__item--prev">
-								<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-										viewBox="0 0 24 24">
-										<path
-											d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z" />
-									</svg></NuxtLink>
-							</li>
-							<li class="paginator__item"><NuxtLink to="#">1</NuxtLink></li>
-							<li class="paginator__item paginator__item--active"><NuxtLink to="#">2</NuxtLink></li>
-							<li class="paginator__item"><NuxtLink to="#">3</NuxtLink></li>
-							<li class="paginator__item"><NuxtLink to="#">4</NuxtLink></li>
-							<li class="paginator__item"><span>...</span></li>
-							<li class="paginator__item"><NuxtLink to="#">29</NuxtLink></li>
-							<li class="paginator__item"><NuxtLink to="#">30</NuxtLink></li>
-							<li class="paginator__item paginator__item--next">
-								<NuxtLink to="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-										<path
-											d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z" />
-									</svg></NuxtLink>
-							</li>
-						</ul>
+                <li class="paginator__item paginator__item--prev">
+                  <button @click="count_minus()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      enable-background="new 0 0 24 24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M8.5,12.8l5.7,5.6c0.4,0.4,1,0.4,1.4,0c0,0,0,0,0,0c0.4-0.4,0.4-1,0-1.4l-4.9-5l4.9-5c0.4-0.4,0.4-1,0-1.4c-0.2-0.2-0.4-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3l-5.7,5.6C8.1,11.7,8.1,12.3,8.5,12.8C8.5,12.7,8.5,12.7,8.5,12.8z"
+                      /></svg
+                  ></button>
+                </li>
+                <div v-for="item in length_page" :key="item">
+                <li  v-if="item!=select_page" class="paginator__item">
+                  <button @click="get_page(item)" v-if="item==1 || item+1==select_page || item-1==select_page" >{{ item }}</button>
+                  <button @click="get_page(item)"  v-else-if="item==length_page.length" >{{ item }}</button>
+                  <span  @click="get_page(item)" v-else-if="item-select_page==2">...</span>
+                  <span  @click="get_page(item)" v-else-if="select_page-item==2">...</span>
+
+                </li> 
+                <li v-else class="paginator__item paginator__item--active">
+                  <button @click="get_page(item)"  >{{ item }}</button>
+                </li>
+              </div>
+               
+           
+                <li class="paginator__item"></li>
+              
+                <li class="paginator__item paginator__item--next">
+                  <button @click="count_plus()"
+                    ><svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.54,11.29,9.88,5.64a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l4.95,5L8.46,17a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.3,1,1,0,0,0,.71-.3l5.66-5.65A1,1,0,0,0,15.54,11.29Z"
+                      /></svg
+                  ></button>
+                </li>
+                        </ul>
 					</div>
 				</div>
 				<!-- end paginator -->
@@ -757,6 +776,9 @@ export default {
 			user:[],
 			deleteId:0,
 			Ban:true,
+			select_page:1,
+     		page_card:10,
+      		length_page:[]
 		}
 	},
     mounted() {
@@ -768,10 +790,11 @@ export default {
 			}
 		});
 	    }
+		document.querySelector(".filter__select").addEventListener("change",this.FilterReyting)
 		try{
-        axios.get('http://localhost:4002/users').then(res=>{
-			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
-				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
+        axios.get('http://localhost:4003/users').then(res=>{
+			axios.get('http://localhost:4003/api/v1/comment').then(res1=>{
+				axios.get('http://localhost:4003/api/v1/sharx').then(res2=>{
 				   for (let i = 0; i < res.data.length; i++) {
 						res.data[i].commentLength=[]
 						for (let j = 0; j < res1.data.length; j++) {
@@ -790,6 +813,12 @@ export default {
 						}
 				   }
 				   this.user=res.data
+				   var for_w=this.user.length/this.page_card
+            	   var daad=[]
+            	   for (let i = 0; i < for_w; i++) {
+				   daad.push(i+1)
+				   }
+				   this.length_page=daad
 				})
 			})
 		})
@@ -808,7 +837,7 @@ export default {
 			window.location="edit-user"
 		},
 		UserDelete(){
-           axios.delete(`http://localhost:4002/users/${this.deleteId}`).then(res=>{
+           axios.delete(`http://localhost:4003/users/${this.deleteId}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
             window.location.reload()
 		   }).catch(err=>{
@@ -818,7 +847,7 @@ export default {
 		UserBanned(){
 		var formdata=new FormData()
 		formdata.append("pan",this.Ban?false:true)
-        axios.put(`http://localhost:4002/panu/${this.deleteId}`,formdata).then(res=>{
+        axios.put(`http://localhost:4003/panu/${this.deleteId}`,formdata).then(res=>{
 			alert("User holati o'zgartirildi")
 			window.location.reload()
 		}).catch(err=>{
@@ -826,9 +855,9 @@ export default {
 		})
 		},
 		UserSearch(){
-			axios.get('http://localhost:4002/users').then(res=>{
-			axios.get('http://localhost:4002/api/v1/comment').then(res1=>{
-				axios.get('http://localhost:4002/api/v1/sharx').then(res2=>{
+			axios.get('http://localhost:4003/users').then(res=>{
+			axios.get('http://localhost:4003/api/v1/comment').then(res1=>{
+				axios.get('http://localhost:4003/api/v1/sharx').then(res2=>{
 				   for (let i = 0; i < res.data.length; i++) {
 						res.data[i].commentLength=[]
 						for (let j = 0; j < res1.data.length; j++) {
@@ -852,6 +881,33 @@ export default {
 				})
 			})
 		})
+		},
+		get_page(id){
+		this.select_page=id
+		},
+		count_plus(){
+		if(this.length_page.length>this.select_page){
+  		this.select_page++
+		}
+		},
+		count_minus(){
+  		if(this.select_page>1){
+  		this.select_page--  
+  		}
+		},
+		FilterReyting(){
+		if(document.querySelector(".filter__select").value==0){
+        this.user.sort((a, b) =>(b.time_create).slice(0,4)-(a.time_create).slice(0,4) || (b.time_create).slice(5,7)-(a.time_create).slice(5,7) || (b.time_create).slice(8,10)-(a.time_create).slice(8,10));
+		this.user.map(item => (b.time_create).slice(0,4)-(a.time_create).slice(0,4) || (b.time_create).slice(5,7)-(a.time_create).slice(5,7) || (b.time_create).slice(8,10)-(a.time_create).slice(8,10)).join(', ');
+		}
+		if(document.querySelector(".filter__select").value==1){
+        this.user.sort((a, b) => b.pay-a.pay);
+		this.user.map(item => item.pay).join(', ');
+		}
+		if(document.querySelector(".filter__select").value==2){
+        this.user.sort((a, b) => b.pan-a.pan);
+		this.user.map(item => item.pan).join(', ');
+		}
 		}
 
 	}
