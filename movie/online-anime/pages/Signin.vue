@@ -75,7 +75,6 @@ export default {
       var data=new FormData()
      data.append("email",document.querySelector('#email_data').value)
      data.append("password",document.querySelector('#password_data').value)
-
       try {
         const response = await axios.post('http://localhost:4003/login', data);
         console.log(response.data);
