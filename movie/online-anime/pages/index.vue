@@ -284,7 +284,7 @@
 									<li v-for="item in top_look" :key="item.id" class="splide__slide">
 										<div class="item item--carousel">
 											<NuxtLink to="watching" class="item__cover">
-												<img :src="item.images[0].image" alt="" />
+												<img class="test_img" :src="item.images[0].image" alt="" />
 												<span class="item__play">
 													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 														<path

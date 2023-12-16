@@ -2452,8 +2452,17 @@ body::-webkit-scrollbar-thumb {
 	width: 100%;
 	position: relative;
 	z-index: 1;
+	
 }
-
+.test_img{
+	height:250px
+}
+@media(max-width:400px){
+	.test_img{
+	
+		height:200px
+	}
+}
 .item__cover:before {
 	content: '';
 	position: absolute;
