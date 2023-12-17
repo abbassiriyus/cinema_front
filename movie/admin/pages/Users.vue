@@ -792,9 +792,9 @@ export default {
 	    }
 		document.querySelector(".filter__select").addEventListener("change",this.FilterReyting)
 		try{
-        axios.get('http://localhost:4003/users').then(res=>{
-			axios.get('http://localhost:4003/api/v1/comment').then(res1=>{
-				axios.get('http://localhost:4003/api/v1/sharx').then(res2=>{
+        axios.get('https://api.uzdub.uz/users').then(res=>{
+			axios.get('https://api.uzdub.uz/api/v1/comment').then(res1=>{
+				axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2=>{
 				   for (let i = 0; i < res.data.length; i++) {
 						res.data[i].commentLength=[]
 						for (let j = 0; j < res1.data.length; j++) {
@@ -837,7 +837,7 @@ export default {
 			window.location="edit-user"
 		},
 		UserDelete(){
-           axios.delete(`http://localhost:4003/users/${this.deleteId}`).then(res=>{
+           axios.delete(`https://api.uzdub.uz/users/${this.deleteId}`).then(res=>{
 			alert("Ma'lumot o'chirildi")
             window.location.reload()
 		   }).catch(err=>{
@@ -847,7 +847,7 @@ export default {
 		UserBanned(){
 		var formdata=new FormData()
 		formdata.append("pan",this.Ban?false:true)
-        axios.put(`http://localhost:4003/panu/${this.deleteId}`,formdata).then(res=>{
+        axios.put(`https://api.uzdub.uz/panu/${this.deleteId}`,formdata).then(res=>{
 			alert("User holati o'zgartirildi")
 			window.location.reload()
 		}).catch(err=>{
@@ -855,9 +855,9 @@ export default {
 		})
 		},
 		UserSearch(){
-			axios.get('http://localhost:4003/users').then(res=>{
-			axios.get('http://localhost:4003/api/v1/comment').then(res1=>{
-				axios.get('http://localhost:4003/api/v1/sharx').then(res2=>{
+			axios.get('https://api.uzdub.uz/users').then(res=>{
+			axios.get('https://api.uzdub.uz/api/v1/comment').then(res1=>{
+				axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2=>{
 				   for (let i = 0; i < res.data.length; i++) {
 						res.data[i].commentLength=[]
 						for (let j = 0; j < res1.data.length; j++) {

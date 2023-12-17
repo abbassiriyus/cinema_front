@@ -2440,7 +2440,7 @@ body::-webkit-scrollbar-thumb {
 .item__cover {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	position: relative;
 	border-radius: 8px;
@@ -2459,7 +2459,6 @@ body::-webkit-scrollbar-thumb {
 }
 @media(max-width:400px){
 	.test_img{
-	
 		height:200px
 	}
 }

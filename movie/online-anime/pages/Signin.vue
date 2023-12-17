@@ -76,10 +76,10 @@ export default {
      data.append("email",document.querySelector('#email_data').value)
      data.append("password",document.querySelector('#password_data').value)
       try {
-        const response = await axios.post('http://localhost:4003/login', data);
+        const response = await axios.post('https://api.uzdub.uz/login', data);
         console.log(response.data);
         localStorage.setItem('token',response.data.token)
-        const user= await axios.get('http://localhost:4003/user', {
+        const user= await axios.get('https://api.uzdub.uz/user', {
           headers: {
             Authorization: `Bearer ${response.data.token}`
           }

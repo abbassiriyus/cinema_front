@@ -57,7 +57,7 @@ methods:{
   data.append('email',document.querySelectorAll('.sign__input')[1].value)
   data.append('password',document.querySelectorAll('.sign__input')[2].value)
   try {
-        const response = await axios.post('http://localhost:4003/register', data);
+        const response = await axios.post('https://api.uzdub.uz/register', data);
         console.log(response.data);
         localStorage.setItem('token',response.data.token)
     
