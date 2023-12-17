@@ -107,14 +107,13 @@
           <div
             v-for="(item, index) in catalog"
             :key="item.id"
-            v-if="
-              index < select_page * page_card &&
+            v-if="index < select_page * page_card &&
               index >= (select_page - 1) * page_card
             "
             class="col-6 col-sm-4 col-lg-3 col-xl-2"
           >
             <div class="item">
-              <NuxtLink to="watching" class="item__cover">
+              <div @click="handleClick(item.id)" class="item__cover">
                 <img
                   v-if="item.images && item.images[0].image"
                   :src="item.images[0].image"
@@ -127,10 +126,10 @@
                     />
                   </svg>
                 </span>
-              </NuxtLink>
+              </div>
               <div class="item__content">
                 <h3 class="item__title">
-                  <NuxtLink to="watching">{{ item.title }}</NuxtLink>
+                  <div @click="handleClick(item)" >{{ item.title }}</div>
                 </h3>
                 <span class="item__category">
                   <NuxtLink
@@ -476,7 +475,7 @@ for(let i=0 ; i< data.length ; i++){
 return send_data
 
     },
-    filter_vid(data) {
+filter_vid(data) {
      var value1=document.querySelector('#filter__quality').value
      var mark_f
    if(value1==0){
@@ -508,8 +507,8 @@ return send_data
       var data2=this.filter_janr(data1)
       var data3=this.filter_mark(data2)
       this.catalog=data3
-      })
-    },
+    })
+  },
 
     allfunction() {
       if (document.querySelector('#filter__genre')) {
@@ -607,6 +606,11 @@ return send_data
           mainBg.style.backgroundSize = 'cover'
         }
       }
+    },
+    handleClick(index) {
+      const selectedItem =index;
+      localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
+	  window.location="/watching"
     },
   },
   mounted() {

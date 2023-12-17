@@ -6,7 +6,7 @@
           <div class="sign__content">
             <!-- registration form -->
             <form action="#" class="sign__form">
-              <NuxtLink href="/" class="sign__logo">
+              <NuxtLink to="/" class="sign__logo">
                 <img src="img/logo.svg" alt="" />
               </NuxtLink>
 
@@ -19,35 +19,24 @@
               </div>
 
               <div class="sign__group">
-                <input
-                  type="password"
-                  class="sign__input"
-                  placeholder="Parol"
-                />
+                <input type="password" class="sign__input" placeholder="Parol" />
               </div>
 
               <div class="sign__group sign__group--checkbox">
-                <input
-                  id="remember"
-                  name="remember"
-                  type="checkbox"
-                  checked="checked"
-                />
-                <label for="remember"
-                  >Men
-                  <NuxtLink href="privacy">Maxfiylik siyosatiga</NuxtLink>
-                  roziman</label
-                >
+                <input id="remember" name="remember" type="checkbox" checked="checked" />
+                <label for="remember">Men
+                  <NuxtLink to="privacy">Maxfiylik siyosatiga</NuxtLink>
+                  roziman
+                </label>
               </div>
 
-              <button class="sign__btn" type="button">
+              <button @click="postData" class="sign__btn" type="button">
                 <span>Ro'yxatdan o'tish</span>
               </button>
 
-              <span class="sign__text"
-                >Hisobingiz bormi?
-                <NuxtLink href="signin">Kirish!</NuxtLink></span
-              >
+              <span class="sign__text">Hisobingiz bormi?
+                <NuxtLink to="signin">Kirish!</NuxtLink>
+              </span>
             </form>
             <!-- registration form -->
           </div>
@@ -58,9 +47,28 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'SignUpPage',
-
+methods:{
+  async postData(){
+  var data=new  FormData()
+  data.append('name',document.querySelectorAll('.sign__input')[0].value)
+  data.append('email',document.querySelectorAll('.sign__input')[1].value)
+  data.append('password',document.querySelectorAll('.sign__input')[2].value)
+  try {
+        const response = await axios.post('http://localhost:4003/register', data);
+        console.log(response.data);
+        localStorage.setItem('token',response.data.token)
+    
+        localStorage.setItem("user_data",JSON.stringify(response.data.data[0]))
+        window.location="/profile"
+  
+      } catch (error) {
+        alert("xato kiritildi")
+        console.error(error)  }
+}
+},
   mounted() {
     if (document.querySelector('.section--bg')) {
       var mainBg = document.querySelector('.section--bg')
