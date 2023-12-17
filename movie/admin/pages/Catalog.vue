@@ -755,7 +755,7 @@ export default {
 	},
 	async mounted() {
 		try {
-			const kino = await axios.get('http://localhost:4003/api/v1/cinema')
+			const kino = await axios.get('https://api.uzdub.uz/api/v1/cinema')
 			for (let i = 0; i < kino.data.length; i++) {
 				if (kino.data[i].appearance == 1) {
 					kino.data[i].category = "Movie"
@@ -810,7 +810,7 @@ export default {
 		bannedCinema() {
 			var formData = new FormData()
 			formData.append("looking", this.Looking ? false : true)
-			axios.put(`http://localhost:4003/api/v1/cinema/look/${this.Id}`, formData).then(res => {
+			axios.put(`https://api.uzdub.uz/api/v1/cinema/look/${this.Id}`, formData).then(res => {
 				alert("Kino holati o'zgartirildi")
 				window.location.reload()
 			}).catch(err => {
@@ -818,7 +818,7 @@ export default {
 			})
 		},
 		cinemaDelete(){
-        axios.delete(`http://localhost:4003/api/v1/cinema/${this.Id}`).then(res=>{
+        axios.delete(`https://api.uzdub.uz/api/v1/cinema/${this.Id}`).then(res=>{
 			alert("Kino o'chirildi")
 			window.location.reload()
 		}).catch(err=>{
@@ -839,7 +839,7 @@ export default {
 			}
 		},
 		CinemaSearch(){
-			axios.get('http://localhost:4003/api/v1/cinema').then(kino=>{
+			axios.get('https://api.uzdub.uz/api/v1/cinema').then(kino=>{
 				for (let i = 0; i < kino.data.length; i++) {
 				if (kino.data[i].appearance == 1) {
 					kino.data[i].category = "Movie"

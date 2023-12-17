@@ -396,8 +396,8 @@ export default {
   methods: {
     async getData() {
       try {
-        const catalog = await axios.get('http://localhost:4003/api/v1/cinema')
-        const category = await axios.get('http://localhost:4003/api/v1/janr')
+        const catalog = await axios.get('https://api.uzdub.uz/api/v1/cinema')
+        const category = await axios.get('https://api.uzdub.uz/api/v1/janr')
         this.top_look = catalog.data.sort(
           (a, b) => a.more_loking - b.more_loking
         )
@@ -503,7 +503,7 @@ if(value1==0){
 return send_data
     },
     Allfilter() {
-      axios.get('http://localhost:4003/api/v1/cinema').then(res => {
+      axios.get('https://api.uzdub.uz/api/v1/cinema').then(res => {
       var data1=this.filter_vid(res.data)
       var data2=this.filter_janr(data1)
       var data3=this.filter_mark(data2)

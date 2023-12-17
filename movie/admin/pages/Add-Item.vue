@@ -19,13 +19,13 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Nomi">
+											<input id="cinema_title" type="text" class="sign__input" placeholder="Nomi">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="sign__group">
-											<textarea id="text" name="text" class="sign__textarea" placeholder="Tavsif"></textarea>
+											<textarea id="cinema_text" name="text" class="sign__textarea" placeholder="Tavsif"></textarea>
 										</div>
 									</div>
 									<div class="col-12 col-xl-6">
@@ -40,20 +40,27 @@
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
 											<div class="sign__gallery">
-												<label id="gallery1" for="sign__gallery-upload">Kadrlar yuklash</label>
-												<input id="sign__gallery-upload" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
-													type="file" accept=".png, .jpg, .jpeg" multiple="">
+												<label id="gallery1" for="sign__gallery-upload1">Kadrlar yuklash</label>
+												<input id="sign__gallery-upload1" data-name="#gallery1" name="gallery1" class="sign__gallery-upload1"
+													type="file" accept=".png, .jpg, .jpeg">
 											</div>
 										</div>
 									</div>
 
 									<div class="col-12" style="margin-bottom: 20px;">
 										<div class="sign__gallery">
-											<label id="gallery1" for="sign__gallery-upload">Fon uchun rasm (1920x1280)</label>
-											<input id="sign__gallery-upload" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
+											<label id="gallery2" for="sign__gallery-upload2">Fon uchun rasm (1920x1280)</label>
+											<input id="sign__gallery-upload2" data-name="#gallery2" name="gallery2" class="sign__gallery-upload2"
 												type="file" accept=".png, .jpg, .jpeg" multiple="">
 										</div>
 									</div>
+
+									<div class="col-12">
+										<div class="sign__group">
+											<input id="cinema_treyler" type="text" class="sign__input" placeholder="Treyler">
+										</div>
+									</div>
+
 								</div>
 							</div>
 
@@ -71,44 +78,33 @@
 
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Yosh chegarasi">
+											<input id="age_limit" type="text" class="sign__input" placeholder="Yosh chegarasi">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="sign__group">
 											<select id="sign__genre" class="sign__selectjs" multiple>
-												<option value="Action">Action</option>
-												<option value="Animation">Animation</option>
-												<option value="Comedy">Comedy</option>
-												<option value="Crime">Crime</option>
-												<option value="Drama">Drama</option>
-												<option value="Fantasy">Fantasy</option>
-												<option value="Historical">Historical</option>
-												<option value="Horror">Horror</option>
-												<option value="Romance">Romance</option>
-												<option value="Science-fiction">Science-fiction</option>
-												<option value="Thriller">Thriller</option>
-												<option value="Western">Western</option>
-												<option value="Otheer">Otheer</option>
+												<option v-for="item in janr" :value="item.id">{{ item.title }}</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Davomiyligi">
+											<input id="cinema_time" type="text" class="sign__input" placeholder="Davomiyligi">
 										</div>
 									</div>
 
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Tarjima">
+											<input id="cinema_tarjima" type="text" class="sign__input" placeholder="Tarjima">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="sign__group">
-											<select id="sign__country" class="sign__selectjs" multiple>
+											<input id="sign__country" type="text" class="sign__input" placeholder="Mamlakatni tanlang">
+											<!-- <select id="sign__country" class="sign__selectjs" multiple>
 												<option value="Afghanistan">Afghanistan</option>
 												<option value="Åland Islands">Åland Islands</option>
 												<option value="Albania">Albania</option>
@@ -330,6 +326,30 @@
 												<option value="Yemen">Yemen</option>
 												<option value="Zambia">Zambia</option>
 												<option value="Zimbabwe">Zimbabwe</option>
+											</select> -->
+										</div>
+									</div>
+									<div class="col-12 col-xl-6">
+										<div class="sign__group">
+											<input id="cinema_year" type="text" class="sign__input" placeholder="Yilni kiriting">
+										</div>
+									</div>
+
+									<div class="col-12 col-xl-6">
+										<div class="sign__group">
+											<select name="" id="cinema_appearance" class="sign__selectjs">
+												<option value="1">Movie</option>
+												<option value="2">Series</option>
+												<option value="3">TV Series</option>
+												<option value="4">Cartoon</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="sign__group">
+											<select name="" id="cinema_payment" class="sign__selectjs">
+												<option value="Premium">Premium</option>
+												<option value="Free">Free</option>
 											</select>
 										</div>
 									</div>
@@ -339,35 +359,26 @@
 							<div class="col-12 col-xl-6">
 								<div class="sign__group">
 									<select id="sign__director" class="sign__selectjs" multiple>
-										<option value="Matt Jones">Matt Jones</option>
-										<option value="Gene Graham">Gene Graham</option>
-										<option value="Rosa Lee">Rosa Lee</option>
-										<option value="Brian Cranston">Brian Cranston</option>
-										<option value="Tess Harper">Tess Harper</option>
-										<option value="Eliza Josceline">Eliza Josceline</option>
-										<option value="Otto Bree">Otto Bree</option>
-										<option value="Kathie Corl">Kathie Corl</option>
-										<option value="Georgiana Patti">Georgiana Patti</option>
-										<option value="Cong Duong">Cong Duong</option>
-										<option value="Felix Autumn">Felix Autumn</option>
-										<option value="Sophie Moore">Sophie Moore</option>
+										<option v-for="item in tarjima" :value="item.id">{{ item.full_name }}</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-12 col-xl-6">
 								<div class="sign__group">
-									<select id="sign__tayming" class="sign__selectjs" multiple>
+									<input style="width:100%;" id="sign__tayming"  type="text" class="sign__input" placeholder="Tayming">
+									<!-- <select id="sign__tayming" class="sign__selectjs" multiple>
 										<option value="Matt Jones">Matt Jones</option>
 										<option value="Gene Graham">Gene Graham</option>
 										<option value="Rosa Lee">Rosa Lee</option>
 										<option value="Brian Cranston">Brian Cranston</option>
 										<option value="Tess Harper">Tess Harper</option>
-									</select>
+									</select> -->
 								</div>
 							</div>
 							<div class="col-12">
 								<div class="sign__group">
-									<select id="sign__actors" class="sign__selectjs" multiple>
+									<input style="width:100%;" id="sign__actors"  type="text" class="sign__input" placeholder="Ovoz beruchilar">
+									<!-- <select id="sign__actors" class="sign__selectjs" multiple>
 										<option value="Matt Jones">Matt Jones</option>
 										<option value="Gene Graham">Gene Graham</option>
 										<option value="Rosa Lee">Rosa Lee</option>
@@ -380,7 +391,7 @@
 										<option value="Cong Duong">Cong Duong</option>
 										<option value="Felix Autumn">Felix Autumn</option>
 										<option value="Sophie Moore">Sophie Moore</option>
-									</select>
+									</select> -->
 								</div>
 							</div>
 
@@ -518,7 +529,7 @@
 							<!-- end tv series -->
 
 							<div class="col-12">
-								<button type="button" class="sign__btn sign__btn--small"><span>JOYLASH</span></button>
+								<button @click="CinemaPost()" type="button" class="sign__btn sign__btn--small"><span>JOYLASH</span></button>
 							</div>
 						</div>
 					</form>
@@ -531,8 +542,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: "AddItemPage",
+	
+	data(){
+		return{
+			janr:[],
+			tarjima:[],
+		}
+	},
 
 	mounted() {
 		/* add page */
@@ -545,11 +565,20 @@ export default {
 			});
 		}
 
-		if (document.querySelector('#sign__genre')) {
+		if (document.querySelector('#cinema_payment')) {
 			new SlimSelect({
-				select: '#sign__genre',
+				select: '#cinema_payment',
 				settings: {
-					placeholderText: 'Janrni tanlang',
+					showSearch: false,
+				}
+			});
+		}
+
+		if (document.querySelector('#cinema_appearance')) {
+			new SlimSelect({
+				select: '#cinema_appearance',
+				settings: {
+					showSearch: false,
 				}
 			});
 		}
@@ -559,15 +588,6 @@ export default {
 				select: '#sign__country',
 				settings: {
 					placeholderText: 'Mamlakatni tanlang',
-				}
-			});
-		}
-
-		if (document.querySelector('#sign__director')) {
-			new SlimSelect({
-				select: '#sign__director',
-				settings: {
-					placeholderText: 'Tarjimonlar',
 				}
 			});
 		}
@@ -590,6 +610,60 @@ export default {
 			});
 		}
 		
+
+		axios.get('https://api.uzdub.uz/api/v1/janr').then(res=>{
+		this.janr=res.data
+		setTimeout(() => {
+			if (document.querySelector('#sign__genre')) {
+			new SlimSelect({
+				select: '#sign__genre',
+				settings: {
+					placeholderText: 'Janrni tanlang',
+				}
+			});
+		    }
+		}, 100);
+	    })
+		axios.get('https://api.uzdub.uz/api/v1/tarjima').then(res=>{
+		this.tarjima=res.data
+		setTimeout(() => {
+			if (document.querySelector('#sign__director')) {
+			new SlimSelect({
+				select: '#sign__director',
+				settings: {
+					placeholderText: 'Tarjimonlar',
+				}
+			});
+		    }
+		}, 100);
+	    })
+		
+	},
+	methods:{
+    CinemaPost(){
+		var formdata=new FormData()
+		formdata.append("type",document.querySelector("#sign__quality").value)
+		formdata.append("title",document.querySelector("#cinema_title").value)
+		formdata.append("description",document.querySelector("#cinema_text").value)
+		formdata.append("time",document.querySelector("#cinema_time").value)
+		formdata.append("ovoz_berdi",document.querySelector("#sign__actors").value)
+		formdata.append("language",document.querySelector("#cinema_tarjima").value)
+		formdata.append("tayming",document.querySelector("#sign__tayming").value)
+		formdata.append("age_limit",document.querySelector("#age_limit").value)
+		formdata.append("country",document.querySelector("#sign__country").value)
+		formdata.append("video",document.querySelector("#sign__gallery-upload1").files[0])
+		formdata.append("payment",document.querySelector("#cinema_payment").value)
+		formdata.append("year",document.querySelector("#cinema_year").value)
+		formdata.append("appearance",document.querySelector("#cinema_appearance").value)
+		formdata.append("treler",document.querySelector("#cinema_treyler").value)
+		formdata.append("more_loking",0)
+
+		axios.post('https://api.uzdub.uz/api/v1/cinema',formdata).then(res=>{
+			alert("Media qo'shildi")
+		}).catch(err=>{
+			alert("Media qo'shilmadi")
+		})
+	}   		
 	}
 }
 </script>

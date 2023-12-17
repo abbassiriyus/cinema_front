@@ -670,7 +670,7 @@ data(){
   },
   methods: {
     getData() {
-      axios.get(`http://localhost:4003/api/v1/cinema/${localStorage.getItem("selectedItemData")}`, {
+      axios.get(`https://api.uzdub.uz/api/v1/cinema/${localStorage.getItem("selectedItemData")}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}` 
       }
@@ -685,8 +685,8 @@ data(){
     },
     async getCinemaData() {
       try {
-      var data12=await axios.post("http://localhost:4003/api/lookme",{cinema_id:JSON.parse(localStorage.getItem("selectedItemData")), user_id:JSON.parse((localStorage.getItem("user_data"))).id})
-        const response = await axios.get('http://localhost:4003/api/v1/cinema');
+      var data12=await axios.post("https://api.uzdub.uz/api/lookme",{cinema_id:JSON.parse(localStorage.getItem("selectedItemData")), user_id:JSON.parse((localStorage.getItem("user_data"))).id})
+        const response = await axios.get('https://api.uzdub.uz/api/v1/cinema');
 		    this.top_look=response.data.sort((a,b)=>a.more_loking-b.more_loking)
 console.log(this.top_look);
       } catch (error) {
@@ -702,7 +702,7 @@ data.append('supcomment',this.comment_id)
 data.append('description',document.querySelector(".sign__textarea").value)
 data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
 data.append('quanty',this.quote)
-axios.post('http://localhost:4003/api/v1/comment/', data, {
+axios.post('https://api.uzdub.uz/api/v1/comment/', data, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}` 
         }
@@ -724,7 +724,7 @@ alert("user not")
   }},
    click_like(bol,id){
     var data=new FormData()
-    const url = 'http://localhost:4003/api/v1/comment_mark';
+    const url = 'https://api.uzdub.uz/api/v1/comment_mark';
     if(localStorage.getItem("user_data")){
     data.append("dislike",bol)
     data.append('comment_id',id)
@@ -755,7 +755,7 @@ data.append("cinema_id",JSON.parse(localStorage.getItem("selectedItemData")))
 data.append("description",document.querySelector('#sharx_m').value)
 data.append("title",document.querySelector('#sharx_d').value)
 data.append("creator",JSON.parse((localStorage.getItem("user_data"))).id)
-axios.post('http://localhost:4003/api/v1/sharx/', data, {
+axios.post('https://api.uzdub.uz/api/v1/sharx/', data, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}` 
         }
