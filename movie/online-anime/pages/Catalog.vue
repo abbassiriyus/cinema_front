@@ -134,7 +134,7 @@
               </div>
               <div class="item__content">
                 <h3 class="item__title">
-                  <div @click="handleClick(item)" >{{ item.title }}</div>
+                  <div @click="handleClick(item.id)" >{{ item.title }}</div>
                 </h3>
                 <span class="item__category">
                   <NuxtLink
@@ -290,7 +290,7 @@
                     class="splide__slide"
                   >
                     <div class="item item--carousel">
-                      <NuxtLink to="watching" class="item__cover">
+                      <div  @click="handleClick(item.id)" class="item__cover">
                         <img
                           v-if="item.images && item.images[0].image"
                           :src="item.images[0].image"
@@ -306,10 +306,10 @@
                             />
                           </svg>
                         </span>
-                      </NuxtLink>
+                      </div>
                       <div class="item__content">
                         <h3 class="item__title">
-                          <NuxtLink to="watching">{{ item.title }}</NuxtLink>
+                          <div @click="handleClick(item.id)">{{ item.title }}</div>
                         </h3>
                         <span class="item__category">
                           <NuxtLink
