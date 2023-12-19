@@ -777,36 +777,25 @@ export default {
   },
   methods: {
     getData() {
-      axios
-        .get(
-          `https://api.uzdub.uz/api/v1/cinema/${localStorage.getItem(
-            'selectedItemData'
-          )}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          }
-        )
-        .then((response) => {
-          this.data_get = response.data
-          console.log(response.data)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+      axios.get(`https://api.uzdub.uz/api/v1/cinema/${localStorage.getItem("selectedItemData")}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}` 
+      }
+    })
+    .then(response => {
+      this.data_get=response.data
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.error(error)
+    })
     },
     async getCinemaData() {
       try {
-        var data12 = await axios.post('https://api.uzdub.uz/api/lookme', {
-          cinema_id: JSON.parse(localStorage.getItem('selectedItemData')),
-          user_id: JSON.parse(localStorage.getItem('user_data')).id,
-        })
-        const response = await axios.get('https://api.uzdub.uz/api/v1/cinema')
-        this.top_look = response.data.sort(
-          (a, b) => a.more_loking - b.more_loking
-        )
-        console.log(this.top_look)
+      var data12=await axios.post("https://api.uzdub.uz/api/lookme",{cinema_id:JSON.parse(localStorage.getItem("selectedItemData")), user_id:JSON.parse((localStorage.getItem("user_data"))).id})
+        const response = await axios.get('https://api.uzdub.uz/api/v1/cinema');
+		    this.top_look=response.data.sort((a,b)=>a.more_loking-b.more_loking)
+console.log(this.top_look);
       } catch (error) {
         console.error(error, 'xato')
       }
@@ -815,102 +804,91 @@ export default {
       if (localStorage.getItem('user_data')) {
         var data = new FormData()
 
-        data.append(
-          'cinema_id',
-          JSON.parse(localStorage.getItem('selectedItemData'))
-        )
-        data.append('supcomment', this.comment_id)
-        data.append(
-          'description',
-          document.querySelector('.sign__textarea').value
-        )
-        data.append('creator', JSON.parse(localStorage.getItem('user_data')).id)
-        data.append('quanty', this.quote)
-        axios
-          .post('https://api.uzdub.uz/api/v1/comment/', data, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          })
-          .then((response) => {
-            alert('saqlandi')
-            this.getData()
-            this.comment_id = 0
-            this.string_data = ''
-            document.querySelector('.sign__textarea').value = ''
-            // Muvaffaqiyatli amalga oshirildi
-          })
-          .catch((error) => {
-            console.log(error)
-            // Xatolik yuz berdi
-          })
-      } else {
-        alert('user not')
-      }
-    },
-    click_like(bol, id) {
-      var data = new FormData()
-      const url = 'https://api.uzdub.uz/api/v1/comment_mark'
-      if (localStorage.getItem('user_data')) {
-        data.append('dislike', bol)
-        data.append('comment_id', id)
-        data.append('creator', JSON.parse(localStorage.getItem('user_data')).id)
-        axios
-          .post(url, data)
-          .then((response) => {
-            alert('saqlandi')
-            this.getData()
-          })
-          .catch((error) => {
-            alert('xato')
-            console.log(error)
-          })
-      } else {
-        alert('user not')
-      }
-      var data = new FormData()
-    },
-    clicksharx() {
-      if (localStorage.getItem('user_data')) {
-        var data = new FormData()
-        data.append('rating', document.querySelector('#rating').value)
-        data.append(
-          'cinema_id',
-          JSON.parse(localStorage.getItem('selectedItemData'))
-        )
-        data.append('description', document.querySelector('#sharx_m').value)
-        data.append('title', document.querySelector('#sharx_d').value)
-        data.append('creator', JSON.parse(localStorage.getItem('user_data')).id)
-        axios
-          .post('https://api.uzdub.uz/api/v1/sharx/', data, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          })
-          .then((response) => {
-            document.querySelector('#sharx_m').value = ''
-            alert('saqlandi')
-            document.querySelector('#sharx_d').value = ''
-            this.getData()
-            this.comment_id = 0
-            this.string_data = ''
-            document.querySelector('.sign__textarea').value = ''
-            // Muvaffaqiyatli amalga oshirildi
-          })
-          .catch((error) => {
-            console.log(error)
-            alert('xarolik')
-            // Xatolik yuz berdi
-          })
-      } else {
-        alert('user not')
-      }
-    },
-    handleClick(index) {
-      const selectedItem =index;
-      localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
-	  window.location="/watching"
-    },
+data.append('cinema_id', JSON.parse(localStorage.getItem("selectedItemData")))
+data.append('supcomment',this.comment_id)
+data.append('description',document.querySelector(".sign__textarea").value)
+data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
+data.append('quanty',this.quote)
+axios.post('https://api.uzdub.uz/api/v1/comment/', data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+      })
+        .then(response => {
+          alert("saqlandi")
+          this.getData()
+          this.comment_id=0
+    this.string_data=""
+    document.querySelector(".sign__textarea").value=""
+          // Muvaffaqiyatli amalga oshirildi
+        })
+        .catch(error => {
+          console.log(error);
+          // Xatolik yuz berdi
+        });
+  }else{
+alert("user not")
+  }},
+   click_like(bol,id){
+    var data=new FormData()
+    const url = 'https://api.uzdub.uz/api/v1/comment_mark';
+    if(localStorage.getItem("user_data")){
+    data.append("dislike",bol)
+    data.append('comment_id',id)
+   data.append('creator',JSON.parse((localStorage.getItem("user_data"))).id)
+axios.post(url, data)
+  .then(response => {
+  alert("saqlandi")
+    this.getData()
+  
+  })
+  .catch(error => {
+    alert("xato")
+    console.log(error);  
+  })
+ }else{
+alert("user not")
+    }
+var data =new FormData()
+
+
+   },
+   clicksharx(){
+  
+   if(localStorage.getItem("user_data")){ 
+    var data=new FormData()
+data.append("rating",document.querySelector('#rating').value)
+data.append("cinema_id",JSON.parse(localStorage.getItem("selectedItemData")))
+data.append("description",document.querySelector('#sharx_m').value)
+data.append("title",document.querySelector('#sharx_d').value)
+data.append("creator",JSON.parse((localStorage.getItem("user_data"))).id)
+axios.post('https://api.uzdub.uz/api/v1/sharx/', data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+      })
+        .then(response => {
+          document.querySelector('#sharx_m').value=""
+          alert("saqlandi")
+          document.querySelector('#sharx_d').value=""
+          this.getData()
+          this.comment_id=0
+    this.string_data=""
+    document.querySelector(".sign__textarea").value=""
+          // Muvaffaqiyatli amalga oshirildi
+        })
+        .catch(error => {
+          console.log(error);
+          alert('xarolik')
+          // Xatolik yuz berdi
+        });
+  
+   }else{
+alert("user not")
+   }
+
+    
+   },
     updateData(data) {
       this.comment_id = data.id
       this.string_data = data.description

@@ -1557,8 +1557,8 @@ export default {
 					axios.post(`https://api.uzdub.uz/api/pay`,formdata1).then(res=>{
 					}).catch(err=>{console.log(err)})
 				}
-				// window.location.reload()
 				alert("User ma'lumoti o'zgartirildi")
+				window.location.reload()
 				
 			}).catch(err=>{
 				alert("User ma'lumoti o'zgartirilmadi")

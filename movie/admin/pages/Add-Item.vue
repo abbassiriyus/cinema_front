@@ -19,41 +19,64 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Nomi">
+											<input id="cinema_title" type="text" class="sign__input" placeholder="Nomi">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="sign__group">
-											<textarea id="text" name="text" class="sign__textarea" placeholder="Tavsif"></textarea>
+											<textarea id="cinema_text" name="text" class="sign__textarea" placeholder="Tavsif"></textarea>
 										</div>
 									</div>
-									<div class="col-12 col-xl-6">
+									<div class="col-12">
 										<div class="sign__group">
 											<div class="sign__gallery">
 												<label id="gallery1" for="sign__gallery-upload">Muqova yuklash (240x340)</label>
 												<input id="sign__gallery-upload" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
-													type="file" accept=".png, .jpg, .jpeg">
+													type="file" accert="">
 											</div>
 										</div>
 									</div>
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
+											<input id="cinema_year" type="text" class="sign__input" placeholder="Yilni kiriting">
+										</div>
+									</div>
+
+									<div class="col-12 col-xl-6">
+										<div class="sign__group">
+											<select name="" id="cinema_appearance" class="sign__selectjs">
+												<option value="1">Movie</option>
+												<option value="2">Series</option>
+												<option value="3">TV Series</option>
+												<option value="4">Cartoon</option>
+											</select>
+										</div>
+									</div>
+									<!-- <div class="col-12 col-xl-6">
+										<div class="sign__group">
 											<div class="sign__gallery">
-												<label id="gallery1" for="sign__gallery-upload">Kadrlar yuklash</label>
-												<input id="sign__gallery-upload" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
-													type="file" accept=".png, .jpg, .jpeg" multiple="">
+												<label id="gallery1" for="sign__gallery-upload3">Kadrlar yuklash</label>
+												<input id="sign__gallery-upload3" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
+													type="file">
 											</div>
 										</div>
 									</div>
 
 									<div class="col-12" style="margin-bottom: 20px;">
 										<div class="sign__gallery">
-											<label id="gallery1" for="sign__gallery-upload">Fon uchun rasm (1920x1280)</label>
-											<input id="sign__gallery-upload" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
-												type="file" accept=".png, .jpg, .jpeg" multiple="">
+											<label id="gallery1" for="sign__gallery-upload2">Fon uchun rasm (1920x1280)</label>
+											<input id="sign__gallery-upload2" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
+												type="file">
+										</div>
+									</div> -->
+
+									<div  class="col-12">
+										<div  class="sign__group">
+											<input id="cinema_treyler"  type="text" class="sign__input" placeholder="Treyler">
 										</div>
 									</div>
+
 								</div>
 							</div>
 
@@ -71,44 +94,33 @@
 
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Yosh chegarasi">
+											<input id="age_limit" type="text" class="sign__input" placeholder="Yosh chegarasi">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="sign__group">
 											<select id="sign__genre" class="sign__selectjs" multiple>
-												<option value="Action">Action</option>
-												<option value="Animation">Animation</option>
-												<option value="Comedy">Comedy</option>
-												<option value="Crime">Crime</option>
-												<option value="Drama">Drama</option>
-												<option value="Fantasy">Fantasy</option>
-												<option value="Historical">Historical</option>
-												<option value="Horror">Horror</option>
-												<option value="Romance">Romance</option>
-												<option value="Science-fiction">Science-fiction</option>
-												<option value="Thriller">Thriller</option>
-												<option value="Western">Western</option>
-												<option value="Otheer">Otheer</option>
+												<option v-for="item in janr" :value="item.id">{{ item.title }}</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Davomiyligi">
+											<input id="cinema_time" type="text" class="sign__input" placeholder="Davomiyligi">
 										</div>
 									</div>
 
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input type="text" class="sign__input" placeholder="Tarjima">
+											<input id="cinema_tarjima" type="text" class="sign__input" placeholder="Tarjima">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="sign__group">
-											<select id="sign__country" class="sign__selectjs" multiple>
+											<input id="sign__country" type="text" class="sign__input" placeholder="Mamlakatni tanlang">
+											<!-- <select id="sign__country" class="sign__selectjs" multiple>
 												<option value="Afghanistan">Afghanistan</option>
 												<option value="Åland Islands">Åland Islands</option>
 												<option value="Albania">Albania</option>
@@ -330,6 +342,14 @@
 												<option value="Yemen">Yemen</option>
 												<option value="Zambia">Zambia</option>
 												<option value="Zimbabwe">Zimbabwe</option>
+											</select> -->
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="sign__group">
+											<select name="" id="cinema_payment" class="sign__selectjs">
+												<option value="Premium">Premium</option>
+												<option value="Free">Free</option>
 											</select>
 										</div>
 									</div>
@@ -339,35 +359,26 @@
 							<div class="col-12 col-xl-6">
 								<div class="sign__group">
 									<select id="sign__director" class="sign__selectjs" multiple>
-										<option value="Matt Jones">Matt Jones</option>
-										<option value="Gene Graham">Gene Graham</option>
-										<option value="Rosa Lee">Rosa Lee</option>
-										<option value="Brian Cranston">Brian Cranston</option>
-										<option value="Tess Harper">Tess Harper</option>
-										<option value="Eliza Josceline">Eliza Josceline</option>
-										<option value="Otto Bree">Otto Bree</option>
-										<option value="Kathie Corl">Kathie Corl</option>
-										<option value="Georgiana Patti">Georgiana Patti</option>
-										<option value="Cong Duong">Cong Duong</option>
-										<option value="Felix Autumn">Felix Autumn</option>
-										<option value="Sophie Moore">Sophie Moore</option>
+										<option v-for="item in tarjima" :value="item.id">{{ item.full_name }}</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-12 col-xl-6">
 								<div class="sign__group">
-									<select id="sign__tayming" class="sign__selectjs" multiple>
+									<input style="width:100%;" id="sign__tayming"  type="text" class="sign__input" placeholder="Tayming">
+									<!-- <select id="sign__tayming" class="sign__selectjs" multiple>
 										<option value="Matt Jones">Matt Jones</option>
 										<option value="Gene Graham">Gene Graham</option>
 										<option value="Rosa Lee">Rosa Lee</option>
 										<option value="Brian Cranston">Brian Cranston</option>
 										<option value="Tess Harper">Tess Harper</option>
-									</select>
+									</select> -->
 								</div>
 							</div>
 							<div class="col-12">
 								<div class="sign__group">
-									<select id="sign__actors" class="sign__selectjs" multiple>
+									<input style="width:100%;" id="sign__actors"  type="text" class="sign__input" placeholder="Ovoz beruchilar">
+									<!-- <select id="sign__actors" class="sign__selectjs" multiple>
 										<option value="Matt Jones">Matt Jones</option>
 										<option value="Gene Graham">Gene Graham</option>
 										<option value="Rosa Lee">Rosa Lee</option>
@@ -380,7 +391,7 @@
 										<option value="Cong Duong">Cong Duong</option>
 										<option value="Felix Autumn">Felix Autumn</option>
 										<option value="Sophie Moore">Sophie Moore</option>
-									</select>
+									</select> -->
 								</div>
 							</div>
 
@@ -405,7 +416,7 @@
 							<div class="col-12">
 								<div class="collapse show multi-collapse">
 									<div class="sign__group">
-										<input name="ova" class="sign__input" placeholder="Iframe link" type="text">
+										<input name="ova" id="cinema_video" class="sign__input" placeholder="Iframe link" type="text">
 									</div>
 								</div>
 							</div>
@@ -416,10 +427,10 @@
 								<div class="collapse multi-collapse">
 									<!-- season -->
 									<div class="sign__season">
-										<div class="sign__season-head">
-											<div class="row">
+										<!-- <div class="sign__season-head">
+											<div v-for="item in mavsum" class="row">
 												<div class="col-12">
-													<span class="sign__episode-title">1 - Mavsum</span>
+													<span class="sign__episode-title">{{ item }} - Mavsum</span>
 												</div>
 
 												<div class="col-12 col-sm-6 col-md-5 col-xl-6">
@@ -435,17 +446,17 @@
 												</div>
 
 												<div class="col-12 col-sm-4 col-md-3 col-xl-2">
-													<button class="sign__btn sign__btn--add"><span>mavsum qo'shing</span></button>
+													<button @click="Mavsum()" class="sign__btn sign__btn--add"><span>mavsum qo'shing</span></button>
 												</div>
 											</div>
-										</div>
+										</div> -->
 
 										<!-- episode -->
-										<div class="sign__episode">
+										<div v-for="(item,key) in mavsum" class="sign__episode">
 											<div class="row">
 												<div class="col-12">
-													<span class="sign__episode-title">1 - qism</span>
-													<button class="sign__delete" type="button">
+													<span class="sign__episode-title">{{ key+1 }} - qism</span>
+													<button @click="MavsumSlice(key)" class="sign__delete" type="button">
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 															<path
 																d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z" />
@@ -455,7 +466,7 @@
 
 												<div class="col-12 col-md-6">
 													<div class="sign__group">
-														<input type="text" class="sign__input" placeholder="1 - qism nomi">
+														<input type="text" class="sign__input" :placeholder="key+1+' - qism nomi'">
 													</div>
 												</div>
 
@@ -472,10 +483,13 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-12 col-sm-4 col-md-3 col-xl-2">
+													<button type="button" @click="Mavsum()" class="sign__btn sign__btn--add"><span>qism qo'shing</span></button>
+										</div>
 										<!-- end episode -->
 
 										<!-- episode -->
-										<div class="sign__episode">
+										<!-- <div class="sign__episode">
 											<div class="row">
 												<div class="col-12">
 													<span class="sign__episode-title">2 - qism</span>
@@ -504,12 +518,10 @@
 														<input name="ova" class="sign__input" placeholder="Iframe link" type="text">
 													</div>
 												</div>
-
-												<div class="col-12 col-sm-4 col-md-3 col-xl-2">
-													<button class="sign__btn sign__btn--add"><span>qism qo'shing</span></button>
-												</div>
 											</div>
-										</div>
+
+											
+										</div> -->
 										<!-- end episode -->
 									</div>
 									<!-- end season -->
@@ -518,7 +530,7 @@
 							<!-- end tv series -->
 
 							<div class="col-12">
-								<button type="button" class="sign__btn sign__btn--small"><span>JOYLASH</span></button>
+								<button @click="CinemaPost()" type="button" class="sign__btn sign__btn--small"><span>JOYLASH</span></button>
 							</div>
 						</div>
 					</form>
@@ -531,8 +543,19 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: "AddItemPage",
+	
+	data(){
+		return{
+			janr:[],
+			tarjima:[],
+			mavsum:[1],
+			number:1,
+		}
+	},
 
 	mounted() {
 		/* add page */
@@ -545,11 +568,20 @@ export default {
 			});
 		}
 
-		if (document.querySelector('#sign__genre')) {
+		if (document.querySelector('#cinema_payment')) {
 			new SlimSelect({
-				select: '#sign__genre',
+				select: '#cinema_payment',
 				settings: {
-					placeholderText: 'Janrni tanlang',
+					showSearch: false,
+				}
+			});
+		}
+
+		if (document.querySelector('#cinema_appearance')) {
+			new SlimSelect({
+				select: '#cinema_appearance',
+				settings: {
+					showSearch: false,
 				}
 			});
 		}
@@ -563,14 +595,6 @@ export default {
 			});
 		}
 
-		if (document.querySelector('#sign__director')) {
-			new SlimSelect({
-				select: '#sign__director',
-				settings: {
-					placeholderText: 'Tarjimonlar',
-				}
-			});
-		}
 		if (document.querySelector('#sign__tayming')) {
 			new SlimSelect({
 				select: '#sign__tayming',
@@ -588,6 +612,101 @@ export default {
 				}
 			});
 		}
+		
+
+		axios.get('https://api.uzdub.uz/api/v1/janr').then(res=>{
+		this.janr=res.data
+		setTimeout(() => {
+			if (document.querySelector('#sign__genre')) {
+			new SlimSelect({
+				select: '#sign__genre',
+				settings: {
+					placeholderText: 'Janrni tanlang',
+				}
+			});
+		    }
+		}, 100);
+	    })
+		axios.get('https://api.uzdub.uz/api/v1/tarjima').then(res=>{
+		this.tarjima=res.data
+		setTimeout(() => {
+			if (document.querySelector('#sign__director')) {
+			new SlimSelect({
+				select: '#sign__director',
+				settings: {
+					placeholderText: 'Tarjimonlar',
+				}
+			});
+		    }
+		}, 100);
+	    })
+		
+	},
+	methods:{
+    CinemaPost(){
+		var formdata=new FormData()
+		formdata.append("type",document.querySelector("#sign__quality").value)
+		formdata.append("title",document.querySelector("#cinema_title").value)
+		formdata.append("description",document.querySelector("#cinema_text").value)
+		formdata.append("time",document.querySelector("#cinema_time").value)
+		formdata.append("ovoz_berdi",document.querySelector("#sign__actors").value)
+		formdata.append("language",document.querySelector("#cinema_tarjima").value)
+		formdata.append("tayming",document.querySelector("#sign__tayming").value)
+		formdata.append("age_limit",document.querySelector("#age_limit").value)
+		formdata.append("country",document.querySelector("#sign__country").value)
+		formdata.append("video",!document.querySelector("#type2").getAttribute("aria-expanded")?document.querySelector("#cinema_video").value:"null")
+		formdata.append("payment",document.querySelector("#cinema_payment").value)
+		formdata.append("year",document.querySelector("#cinema_year").value)
+		formdata.append("appearance",document.querySelector("#cinema_appearance").value)
+		formdata.append("treler",document.querySelector("#cinema_treyler").value)
+		formdata.append("more_loking",0)
+
+		axios.post('https://api.uzdub.uz/api/v1/cinema',formdata).then(res=>{
+			var formdata1=new FormData()
+			formdata1("cinema_id",res.data[0].id)
+			formdata1("janr_id",document.querySelector("#sign__genre").value)
+
+			axios.post("https://api.uzdub.uz/api/v1/janr_cinema",formdata1).then(res1=>{
+                var formdata2=new FormData()
+				formdata2("cinema_id",res.data[0].id)
+				formdata2("tarjimon_id",document.querySelector("#sign__director").value)
+
+				axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema",formdata2).then(res2=>{
+						var formdata3=new FormData()
+						formdata3.append("cinema_id",res.data[0].id)
+						formdata3.append("image",document.querySelectorAll("#sign__gallery-upload")[i].files[0])
+
+						axios.post('https://api.uzdub.uz/api/v1/image_cinema',formdata3).then(res3=>{
+
+				   		})
+						if(document.querySelector("#type2").getAttribute("aria-expanded")){
+                        var formdata4=new Data()
+						formdata4.append("")
+						formdata4.append("")
+						formdata4.append("")
+
+						axios.post(``).then(res=>{
+							alert("Media qo'shildi")
+							window.location.reload()
+						})
+						}else{
+							alert("Media qo'shildi")
+							window.location.reload()
+						}
+				})
+			})
+		}).catch(err=>{
+			alert("Media qo'shilmadi")
+		})
+	},
+	Mavsum(){
+		this.mavsum.push(this.number+1)
+		this.number=this.number+1
+	},
+	MavsumSlice(key){
+    this.mavsum.splice(key,1)
+	}
+
 	}
 }
 </script>
