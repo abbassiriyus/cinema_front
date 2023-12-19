@@ -120,7 +120,7 @@
             <div class="item">
               <div @click="handleClick(item.id)" class="item__cover">
                 <img
-                  v-if="item.images && item.images[0].image"
+                  v-if="item.images.length>0"
                   :src="item.images[0].image"
                   alt=""
                 />
@@ -292,7 +292,7 @@
                     <div class="item item--carousel">
                       <div  @click="handleClick(item.id)" class="item__cover">
                         <img
-                          v-if="item.images && item.images[0].image"
+                          v-if="item.images.length>0"
                           :src="item.images[0].image"
                           alt=""
                         />
