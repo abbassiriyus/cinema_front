@@ -1,6 +1,10 @@
 <template>
 	<div>
-	
+	<div v-if="!cinemaData" class="lodaing_page">
+	<div  class="loading">
+    <span>Loading</span>
+  </div></div>
+	<div v-else>
 		<!-- home -->
 		<section class="home">
 			<div class="container">
@@ -25,7 +29,7 @@
 							<div class="splide__track">
 								<ul class="splide__list">
 									<li v-for="item in carousel2" :key="item.id"  class="splide__slide">
-										<div class="hero__slide" :data-bg="`${item.images[0].image}`">
+										<div class="hero__slide"  v-if="item.images.length>0" :data-bg="`${item.images[0].image}`">
 											<div class="hero__content">
 												<h2 class="hero__title">
 													{{ item.title }} <sub>{{ item.mark }}</sub>
@@ -112,9 +116,9 @@
 								<div class="item item--list">
 									<div @click="handleClick(cinema.id)" class="item__cover">
 										<div class="d-flex aligin-items-center justify-content-center premium-icon">
-											<img v-if="cinema.images && cinema.images[0].image" src="/img/USD.svg" alt="" />
+											<img src="/img/USD.svg" alt="" />
 										</div>
-										<img  :src="cinema.images[0].image" alt="" />
+										<img  v-if="cinema.images.length>0" :src="cinema.images[0].image" alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -158,7 +162,7 @@
 							<div  v-for="cinema in Serial"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<div @click="handleClick(cinema.id)"  class="item__cover">
-										<img v-if="cinema.images && cinema.images[0].image" :src="cinema.images[0].image"  alt="" />
+										<img v-if="cinema.images.length>0" :src="cinema.images[0].image"  alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -188,7 +192,7 @@
 							<div  v-for="cinema in ongoin"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<div @click="handleClick(cinema.id)" class="item__cover">
-										<img v-if="cinema.images && cinema.images[0].image" :src="cinema.images[0].image" alt="" />
+										<img v-if="cinema.images.length>0" :src="cinema.images[0].image" alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -216,7 +220,7 @@
 								<div  v-for="cinema in ova"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<div  @click="handleClick(cinema.id)" class="item__cover">
-										<img :src="cinema.images[0].image"  alt="" />
+										<img  v-if="cinema.images.length>0" :src="cinema.images[0].image"  alt="" />
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -283,8 +287,8 @@
 								<ul class="splide__list">
 									<li v-for="item in top_look" :key="item.id" class="splide__slide">
 										<div class="item item--carousel">
-											<NuxtLink to="watching" class="item__cover">
-												<img class="test_img" :src="item.images[0].image" alt="" />
+											<NuxtLink  v-if="item.images.length>0" to="watching" class="item__cover">
+												<img  v-if="item.images.length>0" class="test_img" :src="item.images[0].image" alt="" />
 												<span class="item__play">
 													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 														<path
@@ -493,7 +497,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div></div>
 		<!-- end plan modal -->
 	</div>
 </template>

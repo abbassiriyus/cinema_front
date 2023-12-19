@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div v-if="!catalog" class="lodaing_page">
+	<div  class="loading">
+    <span>Loading</span>
+  </div></div>
+    <div v-else>
     <!-- page title -->
     <section
       class="section section--first section--bg"
@@ -129,7 +134,7 @@
               </div>
               <div class="item__content">
                 <h3 class="item__title">
-                  <div @click="handleClick(item)" >{{ item.title }}</div>
+                  <div @click="handleClick(item.id)" >{{ item.title }}</div>
                 </h3>
                 <span class="item__category">
                   <NuxtLink
@@ -285,7 +290,7 @@
                     class="splide__slide"
                   >
                     <div class="item item--carousel">
-                      <NuxtLink to="watching" class="item__cover">
+                      <div  @click="handleClick(item.id)" class="item__cover">
                         <img
                           v-if="item.images && item.images[0].image"
                           :src="item.images[0].image"
@@ -301,10 +306,10 @@
                             />
                           </svg>
                         </span>
-                      </NuxtLink>
+                      </div>
                       <div class="item__content">
                         <h3 class="item__title">
-                          <NuxtLink to="watching">{{ item.title }}</NuxtLink>
+                          <div @click="handleClick(item.id)">{{ item.title }}</div>
                         </h3>
                         <span class="item__category">
                           <NuxtLink
@@ -375,7 +380,7 @@
       <button class="mfilter__apply" type="button"><span>Filter</span></button>
     </div>
     <!-- end mobile filter -->
-  </div>
+  </div></div>
 </template>
 
 <script>
@@ -400,9 +405,16 @@ export default {
         this.top_look = catalog.data.sort(
           (a, b) => a.more_loking - b.more_loking
         )
-        this.catalog = catalog.data
+        var a=catalog.data
+        if(sessionStorage.getItem('search')){
+        this.catalog = a.filter(item=>item.title.includes(sessionStorage.getItem('search')))
+        sessionStorage.clear()
+        }else{
+        this.catalog = a
+        }
+        
         this.janr = category.data
-        var for_w = catalog.data.length / this.page_card
+        var for_w = a.length / this.page_card
         var daad = []
         for (let i = 0; i < for_w; i++) {
           daad.push(i + 1)

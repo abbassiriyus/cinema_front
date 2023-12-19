@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div v-if="!cinema_data" class="lodaing_page">
+	<div  class="loading">
+    <span>Loading</span>
+  </div></div>
+    <div v-else>
+
+    
     <!-- page title -->
     <section
       class="section section--first section--bg"
@@ -831,7 +838,7 @@
       </div>
     </div>
     <!-- end plan modal -->
-  </div>
+  </div></div>
 </template>
 
 <script>
