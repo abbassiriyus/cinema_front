@@ -28,36 +28,52 @@
 											<textarea id="cinema_text" name="text" class="sign__textarea" placeholder="Tavsif"></textarea>
 										</div>
 									</div>
-									<div class="col-12 col-xl-6">
+									<div class="col-12">
 										<div class="sign__group">
 											<div class="sign__gallery">
 												<label id="gallery1" for="sign__gallery-upload">Muqova yuklash (240x340)</label>
 												<input id="sign__gallery-upload" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
-													type="file" accept=".png, .jpg, .jpeg">
+													type="file" accert="">
 											</div>
 										</div>
 									</div>
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
+											<input id="cinema_year" type="text" class="sign__input" placeholder="Yilni kiriting">
+										</div>
+									</div>
+
+									<div class="col-12 col-xl-6">
+										<div class="sign__group">
+											<select name="" id="cinema_appearance" class="sign__selectjs">
+												<option value="1">Movie</option>
+												<option value="2">Series</option>
+												<option value="3">TV Series</option>
+												<option value="4">Cartoon</option>
+											</select>
+										</div>
+									</div>
+									<!-- <div class="col-12 col-xl-6">
+										<div class="sign__group">
 											<div class="sign__gallery">
-												<label id="gallery1" for="sign__gallery-upload1">Kadrlar yuklash</label>
-												<input id="sign__gallery-upload1" data-name="#gallery1" name="gallery1" class="sign__gallery-upload1"
-													type="file" accept=".png, .jpg, .jpeg">
+												<label id="gallery1" for="sign__gallery-upload3">Kadrlar yuklash</label>
+												<input id="sign__gallery-upload3" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
+													type="file">
 											</div>
 										</div>
 									</div>
 
 									<div class="col-12" style="margin-bottom: 20px;">
 										<div class="sign__gallery">
-											<label id="gallery2" for="sign__gallery-upload2">Fon uchun rasm (1920x1280)</label>
-											<input id="sign__gallery-upload2" data-name="#gallery2" name="gallery2" class="sign__gallery-upload2"
-												type="file" accept=".png, .jpg, .jpeg" multiple="">
+											<label id="gallery1" for="sign__gallery-upload2">Fon uchun rasm (1920x1280)</label>
+											<input id="sign__gallery-upload2" data-name="#gallery1" name="gallery" class="sign__gallery-upload"
+												type="file">
 										</div>
-									</div>
+									</div> -->
 
-									<div class="col-12">
-										<div class="sign__group">
-											<input id="cinema_treyler" type="text" class="sign__input" placeholder="Treyler">
+									<div  class="col-12">
+										<div  class="sign__group">
+											<input id="cinema_treyler"  type="text" class="sign__input" placeholder="Treyler">
 										</div>
 									</div>
 
@@ -329,22 +345,6 @@
 											</select> -->
 										</div>
 									</div>
-									<div class="col-12 col-xl-6">
-										<div class="sign__group">
-											<input id="cinema_year" type="text" class="sign__input" placeholder="Yilni kiriting">
-										</div>
-									</div>
-
-									<div class="col-12 col-xl-6">
-										<div class="sign__group">
-											<select name="" id="cinema_appearance" class="sign__selectjs">
-												<option value="1">Movie</option>
-												<option value="2">Series</option>
-												<option value="3">TV Series</option>
-												<option value="4">Cartoon</option>
-											</select>
-										</div>
-									</div>
 									<div class="col-12">
 										<div class="sign__group">
 											<select name="" id="cinema_payment" class="sign__selectjs">
@@ -416,7 +416,7 @@
 							<div class="col-12">
 								<div class="collapse show multi-collapse">
 									<div class="sign__group">
-										<input name="ova" class="sign__input" placeholder="Iframe link" type="text">
+										<input name="ova" id="cinema_video" class="sign__input" placeholder="Iframe link" type="text">
 									</div>
 								</div>
 							</div>
@@ -427,10 +427,10 @@
 								<div class="collapse multi-collapse">
 									<!-- season -->
 									<div class="sign__season">
-										<div class="sign__season-head">
-											<div class="row">
+										<!-- <div class="sign__season-head">
+											<div v-for="item in mavsum" class="row">
 												<div class="col-12">
-													<span class="sign__episode-title">1 - Mavsum</span>
+													<span class="sign__episode-title">{{ item }} - Mavsum</span>
 												</div>
 
 												<div class="col-12 col-sm-6 col-md-5 col-xl-6">
@@ -446,17 +446,17 @@
 												</div>
 
 												<div class="col-12 col-sm-4 col-md-3 col-xl-2">
-													<button class="sign__btn sign__btn--add"><span>mavsum qo'shing</span></button>
+													<button @click="Mavsum()" class="sign__btn sign__btn--add"><span>mavsum qo'shing</span></button>
 												</div>
 											</div>
-										</div>
+										</div> -->
 
 										<!-- episode -->
-										<div class="sign__episode">
+										<div v-for="(item,key) in mavsum" class="sign__episode">
 											<div class="row">
 												<div class="col-12">
-													<span class="sign__episode-title">1 - qism</span>
-													<button class="sign__delete" type="button">
+													<span class="sign__episode-title">{{ key+1 }} - qism</span>
+													<button @click="MavsumSlice(key)" class="sign__delete" type="button">
 														<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 															<path
 																d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z" />
@@ -466,7 +466,7 @@
 
 												<div class="col-12 col-md-6">
 													<div class="sign__group">
-														<input type="text" class="sign__input" placeholder="1 - qism nomi">
+														<input type="text" class="sign__input" :placeholder="key+1+' - qism nomi'">
 													</div>
 												</div>
 
@@ -483,10 +483,13 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-12 col-sm-4 col-md-3 col-xl-2">
+													<button type="button" @click="Mavsum()" class="sign__btn sign__btn--add"><span>qism qo'shing</span></button>
+										</div>
 										<!-- end episode -->
 
 										<!-- episode -->
-										<div class="sign__episode">
+										<!-- <div class="sign__episode">
 											<div class="row">
 												<div class="col-12">
 													<span class="sign__episode-title">2 - qism</span>
@@ -515,12 +518,10 @@
 														<input name="ova" class="sign__input" placeholder="Iframe link" type="text">
 													</div>
 												</div>
-
-												<div class="col-12 col-sm-4 col-md-3 col-xl-2">
-													<button class="sign__btn sign__btn--add"><span>qism qo'shing</span></button>
-												</div>
 											</div>
-										</div>
+
+											
+										</div> -->
 										<!-- end episode -->
 									</div>
 									<!-- end season -->
@@ -551,6 +552,8 @@ export default {
 		return{
 			janr:[],
 			tarjima:[],
+			mavsum:[1],
+			number:1,
 		}
 	},
 
@@ -651,7 +654,7 @@ export default {
 		formdata.append("tayming",document.querySelector("#sign__tayming").value)
 		formdata.append("age_limit",document.querySelector("#age_limit").value)
 		formdata.append("country",document.querySelector("#sign__country").value)
-		formdata.append("video",document.querySelector("#sign__gallery-upload1").files[0])
+		formdata.append("video",!document.querySelector("#type2").getAttribute("aria-expanded")?document.querySelector("#cinema_video").value:"null")
 		formdata.append("payment",document.querySelector("#cinema_payment").value)
 		formdata.append("year",document.querySelector("#cinema_year").value)
 		formdata.append("appearance",document.querySelector("#cinema_appearance").value)
@@ -659,11 +662,51 @@ export default {
 		formdata.append("more_loking",0)
 
 		axios.post('https://api.uzdub.uz/api/v1/cinema',formdata).then(res=>{
-			alert("Media qo'shildi")
+			var formdata1=new FormData()
+			formdata1("cinema_id",res.data[0].id)
+			formdata1("janr_id",document.querySelector("#sign__genre").value)
+
+			axios.post("https://api.uzdub.uz/api/v1/janr_cinema",formdata1).then(res1=>{
+                var formdata2=new FormData()
+				formdata2("cinema_id",res.data[0].id)
+				formdata2("tarjimon_id",document.querySelector("#sign__director").value)
+
+				axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema",formdata2).then(res2=>{
+						var formdata3=new FormData()
+						formdata3.append("cinema_id",res.data[0].id)
+						formdata3.append("image",document.querySelectorAll("#sign__gallery-upload")[i].files[0])
+
+						axios.post('https://api.uzdub.uz/api/v1/image_cinema',formdata3).then(res3=>{
+
+				   		})
+						if(document.querySelector("#type2").getAttribute("aria-expanded")){
+                        var formdata4=new Data()
+						formdata4.append("")
+						formdata4.append("")
+						formdata4.append("")
+
+						axios.post(``).then(res=>{
+							alert("Media qo'shildi")
+							window.location.reload()
+						})
+						}else{
+							alert("Media qo'shildi")
+							window.location.reload()
+						}
+				})
+			})
 		}).catch(err=>{
 			alert("Media qo'shilmadi")
 		})
-	}   		
+	},
+	Mavsum(){
+		this.mavsum.push(this.number+1)
+		this.number=this.number+1
+	},
+	MavsumSlice(key){
+    this.mavsum.splice(key,1)
+	}
+
 	}
 }
 </script>
