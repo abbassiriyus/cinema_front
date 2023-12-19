@@ -405,9 +405,16 @@ export default {
         this.top_look = catalog.data.sort(
           (a, b) => a.more_loking - b.more_loking
         )
-        this.catalog = catalog.data
+        var a=catalog.data
+        if(sessionStorage.getItem('search')){
+        this.catalog = a.filter(item=>item.title.includes(sessionStorage.getItem('search')))
+        sessionStorage.clear()
+        }else{
+        this.catalog = a
+        }
+        
         this.janr = category.data
-        var for_w = catalog.data.length / this.page_card
+        var for_w = a.length / this.page_card
         var daad = []
         for (let i = 0; i < for_w; i++) {
           daad.push(i + 1)
