@@ -775,6 +775,7 @@ body::-webkit-scrollbar-thumb {
   margin-left: 4px;
 }
 
+
 .main__paginator-list a {
   display: flex;
   flex-direction: row;

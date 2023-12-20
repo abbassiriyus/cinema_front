@@ -100,7 +100,7 @@
 
 									<div class="col-12">
 										<div class="sign__group">
-											<select id="sign__genre" class="sign__selectjs" multiple>
+											<select  id="sign__genre" class="sign__selectjs">
 												<option v-for="item in janr" :value="item.id">{{ item.title }}</option>
 											</select>
 										</div>
@@ -119,7 +119,7 @@
 
 									<div class="col-12">
 										<div class="sign__group">
-											<input id="sign__country" type="text" class="sign__input" placeholder="Mamlakatni tanlang">
+											<input id="sign__country" type="text" class="sign__input" placeholder="Mamlakatni kiriting">
 											<!-- <select id="sign__country" class="sign__selectjs" multiple>
 												<option value="Afghanistan">Afghanistan</option>
 												<option value="Åland Islands">Åland Islands</option>
@@ -466,19 +466,19 @@
 
 												<div class="col-12 col-md-6">
 													<div class="sign__group">
-														<input type="text" class="sign__input" :placeholder="key+1+' - qism nomi'">
+														<input type="text" id="serial_title" class="sign__input" :placeholder="key+1+' - qism nomi'">
 													</div>
 												</div>
 
 												<div class="col-12 col-md-6">
 													<div class="sign__group">
-														<input type="text" class="sign__input" placeholder="Joylangan sana">
+														<input type="text" id="serial_time" class="sign__input" placeholder="Joylangan sana">
 													</div>
 												</div>
 
 												<div class="col-12">
 													<div class="sign__group">
-														<input name="s1s1" class="sign__input" placeholder="iframe link" type="text">
+														<input name="s1s1" id="serial_video" class="sign__input" placeholder="iframe link" type="text">
 													</div>
 												</div>
 											</div>
@@ -541,6 +541,9 @@
 	</main>
 	<!-- end main content -->
 </template>
+<style>
+
+</style>
 
 <script>
 import axios from 'axios';
@@ -662,39 +665,50 @@ export default {
 		formdata.append("more_loking",0)
 
 		axios.post('https://api.uzdub.uz/api/v1/cinema',formdata).then(res=>{
-			var formdata1=new FormData()
-			formdata1("cinema_id",res.data[0].id)
-			formdata1("janr_id",document.querySelector("#sign__genre").value)
+			// var formdata1=new FormData()
+			// formdata1.append("cinema_id",res.data[0].id)
+			// formdata1.append("title",document.querySelector("#sign__genre").value)
 
-			axios.post("https://api.uzdub.uz/api/v1/janr_cinema",formdata1).then(res1=>{
-                var formdata2=new FormData()
-				formdata2("cinema_id",res.data[0].id)
-				formdata2("tarjimon_id",document.querySelector("#sign__director").value)
+			// axios.post("https://api.uzdub.uz/api/v1/janr",formdata1).then(res1=>{
+   
+			// })
+            
+			// for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
+			// var formdata2=new FormData()
+			// formdata2.append("cinema_id",res.data[0].id)
+			// formdata2.append("tarjimon_id",document.querySelectorAll("#sign__director")[i].value)
 
-				axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema",formdata2).then(res2=>{
-						var formdata3=new FormData()
-						formdata3.append("cinema_id",res.data[0].id)
-						formdata3.append("image",document.querySelectorAll("#sign__gallery-upload")[i].files[0])
+			// axios.post("https://api.uzdub.uz/api/v1/carousel",formdata2).then(res2=>{
 
-						axios.post('https://api.uzdub.uz/api/v1/image_cinema',formdata3).then(res3=>{
+			// })
+			// }
+                
+			// var formdata3=new FormData()
+			// formdata3.append("cinema_id",res.data[0].id)
+			// formdata3.append("image",document.querySelector("#sign__gallery-upload").files[0])
 
-				   		})
-						if(document.querySelector("#type2").getAttribute("aria-expanded")){
-                        var formdata4=new Data()
-						formdata4.append("")
-						formdata4.append("")
-						formdata4.append("")
+			// axios.post('https://api.uzdub.uz/api/v1/image_cinema',formdata3).then(res3=>{
 
-						axios.post(``).then(res=>{
-							alert("Media qo'shildi")
-							window.location.reload()
-						})
-						}else{
-							alert("Media qo'shildi")
-							window.location.reload()
-						}
+			// })
+
+			if(document.querySelector("#type2").getAttribute("aria-expanded")){
+                for (let i = 0; i < this.mavsum.length; i++) {
+				var formdata4=new FormData()
+				formdata4.append("video",document.querySelectorAll("#serial_video")[i].value)
+				formdata4.append("cinema_id",res.data[0].id)
+				formdata4.append("title",document.querySelectorAll("#serial_title")[i].value)
+				formdata4.append("time",document.querySelectorAll("#serial_time")[i].value)
+
+				axios.post(``,formdata4).then(res=>{
 				})
-			})
+				}
+				alert("Media qo'shildi")
+				window.location.reload()
+			}else{
+				alert("Media qo'shildi")
+				window.location.reload()
+			}
+			
 		}).catch(err=>{
 			alert("Media qo'shilmadi")
 		})
@@ -705,7 +719,7 @@ export default {
 	},
 	MavsumSlice(key){
     this.mavsum.splice(key,1)
-	}
+	},
 
 	}
 }
