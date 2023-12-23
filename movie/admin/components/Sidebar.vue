@@ -109,7 +109,7 @@
           >
 
           <ul class="dropdown-menu sidebar__dropdown-menu scrollbar-dropdown">
-            <li><NuxtLink to="add-item">Anime qo'shish</NuxtLink></li>
+            <li @click="Add()"><NuxtLink to="add-item">Anime qo'shish</NuxtLink></li>
           </ul>
         </li>
         <!-- end dropdown -->
@@ -154,6 +154,9 @@ export default {
     Logout(){
       window.location="/Signin"
       sessionStorage.clear()
+    },
+    Add(){
+      sessionStorage.removeItem("cinemaId")
     }
     
   },

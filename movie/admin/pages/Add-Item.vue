@@ -359,7 +359,7 @@
 							<div class="col-12 col-xl-6">
 								<div class="sign__group">
 									<select id="sign__director" class="sign__selectjs" multiple>
-										<option v-for="item in tarjima" :value="item.id">{{ item.full_name }}</option>
+										<option :id="item.id" v-for="item in tarjima" :value="item.id">{{ item.full_name }}</option>
 									</select>
 								</div>
 							</div>
@@ -557,6 +557,9 @@ export default {
 			tarjima:[],
 			mavsum:[1],
 			number:1,
+			tarjima_cinema:[],
+			janr_cinema:[],
+			image_cinema:[],
 		}
 	},
 
@@ -642,11 +645,57 @@ export default {
 			});
 		    }
 		}, 100);
+		var a=sessionStorage.getItem("cinemaId")
+		if(a){
+        axios.get("https://api.uzdub.uz/api/v1/cinema").then(res=>{
+			const Filter=res.data.filter(item=>item.id==a)
+			Filter.map(item=>{
+				document.querySelector("#cinema_title").value=item.title
+				document.querySelector("#cinema_text").value=item.description
+				document.querySelector("#cinema_time").value=item.time
+				document.querySelector("#sign__actors").value=item.ovoz_berdi
+				document.querySelector("#cinema_tarjima").value=item.language
+				document.querySelector("#age_limit").value=item.age_limit
+				document.querySelector("#sign__country").value=item.country
+				document.querySelector("#sign__tayming").value=item.tayming
+				document.querySelector("#cinema_payment").value=item.payment
+				document.querySelector("#cinema_year").value=item.year
+				document.querySelector("#cinema_appearance").value=item.appearance
+				document.querySelector("#cinema_treyler").value=item.treler
+				document.querySelector("#sign__quality").value=item.type
+				document.querySelector("#cinema_video").value=item.video
+				axios.get('https://api.uzdub.uz/seriallar').then(res1=>{
+                     const Filter1=res1.data.rows.filter(item=>item.cinema_id==Filter[0].id)
+					 if(Filter1){
+						 this.mavsum=Filter1
+						 setTimeout(() => {
+							for (let i = 0; i < Filter1.length; i++) {
+							 document.querySelectorAll("#serial_video")[i].value=Filter1[i].video
+							 document.querySelectorAll("#serial_time")[i].value=Filter1[i].time
+							 document.querySelectorAll("#serial_title")[i].value=Filter1[i].title
+						    }
+						 }, 1000);
+					 }
+				})
+			})
+		})
+		axios.get("https://api.uzdub.uz/api/v1/tarjima_cinema").then(res=>{
+			axios.get("https://api.uzdub.uz/api/v1/janr_cinema").then(res1=>{
+				axios.get("https://api.uzdub.uz/api/v1/image_cinema").then(res2=>{
+                   this.tarjima_cinema=res.data
+				   this.janr_cinema=res1.data
+				   this.image_cinema=res2.data
+                })
+			})
+		})
+		}
 	    })
+
 		
 	},
 	methods:{
     CinemaPost(){
+    if(!sessionStorage.getItem("cinemaId")){
 		var formdata=new FormData()
 		formdata.append("type",document.querySelector("#sign__quality").value)
 		formdata.append("title",document.querySelector("#cinema_title").value)
@@ -664,42 +713,35 @@ export default {
 		formdata.append("treler",document.querySelector("#cinema_treyler").value)
 		formdata.append("more_loking",0)
 
-		axios.post('https://api.uzdub.uz/api/v1/cinema',formdata).then(res=>{
-			// var formdata1=new FormData()
-			// formdata1.append("cinema_id",res.data[0].id)
-			// formdata1.append("title",document.querySelector("#sign__genre").value)
+		axios.post(`https://api.uzdub.uz/api/v1/cinema`,formdata).then(res=>{
+			for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
+			var formdata2=new FormData()
+			formdata2.append("cinema_id",res.data.id)
+			formdata2.append("tarjimon_id",document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-			// axios.post("https://api.uzdub.uz/api/v1/janr",formdata1).then(res1=>{
-   
-			// })
-            
-			// for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
-			// var formdata2=new FormData()
-			// formdata2.append("cinema_id",res.data[0].id)
-			// formdata2.append("tarjimon_id",document.querySelectorAll("#sign__director")[i].value)
+			axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema",formdata2).then(res2=>{
 
-			// axios.post("https://api.uzdub.uz/api/v1/carousel",formdata2).then(res2=>{
+			})
+			}
+			var formdata1=new FormData()
+			formdata1.append("cinema_id",res.data.id)
+			formdata1.append("janr_id",document.querySelector("#sign__genre").value)
 
-			// })
-			// }
-                
-			// var formdata3=new FormData()
-			// formdata3.append("cinema_id",res.data[0].id)
-			// formdata3.append("image",document.querySelector("#sign__gallery-upload").files[0])
+			axios.post("https://api.uzdub.uz/api/v1/janr_cinema",formdata1).then(res1=>{
+			var formdata3=new FormData()
+			formdata3.append("cinema_id",res.data.id)
+			formdata3.append("image",document.querySelector("#sign__gallery-upload").files[0])
 
-			// axios.post('https://api.uzdub.uz/api/v1/image_cinema',formdata3).then(res3=>{
-
-			// })
-
+			axios.post('https://api.uzdub.uz/api/v1/image_cinema',formdata3).then(res3=>{
 			if(document.querySelector("#type2").getAttribute("aria-expanded")){
-                for (let i = 0; i < this.mavsum.length; i++) {
+            	for (let i = 0; i < this.mavsum.length; i++) {
 				var formdata4=new FormData()
 				formdata4.append("video",document.querySelectorAll("#serial_video")[i].value)
-				formdata4.append("cinema_id",res.data[0].id)
+				formdata4.append("cinema_id",res.data.id)
 				formdata4.append("title",document.querySelectorAll("#serial_title")[i].value)
 				formdata4.append("time",document.querySelectorAll("#serial_time")[i].value)
 
-				axios.post(``,formdata4).then(res=>{
+				axios.post(`https://api.uzdub.uz/seriallar`,formdata4).then(res4=>{
 				})
 				}
 				alert("Media qo'shildi")
@@ -708,17 +750,124 @@ export default {
 				alert("Media qo'shildi")
 				window.location.reload()
 			}
+			})
 			
+			})
 		}).catch(err=>{
 			alert("Media qo'shilmadi")
 		})
+	}else{
+		var formdata=new FormData()
+		formdata.append("type",document.querySelector("#sign__quality").value)
+		formdata.append("title",document.querySelector("#cinema_title").value)
+		formdata.append("description",document.querySelector("#cinema_text").value)
+		formdata.append("time",document.querySelector("#cinema_time").value)
+		formdata.append("ovoz_berdi",document.querySelector("#sign__actors").value)
+		formdata.append("language",document.querySelector("#cinema_tarjima").value)
+		formdata.append("tayming",document.querySelector("#sign__tayming").value)
+		formdata.append("age_limit",document.querySelector("#age_limit").value)
+		formdata.append("country",document.querySelector("#sign__country").value)
+		formdata.append("video",!document.querySelector("#type2").getAttribute("aria-expanded")?document.querySelector("#cinema_video").value:"null")
+		formdata.append("payment",document.querySelector("#cinema_payment").value)
+		formdata.append("year",document.querySelector("#cinema_year").value)
+		formdata.append("appearance",document.querySelector("#cinema_appearance").value)
+		formdata.append("treler",document.querySelector("#cinema_treyler").value)
+		formdata.append("more_loking",0)
+
+		axios.put(`https://api.uzdub.uz/api/v1/cinema/${sessionStorage.getItem("cinemaId")}`,formdata).then(res=>{
+			const Filter=this.tarjima_cinema.filter(item=>item.cinema_id==sessionStorage.getItem("cinemaId"))
+			if(document.querySelectorAll(".ss-value").length>Filter.length){
+			for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
+			var formdata2=new FormData()
+			formdata2.append("cinema_id",sessionStorage.getItem("cinemaId"))
+			formdata2.append("tarjimon_id",document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
+
+			axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema",formdata2).then(res2=>{
+
+			})
+			}
+			}else{
+			for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
+			var formdata2=new FormData()
+			formdata2.append("cinema_id",sessionStorage.getItem("cinemaId"))
+			formdata2.append("tarjimon_id",document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
+
+			axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`,formdata2).then(res2=>{
+
+			})
+			}
+			}
+			
+			const Filter1=this.janr_cinema.filter(item=>item.cinema_id==sessionStorage.getItem("cinemaId"))
+
+			var formdata1=new FormData()
+			formdata1.append("cinema_id",sessionStorage.getItem("cinemaId"))
+			formdata1.append("janr_id",document.querySelector("#sign__genre").value)
+
+			axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[0].id}`,formdata1).then(res1=>{
+			const Filter2=this.image_cinema.filter(item=>item.cinema_id==sessionStorage.getItem("cinemaId"))
+
+			var formdata3=new FormData()
+			formdata3.append("cinema_id",sessionStorage.getItem("cinemaId"))
+			formdata3.append("image",document.querySelector("#sign__gallery-upload").files[0])
+
+			axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[0].id}`,formdata3).then(res3=>{
+			if(document.querySelector("#type2").getAttribute("aria-expanded")){
+            	for (let i = 0; i < this.mavsum.length; i++) {
+		
+				if(this.mavsum!=1){
+				var formdata4=new FormData()
+				formdata4.append("video",document.querySelectorAll("#serial_video")[i].value)
+				formdata4.append("cinema_id",sessionStorage.getItem("cinemaId"))
+				formdata4.append("title",document.querySelectorAll("#serial_title")[i].value)
+				formdata4.append("time",document.querySelectorAll("#serial_time")[i].value)
+
+				axios.put(`https://api.uzdub.uz/seriallar/${this.mavsum[i].id}`,formdata4).then(res4=>{
+				})
+				}else{
+				var formdata4=new FormData()
+				formdata4.append("video",document.querySelectorAll("#serial_video")[i].value)
+				formdata4.append("cinema_id",sessionStorage.getItem("cinemaId"))
+				formdata4.append("title",document.querySelectorAll("#serial_title")[i].value)
+				formdata4.append("time",document.querySelectorAll("#serial_time")[i].value)
+
+				axios.post(`https://api.uzdub.uz/seriallar`,formdata4).then(res4=>{
+				})
+				}
+				}
+				alert("Media o'zgartirildi")
+				window.location.reload()
+			}else{
+				alert("Media o'zgartirilmadi")
+				window.location.reload()
+			}
+			})
+			
+			})
+		}).catch(err=>{
+			alert("Media qo'shilmadi")
+		})
+	}
 	},
 	Mavsum(){
-		this.mavsum.push(this.number+1)
-		this.number=this.number+1
+		this.mavsum.push(1)
 	},
 	MavsumSlice(key){
-    this.mavsum.splice(key,1)
+	var a=this.mavsum
+	for (let i = 0; i < a.length; i++) {
+		console.log(a,"hello");
+		if(key==i){
+			if(a[i]==1){
+				this.mavsum.splice(key,1)
+			}else{
+				axios.delete(`https://api.uzdub.uz/seriallar/${a[i].id}`).then(res=>{
+					alert("Serial o'chirildi")
+				}).catch(err=>{
+					alert("Serial o'chirilmadi")
+				})
+			}
+		}
+	}
 	},
 
 	}

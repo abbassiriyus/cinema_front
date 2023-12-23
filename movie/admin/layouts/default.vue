@@ -8,10 +8,7 @@
     </nav>
   </div>
   <div id="two">
-    <nav>
-      <Header />
-      <nuxt />
-    </nav>
+    <Signin/>
   </div>
   </div>
 </template>
@@ -22,18 +19,26 @@
 </style>
 
 <script>
+import Signin from '~/pages/Signin.vue'
+
 export default {
-  name: 'DefaultPage',
-  
-  mounted(){
-  var a=sessionStorage.getItem("token")
-  if(a){
-    document.querySelector("#two").style="display:none;"
-    document.querySelector("#one").style="display:block"
-  }else{
-    document.querySelector("#two").style="display:block"
-    document.querySelector("#one").style="display:none"
-  }
-  }
+    name: 'DefaultPage',
+    mounted() {
+        this.login();
+    },
+    methods: {
+        login() {
+            var a = sessionStorage.getItem("token");
+            if (a) {
+                document.querySelector("#two").style = "display:none;";
+                document.querySelector("#one").style = "display:block";
+            }
+            else {
+                document.querySelector("#two").style = "display:block";
+                document.querySelector("#one").style = "display:none";
+            }
+        }
+    },
+    components: { Signin }
 }
 </script>
