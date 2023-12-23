@@ -666,7 +666,7 @@ export default {
 				document.querySelector("#cinema_video").value=item.video
 				axios.get('https://api.uzdub.uz/seriallar').then(res1=>{
                      const Filter1=res1.data.rows.filter(item=>item.cinema_id==Filter[0].id)
-					 if(Filter1){
+					 if(Filter1.length>0){
 						 this.mavsum=Filter1
 						 setTimeout(() => {
 							for (let i = 0; i < Filter1.length; i++) {
@@ -776,8 +776,8 @@ export default {
 
 		axios.put(`https://api.uzdub.uz/api/v1/cinema/${sessionStorage.getItem("cinemaId")}`,formdata).then(res=>{
 			const Filter=this.tarjima_cinema.filter(item=>item.cinema_id==sessionStorage.getItem("cinemaId"))
-			if(document.querySelectorAll(".ss-value").length>Filter.length){
 			for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
+			if(i>Filter.length){
 			var formdata2=new FormData()
 			formdata2.append("cinema_id",sessionStorage.getItem("cinemaId"))
 			formdata2.append("tarjimon_id",document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
@@ -785,9 +785,7 @@ export default {
 			axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema",formdata2).then(res2=>{
 
 			})
-			}
-			}else{
-			for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
+		    }else{
 			var formdata2=new FormData()
 			formdata2.append("cinema_id",sessionStorage.getItem("cinemaId"))
 			formdata2.append("tarjimon_id",document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
@@ -795,8 +793,8 @@ export default {
 			axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`,formdata2).then(res2=>{
 
 			})
-			}
-			}
+		    }
+	     	}
 			
 			const Filter1=this.janr_cinema.filter(item=>item.cinema_id==sessionStorage.getItem("cinemaId"))
 
@@ -815,7 +813,7 @@ export default {
 			if(document.querySelector("#type2").getAttribute("aria-expanded")){
             	for (let i = 0; i < this.mavsum.length; i++) {
 		
-				if(this.mavsum!=1){
+				if(this.mavsum[i]!=1){
 				var formdata4=new FormData()
 				formdata4.append("video",document.querySelectorAll("#serial_video")[i].value)
 				formdata4.append("cinema_id",sessionStorage.getItem("cinemaId"))
@@ -838,14 +836,14 @@ export default {
 				alert("Media o'zgartirildi")
 				window.location.reload()
 			}else{
-				alert("Media o'zgartirilmadi")
+				alert("Media o'zgartirildi")
 				window.location.reload()
 			}
 			})
 			
 			})
 		}).catch(err=>{
-			alert("Media qo'shilmadi")
+			alert("Media o'zgartirilmadi")
 		})
 	}
 	},
