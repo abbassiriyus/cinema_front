@@ -12,7 +12,7 @@
                 </NuxtLink>
 
                 <div class="sign__group">
-                  <input type="text" class="sign__input" placeholder="Email" />
+                  <input type="text" class="sign__input" id="email_input" placeholder="Email" />
                 </div>
 
                 <div class="sign__group sign__group--checkbox">
@@ -29,7 +29,7 @@
                   >
                 </div>
 
-                <button class="sign__btn" type="button">
+                <button @click="EmailPost()" class="sign__btn" type="button">
                   <span>Qayta tiklash</span>
                 </button>
 
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
   name: 'Faq',
 
@@ -62,5 +63,16 @@ export default {
       }
     }
   },
+  methods:{
+    EmailPost(){
+    var formdata=new FormData()
+    formdata.append('email',document.querySelector("#email_input").value)
+    axios.post('https://api.uzdub.uz/send-email',formdata).then(res=>{
+      alert("Emailga parolingiz yuborildi")
+    }).catch(err=>{
+      alert("Emailga parolingiz yuborilmadi")
+    })
+    }
+  }
 }
 </script>

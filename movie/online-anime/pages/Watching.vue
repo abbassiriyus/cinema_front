@@ -112,7 +112,7 @@
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://kinescope.io/embed/sppLFtmKoUar14Q2y737wg"
+                  :src="data_get.video"
                   allow="autoplay; fullscreen; picture-in-picture; encrypted-media;"
                   frameborder="0"
                   allowfullscreen
@@ -828,6 +828,7 @@ axios.post('https://api.uzdub.uz/api/v1/comment/', data, {
         });
   }else{
 alert("user not")
+window.location="/Signin"
   }},
    click_like(bol,id){
     var data=new FormData()
@@ -848,6 +849,7 @@ axios.post(url, data)
   })
  }else{
 alert("user not")
+window.location="/Signin"
     }
 var data =new FormData()
 
@@ -884,6 +886,7 @@ axios.post('https://api.uzdub.uz/api/v1/sharx/', data, {
         });
   
    }else{
+    window.location="/Signin"
 alert("user not")
    }
 

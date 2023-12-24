@@ -85,9 +85,9 @@
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
 											<select id="sign__quality" class="sign__selectjs">
-												<option value="HD-1080">HD 1080</option>
-												<option value="HD-720">HD 720</option>
-												<option value="420-p">420 P</option>
+												<option value="Full HD">Full HD</option>
+												<option value="HD 720">HD 720</option>
+												<option value="420 P">420 P</option>
 											</select>
 										</div>
 									</div>

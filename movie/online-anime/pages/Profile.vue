@@ -860,8 +860,8 @@ methods: {
       try {
         const response = await axios.get(`https://api.uzdub.uz/api/lookme/${(JSON.parse(localStorage.getItem("user_data")).id)}`);
         this.fikr_length=response.data.fikr
-        this.sharx=response.data.sharx
-        this.cinema_data=response.data.all
+        this.sharx=response.data.sharx.filter(item=>item.titlea)
+        this.cinema_data=response.data.all.filter(item=>item.title)
         this.pay=response.data.pay
       } catch (error) {
         console.error(error);
