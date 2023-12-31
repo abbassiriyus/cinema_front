@@ -51,6 +51,15 @@
         </div>
       </div>
     </div>
+    <div  id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
+  					<div class="d-flex">
+    					<div id="alert_text" class="toast-body">
+      						Hello, world! This is a toast message.
+    					</div>
+    					<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" @click="AlertNone()" aria-label="Close"></button>
+        </div>
+        
+	</div>
   </div>
 </template>
 <script>
@@ -87,9 +96,16 @@ export default {
         localStorage.setItem("user_data",JSON.stringify(user.data))
         window.location="/profile"
       } catch (error) {
-        alert("xato kiritildi")
+        document.querySelector("#alert_modal").style="display:block"
+        setTimeout(()=>{
+				document.querySelector('#alert_modal').style = 'display:none'
+				},3000)
+			  document.querySelector("#alert_text").innerHTML="Xato kiritildi"
         console.error(error)  }
-    }
+    },
+    AlertNone(){
+			document.querySelector("#alert_modal").style="display:none"
+		}
   }
 }
 </script>

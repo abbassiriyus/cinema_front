@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6 col-sm-6 col-12">
 					<p class="footer__tagline">
-						DUBGO saytida o'zbek <br />
+						UZDUB saytida o'zbek <br />
 						tilida onlayn anime <br />
 						tomosha qiling.
 					</p>
@@ -47,16 +47,16 @@
 					<h6 class="footer__title">Ko‘rib chiqish</h6>
 					<ul class="footer__list">
 						<li>
-							<NuxtLink to="Profile">Film</NuxtLink>
+							<NuxtLink to="Catalog">Film</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink to="catalog">Seriel</NuxtLink>
+							<NuxtLink to="Catalog">Seriel</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink to="catalog">Ongoing</NuxtLink>
+							<NuxtLink to="Catalog">Ongoing</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink to="catalog">OVA</NuxtLink>
+							<NuxtLink to="Catalog">OVA</NuxtLink>
 						</li>
 					</ul>
 				</div>
@@ -66,14 +66,14 @@
 						<li>
 							<NuxtLink to="about">Biz haqimizda</NuxtLink>
 						</li>
-						<li>
+						<!-- <li>
 							<NuxtLink to="pricing">Tariflar</NuxtLink>
-						</li>
+						</li> -->
 						<li>
 							<NuxtLink to="faq">Yordam markazi</NuxtLink>
 						</li>
 						<li>
-							<NuxtLink to="contact">Kontaktlar</NuxtLink>
+							<NuxtLink to="Contacts">Kontaktlar</NuxtLink>
 						</li>
 					</ul>
 				</div>
@@ -82,7 +82,7 @@
 				<!-- footer copyright -->
 				<div class="col-12">
 					<div class="footer__copyright">
-						<small>© DUBGO sayti, 2023-2024 Asror Shodiyev tomonidan
+						<small>© UZDUB sayti, 2023-2024 Asror Shodiyev tomonidan
 							yaratilgan.</small>
 					</div>
 				</div>

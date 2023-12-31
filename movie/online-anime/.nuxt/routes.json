@@ -1,0 +1,86 @@
+[
+  {
+    "name": "404error",
+    "path": "/404error",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/404error.vue",
+    "chunkName": "pages/404error",
+    "_name": "_768eede9"
+  },
+  {
+    "name": "About",
+    "path": "/About",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/About.vue",
+    "chunkName": "pages/About",
+    "_name": "_33a830b8"
+  },
+  {
+    "name": "Catalog",
+    "path": "/Catalog",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Catalog.vue",
+    "chunkName": "pages/Catalog",
+    "_name": "_62560b20"
+  },
+  {
+    "name": "Contacts",
+    "path": "/Contacts",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Contacts.vue",
+    "chunkName": "pages/Contacts",
+    "_name": "_bfeac5e8"
+  },
+  {
+    "name": "Faq",
+    "path": "/Faq",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Faq.vue",
+    "chunkName": "pages/Faq",
+    "_name": "_03055326"
+  },
+  {
+    "name": "Forgot",
+    "path": "/Forgot",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Forgot.vue",
+    "chunkName": "pages/Forgot",
+    "_name": "_7a77ac1c"
+  },
+  {
+    "name": "Pricing",
+    "path": "/Pricing",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Pricing.vue",
+    "chunkName": "pages/Pricing",
+    "_name": "_67bc9b9d"
+  },
+  {
+    "name": "Profile",
+    "path": "/Profile",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Profile.vue",
+    "chunkName": "pages/Profile",
+    "_name": "_1574dc00"
+  },
+  {
+    "name": "Signin",
+    "path": "/Signin",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Signin.vue",
+    "chunkName": "pages/Signin",
+    "_name": "_59a4e11b"
+  },
+  {
+    "name": "SignUp",
+    "path": "/SignUp",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/SignUp.vue",
+    "chunkName": "pages/SignUp",
+    "_name": "_37a023b1"
+  },
+  {
+    "name": "Watching",
+    "path": "/Watching",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Watching.vue",
+    "chunkName": "pages/Watching",
+    "_name": "_003e796c"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_e31cbaee"
+  }
+]

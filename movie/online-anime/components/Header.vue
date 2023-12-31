@@ -8,12 +8,11 @@
 						<div class="header__content">
 							<!-- header logo -->
 							<NuxtLink to="/" class="header__logo">
-								<img src="/img/logo.svg" alt="" />
+								<img src="/img/logo.svg" alt="logo" />
 							</NuxtLink>
 							<!-- end header logo -->
-
 							<!-- header categories -->
-							<div class="header__categories">
+							<!-- <div class="header__categories">
 								<button class="header__categories-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<span></span>
 									<span></span>
@@ -35,23 +34,23 @@
 										</li>
 									</ul>
 								</div>
-							</div>
+							</div> -->
 							<!-- end header categories -->
 
 							<!-- header nav -->
 							<ul class="header__nav">
 								<!-- dropdown -->
 								<li class="header__nav-item">
-									<NuxtLink class="header__nav-link" to="/watching">Bosh sahifa</NuxtLink>
+									<NuxtLink class="header__nav-link" to="/">Bosh sahifa</NuxtLink>
 								</li>
 								<!-- end dropdown -->
 
 								<li class="header__nav-item">
 									<NuxtLink class="header__nav-link" to="catalog">Katalog</NuxtLink>
 								</li>
-								<li class="header__nav-item">
+								<!-- <li class="header__nav-item">
 									<NuxtLink class="header__nav-link" to="pricing">Narxlar</NuxtLink>
-								</li>
+								</li> -->
 							</ul>
 							<!-- end header nav -->
 
@@ -67,12 +66,9 @@
 										</svg>
 									</button>
 								</form>
-								<NuxtLink v-if="token" to="profile" class="header__sign-in">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-										<path
-											d="M20,12a1,1,0,0,0-1-1H11.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L11.41,13H19A1,1,0,0,0,20,12ZM17,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V16a1,1,0,0,0-2,0v3a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V8a1,1,0,0,0,2,0V5A3,3,0,0,0,17,2Z" />
-									</svg>
-									<span>Profile</span>
+								<div class=""></div>
+								<NuxtLink v-if="token" to="profile" class="profile__avatar m-0">
+									<img src="https://i.pinimg.com/564x/ff/9c/86/ff9c8636ef87e9410d14231ae7861e23.jpg" alt="">
 								</NuxtLink>
 								<NuxtLink v-else to="signin" class="header__sign-in">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -101,7 +97,7 @@
 		<div class="menu">
 			<!-- menu search -->
 			<form action="#" class="menu__search">
-				<input type="text" placeholder="Qidirish" class="search_data1"/>
+				<input type="text" placeholder="Qidirish" class="search_data1" />
 				<button type="button">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path @click="getData1()"
@@ -116,16 +112,16 @@
 			<ul class="menu__nav">
 				<!-- dropdown -->
 				<li class="menu__nav-item">
-					<NuxtLink class="menu__nav-link" to="index">Bosh sahifa</NuxtLink>
+					<NuxtLink class="menu__nav-link" to="/">Bosh sahifa</NuxtLink>
 				</li>
 				<!-- end dropdown -->
 				<li class="menu__nav-item">
 					<NuxtLink class="menu__nav-link" to="catalog" aria-expanded="false">Katalog</NuxtLink>
 				</li>
-
+				<!-- 
 				<li class="menu__nav-item">
 					<NuxtLink to="pricing" class="menu__nav-link">Narxlar</NuxtLink>
-				</li>
+				</li> -->
 			</ul>
 			<!-- end menu nav -->
 		</div>
@@ -136,29 +132,29 @@
 <script>
 export default {
 	name: 'HeaderPage',
-mounted(){
-this.token=localStorage.getItem("token")
-},
-methods:{
- getData() {
-	sessionStorage.setItem("search",document.querySelectorAll('.search_data')[0].value)
-	setTimeout(() => {
-		window.location='/catalog'
-	}, 1000);
-},
-getData1() {
-	sessionStorage.setItem("search",document.querySelectorAll('.search_data1')[0].value)
-	setTimeout(() => {
-		window.location='/catalog'
-	}, 1000);
-}
+	mounted() {
+		this.token = localStorage.getItem("token")
+	},
+	methods: {
+		getData() {
+			sessionStorage.setItem("search", document.querySelectorAll('.search_data')[0].value)
+			setTimeout(() => {
+				window.location = '/catalog'
+			}, 1000);
+		},
+		getData1() {
+			sessionStorage.setItem("search", document.querySelectorAll('.search_data1')[0].value)
+			setTimeout(() => {
+				window.location = '/catalog'
+			}, 1000);
+		}
 
-},
-data(){
-	return {
-		token:null,
+	},
+	data() {
+		return {
+			token: null,
+		}
 	}
-}
 
 
 }

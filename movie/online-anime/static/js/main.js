@@ -1,5 +1,3 @@
-
-
 (function (window, document, undefined) {
 	'use strict';
 
@@ -16,13 +14,5 @@
 		}
 
 		headerBtn.addEventListener('click', toggleHeaderMenu);
-	}
-	/*==============================
-
-	/*==============================
-	Player
-	==============================*/
-	if (document.querySelector('#player')) {
-		const player = new Plyr(document.querySelector('#player'));
 	}
 })(window, document);
