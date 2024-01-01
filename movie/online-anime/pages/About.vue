@@ -233,9 +233,9 @@
 					<div class="col-12 col-lg-4">
 						<div class="how">
 							<span class="how__number">03</span>
-							<h3 class="how__title">DUBGO dan rohatlaning</h3>
+							<h3 class="how__title">UZDUB dan rohatlaning</h3>
 							<p class="how__text">
-								Cheksiz animelar oqimi kutayotgan DUBGO olamiga sho‘ng‘ib
+								Cheksiz animelar oqimi kutayotgan UZDUB olamiga sho‘ng‘ib
 								keting. Bizning keng animelar to'plamimiz bilan hamma uchun
 								nimadir bor.
 							</p>

@@ -28,11 +28,6 @@ export default {
 			},
 			{
 				type: 'text/javascript',
-				src: '/js/smooth-scrollbar.js',
-				body: true
-			},
-			{
-				type: 'text/javascript',
 				src: '/js/slimselect.min.js',
 				body: true
 			},

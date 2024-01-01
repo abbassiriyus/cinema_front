@@ -367,7 +367,6 @@
 									<div class="item">
 										<div @click="handleClick(cinema.id)" class="item__cover">
 											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
-											<img v-else src="img/covers/14.png" alt="" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
 												<img style="height:40px;" src="/img/USD.svg" alt="" />
