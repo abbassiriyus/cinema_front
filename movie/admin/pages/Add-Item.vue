@@ -25,17 +25,20 @@
 
 									<div class="col-12">
 										<div class="sign__group">
-											<textarea id="cinema_text" name="text" class="sign__textarea" placeholder="Tavsif"></textarea>
+											<textarea id="cinema_text" name="text" class="sign__textarea"
+												placeholder="Tavsif"></textarea>
 										</div>
 									</div>
 									<div class="col-12">
 										<div class="sign__group">
-											<input id="sign__gallery-upload" type="text" class="sign__input" placeholder="Kino rasmini joylashtiring">
+											<input id="sign__gallery-upload" type="text" class="sign__input"
+												placeholder="Kino rasmini joylashtiring">
 										</div>
 									</div>
 									<div class="col-12">
 										<div class="sign__group">
-											<input id="sign__gallery-upload" type="text" class="sign__input" placeholder="Kino orqa foni uchun rasm joylashtiring">
+											<input id="sign__gallery-upload" type="text" class="sign__input"
+												placeholder="Kino orqa foni uchun rasm joylashtiring">
 										</div>
 									</div>
 									<!-- <div class="col-12">
@@ -54,7 +57,8 @@
 									</div> -->
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input id="cinema_year" type="text" class="sign__input" placeholder="Yilni kiriting">
+											<input id="cinema_year" type="text" class="sign__input"
+												placeholder="Yilni kiriting">
 										</div>
 									</div>
 
@@ -87,7 +91,8 @@
 
 									<div class="col-12">
 										<div class="sign__group">
-											<input id="cinema_treyler" type="text" class="sign__input" placeholder="Treyler">
+											<input id="cinema_treyler" type="text" class="sign__input"
+												placeholder="Treyler">
 										</div>
 									</div>
 
@@ -108,26 +113,30 @@
 
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input id="age_limit" type="text" class="sign__input" placeholder="Yosh chegarasi">
+											<input id="age_limit" type="text" class="sign__input"
+												placeholder="Yosh chegarasi">
 										</div>
 									</div>
 
 									<div class="col-12">
 										<div class="sign__group">
 											<select id="sign__genre" class="sign__selectjs ishlaydi" multiple>
-												<option  v-for="item in janr" :value="item.id">{{ item.title }}</option>
+												<option :id="item.id" class="sign__genre_option" v-for="item in janr"
+													:value="item.id">{{ item.title }}</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input id="cinema_time" type="text" class="sign__input" placeholder="Davomiyligi">
+											<input id="cinema_time" type="text" class="sign__input"
+												placeholder="Davomiyligi">
 										</div>
 									</div>
 
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
-											<input id="cinema_tarjima" type="text" class="sign__input" placeholder="Tarjima">
+											<input id="cinema_tarjima" type="text" class="sign__input"
+												placeholder="Tarjima">
 										</div>
 									</div>
 
@@ -244,7 +253,8 @@
 												<option value="Korea">Korea</option>
 												<option value="Kuwait">Kuwait</option>
 												<option value="Kyrgyzstan">Kyrgyzstan</option>
-												<option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+												<option value="Lao People's Democratic Republic">Lao People's Democratic
+													Republic</option>
 												<option value="Latvia">Latvia</option>
 												<option value="Lebanon">Lebanon</option>
 												<option value="Lesotho">Lesotho</option>
@@ -381,13 +391,15 @@
 							<div class="col-12 col-xl-6">
 								<div class="sign__group">
 									<select id="sign__director" class="sign__selectjs" multiple>
-										<option :id="item.id" v-for="item in tarjima" :value="item.id">{{ item.full_name }}</option>
+										<option class="sign__director_option" :id="item.id" v-for="item in tarjima"
+											:value="item.id">{{ item.full_name }}</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-12 col-xl-6">
 								<div class="sign__group">
-									<input style="width:100%;" id="sign__tayming" type="text" class="sign__input" placeholder="Tayming">
+									<input style="width:100%;" id="sign__tayming" type="text" class="sign__input"
+										placeholder="Tayming">
 								</div>
 							</div>
 							<div class="col-12">
@@ -417,7 +429,8 @@
 							<div class="col-12">
 								<div class="collapse show multi-collapse">
 									<div class="sign__group">
-										<input name="ova" id="cinema_video" class="sign__input" placeholder="Iframe link" type="text">
+										<input name="ova" id="cinema_video" class="sign__input" placeholder="Iframe link"
+											type="text">
 									</div>
 								</div>
 							</div>
@@ -474,20 +487,22 @@
 
 												<div class="col-12 col-md-6">
 													<div class="sign__group">
-														<input type="text" id="serial_time" class="sign__input" placeholder="Joylangan sana">
+														<input type="text" id="serial_time" class="sign__input"
+															placeholder="Joylangan sana">
 													</div>
 												</div>
 
 												<div class="col-12">
 													<div class="sign__group">
-														<input name="s1s1" id="serial_video" class="sign__input" placeholder="iframe link"
-															type="text">
+														<input name="s1s1" id="serial_video" class="sign__input"
+															placeholder="iframe link" type="text">
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="col-12 col-sm-4 col-md-3 col-xl-2">
-											<button type="button" @click="Mavsum()" class="sign__btn sign__btn--add"><span>qism
+											<button type="button" @click="Mavsum()"
+												class="sign__btn sign__btn--add"><span>qism
 													qo'shing</span></button>
 										</div>
 										<!-- end episode -->
@@ -640,7 +655,7 @@ export default {
 				}
 			});
 		}
-        
+
 
 		axios.get('https://api.uzdub.uz/api/v1/janr').then(res => {
 			this.janr = res.data
@@ -686,8 +701,8 @@ export default {
 						document.querySelector("#cinema_treyler").value = item.treler
 						document.querySelector("#sign__quality").value = item.type
 						document.querySelector("#cinema_video").value = item.video
-						document.querySelectorAll("#sign__gallery-upload")[0].value=item.images[0].image
-						document.querySelectorAll("#sign__gallery-upload")[1].value=item.images[1].image
+						document.querySelectorAll("#sign__gallery-upload")[0].value = item.images[0].image
+						document.querySelectorAll("#sign__gallery-upload")[1].value = item.images[1].image
 
 						axios.get('https://api.uzdub.uz/seriallar').then(res1 => {
 							const Filter1 = res1.data.rows.filter(item => item.cinema_id == Filter[0].id)
@@ -720,7 +735,6 @@ export default {
 	},
 	methods: {
 		CinemaPost() {
-
 			if (!sessionStorage.getItem("cinemaId")) {
 				var formdata = new FormData()
 				formdata.append("type", document.querySelector("#sign__quality").value)
@@ -732,7 +746,7 @@ export default {
 				formdata.append("tayming", document.querySelector("#sign__tayming").value)
 				formdata.append("age_limit", document.querySelector("#age_limit").value)
 				formdata.append("country", document.querySelector("#sign__country").value)
-				formdata.append("video",document.querySelector("#cinema_video").value)
+				formdata.append("video", document.querySelector("#cinema_video").value)
 				formdata.append("payment", document.querySelector("#cinema_payment").value)
 				formdata.append("year", document.querySelector("#cinema_year").value)
 				formdata.append("appearance", document.querySelector("#cinema_appearance").value)
@@ -741,54 +755,71 @@ export default {
 
 				axios.post(`https://api.uzdub.uz/api/v1/cinema`, formdata).then(res => {
 					for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
-						var formdata2 = new FormData()
-						formdata2.append("cinema_id", res.data.id)
-						formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
+						var a = false
+						for (let j = 0; j < document.querySelectorAll(".sign__director_option").length; j++) {
+							if (document.querySelectorAll(".sign__director_option")[j].getAttribute("id") == document.querySelectorAll(".ss-value")[i].getAttribute("data-id")) {
+								a = true
+							}
+						}
+						if (a) {
+							// console.log(document.querySelectorAll(".ss-value")[i].getAttribute("data-id"),"tarjima");
+							var formdata2 = new FormData()
+							formdata2.append("cinema_id", res.data.id)
+							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-						axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema", formdata2).then(res2 => {
+							axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema", formdata2).then(res2 => {
 
-						})
+							})
+						}
 					}
 
-					var formdata5 = new FormData()
-					formdata5.append("cinema_id", res.data.id)
-					axios.post('https://api.uzdub.uz/api/v1/carousel', formdata5).then(res5 => {
+					for (let j = 0; j < document.querySelectorAll(".ss-value").length; j++) {
+						var a = false
+						for (let i = 0; i < document.querySelectorAll(".sign__genre_option").length; i++) {
+							if (document.querySelectorAll(".sign__genre_option")[i].getAttribute("id") == document.querySelectorAll(".ss-value")[j].getAttribute("data-id")) {
+								a = true
+							}
+						}
+						if (a) {
+							var formdata1 = new FormData()
+							formdata1.append("cinema_id", res.data.id)
+							formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
 
-					})
+							axios.post("https://api.uzdub.uz/api/v1/janr_cinema", formdata1).then(res1 => {
 
-					var formdata1 = new FormData()
-					formdata1.append("cinema_id", res.data.id)
-					formdata1.append("janr_id", document.querySelector("#sign__genre").value)
+							})
+							// console.log(document.querySelectorAll(".ss-value")[j].getAttribute("data-id"),"janr")
+						}
+					}
 
-					axios.post("https://api.uzdub.uz/api/v1/janr_cinema", formdata1).then(res1 => {
-                        
-						for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
+					for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
 						var formdata3 = new FormData()
 						formdata3.append("cinema_id", res.data.id)
 						formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
 
 						axios.post('https://api.uzdub.uz/api/v1/image_cinema', formdata3).then(res3 => {
 
-							    
-							
-						})
-							
-						}
-					
-						if(document.querySelector("#cinema_carusel").value==0){
-									var formdata4=new FormData()
-									formdata4.append("cinema_id",res.data.id)
-									axios.post(`https://api.uzdub.uz/api/v1/carousel`,formdata4).then(res=>{
+
 
 						})
-						}
-						document.querySelector("#alert_modal").style = "display:block"
-						document.querySelector("#alert_text").innerHTML = "Media qo'shildi"
-						setTimeout(() => {
-						window.location.reload()
-					    }, 1000)
 
-					})
+					}
+
+					if (document.querySelector("#cinema_carusel").value == 0) {
+						var formdata4 = new FormData()
+						formdata4.append("cinema_id", res.data.id)
+						axios.post(`https://api.uzdub.uz/api/v1/carousel`, formdata4).then(res => {
+
+						})
+					}
+
+					document.querySelector("#alert_modal").style = "display:block"
+					document.querySelector("#alert_text").innerHTML = "Media qo'shildi"
+
+					setTimeout(() => {
+						// window.location.reload()
+					}, 1000)
+
 				}).catch(err => {
 					document.querySelector("#alert_modal").style = "display:block"
 					document.querySelector("#alert_text").innerHTML = "Media qo'shilmadi"
@@ -804,7 +835,7 @@ export default {
 				formdata.append("tayming", document.querySelector("#sign__tayming").value)
 				formdata.append("age_limit", document.querySelector("#age_limit").value)
 				formdata.append("country", document.querySelector("#sign__country").value)
-				formdata.append("video",document.querySelector("#cinema_video").value)
+				formdata.append("video", document.querySelector("#cinema_video").value)
 				formdata.append("payment", document.querySelector("#cinema_payment").value)
 				formdata.append("year", document.querySelector("#cinema_year").value)
 				formdata.append("appearance", document.querySelector("#cinema_appearance").value)
@@ -813,56 +844,84 @@ export default {
 
 				axios.put(`https://api.uzdub.uz/api/v1/cinema/${sessionStorage.getItem("cinemaId")}`, formdata).then(res => {
 					const Filter = this.tarjima_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
+
 					for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
-						if (i > Filter.length) {
-						
-							var formdata2 = new FormData()
+						var a = false
+						for (let j = 0; j < document.querySelectorAll(".sign__director_option").length; j++) {
+							if (document.querySelectorAll(".sign__director_option")[j].getAttribute("id") == document.querySelectorAll(".ss-value")[i].getAttribute("data-id")) {
+								a = true
+							}
+						}
+						if (a) {
+							if (i > Filter.length) {
+								var formdata2 = new FormData()
 
-							formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
-							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
+								formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
+								formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-							axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema", formdata2).then(res2 => {
+								axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema", formdata2).then(res2 => {
 
-							})
-						} else {
-							var formdata2 = new FormData()
-							formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
-							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
+								})
+							} else {
+								var formdata2 = new FormData()
+								formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
+								formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-							axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`, formdata2).then(res2 => {
+								axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`, formdata2).then(res2 => {
 
-							})
+								})
+							}
 						}
 					}
-					
-					
+
+
 
 					const Filter1 = this.janr_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
-					var formdata1 = new FormData()
-					formdata1.append("cinema_id", sessionStorage.getItem("cinemaId"))
-					formdata1.append("janr_id", document.querySelector("#sign__genre").value)
+					for (let j = 0; j < document.querySelectorAll(".ss-value").length; j++) {
+						var a=false
+						for (let i = 0; i < document.querySelectorAll(".sign__genre_option").length; i++) {
+							if (document.querySelectorAll(".sign__genre_option")[i].getAttribute("id") == document.querySelectorAll(".ss-value")[j].getAttribute("data-id")) {
+								a=true
+							}
+						}
+						if(a){
+							if (j > Filter1.length) {
+									var formdata1 = new FormData()
+									formdata1.append("cinema_id", res.data.id)
+									formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
 
-					axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[0].id}`, formdata1).then(res1 => {
+									axios.post("https://api.uzdub.uz/api/v1/janr_cinema", formdata1).then(res1 => {
 
-					})
+									})
+							} else {
+									var formdata1 = new FormData()
+									formdata1.append("cinema_id", sessionStorage.getItem("cinemaId"))
+									formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
+
+									axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[j].id}`, formdata1).then(res1 => {
+
+									})
+							}
+						}
+					}
+
 					const Filter2 = this.image_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
 					for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
-var formdata3 = new FormData()
-formdata3.append("cinema_id", sessionStorage.getItem("cinemaId"))
-formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
+						var formdata3 = new FormData()
+						formdata3.append("cinema_id", sessionStorage.getItem("cinemaId"))
+						formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
 
-axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[i].id}`, formdata3).then(res3 => {
+						axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[i].id}`, formdata3).then(res3 => {
 
-	
-})
+						})
 					}
 
 					document.querySelector("#alert_modal").style = "display:block"
 					document.querySelector("#alert_text").innerHTML = "Media o'zgartirildi"
 					setTimeout(() => {
-					window.location.reload()
+						window.location.reload()
 					}, 1000)
 				}).catch(err => {
 					document.querySelector("#alert_modal").style = "display:block"
