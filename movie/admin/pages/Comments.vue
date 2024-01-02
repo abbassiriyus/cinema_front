@@ -587,13 +587,13 @@
 		</div>
 	<!-- end view modal -->
 
-	<!-- delete modal -->
-	<div class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="modal-delete" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal__content">
-					<form action="#" class="modal__form">
-						<h4 class="modal__title">Fikrni o'chirish</h4>
+		<!-- delete modal -->
+		<div class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="modal-delete" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal__content">
+						<form action="#" class="modal__form">
+							<h4 class="modal__title">Fikrni o'chirish</h4>
 
 						<p class="modal__text">
 							Bu fikrni butunlay o‘chirib tashlamoqchimisiz?
