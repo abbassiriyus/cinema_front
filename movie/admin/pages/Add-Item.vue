@@ -720,7 +720,6 @@ export default {
 	},
 	methods: {
 		CinemaPost() {
-			console.log(document.querySelector(".ishlaydi .ss-values").value,"ishladi");
 
 			if (!sessionStorage.getItem("cinemaId")) {
 				var formdata = new FormData()
@@ -843,26 +842,26 @@ export default {
 					formdata1.append("janr_id", document.querySelector("#sign__genre").value)
 
 					axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[0].id}`, formdata1).then(res1 => {
-						const Filter2 = this.image_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
-
-                        for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
-						var formdata3 = new FormData()
-						formdata3.append("cinema_id", sessionStorage.getItem("cinemaId"))
-						formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
-
-						axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[i].id}`, formdata3).then(res3 => {
-
-							
-						})
-						}
-
-						document.querySelector("#alert_modal").style = "display:block"
-								document.querySelector("#alert_text").innerHTML = "Media o'zgartirildi"
-								setTimeout(() => {
-									window.location.reload()
-						}, 1000)
 
 					})
+					const Filter2 = this.image_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
+
+					for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
+var formdata3 = new FormData()
+formdata3.append("cinema_id", sessionStorage.getItem("cinemaId"))
+formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
+
+axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[i].id}`, formdata3).then(res3 => {
+
+	
+})
+					}
+
+					document.querySelector("#alert_modal").style = "display:block"
+					document.querySelector("#alert_text").innerHTML = "Media o'zgartirildi"
+					setTimeout(() => {
+					window.location.reload()
+					}, 1000)
 				}).catch(err => {
 					document.querySelector("#alert_modal").style = "display:block"
 					document.querySelector("#alert_text").innerHTML = "Media o'zgartirilmadi"
