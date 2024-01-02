@@ -60,7 +60,7 @@
 										<div class="catalog__text"><NuxtLink to="">{{ item.cinemaName }}</NuxtLink></div>
 									</td>
 									<td>
-										<div class="catalog__text">{{ item.creatorName }}</div>
+										<div class="catalog__text">{{ item.title }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">{{ (item.description).length>28?(item.description).slice(0,28)+"...":item.description }}</div>
@@ -562,7 +562,7 @@
 				<div class="modal__content modal__content--view">
 					<div class="reviews__autor">
 						<img class="reviews__avatar" src="img/user.svg" alt="">
-						<span class="reviews__name">{{ item.creatorName }}</span>
+						<span class="reviews__name">{{ item.title }}</span>
 						<span class="reviews__time">{{ (item.time_create).slice(0,10) }}, {{ (item.time_create).slice(11,16) }} by {{ item.creatorName }}</span>
 
 						<span class="reviews__rating"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"

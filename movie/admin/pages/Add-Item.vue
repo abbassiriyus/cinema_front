@@ -817,7 +817,7 @@ export default {
 					document.querySelector("#alert_text").innerHTML = "Media qo'shildi"
 
 					setTimeout(() => {
-						// window.location.reload()
+						window.location.reload()
 					}, 1000)
 
 				}).catch(err => {
@@ -846,30 +846,15 @@ export default {
 					const Filter = this.tarjima_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
 					for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
-						var a = false
 						for (let j = 0; j < document.querySelectorAll(".sign__director_option").length; j++) {
 							if (document.querySelectorAll(".sign__director_option")[j].getAttribute("id") == document.querySelectorAll(".ss-value")[i].getAttribute("data-id")) {
-								a = true
-							}
-						}
-						if (a) {
-							if (i > Filter.length) {
-								var formdata2 = new FormData()
+							var formdata2 = new FormData()
+							formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
+							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-								formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
-								formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
+							axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[j].id}`, formdata2).then(res2 => {
 
-								axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema", formdata2).then(res2 => {
-
-								})
-							} else {
-								var formdata2 = new FormData()
-								formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
-								formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
-
-								axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`, formdata2).then(res2 => {
-
-								})
+							})
 							}
 						}
 					}
@@ -879,29 +864,15 @@ export default {
 					const Filter1 = this.janr_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
 					for (let j = 0; j < document.querySelectorAll(".ss-value").length; j++) {
-						var a=false
 						for (let i = 0; i < document.querySelectorAll(".sign__genre_option").length; i++) {
 							if (document.querySelectorAll(".sign__genre_option")[i].getAttribute("id") == document.querySelectorAll(".ss-value")[j].getAttribute("data-id")) {
-								a=true
-							}
-						}
-						if(a){
-							if (j > Filter1.length) {
-									var formdata1 = new FormData()
-									formdata1.append("cinema_id", res.data.id)
-									formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
+							var formdata1 = new FormData()
+							formdata1.append("cinema_id", sessionStorage.getItem("cinemaId"))
+							formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
 
-									axios.post("https://api.uzdub.uz/api/v1/janr_cinema", formdata1).then(res1 => {
+							axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[i].id}`, formdata1).then(res1 => {
 
-									})
-							} else {
-									var formdata1 = new FormData()
-									formdata1.append("cinema_id", sessionStorage.getItem("cinemaId"))
-									formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
-
-									axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[j].id}`, formdata1).then(res1 => {
-
-									})
+							})
 							}
 						}
 					}
