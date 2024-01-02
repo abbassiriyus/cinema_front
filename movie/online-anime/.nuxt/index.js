@@ -64,7 +64,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"UZDUB saytida o'zbek tilida onlayn anime tomosha qiling","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fpng","href":"\u002Ffavicon-32x32.png","sizes":"32x32"}],"script":[{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fbootstrap.bundle.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fsplide.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fslimselect.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fmain.js","body":true}],"style":[]},
+    head: {"title":"DUBGO saytida o'zbek tilida onlayn anime tomosha qiling","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fpng","href":"\u002Ffavicon-32x32.png","sizes":"32x32"}],"script":[{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fbootstrap.bundle.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fsplide.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fslimselect.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fmain.js","body":true}],"style":[]},
 
     router,
     nuxt: {
