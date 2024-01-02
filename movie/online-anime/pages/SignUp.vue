@@ -19,13 +19,23 @@
               </div>
 
               <div class="sign__group">
-                <input type="password" class="sign__input" placeholder="Parol" />
+                <input
+                  type="password"
+                  class="sign__input"
+                  placeholder="Parol"
+                />
               </div>
 
               <div class="sign__group sign__group--checkbox">
-                <input id="remember" name="remember" type="checkbox" checked="checked" />
-                <label for="remember">Men
-                  <NuxtLink to="privacy">Maxfiylik siyosatiga</NuxtLink>
+                <input
+                  id="remember"
+                  name="remember"
+                  type="checkbox"
+                  checked="checked"
+                />
+                <label for="remember"
+                  >Men
+                  <a>Maxfiylik siyosatiga</a>
                   roziman
                 </label>
               </div>
@@ -34,11 +44,32 @@
                 <span>Ro'yxatdan o'tish</span>
               </button>
 
-              <span class="sign__text">Hisobingiz bormi?
+              <span class="sign__text"
+                >Hisobingiz bormi?
                 <NuxtLink to="signin">Kirish!</NuxtLink>
               </span>
             </form>
             <!-- registration form -->
+            <div
+              id="alert_modal"
+              class="toast align-items-center"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="false"
+            >
+              <div class="d-flex">
+                <div id="alert_text" class="toast-body">
+                  Hello, world! This is a toast message.
+                </div>
+                <button
+                  type="button"
+                  class="btn-close me-2 m-auto"
+                  data-bs-dismiss="toast"
+                  @click="AlertNone()"
+                  aria-label="Close"
+                ></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -47,28 +78,38 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
   name: 'SignUpPage',
-methods:{
-  async postData(){
-  var data=new  FormData()
-  data.append('name',document.querySelectorAll('.sign__input')[0].value)
-  data.append('email',document.querySelectorAll('.sign__input')[1].value)
-  data.append('password',document.querySelectorAll('.sign__input')[2].value)
-  try {
-        const response = await axios.post('https://api.uzdub.uz/register', data);
-        console.log(response.data);
-        localStorage.setItem('token',response.data.token)
-    
-        localStorage.setItem("user_data",JSON.stringify(response.data.data[0]))
-        window.location="/profile"
-  
+  methods: {
+    async postData() {
+      var data = new FormData()
+      data.append('name', document.querySelectorAll('.sign__input')[0].value)
+      data.append('email', document.querySelectorAll('.sign__input')[1].value)
+      data.append(
+        'password',
+        document.querySelectorAll('.sign__input')[2].value
+      )
+      try {
+        const response = await axios.post('https://api.uzdub.uz/register', data)
+        console.log(response.data)
+        localStorage.setItem('token', response.data.token)
+
+        localStorage.setItem('user_data', JSON.stringify(response.data.data[0]))
+        window.location = '/profile'
       } catch (error) {
-        alert("xato kiritildi")
-        console.error(error)  }
-}
-},
+        document.querySelector('#alert_modal').style = 'display:block'
+        setTimeout(()=>{
+				document.querySelector('#alert_modal').style = 'display:none'
+				},3000)
+        document.querySelector('#alert_text').innerHTML = 'Xato kiritildi'
+        console.error(error)
+      }
+    },
+	AlertNone(){
+			document.querySelector("#alert_modal").style="display:none"
+	}
+  },
   mounted() {
     if (document.querySelector('.section--bg')) {
       var mainBg = document.querySelector('.section--bg')

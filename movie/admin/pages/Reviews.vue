@@ -599,6 +599,16 @@
 			</div>
 		</div>
 	</div>
+
+	<div  id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
+  					<div class="d-flex">
+    					<div id="alert_text" class="toast-body">
+      						Hello, world! This is a toast message.
+    					</div>
+    					<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" @click="AlertNone()" aria-label="Close"></button>
+                 </div>
+        
+	</div>
 	<!-- end delete modal -->
     </div>
 </template>
@@ -710,8 +720,11 @@ export default {
 		},
 		ReviewDelete(){
            axios.delete(`https://api.uzdub.uz/api/v1/sharx/${this.deleteId}`).then(res=>{
-			alert("Ma'lumot o'chirildi")
-			window.location.reload()
+			document.querySelector("#alert_modal").style="display:block"
+			document.querySelector("#alert_text").innerHTML="Ma'lumot o'chirildi"
+			setTimeout(()=>{
+				window.location.reload()
+			},1000)
 			// axios.get('https://api.uzdub.uz/api/v1/sharx').then(sharhGet=>{
             // axios.get('https://api.uzdub.uz/api/v1/cinema').then(cinema=>{
 			// 	axios.get('https://api.uzdub.uz/users').then(res=>{
@@ -735,7 +748,8 @@ export default {
 			// })
 		    // })
 		   }).catch(err=>{
-			alert("Ma'lumot o'chirilmadi")
+			document.querySelector("#alert_modal").style="display:block"
+			document.querySelector("#alert_text").innerHTML="Ma'lumot o'chirilmadi"
 		   })
 		},
 		get_page(id){
@@ -751,6 +765,9 @@ export default {
   		this.select_page--  
   		}
 		},
+		AlertNone(){
+			document.querySelector("#alert_modal").style="display:none"
+		}
 	}
 }
 </script>

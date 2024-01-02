@@ -55,6 +55,21 @@ button {
   transition-property: color, background-color, border-color, box-shadow, opacity;
   cursor: pointer;
 }
+#alert_modal {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	z-index: 10000000000;
+	background: linear-gradient(90deg, #ff55a5 0%, #ff5860 100%);
+	box-shadow: 0 0 20px 0 rgba(255, 88, 96, 0.5);
+	color: #ffff;
+}
+
+#alert_modal button {
+	background: url(./close.svg) no-repeat;
+	background-size: 100%;
+	opacity: 1;
+}
 
 button:focus {
   outline: none;
@@ -774,6 +789,7 @@ body::-webkit-scrollbar-thumb {
 .main__paginator-list li:last-child a svg {
   margin-left: 4px;
 }
+
 
 .main__paginator-list a {
   display: flex;

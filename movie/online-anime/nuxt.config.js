@@ -14,18 +14,6 @@ export default {
 		// Favicons
 		link: [
 			{ rel: "icon", type: "image/png", href: "/favicon-32x32.png", sizes: "32x32" },
-			{
-				rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.css"
-			},
-			{
-				rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-zoom.css"
-			},
-			{
-				rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.css"
-			},
-			{
-				rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.css"
-			}
 		],
 		script: [
 			{
@@ -35,22 +23,7 @@ export default {
 			},
 			{
 				type: 'text/javascript',
-				src: '/js/smooth-scrollbar.js',
-				body: true
-			},
-			{
-				type: 'text/javascript',
 				src: '/js/splide.min.js',
-				body: true
-			},
-			{
-				type: 'text/javascript',
-				src: '/js/plyr.min.js',
-				body: true
-			},
-			{
-				type: 'text/javascript',
-				src: 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js',
 				body: true
 			},
 			{
@@ -71,7 +44,6 @@ export default {
 		'~/assets/css/bootstrap.min.css',
 		'~/assets/css/splide.min.css',
 		'~/assets/css/slimselect.css',
-		'~/assets/css/plyr.css',
 		'~/assets/css/default-skin.css',
 		'~/assets/css/main.css',
 	],

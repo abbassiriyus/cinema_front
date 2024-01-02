@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "DUBGO saytida o'zbek tilida onlayn anime tomosha qiling",
+    title: "UZDUB saytida o'zbek tilida onlayn anime tomosha qiling",
     htmlAttrs: {
       lang: 'en',
     },
