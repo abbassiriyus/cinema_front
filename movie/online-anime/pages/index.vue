@@ -512,7 +512,7 @@ export default {
 		async getCinemaData() {
 			try {
 				const response = await axios.get('https://api.uzdub.uz/api/v1/cinema');
-				this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking).slice(0,12)
+				this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking).slice(0,10)
 				this.cinemaData = response.data.filter(item => item.appearance == 1).slice(0,6);
 				this.Serial = response.data.filter(item => item.appearance == 2).slice(0,6);
 				this.ongoin = response.data.filter(item => item.appearance == 1).slice(0,6);

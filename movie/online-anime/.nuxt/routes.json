@@ -2,73 +2,85 @@
   {
     "name": "404error",
     "path": "/404error",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/404error.vue",
-    "chunkName": "pages/404error"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/404error.vue",
+    "chunkName": "pages/404error",
+    "_name": "_4f75f737"
   },
   {
     "name": "About",
     "path": "/About",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/About.vue",
-    "chunkName": "pages/About"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/About.vue",
+    "chunkName": "pages/About",
+    "_name": "_5a1c1116"
   },
   {
     "name": "Catalog",
     "path": "/Catalog",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Catalog.vue",
-    "chunkName": "pages/Catalog"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Catalog.vue",
+    "chunkName": "pages/Catalog",
+    "_name": "_07608f62"
   },
   {
     "name": "Contacts",
     "path": "/Contacts",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Contacts.vue",
-    "chunkName": "pages/Contacts"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Contacts.vue",
+    "chunkName": "pages/Contacts",
+    "_name": "_78f1a65a"
   },
   {
     "name": "Faq",
     "path": "/Faq",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Faq.vue",
-    "chunkName": "pages/Faq"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Faq.vue",
+    "chunkName": "pages/Faq",
+    "_name": "_62259742"
   },
   {
     "name": "Forgot",
     "path": "/Forgot",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Forgot.vue",
-    "chunkName": "pages/Forgot"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Forgot.vue",
+    "chunkName": "pages/Forgot",
+    "_name": "_f6e69e2c"
   },
   {
     "name": "Pricing",
     "path": "/Pricing",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Pricing.vue",
-    "chunkName": "pages/Pricing"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Pricing.vue",
+    "chunkName": "pages/Pricing",
+    "_name": "_bf6f9ee2"
   },
   {
     "name": "Profile",
     "path": "/Profile",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Profile.vue",
-    "chunkName": "pages/Profile"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Profile.vue",
+    "chunkName": "pages/Profile",
+    "_name": "_4e0070f2"
   },
   {
     "name": "Signin",
     "path": "/Signin",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Signin.vue",
-    "chunkName": "pages/Signin"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Signin.vue",
+    "chunkName": "pages/Signin",
+    "_name": "_63b9e5e9"
   },
   {
     "name": "SignUp",
     "path": "/SignUp",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/SignUp.vue",
-    "chunkName": "pages/SignUp"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/SignUp.vue",
+    "chunkName": "pages/SignUp",
+    "_name": "_41b5287f"
   },
   {
     "name": "Watching",
     "path": "/Watching",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Watching.vue",
-    "chunkName": "pages/Watching"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Watching.vue",
+    "chunkName": "pages/Watching",
+    "_name": "_4db4fa8c"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/index.vue",
-    "chunkName": "pages/index"
+    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_0261cbfb"
   }
 ]

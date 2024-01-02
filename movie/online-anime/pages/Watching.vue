@@ -9,7 +9,7 @@
 			<!-- details -->
 			<section class="section section--details">
 				<!-- details background -->
-				<div class="section__details-bg" data-bg="img/bg/forget_bg.jpg"></div>
+				<div class="section__details-bg" data-bg="img/bg/forget_bg.jpg" :style="'background: url(' +data_get.allimage[0].image+ ') center center / cover no-repeat'"></div>
 				<!-- end details background -->
 				<!-- details content -->
 				<div class="container">

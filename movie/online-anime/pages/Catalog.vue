@@ -346,7 +346,7 @@ export default {
 				const category = await axios.get('https://api.uzdub.uz/api/v1/janr')
 				this.top_look = catalog.data.sort(
 					(a, b) => a.more_loking - b.more_loking
-				)
+				).slice(0,10)
 				var a = catalog.data
 				if (sessionStorage.getItem('search')) {
 					this.catalog = a.filter(item => item.title.includes(sessionStorage.getItem('search')))
@@ -393,7 +393,7 @@ export default {
 			for (let i = 0; i < data.length; i++) {
 				var push = false
 				for (let j = 0; j < data[i].janrlar.length; j++) {
-					if (value1 == data[i].janrlar[j].id || value1 == 0) {
+					if (value1 == data[i].janrlar[j].janr_id || value1 == 0) {
 						push = true
 					}
 				}

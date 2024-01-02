@@ -170,7 +170,7 @@
 															<div class="dashbox__table-text">{{ item.id }}</div>
 														</td>
 														<td>
-															<div @click="ProfilBosil(item.id)" class="dashbox__table-text">
+															<div @click="ProfilBosil(item.cinema_id)" class="dashbox__table-text">
 																<NuxtLink to="Watching">{{ item.title }}</NuxtLink>
 															</div>
 														</td>
