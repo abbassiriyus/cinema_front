@@ -238,7 +238,7 @@
 									<ul class="splide__list">
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<div @click="handleClick(item.id)" v-if="item.images.length > 0" class="item__cover">
+												<NuxtLink v-if="item.images.length > 0" to="watching" class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
@@ -251,7 +251,7 @@
 																d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
 														</svg>
 													</span>
-												</div>
+												</NuxtLink>
 												<div class="item__content">
 													<h3 class="item__title">
 														<NuxtLink to="watching">{{ item.title }}</NuxtLink>

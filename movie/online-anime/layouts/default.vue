@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<div style="min-height: 70px; width: 100%;"></div>
 		<Header />
 		<nav>
 			<Nuxt />

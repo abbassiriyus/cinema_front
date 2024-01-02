@@ -2,13 +2,14 @@
 	<div>
 		<!-- main content -->
 		<main class="main">
-		<div class="container-fluid">
-			<!-- main title -->
-				<div class="main__title">
-					<div class="row">
-						<h2>Izohlar</h2>
-						<div class="col-12">
+			<div class="container-fluid">
+				<div class="row">
+					<!-- main title -->
+					<div class="col-12">
+						<div class="main__title">
+							<h2>Izohlar</h2>
 							<span class="main__title-stat">Jami {{ this.izoh.length }}</span>
+
 							<div class="main__title-wrap">
 								<select @click="FilterReyting()" class="filter__select" name="sort" id="filter__sort">
 									<option value="0">Yaratilgan sana</option>
@@ -64,8 +65,7 @@
 										</td>
 										<td>
 											<div class="catalog__text">{{
-												(item.description).length > 28 ? (item.description).slice(0, 28) + "..." : item.description }}
-											</div>
+												(item.description).length > 28 ? (item.description).slice(0, 28) + "..." : item.description }}</div>
 										</td>
 										<td>
 											<div class="catalog__text">{{ item.commentLike }} / {{ item.commentFalse }}</div>
@@ -488,9 +488,8 @@
 								</li>
 								<div v-for="item in length_page" :key="item">
 									<li v-if="item != select_page" class="paginator__item">
-										<button @click="get_page(item)"
-											v-if="item == 1 || item + 1 == select_page || item - 1 == select_page">{{ item
-											}}</button>
+										<button @click="get_page(item)" v-if="item == 1 || item + 1 == select_page || item - 1 == select_page">{{ item
+										}}</button>
 										<button @click="get_page(item)" v-else-if="item == length_page.length">{{ item }}</button>
 										<span @click="get_page(item)" v-else-if="item - select_page == 2">...</span>
 										<span @click="get_page(item)" v-else-if="select_page - item == 2">...</span>
@@ -515,7 +514,7 @@
 					</div>
 					<!-- end paginator -->
 				</div>
-		</div>
+			</div>
 		</main>
 		<!-- end main content -->
 
@@ -574,7 +573,6 @@
 		</div>
 		<!-- end delete modal -->
 
-
 		<div id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
 			<div class="d-flex">
 				<div id="alert_text" class="toast-body">
@@ -585,39 +583,11 @@
 			</div>
 
 		</div>
-	<!-- end view modal -->
-
-	<!-- delete modal -->
-	<div class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="modal-delete" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal__content">
-					<form action="#" class="modal__form">
-						<h4 class="modal__title">Fikrni o'chirish</h4>
-
-						<p class="modal__text">
-							Bu fikrni butunlay o‘chirib tashlamoqchimisiz?
-						</p>
-
-						<div class="modal__btns">
-							<button @click="CommentDelete()" class="modal__btn modal__btn--apply" type="button">
-								<span>OʻCHIRISH</span>
-							</button>
-							<button class="modal__btn modal__btn--dismiss" type="button" data-bs-dismiss="modal" aria-label="Close">
-								<span>QOLDIRISH</span>
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
 	</div>
-	<!-- end delete modal -->
-</div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
 	name: 'CommentsPage',

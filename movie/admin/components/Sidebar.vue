@@ -189,7 +189,6 @@ export default {
     },
     Add1(){
       sessionStorage.removeItem("janrId")
-      sessionStorage.removeItem("tarjimonId")
     }
 
     

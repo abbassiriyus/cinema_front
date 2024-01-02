@@ -26,9 +26,10 @@
 										</svg>
 									</button>
 								</div>
+
 								<div class="splide__track">
 									<ul class="splide__list">
-										<li v-for="item in  carousel2 " :key="item.id" class="splide__slide">
+										<li v-for="item in carousel2" :key="item.id" class="splide__slide">
 											<div class="hero__slide" v-if="item.images.length > 0" :data-bg="`${item.images[1].image}`">
 												<div class="hero__content">
 													<h2 class="hero__title">
@@ -38,7 +39,7 @@
 														{{ item.description }}
 													</p>
 													<p class="hero__category">
-														<NuxtLink v-for=" item1  in  item.janrlar " :key="item1.id" to="#">
+														<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
 															{{ item1.title }}
 														</NuxtLink>
 													</p>
@@ -85,6 +86,7 @@
 											Serial
 										</button>
 									</li>
+
 									<li class="nav-item" role="presentation">
 										<button id="3-tab" data-bs-toggle="tab" data-bs-target="#tab-3" type="button" role="tab"
 											aria-controls="tab-3" aria-selected="false">
@@ -104,15 +106,14 @@
 						<div id="tab-1" class="tab-pane fade show active" role="tabpanel" aria-labelledby="1-tab" tabindex="0">
 							<div class="row">
 								<!-- item -->
-								<div v-for=" cinema  in  cinemaData " :key="cinema.id" class="col-6 col-sm-12 col-lg-6 col-xxl-4">
+								<div v-for="cinema in cinemaData" :key="cinema.id" class="col-6 col-sm-12 col-lg-6 col-xxl-4">
 									<div class="item item--list">
 										<div @click="handleClick(cinema.id)" class="item__cover">
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
 												<img style="height:40px;" src="/img/USD.svg" alt="" />
 											</div>
-											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt=""
-												class="item-cover__img" />
+											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<span class="item__play">
 												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 													<path
@@ -125,7 +126,7 @@
 												{{ cinema.title }}
 											</h3>
 											<span class="item__category">
-												<NuxtLink style="color:white" v-for=" item1  in  cinema.janrlar " :key="item1.id" to="#">
+												<NuxtLink style="color:white" v-for="item1 in cinema.janrlar" :key="item1.id" to="#">
 													{{ item1.title }}
 												</NuxtLink>
 											</span>
@@ -149,14 +150,14 @@
 
 							</div>
 						</div>
+
 						<div id="tab-2" class="tab-pane fade" role="tabpanel" aria-labelledby="2-tab" tabindex="0">
 							<div class="row">
 								<!-- item -->
-								<div v-for=" cinema  in  Serial " :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
+								<div v-for="cinema in Serial" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 									<div class="item">
 										<div @click="handleClick(cinema.id)" class="item__cover">
-											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt=""
-												class="item-cover__img" />
+											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
 												<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -173,8 +174,7 @@
 												{{ cinema.title }}
 											</h3>
 											<span class="item__category">
-												<NuxtLink v-for=" item1  in  cinema.janrlar " :key="item1.id" to="#"> {{ item1.title }}
-												</NuxtLink>
+												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
 											</span>
 											<span class="item__rate">{{ cinema.mark }}</span>
 										</div>
@@ -188,11 +188,10 @@
 						<div id="tab-3" class="tab-pane fade" role="tabpanel" aria-labelledby="3-tab" tabindex="0">
 							<div class="row">
 								<!-- item -->
-								<div v-for=" cinema  in  ongoin " :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
+								<div v-for="cinema in ongoin" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 									<div class="item">
 										<div @click="handleClick(cinema.id)" class="item__cover">
-											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt=""
-												class="item-cover__img" />
+											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
 												<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -209,8 +208,7 @@
 												{{ cinema.title }}
 											</h3>
 											<span class="item__category">
-												<NuxtLink v-for=" item1  in  cinema.janrlar " :key="item1.id" to="#"> {{ item1.title }}
-												</NuxtLink>
+												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
 											</span>
 											<span class="item__rate">{{ cinema.mark }}</span>
 										</div>
@@ -221,6 +219,7 @@
 						</div>
 					</div>
 					<!-- end content tabs -->
+
 					<div class="row">
 						<div class="col-12">
 							<NuxtLink to="catalog" class="section__btn"><span>Katalog</span></NuxtLink>
@@ -262,9 +261,9 @@
 
 								<div class="splide__track">
 									<ul class="splide__list">
-										<li v-for=" item  in  top_look " :key="item.id" class="splide__slide">
+										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<div @click="handleClick(item.id)" v-if="item.images.length > 0" class="item__cover">
+												<NuxtLink v-if="item.images.length > 0" to="watching" class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
@@ -277,13 +276,13 @@
 																d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
 														</svg>
 													</span>
-												</div>
+												</NuxtLink>
 												<div class="item__content">
 													<h3 class="item__title">
 														<NuxtLink to="watching">{{ item.title }}</NuxtLink>
 													</h3>
 													<span class="item__category">
-														<NuxtLink v-for=" item1  in  item.janrlar " :key="item1.id" to="#">
+														<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
 															{{ item1.title }}
 														</NuxtLink>
 													</span>
@@ -300,6 +299,7 @@
 				</div>
 			</section>
 			<!-- end now watching -->
+
 			<!-- pricing plans -->
 			<section class="section d-none">
 				<div class="container">
@@ -400,6 +400,7 @@
 								<NuxtLink to="#" class="partners__item">
 									<img src="/img/partners/codecanyon-light-background.png" alt="" />
 								</NuxtLink>
+
 								<NuxtLink to="#" class="partners__item">
 									<img src="/img/partners/photodune-light-background.png" alt="" />
 								</NuxtLink>
@@ -499,6 +500,9 @@ export default {
 	},
 	mounted() {
 		this.getCinemaData();
+
+
+
 	},
 	methods: {
 		handleClick(index) {
@@ -602,6 +606,7 @@ export default {
 					},
 				}).mount()
 			}
+
 			if (document.querySelector('.section__roadmap')) {
 				const elms = document.getElementsByClassName('section__roadmap')
 				for (let i = 0; i < elms.length; i++) {
