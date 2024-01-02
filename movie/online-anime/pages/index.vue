@@ -35,7 +35,7 @@
 													<h2 class="hero__title">
 														{{ item.title }} <sub>{{ item.mark }}</sub>
 													</h2>
-													<p class="hero__text" style="max-height: 150px;overflow: auto;">
+													<p class="hero__text">
 														{{ item.description }}
 													</p>
 													<p class="hero__category">
@@ -157,7 +157,7 @@
 								<div v-for="cinema in Serial" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 									<div class="item">
 										<div @click="handleClick(cinema.id)" class="item__cover">
-											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img"/>
+											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
 												<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -191,7 +191,7 @@
 								<div v-for="cinema in ongoin" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 									<div class="item">
 										<div @click="handleClick(cinema.id)" class="item__cover">
-											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img"/>
+											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
 												<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -264,7 +264,8 @@
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
 												<NuxtLink v-if="item.images.length > 0" to="watching" class="item__cover">
-													<img v-if="item.images.length > 0" class="item-cover__img very--view__img" :src="item.images[0].image" alt="" />
+													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
+														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
 														class="d-flex aligin-items-center justify-content-center premium-icon">
 														<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -285,7 +286,7 @@
 															{{ item1.title }}
 														</NuxtLink>
 													</span>
-													<span class="item__rate">{{item.mark}}</span>
+													<span class="item__rate">{{ item.mark }}</span>
 												</div>
 											</div>
 										</li>
@@ -512,10 +513,10 @@ export default {
 		async getCinemaData() {
 			try {
 				const response = await axios.get('https://api.uzdub.uz/api/v1/cinema');
-				this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking).slice(0,10)
-				this.cinemaData = response.data.filter(item => item.appearance == 1).slice(0,6);
-				this.Serial = response.data.filter(item => item.appearance == 2).slice(0,6);
-				this.ongoin = response.data.filter(item => item.appearance == 1).slice(0,6);
+				this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking).slice(0, 10)
+				this.cinemaData = response.data.filter(item => item.appearance == 1).slice(0, 6);
+				this.Serial = response.data.filter(item => item.appearance == 2).slice(0, 6);
+				this.ongoin = response.data.filter(item => item.appearance == 1).slice(0, 6);
 				this.ova = response.data.filter(item => item.appearance == 1);
 				const carousel2 = await axios.get('https://api.uzdub.uz/api/v1/carousel')
 				this.carousel2 = carousel2.data

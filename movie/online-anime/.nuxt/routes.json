@@ -2,85 +2,85 @@
   {
     "name": "404error",
     "path": "/404error",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/404error.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/404error.vue",
     "chunkName": "pages/404error",
-    "_name": "_4f75f737"
+    "_name": "_768eede9"
   },
   {
     "name": "About",
     "path": "/About",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/About.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/About.vue",
     "chunkName": "pages/About",
-    "_name": "_5a1c1116"
+    "_name": "_33a830b8"
   },
   {
     "name": "Catalog",
     "path": "/Catalog",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Catalog.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Catalog.vue",
     "chunkName": "pages/Catalog",
-    "_name": "_07608f62"
+    "_name": "_62560b20"
   },
   {
     "name": "Contacts",
     "path": "/Contacts",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Contacts.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Contacts.vue",
     "chunkName": "pages/Contacts",
-    "_name": "_78f1a65a"
+    "_name": "_bfeac5e8"
   },
   {
     "name": "Faq",
     "path": "/Faq",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Faq.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Faq.vue",
     "chunkName": "pages/Faq",
-    "_name": "_62259742"
+    "_name": "_03055326"
   },
   {
     "name": "Forgot",
     "path": "/Forgot",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Forgot.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Forgot.vue",
     "chunkName": "pages/Forgot",
-    "_name": "_f6e69e2c"
+    "_name": "_7a77ac1c"
   },
   {
     "name": "Pricing",
     "path": "/Pricing",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Pricing.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Pricing.vue",
     "chunkName": "pages/Pricing",
-    "_name": "_bf6f9ee2"
+    "_name": "_67bc9b9d"
   },
   {
     "name": "Profile",
     "path": "/Profile",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Profile.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Profile.vue",
     "chunkName": "pages/Profile",
-    "_name": "_4e0070f2"
+    "_name": "_1574dc00"
   },
   {
     "name": "Signin",
     "path": "/Signin",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Signin.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Signin.vue",
     "chunkName": "pages/Signin",
-    "_name": "_63b9e5e9"
+    "_name": "_59a4e11b"
   },
   {
     "name": "SignUp",
     "path": "/SignUp",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/SignUp.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/SignUp.vue",
     "chunkName": "pages/SignUp",
-    "_name": "_41b5287f"
+    "_name": "_37a023b1"
   },
   {
     "name": "Watching",
     "path": "/Watching",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Watching.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Watching.vue",
     "chunkName": "pages/Watching",
-    "_name": "_4db4fa8c"
+    "_name": "_003e796c"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/index.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_0261cbfb"
+    "_name": "_e31cbaee"
   }
 ]

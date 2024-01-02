@@ -365,7 +365,7 @@
 								<!-- item -->
 								<div v-for="cinema in top_look" :key="cinema.id" class="col-6 col-sm-4 col-lg-6">
 									<div class="item">
-										<div @click="handleClick(cinema.id)" class="item__cover">
+										<div @click="handleClick(cinema.id)" class="item__cover item__cover--rate">
 											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
