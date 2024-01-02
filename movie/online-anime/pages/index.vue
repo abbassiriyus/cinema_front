@@ -30,7 +30,7 @@
 								<div class="splide__track">
 									<ul class="splide__list">
 										<li v-for="item in carousel2" :key="item.id" class="splide__slide">
-											<div class="hero__slide" v-if="item.images.length > 0" :data-bg="`${item.images[0].image}`">
+											<div class="hero__slide" v-if="item.images.length > 0" :data-bg="`${item.images[1].image}`">
 												<div class="hero__content">
 													<h2 class="hero__title">
 														{{ item.title }} <sub>{{ item.mark }}</sub>
