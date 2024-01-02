@@ -4,18 +4,18 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _ea517afc = () => interopDefault(import('../pages/404error.vue' /* webpackChunkName: "pages/404error" */))
-const _5e6881ab = () => interopDefault(import('../pages/About.vue' /* webpackChunkName: "pages/About" */))
-const _2a532eb7 = () => interopDefault(import('../pages/Catalog.vue' /* webpackChunkName: "pages/Catalog" */))
-const _975a1cb6 = () => interopDefault(import('../pages/Contacts.vue' /* webpackChunkName: "pages/Contacts" */))
-const _4756c634 = () => interopDefault(import('../pages/Faq.vue' /* webpackChunkName: "pages/Faq" */))
-const _09ce52f5 = () => interopDefault(import('../pages/Forgot.vue' /* webpackChunkName: "pages/Forgot" */))
-const _798a6038 = () => interopDefault(import('../pages/Pricing.vue' /* webpackChunkName: "pages/Pricing" */))
-const _70f31047 = () => interopDefault(import('../pages/Profile.vue' /* webpackChunkName: "pages/Profile" */))
-const _2e08f018 = () => interopDefault(import('../pages/Signin.vue' /* webpackChunkName: "pages/Signin" */))
-const _72126aec = () => interopDefault(import('../pages/SignUp.vue' /* webpackChunkName: "pages/SignUp" */))
-const _1486ce05 = () => interopDefault(import('../pages/Watching.vue' /* webpackChunkName: "pages/Watching" */))
-const _06ae3c90 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _1fd24d09 = () => interopDefault(import('../pages/404error.vue' /* webpackChunkName: "pages/404error" */))
+const _2919dc84 = () => interopDefault(import('../pages/About.vue' /* webpackChunkName: "pages/About" */))
+const _0e193750 = () => interopDefault(import('../pages/Catalog.vue' /* webpackChunkName: "pages/Catalog" */))
+const _494dfc2c = () => interopDefault(import('../pages/Contacts.vue' /* webpackChunkName: "pages/Contacts" */))
+const _1423034d = () => interopDefault(import('../pages/Faq.vue' /* webpackChunkName: "pages/Faq" */))
+const _d56f5988 = () => interopDefault(import('../pages/Forgot.vue' /* webpackChunkName: "pages/Forgot" */))
+const _b1fe4f06 = () => interopDefault(import('../pages/Pricing.vue' /* webpackChunkName: "pages/Pricing" */))
+const _54b918e0 = () => interopDefault(import('../pages/Profile.vue' /* webpackChunkName: "pages/Profile" */))
+const _7475883b = () => interopDefault(import('../pages/Signin.vue' /* webpackChunkName: "pages/Signin" */))
+const _5270cad1 = () => interopDefault(import('../pages/SignUp.vue' /* webpackChunkName: "pages/SignUp" */))
+const _acfc4ee8 = () => interopDefault(import('../pages/Watching.vue' /* webpackChunkName: "pages/Watching" */))
+const _5d40d12e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -30,51 +30,51 @@ export const routerOptions = {
 
   routes: [{
     path: "/404error",
-    component: _ea517afc,
+    component: _1fd24d09,
     name: "404error"
   }, {
     path: "/About",
-    component: _5e6881ab,
+    component: _2919dc84,
     name: "About"
   }, {
     path: "/Catalog",
-    component: _2a532eb7,
+    component: _0e193750,
     name: "Catalog"
   }, {
     path: "/Contacts",
-    component: _975a1cb6,
+    component: _494dfc2c,
     name: "Contacts"
   }, {
     path: "/Faq",
-    component: _4756c634,
+    component: _1423034d,
     name: "Faq"
   }, {
     path: "/Forgot",
-    component: _09ce52f5,
+    component: _d56f5988,
     name: "Forgot"
   }, {
     path: "/Pricing",
-    component: _798a6038,
+    component: _b1fe4f06,
     name: "Pricing"
   }, {
     path: "/Profile",
-    component: _70f31047,
+    component: _54b918e0,
     name: "Profile"
   }, {
     path: "/Signin",
-    component: _2e08f018,
+    component: _7475883b,
     name: "Signin"
   }, {
     path: "/SignUp",
-    component: _72126aec,
+    component: _5270cad1,
     name: "SignUp"
   }, {
     path: "/Watching",
-    component: _1486ce05,
+    component: _acfc4ee8,
     name: "Watching"
   }, {
     path: "/",
-    component: _06ae3c90,
+    component: _5d40d12e,
     name: "index"
   }],
 

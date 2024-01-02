@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="!cinemaData" class="lodaing_page">
 			<div class="loading">
-				<span>Loading</span>
+				<span>UZDUB</span>
 			</div>
 		</div>
 		<div v-else>
@@ -493,7 +493,6 @@ export default {
 			cinemaData: null,
 			Serial: null,
 			ongoin: null,
-			ova: null,
 			top_look: null,
 			carousel2: null
 		};
@@ -517,7 +516,6 @@ export default {
 				this.cinemaData = response.data.filter(item => item.appearance == 1).slice(0, 6);
 				this.Serial = response.data.filter(item => item.appearance == 2).slice(0, 6);
 				this.ongoin = response.data.filter(item => item.appearance == 1).slice(0, 6);
-				this.ova = response.data.filter(item => item.appearance == 1);
 				const carousel2 = await axios.get('https://api.uzdub.uz/api/v1/carousel')
 				this.carousel2 = carousel2.data
 				setTimeout(() => {

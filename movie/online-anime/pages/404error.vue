@@ -8,7 +8,7 @@
 						<div class="page-404__content">
 							<h1 class="page-404__title">404</h1>
 							<p class="page-404__text">Siz qidirayotgan sahifa mavjud emas!</p>
-							<NuxtLink to="/" class="page-404__btn"><span>Go back</span></NuxtLink>
+							<NuxtLink to="/" class="page-404__btn"><span>Bosh sahifa</span></NuxtLink>
 						</div>
 					</div>
 				</div>
