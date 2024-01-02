@@ -9,7 +9,8 @@
 			<!-- details -->
 			<section class="section section--details">
 				<!-- details background -->
-				<div v-if="data_get.allimage[1]" class="section__details-bg" data-bg="img/bg/forget_bg.jpg" :style="'background: url(' +data_get.allimage[1].image+ ') center center / cover no-repeat'"></div>
+				<div v-if="data_get.allimage[1]" class="section__details-bg" data-bg="img/bg/forget_bg.jpg"
+					:style="'background: url(' + data_get.allimage[1].image + ') center center / cover no-repeat'"></div>
 				<!-- end details background -->
 				<!-- details content -->
 				<div class="container">
