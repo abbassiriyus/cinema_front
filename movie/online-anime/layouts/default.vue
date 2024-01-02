@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <Header />
-    <nav>
-      <Nuxt />
-    </nav>
-    <Footer />
-  </div>
+	<div>
+		<Header />
+		<nav>
+			<Nuxt />
+		</nav>
+		<Footer />
+	</div>
 </template>
 
 <script>
 export default {
-  name: 'DefaultLayout',
-  mounted() {},
+	name: 'DefaultLayout',
+	mounted() { },
 }
 </script>

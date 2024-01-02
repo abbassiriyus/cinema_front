@@ -1,10 +1,14 @@
 <template>
 	<div>
+<<<<<<< Updated upstream
 	<div v-if="!cinemaData" class="lodaing_page">
 	<div  class="loading">
     <span>Loading</span>
   </div></div>
 	<div v-else>
+=======
+
+>>>>>>> Stashed changes
 		<!-- home -->
 		<section class="home">
 			<div class="container">
@@ -28,8 +32,13 @@
 
 							<div class="splide__track">
 								<ul class="splide__list">
+<<<<<<< Updated upstream
 									<li v-for="item in carousel2" :key="item.id"  class="splide__slide">
 										<div class="hero__slide"  v-if="item.images.length>0" :data-bg="`${item.images[0].image}`">
+=======
+									<li v-for="item in carousel2" :key="item.id" class="splide__slide">
+										<div class="hero__slide" :data-bg="`${item.images[0].image}`">
+>>>>>>> Stashed changes
 											<div class="hero__content">
 												<h2 class="hero__title">
 													{{ item.title }} <sub>{{ item.mark }}</sub>
@@ -38,19 +47,19 @@
 													{{ item.description }}
 												</p>
 												<p class="hero__category">
-								      <NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
-											{{ item1.title }}
-											</NuxtLink>
+													<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
+														{{ item1.title }}
+													</NuxtLink>
 												</p>
 												<div class="hero__actions">
-													<button @click="handleClick(item.id)"  class="hero__btn">
+													<button @click="handleClick(item.id)" class="hero__btn">
 														<span>Ko'rish</span>
 													</button>
 												</div>
 											</div>
 										</div>
 									</li>
-								
+
 								</ul>
 							</div>
 						</div>
@@ -112,13 +121,17 @@
 					<div id="tab-1" class="tab-pane fade show active" role="tabpanel" aria-labelledby="1-tab" tabindex="0">
 						<div class="row">
 							<!-- item -->
-							<div v-for="cinema in cinemaData"  :key="cinema.id" class="col-6 col-sm-12 col-lg-6 col-xxl-4">
+							<div v-for="cinema in cinemaData" :key="cinema.id" class="col-6 col-sm-12 col-lg-6 col-xxl-4">
 								<div class="item item--list">
 									<div @click="handleClick(cinema.id)" class="item__cover">
 										<div class="d-flex aligin-items-center justify-content-center premium-icon">
 											<img src="/img/USD.svg" alt="" />
 										</div>
+<<<<<<< Updated upstream
 										<img  v-if="cinema.images.length>0" :src="cinema.images[0].image" alt="" />
+=======
+										<img :src="cinema.images[0].image" alt="" />
+>>>>>>> Stashed changes
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -132,33 +145,34 @@
 										</h3>
 										<span class="item__category">
 											<NuxtLink style="color:white" v-for="item1 in cinema.janrlar" :key="item1.id" to="#">
-											{{ item1.title }}
+												{{ item1.title }}
 											</NuxtLink>
 										</span>
 										<div class="item__wrap">
-											<span class="item__rate"> {{cinema.mark}}</span>
+											<span class="item__rate"> {{ cinema.mark }}</span>
 
 											<ul class="item__list">
-												<li>{{cinema.type}}</li>
-												<li>{{cinema.age_limit}}+</li>
+												<li>{{ cinema.type }}</li>
+												<li>{{ cinema.age_limit }}+</li>
 											</ul>
 										</div>
 										<div class="item__description">
 											<p>
-										{{cinema.description}}
+												{{ cinema.description }}
 											</p>
 										</div>
 									</div>
 								</div>
 							</div>
 							<!-- end item -->
-						
+
 						</div>
 					</div>
 
 					<div id="tab-2" class="tab-pane fade" role="tabpanel" aria-labelledby="2-tab" tabindex="0">
 						<div class="row">
 							<!-- item -->
+<<<<<<< Updated upstream
 							<div  v-for="cinema in Serial"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
 									<div @click="handleClick(cinema.id)"  class="item__cover">
@@ -190,6 +204,9 @@
 						<div class="row">
 						<!-- item -->
 							<div  v-for="cinema in ongoin"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
+=======
+							<div v-for="cinema in Serial" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
+>>>>>>> Stashed changes
 								<div class="item">
 									<div @click="handleClick(cinema.id)" class="item__cover">
 										<img v-if="cinema.images.length>0" :src="cinema.images[0].image" alt="" />
@@ -202,25 +219,32 @@
 									</div>
 									<div class="item__content">
 										<h3 class="item__title">
-											<button style="color:white" @click="handleClick(cinema.id)">{{cinema.title}}</button>
+											<button style="color:white" @click="handleClick(cinema.id)">{{ cinema.title }}</button>
 										</h3>
 										<span class="item__category">
-											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">	{{ item1.title }}</NuxtLink>
+											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
 										</span>
-										<span class="item__rate">{{cinema.mark}}</span>
+										<span class="item__rate">{{ cinema.mark }}</span>
 									</div>
 								</div>
 							</div>
 							<!-- end item -->
+
 						</div>
 					</div>
 
-					<div id="tab-4" class="tab-pane fade" role="tabpanel" aria-labelledby="4-tab" tabindex="0">
+					<div id="tab-3" class="tab-pane fade" role="tabpanel" aria-labelledby="3-tab" tabindex="0">
 						<div class="row">
-								<div  v-for="cinema in ova"  :key="cinema.id"  class="col-6 col-sm-4 col-lg-3 col-xl-2">
+							<!-- item -->
+							<div v-for="cinema in ongoin" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 								<div class="item">
+<<<<<<< Updated upstream
 									<div  @click="handleClick(cinema.id)" class="item__cover">
 										<img  v-if="cinema.images.length>0" :src="cinema.images[0].image"  alt="" />
+=======
+									<div @click="handleClick(cinema.id)" class="item__cover">
+										<img v-if="cinema.images && cinema.images[0].image" :src="cinema.images[0].image" alt="" />
+>>>>>>> Stashed changes
 										<span class="item__play">
 											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 												<path
@@ -230,12 +254,40 @@
 									</div>
 									<div class="item__content">
 										<h3 class="item__title">
-											<button style="color:white" @click="handleClick(cinema.id)">{{cinema.title}}</button>
+											<button style="color:white" @click="handleClick(cinema.id)">{{ cinema.title }}</button>
 										</h3>
 										<span class="item__category">
-											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">	{{ item1.title }}</NuxtLink>
+											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
 										</span>
-										<span class="item__rate">{{cinema.mark}}</span>
+										<span class="item__rate">{{ cinema.mark }}</span>
+									</div>
+								</div>
+							</div>
+							<!-- end item -->
+						</div>
+					</div>
+
+					<div id="tab-4" class="tab-pane fade" role="tabpanel" aria-labelledby="4-tab" tabindex="0">
+						<div class="row">
+							<div v-for="cinema in ova" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
+								<div class="item">
+									<div @click="handleClick(cinema.id)" class="item__cover">
+										<img :src="cinema.images[0].image" alt="" />
+										<span class="item__play">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+												<path
+													d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
+											</svg>
+										</span>
+									</div>
+									<div class="item__content">
+										<h3 class="item__title">
+											<button style="color:white" @click="handleClick(cinema.id)">{{ cinema.title }}</button>
+										</h3>
+										<span class="item__category">
+											<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
+										</span>
+										<span class="item__rate">{{ cinema.mark }}</span>
 									</div>
 								</div>
 							</div>
@@ -298,12 +350,12 @@
 											</NuxtLink>
 											<div class="item__content">
 												<h3 class="item__title">
-													<NuxtLink to="watching">{{item.title}}</NuxtLink>
+													<NuxtLink to="watching">{{ item.title }}</NuxtLink>
 												</h3>
 												<span class="item__category">
 													<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
-											{{ item1.title }}
-											</NuxtLink>
+														{{ item1.title }}
+													</NuxtLink>
 												</span>
 												<span class="item__rate">8.4</span>
 											</div>
@@ -507,23 +559,21 @@ import axios from 'axios';
 
 export default {
 	name: 'IndexPage',
-	  data() {
-    return {
-      cinemaData: null,
-	  Serial:null,
-	  ongoin:null,
-	  ova:null,
-	  top_look:null,
-	  carousel2:null
-    };
-  },
-	mounted() { 
-	this.getCinemaData();
-	
-	
-			
+	data() {
+		return {
+			cinemaData: null,
+			Serial: null,
+			ongoin: null,
+			ova: null,
+			top_look: null,
+			carousel2: null
+		};
+	},
+	mounted() {
+		this.getCinemaData();
 	},
 	methods: {
+<<<<<<< Updated upstream
 	handleClick(index) {
       const selectedItem =index;
       localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
@@ -659,49 +709,186 @@ export default {
 						},
 					},
 				}).mount()
+=======
+		handleClick(index) {
+			const selectedItem = index;
+			localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
+			window.location = "/watching"
+		},
+		async getCinemaData() {
+			try {
+				const response = await axios.get('http://localhost:4002/api/v1/cinema');
+				this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking)
+				this.cinemaData = response.data.filter(item => item.appearance == 1);
+				this.Serial = response.data.filter(item => item.appearance == 2);
+				this.ongoin = response.data.filter(item => item.appearance == 1);
+				this.ova = response.data.filter(item => item.appearance == 1);
+				const carousel2 = await axios.get('http://localhost:4002/api/v1/carousel')
+				this.carousel2 = carousel2.data
+				setTimeout(() => {
+					this.getData()
+				}, 1000);
+			} catch (error) {
+				console.error(error, "xato");
+>>>>>>> Stashed changes
 			}
-		}
-		if (document.querySelector('.section__carousel')) {
-			const elms = document.getElementsByClassName('section__carousel')
-
-			for (let i = 0; i < elms.length; i++) {
-				new Splide(elms[i], {
+		},
+		getData() {
+			if (document.querySelector('.hero__slide')) {
+				document.querySelectorAll('.hero__slide').forEach(function (element) {
+					if (element.getAttribute('data-bg')) {
+						element.style.background =
+							'url(' + element.getAttribute('data-bg') + ')'
+						element.style.backgroundPosition = 'center center'
+						element.style.backgroundRepeat = 'no-repeat'
+						element.style.backgroundSize = 'cover'
+					}
+				})
+			}
+			if (document.querySelector('.home__carousel')) {
+				new Splide('.home__carousel', {
 					type: 'loop',
-					perPage: 6,
+					perPage: 5,
 					drag: true,
 					pagination: false,
 					autoWidth: false,
 					autoHeight: false,
 					speed: 800,
-					gap: 24,
-					arrows: true,
+					gap: 32,
+					arrows: false,
 					focus: 0,
 					breakpoints: {
 						575: {
 							gap: 24,
 							pagination: true,
+							arrows: false,
 							perPage: 2,
 						},
 						767: {
 							gap: 24,
 							pagination: true,
+							arrows: false,
 							perPage: 3,
 						},
 						991: {
 							pagination: true,
+							arrows: false,
 							perPage: 3,
 							gap: 24,
 						},
 						1199: {
 							pagination: true,
+							arrows: false,
 							perPage: 4,
+							gap: 24,
+						},
+						1399: {
+							pagination: true,
+							arrows: false,
+							perPage: 5,
 							gap: 24,
 						},
 					},
 				}).mount()
 			}
+
+			if (document.querySelector('.hero')) {
+				new Splide('.hero', {
+					type: 'loop',
+					perPage: 1,
+					drag: true,
+					pagination: true,
+					speed: 1200,
+					gap: 24,
+					arrows: true,
+					focus: 0,
+					breakpoints: {
+						767: {
+							gap: 20,
+						},
+						1199: {
+							gap: 24,
+						},
+					},
+				}).mount()
+			}
+
+			if (document.querySelector('.section__roadmap')) {
+				const elms = document.getElementsByClassName('section__roadmap')
+				for (let i = 0; i < elms.length; i++) {
+					new Splide(elms[i], {
+						type: 'loop',
+						perPage: 3,
+						drag: true,
+						pagination: false,
+						autoWidth: false,
+						autoHeight: true,
+						speed: 800,
+						gap: 30,
+						arrows: false,
+						focus: 0,
+						breakpoints: {
+							767: {
+								gap: 20,
+								pagination: true,
+								arrows: false,
+								perPage: 1,
+							},
+							991: {
+								pagination: true,
+								arrows: false,
+								perPage: 2,
+							},
+							1199: {
+								pagination: true,
+								arrows: false,
+								perPage: 3,
+							},
+						},
+					}).mount()
+				}
+			}
+			if (document.querySelector('.section__carousel')) {
+				const elms = document.getElementsByClassName('section__carousel')
+
+				for (let i = 0; i < elms.length; i++) {
+					new Splide(elms[i], {
+						type: 'loop',
+						perPage: 6,
+						drag: true,
+						pagination: false,
+						autoWidth: false,
+						autoHeight: false,
+						speed: 800,
+						gap: 24,
+						arrows: true,
+						focus: 0,
+						breakpoints: {
+							575: {
+								gap: 24,
+								pagination: true,
+								perPage: 2,
+							},
+							767: {
+								gap: 24,
+								pagination: true,
+								perPage: 3,
+							},
+							991: {
+								pagination: true,
+								perPage: 3,
+								gap: 24,
+							},
+							1199: {
+								pagination: true,
+								perPage: 4,
+								gap: 24,
+							},
+						},
+					}).mount()
+				}
+			}
 		}
 	}
-  }
 }
 </script>
