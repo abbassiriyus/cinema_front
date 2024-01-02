@@ -816,7 +816,9 @@ export default {
 					const Filter = this.tarjima_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 					for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
 						if (i > Filter.length) {
+						
 							var formdata2 = new FormData()
+
 							formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
 							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
