@@ -33,6 +33,11 @@
 											<input id="sign__gallery-upload" type="text" class="sign__input" placeholder="Kino rasmini joylashtiring">
 										</div>
 									</div>
+									<div class="col-12">
+										<div class="sign__group">
+											<input id="sign__gallery-upload" type="text" class="sign__input" placeholder="Kino orqa foni uchun rasm joylashtiring">
+										</div>
+									</div>
 									<!-- <div class="col-12">
 										<div class="sign__group">
 											<div class="sign__gallery">
@@ -681,7 +686,9 @@ export default {
 						document.querySelector("#cinema_treyler").value = item.treler
 						document.querySelector("#sign__quality").value = item.type
 						document.querySelector("#cinema_video").value = item.video
-						document.querySelector("#sign__gallery-upload").value=item.images[0].image
+						document.querySelectorAll("#sign__gallery-upload")[0].value=item.images[0].image
+						document.querySelectorAll("#sign__gallery-upload")[1].value=item.images[1].image
+
 						axios.get('https://api.uzdub.uz/seriallar').then(res1 => {
 							const Filter1 = res1.data.rows.filter(item => item.cinema_id == Filter[0].id)
 							if (Filter1.length > 0) {
@@ -753,27 +760,32 @@ export default {
 					formdata1.append("janr_id", document.querySelector("#sign__genre").value)
 
 					axios.post("https://api.uzdub.uz/api/v1/janr_cinema", formdata1).then(res1 => {
+                        
+						for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
 						var formdata3 = new FormData()
 						formdata3.append("cinema_id", res.data.id)
-						formdata3.append("image", document.querySelector("#sign__gallery-upload").value)
+						formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
 
 						axios.post('https://api.uzdub.uz/api/v1/image_cinema', formdata3).then(res3 => {
 
-							    if(document.querySelector("#cinema_carusel").value==0){
+							    
+							
+						})
+							
+						}
+					
+						if(document.querySelector("#cinema_carusel").value==0){
 									var formdata4=new FormData()
 									formdata4.append("cinema_id",res.data.id)
 									axios.post(`https://api.uzdub.uz/api/v1/carousel`,formdata4).then(res=>{
 
-									})
-								}
-
-								document.querySelector("#alert_modal").style = "display:block"
-								document.querySelector("#alert_text").innerHTML = "Media qo'shildi"
-								setTimeout(() => {
-									window.location.reload()
-								}, 1000)
-							
 						})
+						}
+						document.querySelector("#alert_modal").style = "display:block"
+						document.querySelector("#alert_text").innerHTML = "Media qo'shildi"
+						setTimeout(() => {
+						window.location.reload()
+					    }, 1000)
 
 					})
 				}).catch(err => {
@@ -829,19 +841,22 @@ export default {
 					axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[0].id}`, formdata1).then(res1 => {
 						const Filter2 = this.image_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
+                        for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
 						var formdata3 = new FormData()
 						formdata3.append("cinema_id", sessionStorage.getItem("cinemaId"))
-						formdata3.append("image", document.querySelector("#sign__gallery-upload").value)
+						formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
 
-						axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[0].id}`, formdata3).then(res3 => {
+						axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[i].id}`, formdata3).then(res3 => {
 
-								document.querySelector("#alert_modal").style = "display:block"
+							
+						})
+						}
+
+						document.querySelector("#alert_modal").style = "display:block"
 								document.querySelector("#alert_text").innerHTML = "Media o'zgartirildi"
 								setTimeout(() => {
 									window.location.reload()
-								}, 1000)
-							
-						})
+						}, 1000)
 
 					})
 				}).catch(err => {
