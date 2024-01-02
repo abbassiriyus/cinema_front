@@ -2,73 +2,73 @@
   {
     "name": "404error",
     "path": "/404error",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/404error.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/404error.vue",
     "chunkName": "pages/404error"
   },
   {
     "name": "About",
     "path": "/About",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/About.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/About.vue",
     "chunkName": "pages/About"
   },
   {
     "name": "Catalog",
     "path": "/Catalog",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Catalog.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Catalog.vue",
     "chunkName": "pages/Catalog"
   },
   {
     "name": "Contacts",
     "path": "/Contacts",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Contacts.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Contacts.vue",
     "chunkName": "pages/Contacts"
   },
   {
     "name": "Faq",
     "path": "/Faq",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Faq.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Faq.vue",
     "chunkName": "pages/Faq"
   },
   {
     "name": "Forgot",
     "path": "/Forgot",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Forgot.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Forgot.vue",
     "chunkName": "pages/Forgot"
   },
   {
     "name": "Pricing",
     "path": "/Pricing",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Pricing.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Pricing.vue",
     "chunkName": "pages/Pricing"
   },
   {
     "name": "Profile",
     "path": "/Profile",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Profile.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Profile.vue",
     "chunkName": "pages/Profile"
   },
   {
     "name": "Signin",
     "path": "/Signin",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Signin.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Signin.vue",
     "chunkName": "pages/Signin"
   },
   {
     "name": "SignUp",
     "path": "/SignUp",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/SignUp.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/SignUp.vue",
     "chunkName": "pages/SignUp"
   },
   {
     "name": "Watching",
     "path": "/Watching",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Watching.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/Watching.vue",
     "chunkName": "pages/Watching"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/index.vue",
+    "component": "/Users/asrorshodiyev/Desktop/cinema_front/movie/online-anime/pages/index.vue",
     "chunkName": "pages/index"
   }
 ]
