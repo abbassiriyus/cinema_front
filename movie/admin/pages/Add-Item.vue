@@ -114,8 +114,8 @@
 
 									<div class="col-12">
 										<div class="sign__group">
-											<select id="sign__genre" class="sign__selectjs">
-												<option v-for="item in janr" :value="item.id">{{ item.title }}</option>
+											<select id="sign__genre" class="sign__selectjs ishlaydi" multiple>
+												<option  v-for="item in janr" :value="item.id">{{ item.title }}</option>
 											</select>
 										</div>
 									</div>
@@ -640,7 +640,7 @@ export default {
 				}
 			});
 		}
-
+        
 
 		axios.get('https://api.uzdub.uz/api/v1/janr').then(res => {
 			this.janr = res.data
@@ -720,6 +720,8 @@ export default {
 	},
 	methods: {
 		CinemaPost() {
+			console.log(document.querySelector(".ishlaydi .ss-values").value,"ishladi");
+
 			if (!sessionStorage.getItem("cinemaId")) {
 				var formdata = new FormData()
 				formdata.append("type", document.querySelector("#sign__quality").value)
@@ -831,6 +833,8 @@ export default {
 							})
 						}
 					}
+					
+					
 
 					const Filter1 = this.janr_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
