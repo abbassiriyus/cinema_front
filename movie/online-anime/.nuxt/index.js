@@ -12,8 +12,8 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_64ca2b42 from 'nuxt_plugin_plugin_64ca2b42' // Source: ./components/plugin.js (mode: 'all')
-import nuxt_plugin_axios_6a0b2816 from 'nuxt_plugin_axios_6a0b2816' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_plugin_719d297f from 'nuxt_plugin_plugin_719d297f' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_axios_6a0a5b15 from 'nuxt_plugin_axios_6a0a5b15' // Source: ./axios.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -64,7 +64,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"DUBGO saytida o'zbek tilida onlayn anime tomosha qiling","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fpng","href":"\u002Ffavicon-32x32.png","sizes":"32x32"}],"script":[{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fbootstrap.bundle.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fsplide.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fslimselect.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fmain.js","body":true}],"style":[]},
+    head: {"title":"UZDUB saytida o'zbek tilida onlayn anime tomosha qiling","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fpng","href":"\u002Ffavicon-32x32.png","sizes":"32x32"}],"script":[{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fbootstrap.bundle.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fsplide.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fslimselect.min.js","body":true},{"type":"text\u002Fjavascript","src":"\u002Fjs\u002Fmain.js","body":true}],"style":[]},
 
     router,
     nuxt: {
@@ -179,12 +179,12 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_64ca2b42 === 'function') {
-    await nuxt_plugin_plugin_64ca2b42(app.context, inject)
+  if (typeof nuxt_plugin_plugin_719d297f === 'function') {
+    await nuxt_plugin_plugin_719d297f(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_6a0b2816 === 'function') {
-    await nuxt_plugin_axios_6a0b2816(app.context, inject)
+  if (typeof nuxt_plugin_axios_6a0a5b15 === 'function') {
+    await nuxt_plugin_axios_6a0a5b15(app.context, inject)
   }
 
   // Lock enablePreview in context

@@ -241,7 +241,6 @@ body::-webkit-scrollbar-thumb {
 	align-items: center;
 	height: 70px;
 	width: 140px;
-	padding: 20px;
 }
 
 .header__logo img {

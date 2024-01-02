@@ -2,15 +2,15 @@
 	<div>
 		<div v-if="!data_get" class="lodaing_page">
 			<div class="loading">
-				<span>Loading</span>
+				<span>UZDUB</span>
 			</div>
 		</div>
 		<div v-else>
 			<!-- details -->
 			<section class="section section--details">
 				<!-- details background -->
-				<div v-if="data_get.allimage[1]" class="section__details-bg" data-bg="img/bg/forget_bg.jpg"
-					:style="'background: url(' + data_get.allimage[1].image + ') center center / cover no-repeat'"></div>
+				<div v-if="data_get.allimage[0]" class="section__details-bg"
+					:style="'background: url(' + data_get.allimage[0].image + ') center center / cover no-repeat'"></div>
 				<!-- end details background -->
 				<!-- details content -->
 				<div class="container">
@@ -28,7 +28,7 @@
 							<div class="item item--details">
 								<!-- card cover -->
 								<div v-if="data_get && data_get.allimage.length > 0" class="item__cover item__cover--anime">
-									<img :src="data_get.allimage[0].image" alt="" class="item-cover__anime" />
+									<img :src="data_get.allimage[1].image" alt="" class="item-cover__anime" />
 									<div v-if="data_get.payment != 'Free'"
 										class="d-flex aligin-items-center justify-content-center premium-icon">
 										<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -260,7 +260,8 @@
 												<form action="#" class="sign__form sign__form--comments">
 													<div class="sign__group">
 														<h6 style="color: white">{{ this.string_data }}</h6>
-														<textarea id="text" name="text" class="sign__textarea" placeholder="Fikr yozing"></textarea>
+														<textarea id="text" name="text" class="sign__textarea" placeholder="Fikr yozing"
+															required></textarea>
 													</div>
 													<button @click="send_message" type="button" class="sign__btn sign__btn--small">
 														<span>Yuborish</span>
@@ -308,13 +309,13 @@
 													<div class="row">
 														<div class="col-12 col-md-6">
 															<div class="sign__group">
-																<input type="text" class="sign__input" placeholder="Sarlavha" id="sharx_d" />
+																<input type="text" class="sign__input" placeholder="Sarlavha" id="sharx_d" required />
 															</div>
 														</div>
 
 														<div class="col-12 col-md-6">
 															<div class="sign__group">
-																<select class="sign__select" name="rating" id="rating">
+																<select class="sign__select" name="rating" id="rating" required>
 																	<option value="0">Reyting</option>
 																	<option value="1">1 yulduz</option>
 																	<option value="2">2 yulduz</option>
@@ -332,12 +333,13 @@
 
 														<div class="col-12">
 															<div class="sign__group">
-																<textarea id="sharx_m" class="sign__textarea" placeholder="Sharh yozing"></textarea>
+																<textarea id="sharx_m" class="sign__textarea" placeholder="Sharh yozing"
+																	required></textarea>
 															</div>
 														</div>
 
 														<div class="col-12">
-															<button @click="clicksharx" type="button" class="sign__btn sign__btn--small">
+															<button @click="clicksharx" type="submit" class="sign__btn sign__btn--small">
 																<span>Yuborish</span>
 															</button>
 														</div>

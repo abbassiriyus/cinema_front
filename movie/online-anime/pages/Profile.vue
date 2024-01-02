@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="!cinema_data" class="lodaing_page">
 			<div class="loading">
-				<span>Loading</span>
+				<span>UZDUB</span>
 			</div>
 		</div>
 		<div v-else>

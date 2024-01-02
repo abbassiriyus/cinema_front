@@ -360,7 +360,7 @@
                       <p>
                         Men bilan bog'lanishingiz uchun mening ijtimoiy
                         tarmoqlarim saytning pastki qismida joylashgan.
-                        <NuxtLink to="#footer">Bog'lanish</NuxtLink>
+                        <NuxtLink to="Contacts">Bog'lanish</NuxtLink>
                       </p>
                     </div>
                   </div>
