@@ -65,7 +65,7 @@
 									<div class="col-12 col-xl-6">
 										<div class="sign__group">
 											<select name="" id="cinema_appearance" class="sign__selectjs">
-												<option value="1">Movie</option>
+												<option value="1">Anime</option>
 												<option value="2">Series</option>
 												<option value="3">Ongoin</option>
 											</select>
