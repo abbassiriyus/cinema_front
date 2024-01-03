@@ -120,7 +120,7 @@
 									<span class="item__category">
 										<NuxtLink v-for=" item2  in  item.janrlar " :key="item2.id" to="#">{{ item2.title }}</NuxtLink>
 									</span>
-									<span class="item__rate">{{ item.mark }}</span>
+									<span class="item__rate">{{ item.mark.toFixed(1) }}</span>
 								</div>
 							</div>
 						</div>
@@ -261,7 +261,7 @@
 															{{ item1.title }}
 														</NuxtLink>
 													</span>
-													<span class="item__rate">{{ item.mark }}</span>
+													<span class="item__rate">{{ item.mark.toFixed(1) }}</span>
 												</div>
 											</div>
 										</li>

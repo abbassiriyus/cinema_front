@@ -33,7 +33,7 @@
 											<div class="hero__slide" v-if="item.images.length > 0" :data-bg="`${item.images[1].image}`">
 												<div class="hero__content">
 													<h2 class="hero__title">
-														{{ item.title }} <sub>{{ item.mark }}</sub>
+														{{ item.title }} <sub>{{ item.mark.toFixed(1) }}</sub>
 													</h2>
 													<p class="hero__text">
 														{{ item.description }}
@@ -131,7 +131,7 @@
 												</NuxtLink>
 											</span>
 											<div class="item__wrap">
-												<span class="item__rate"> {{ cinema.mark }}</span>
+												<span class="item__rate"> {{ cinema.mark.toFixed(1) }}</span>
 
 												<ul class="item__list">
 													<li>{{ cinema.type }}</li>
@@ -176,7 +176,7 @@
 											<span class="item__category">
 												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
 											</span>
-											<span class="item__rate">{{ cinema.mark }}</span>
+											<span class="item__rate">{{ cinema.mark.toFixed(1) }}</span>
 										</div>
 									</div>
 								</div>
@@ -210,7 +210,7 @@
 											<span class="item__category">
 												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
 											</span>
-											<span class="item__rate">{{ cinema.mark }}</span>
+											<span class="item__rate">{{ cinema.mark.toFixed(1) }}</span>
 										</div>
 									</div>
 								</div>
@@ -286,7 +286,7 @@
 															{{ item1.title }}
 														</NuxtLink>
 													</span>
-													<span class="item__rate">{{ item.mark }}</span>
+													<span class="item__rate">{{ item.mark.toFixed(1) }}</span>
 												</div>
 											</div>
 										</li>
@@ -517,7 +517,7 @@ export default {
 				this.Serial = response.data.filter(item => item.appearance == 2).slice(0, 6);
 				this.ongoin = response.data.filter(item => item.appearance == 1).slice(0, 6);
 				const carousel2 = await axios.get('https://api.uzdub.uz/api/v1/carousel')
-				this.carousel2 = carousel2.data
+				this.carousel2 = carousel2.data.sort((a, b) =>(b.time_create).slice(0,4)-(a.time_create).slice(0,4) || (b.time_create).slice(5,7)-(a.time_create).slice(5,7) || (b.time_create).slice(8,10)-(a.time_create).slice(8,10))
 				setTimeout(() => {
 					this.getData()
 				}, 1000);

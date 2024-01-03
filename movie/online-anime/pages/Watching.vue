@@ -9,8 +9,8 @@
 			<!-- details -->
 			<section class="section section--details">
 				<!-- details background -->
-				<div v-if="data_get.allimage[0]" class="section__details-bg"
-					:style="'background: url(' + data_get.allimage[0].image + ') center center / cover no-repeat'"></div>
+				<div v-if="data_get.allimage[1]" class="section__details-bg"
+					:style="'background: url(' + data_get.allimage[1].image + ') center center / cover no-repeat'"></div>
 				<!-- end details background -->
 				<!-- details content -->
 				<div class="container">
@@ -28,7 +28,7 @@
 							<div class="item item--details">
 								<!-- card cover -->
 								<div v-if="data_get && data_get.allimage.length > 0" class="item__cover item__cover--anime">
-									<img :src="data_get.allimage[1].image" alt="" class="item-cover__anime" />
+									<img :src="data_get.allimage[0].image" alt="" class="item-cover__anime" />
 									<div v-if="data_get.payment != 'Free'"
 										class="d-flex aligin-items-center justify-content-center premium-icon">
 										<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -40,7 +40,7 @@
 								<div class="item__content">
 									<div class="item__wrap">
 										<span v-if="data_get" class="item__rate">{{
-											data_get.mark
+											data_get.mark.toFixed(1)
 										}}</span>
 										<ul class="item__list">
 											<li v-if="data_get">{{ data_get.type }}</li>
@@ -413,9 +413,9 @@
 												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#">
 													{{ item1.title }}</NuxtLink>
 											</span>
-											<span class="item__rate">{{ cinema.mark }}</span>
+											<span class="item__rate">{{ cinema.mark.toFixed(1) }}</span>
 										</div>
-									</div>
+									</div>	
 								</div>
 								<!-- end item -->
 							</div>
@@ -636,6 +636,13 @@ export default {
 						}
 					})
 						.then(response => {
+							var formdata=new FormData()
+							formdata.append("title",document.querySelector("#rating").value)
+							formdata.append("cinema_id",JSON.parse(localStorage.getItem("selectedItemData")))
+
+							axios.post(`https://api.uzdub.uz/api/v1/mark`,formdata).then(res=>{
+
+							})
 							document.querySelector('#sharx_m').value = ""
 							// document.querySelector('#alert_modal').style = 'display:block'
 							// setTimeout(() => {

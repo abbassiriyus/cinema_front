@@ -846,16 +846,20 @@ export default {
 					const Filter = this.tarjima_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
 					for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
+						var a=false
 						for (let j = 0; j < document.querySelectorAll(".sign__director_option").length; j++) {
-							if (document.querySelectorAll(".sign__director_option")[j].getAttribute("id") == document.querySelectorAll(".ss-value")[i].getAttribute("data-id")) {
+							if (document.querySelectorAll(".ss-value")[i].getAttribute("data-id")==document.querySelectorAll(".sign__director_option")[j].getAttribute("id")) {
+								a=true
+							}
+						}
+						if(a){
 							var formdata2 = new FormData()
 							formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
 							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-							axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[j].id}`, formdata2).then(res2 => {
+							axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`, formdata2).then(res2 => {
 
 							})
-							}
 						}
 					}
 
@@ -863,20 +867,26 @@ export default {
 
 					const Filter1 = this.janr_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
+
 					for (let j = 0; j < document.querySelectorAll(".ss-value").length; j++) {
-						for (let i = 0; i < document.querySelectorAll(".sign__genre_option").length; i++) {
-							if (document.querySelectorAll(".sign__genre_option")[i].getAttribute("id") == document.querySelectorAll(".ss-value")[j].getAttribute("data-id")) {
-							var formdata1 = new FormData()
-							formdata1.append("cinema_id", sessionStorage.getItem("cinemaId"))
-							formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
-
-							axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[i].id}`, formdata1).then(res1 => {
-
-							})
+						var a=false
+							for (let i = 0; i < document.querySelectorAll(".sign__genre_option").length; i++) {
+								if (document.querySelectorAll(".ss-value")[j].getAttribute("data-id")==document.querySelectorAll(".sign__genre_option")[i].getAttribute("id")) {
+										a=true
+								}
 							}
-						}
-					}
+							if(a){
+									var formdata1 = new FormData()
+									formdata1.append("cinema_id", sessionStorage.getItem("cinemaId"))
+									formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
 
+									axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[j].id}`, formdata1).then(res1 => {
+
+									})
+							}
+					}
+					
+							
 					const Filter2 = this.image_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
 					for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
@@ -889,10 +899,25 @@ export default {
 						})
 					}
 
+					if (document.querySelector("#cinema_carusel").value == 0) {
+						var formdata4 = new FormData()
+						formdata4.append("cinema_id", res.data.id)
+						axios.post(`https://api.uzdub.uz/api/v1/carousel`, formdata4).then(res => {
+
+						})
+					}else{
+						axios.get('https://api.uzdub.uz/api/v1/carousel').then(res10=>{
+							const Filter=res10.data.filter(item=>item.id==res.data.id)
+							axios.delete(`https://api.uzdub.uz/api/v1/carousel/${Filter[0].car_id}`).then(res1 => {
+
+							})
+						})
+					}
+
 					document.querySelector("#alert_modal").style = "display:block"
 					document.querySelector("#alert_text").innerHTML = "Media o'zgartirildi"
 					setTimeout(() => {
-						window.location.reload()
+						// window.location.reload()
 					}, 1000)
 				}).catch(err => {
 					document.querySelector("#alert_modal").style = "display:block"

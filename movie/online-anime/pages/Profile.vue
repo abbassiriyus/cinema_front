@@ -182,7 +182,7 @@
 														</td>
 														<td>
 															<div class="dashbox__table-text dashbox__table-text--rate">
-																{{ item.mark }}
+																{{ item.mark.toFixed(1) }}
 															</div>
 														</td>
 													</tr>
