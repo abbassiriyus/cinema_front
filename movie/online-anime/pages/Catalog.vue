@@ -114,9 +114,7 @@
 									</span>
 								</div>
 								<div class="item__content">
-									<h3 class="item__title">
-										<div @click="handleClick(item.id)">{{ item.title }}</div>
-									</h3>
+									<h3 class="item__title item__title-two" @click="handleClick(item.id)">{{ item.title }}</h3>
 									<span class="item__category">
 										<NuxtLink v-for=" item2  in  item.janrlar " :key="item2.id" to="#">{{ item2.title }}</NuxtLink>
 									</span>
@@ -253,7 +251,7 @@
 													</span>
 												</NuxtLink>
 												<div class="item__content">
-													<h3 class="item__title">
+													<h3 class="item__title ">
 														<NuxtLink to="watching">{{ item.title }}</NuxtLink>
 													</h3>
 													<span class="item__category">
@@ -346,7 +344,7 @@ export default {
 				const category = await axios.get('https://api.uzdub.uz/api/v1/janr')
 				this.top_look = catalog.data.sort(
 					(a, b) => a.more_loking - b.more_loking
-				).slice(0,10)
+				).slice(0, 10)
 				var a = catalog.data
 				if (sessionStorage.getItem('search')) {
 					this.catalog = a.filter(item => item.title.includes(sessionStorage.getItem('search')))

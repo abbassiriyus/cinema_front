@@ -170,7 +170,7 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title" style="color:white" @click="handleClick(cinema.id)">
+											<h3 class="item__title item__title-two" style="color:white" @click="handleClick(cinema.id)">
 												{{ cinema.title }}
 											</h3>
 											<span class="item__category">
@@ -204,7 +204,7 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title" style="color:white" @click="handleClick(cinema.id)">
+											<h3 class="item__title item__title-two" style="color:white" @click="handleClick(cinema.id)">
 												{{ cinema.title }}
 											</h3>
 											<span class="item__category">
@@ -263,7 +263,8 @@
 									<ul class="splide__list">
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<div @click="handleClick(item.id)" v-if="item.images.length > 0" to="watching" class="item__cover">
+												<div @click="handleClick(item.id)" v-if="item.images.length > 0" to="watching"
+													class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
@@ -278,7 +279,7 @@
 													</span>
 												</div>
 												<div class="item__content">
-													<h3 class="item__title">
+													<h3 class="item__title item__title-two">
 														<NuxtLink to="watching">{{ item.title }}</NuxtLink>
 													</h3>
 													<span class="item__category">
@@ -517,7 +518,7 @@ export default {
 				this.Serial = response.data.filter(item => item.appearance == 2).slice(0, 6);
 				this.ongoin = response.data.filter(item => item.appearance == 1).slice(0, 6);
 				const carousel2 = await axios.get('https://api.uzdub.uz/api/v1/carousel')
-				this.carousel2 = carousel2.data.sort((a, b) =>(b.time_create).slice(0,4)-(a.time_create).slice(0,4) || (b.time_create).slice(5,7)-(a.time_create).slice(5,7) || (b.time_create).slice(8,10)-(a.time_create).slice(8,10))
+				this.carousel2 = carousel2.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10))
 				setTimeout(() => {
 					this.getData()
 				}, 1000);

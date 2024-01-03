@@ -45,7 +45,7 @@
 								<div class="profile__content">
 									<div class="profile__user">
 										<div class="profile__avatar">
-											<img src="https://i.pinimg.com/564x/ff/9c/86/ff9c8636ef87e9410d14231ae7861e23.jpg" alt="" />
+											<img src="img/user.svg" alt="" />
 										</div>
 										<div class="profile__meta">
 											<h3 v-if="one_user" class="d-flex aligin-items-center justify-content-center">

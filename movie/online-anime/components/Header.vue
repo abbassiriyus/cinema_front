@@ -68,7 +68,7 @@
 								</form>
 								<div class=""></div>
 								<NuxtLink v-if="token" to="profile" class="profile__avatar m-0">
-									<img src="https://i.pinimg.com/564x/ff/9c/86/ff9c8636ef87e9410d14231ae7861e23.jpg" alt="">
+									<img src="img/user.svg" alt="">
 								</NuxtLink>
 								<NuxtLink v-else to="signin" class="header__sign-in">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

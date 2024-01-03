@@ -2575,6 +2575,14 @@ body::-webkit-scrollbar-thumb {
 	margin-bottom: 0;
 }
 
+.item__title-two {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	min-height: 52px;
+}
+
 .item--list .item__title {
 	font-size: 20px;
 	/* line-height: 130%; */
