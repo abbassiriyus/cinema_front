@@ -31,7 +31,9 @@ export default {
 	},
 	methods: {
 		get(){
-			var a=JSON.parse(localStorage.getItem("user_data")).id 
+			var a=localStorage.getItem("user_data")?JSON.parse(localStorage.getItem("user_data")).id:""
+			var b=localStorage.getItem("user_data")?JSON.parse(localStorage.getItem("user_data")).token:"" 
+
 			axios.get("https://api.uzdub.uz/users").then(res=>{
 				const Filter=res.data.filter(item=>item.id==a)
 				if(Filter[0].pan){
@@ -40,6 +42,14 @@ export default {
 					document.querySelector("#home_anime").style="display:none"
 					document.querySelector("#alert_modal").style="display:block"
 					document.querySelector("#alert_text").innerHTML="Siz admin tomondan ban oldingiz!"
+				}
+				if(Filter[0].token!=b){
+					localStorage.clear()
+					window.location="Signin"
+					// setTimeout(() => {
+					// document.querySelector("#alert_modal").style="display:block"
+					// document.querySelector("#alert_text").innerHTML="Siz akkauntingizdan boshqa odam kirdi!"
+					// }, 1000);
 				}
 			})
 		},
