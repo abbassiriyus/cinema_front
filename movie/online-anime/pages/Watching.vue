@@ -69,8 +69,7 @@
 
 									<ul class="item__meta">
 										<li v-if="data_get">
-											<span>Ovoz berdi:</span>
-											<a role="button">{{ data_get.ovoz_berdi }}</a>
+											<span>Ovoz berdi: <a role="button">{{ data_get.ovoz_berdi }}</a></span>
 										</li>
 										<li v-if="data_get">
 											<span>Tarjimon:</span>

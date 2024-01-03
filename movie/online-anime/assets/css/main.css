@@ -2997,7 +2997,6 @@ body::-webkit-scrollbar-thumb {
 		width: calc(100% - 236px);
 		margin-top: 0;
 		margin-left: 20px;
-		height: 306px;
 		overflow: hidden;
 		position: relative;
 	}
@@ -3047,7 +3046,6 @@ body::-webkit-scrollbar-thumb {
 
 	.item--details .item__content {
 		width: calc(100% - 186px);
-		height: 235px;
 	}
 
 	.item__description {
@@ -3080,7 +3078,6 @@ body::-webkit-scrollbar-thumb {
 
 	.item--details .item__content {
 		width: calc(100% - 216px);
-		height: 278px;
 	}
 
 	.item__description p {
