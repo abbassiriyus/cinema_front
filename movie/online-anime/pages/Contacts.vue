@@ -185,6 +185,10 @@ export default {
 			formdata.append('xabar',document.querySelector("#contact_xabar").value)
 
 			axios.post('https://api.uzdub.uz/send-message',formdata).then(res=>{
+				document.querySelector("#contact_xabar").value=""
+				document.querySelector("#contact_email").value=""
+				document.querySelector("#contact_name").value=""
+				document.querySelector("#contact_mavzu").value=""
               document.querySelector("#alert_modal").style="display:block"
 			  document.querySelector("#alert_text").innerHTML="Sizga aloqaga chiqishadi"
 			  setTimeout(() => {
