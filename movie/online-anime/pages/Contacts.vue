@@ -96,30 +96,30 @@
 									<div class="row">
 										<div class="col-12 col-xl-6">
 											<div class="sign__group">
-												<input type="text" class="sign__input" placeholder="Ismingiz" />
+												<input type="text" id="contact_name" class="sign__input" placeholder="Ismingiz" />
 											</div>
 										</div>
 
 										<div class="col-12 col-xl-6">
 											<div class="sign__group">
-												<input type="text" class="sign__input" placeholder="Email" />
+												<input type="text" id="contact_email" class="sign__input" placeholder="Email" />
 											</div>
 										</div>
 
 										<div class="col-12">
 											<div class="sign__group">
-												<input type="text" class="sign__input" placeholder="Mavzu" />
+												<input type="text" id="contact_mavzu" class="sign__input" placeholder="Mavzu" />
 											</div>
 										</div>
 
 										<div class="col-12">
 											<div class="sign__group">
-												<textarea name="text" class="sign__textarea" placeholder="Xabaringizni yozing..."></textarea>
+												<textarea name="text" id="contact_xabar" class="sign__textarea" placeholder="Xabaringizni yozing..."></textarea>
 											</div>
 										</div>
 
 										<div class="col-12">
-											<button type="button" class="sign__btn sign__btn--small">
+											<button @click="send_message()" type="button" class="sign__btn sign__btn--small">
 												<span>Yuborish</span>
 											</button>
 										</div>
@@ -133,11 +133,75 @@
 			</div>
 		</section>
 		<!-- end contacts -->
+		<div id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
+				<div class="d-flex">
+					<div id="alert_text" class="toast-body">
+						Hello, world! This is a toast message.
+					</div>
+					<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" @click="AlertNone()"
+						aria-label="Close"></button>
+				</div>
+
+		</div>
 	</div>
 </template>
 
 <script>
+import axios from "axios"
 export default {
 	name: 'ContactPage',
+
+	methods:{
+		send_message(){
+			if(document.querySelector("#contact_email").value==""){
+				document.querySelector("#contact_email").style="border-color: #ff55a5;"
+			}else{
+				document.querySelector("#contact_email").style="border-color: none;"
+			}
+
+			if(document.querySelector("#contact_name").value==""){
+				document.querySelector("#contact_name").style="border-color: #ff55a5;"
+			}else{
+				document.querySelector("#contact_name").style="border-color: none;"
+			}
+
+			if(document.querySelector("#contact_mavzu").value==""){
+				document.querySelector("#contact_mavzu").style="border-color: #ff55a5;"
+			}else{
+				document.querySelector("#contact_mavzu").style="border-color: none;"
+			}
+
+			if(document.querySelector("#contact_xabar").value==""){
+				document.querySelector("#contact_xabar").style="border-color: #ff55a5;"
+			}else{
+				document.querySelector("#contact_xabar").style="border-color: none;"
+			}
+
+            if(document.querySelector("#contact_email").value!="" && document.querySelector("#contact_name").value!="" && document.querySelector("#contact_mavzu").value!="" && document.querySelector("#contact_xabar").value!=""){
+				var formdata=new FormData()
+			formdata.append('email',document.querySelector("#contact_email").value)
+			formdata.append('ism',document.querySelector("#contact_name").value)
+			formdata.append('mavzu',document.querySelector("#contact_mavzu").value)
+			formdata.append('xabar',document.querySelector("#contact_xabar").value)
+
+			axios.post('https://api.uzdub.uz/send-message',formdata).then(res=>{
+              document.querySelector("#alert_modal").style="display:block"
+			  document.querySelector("#alert_text").innerHTML="Sizga aloqaga chiqishadi"
+			  setTimeout(() => {
+				document.querySelector("#alert_modal").style="display:none"
+			  }, 3000);
+			}).catch(err=>{
+			document.querySelector("#alert_modal").style="display:block"
+			  document.querySelector("#alert_text").innerHTML="xato"
+			  setTimeout(() => {
+				document.querySelector("#alert_modal").style="display:none"
+			  }, 3000);
+			})
+			}
+		},
+		AlertNone() {
+			document.querySelector("#alert_modal").style = "display:none"
+		}
+	}
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
 	<div>
+	<div id="home_anime">
 		<div style="min-height: 70px; width: 100%;"></div>
 		<Header />
 		<nav>
@@ -7,11 +8,44 @@
 		</nav>
 		<Footer />
 	</div>
+	<div id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
+				<div class="d-flex">
+					<div id="alert_text" class="toast-body">
+						Hello, world! This is a toast message.
+					</div>
+					<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" @click="AlertNone()"
+						aria-label="Close"></button>
+				</div>
+
+	</div>
+	</div>
 </template>
 <script src="//code.jivo.ru/widget/LInicwK8BK" async></script>
 <script>
+import axios from "axios"
 export default {
 	name: 'DefaultLayout',
-	mounted() { },
+
+	mounted() {
+		this.get()
+	},
+	methods: {
+		get(){
+			var a=JSON.parse(localStorage.getItem("user_data")).id 
+			axios.get("https://api.uzdub.uz/users").then(res=>{
+				const Filter=res.data.filter(item=>item.id==a)
+				if(Filter[0].pan){
+					document.querySelector("#home_anime").style="display:block"
+				}else{
+					document.querySelector("#home_anime").style="display:none"
+					document.querySelector("#alert_modal").style="display:block"
+					document.querySelector("#alert_text").innerHTML="Siz admin tomondan ban oldingiz!"
+				}
+			})
+		},
+		AlertNone() {
+			document.querySelector("#alert_modal").style = "display:none"
+		}
+	},
 }
 </script>
