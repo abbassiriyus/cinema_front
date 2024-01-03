@@ -2,85 +2,85 @@
   {
     "name": "404error",
     "path": "/404error",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/404error.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/404error.vue",
     "chunkName": "pages/404error",
-    "_name": "_4f75f737"
+    "_name": "_ea517afc"
   },
   {
     "name": "About",
     "path": "/About",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/About.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/About.vue",
     "chunkName": "pages/About",
-    "_name": "_5a1c1116"
+    "_name": "_5e6881ab"
   },
   {
     "name": "Catalog",
     "path": "/Catalog",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Catalog.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Catalog.vue",
     "chunkName": "pages/Catalog",
-    "_name": "_07608f62"
+    "_name": "_2a532eb7"
   },
   {
     "name": "Contacts",
     "path": "/Contacts",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Contacts.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Contacts.vue",
     "chunkName": "pages/Contacts",
-    "_name": "_78f1a65a"
+    "_name": "_975a1cb6"
   },
   {
     "name": "Faq",
     "path": "/Faq",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Faq.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Faq.vue",
     "chunkName": "pages/Faq",
-    "_name": "_62259742"
+    "_name": "_4756c634"
   },
   {
     "name": "Forgot",
     "path": "/Forgot",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Forgot.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Forgot.vue",
     "chunkName": "pages/Forgot",
-    "_name": "_f6e69e2c"
+    "_name": "_09ce52f5"
   },
   {
     "name": "Pricing",
     "path": "/Pricing",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Pricing.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Pricing.vue",
     "chunkName": "pages/Pricing",
-    "_name": "_bf6f9ee2"
+    "_name": "_798a6038"
   },
   {
     "name": "Profile",
     "path": "/Profile",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Profile.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Profile.vue",
     "chunkName": "pages/Profile",
-    "_name": "_4e0070f2"
+    "_name": "_70f31047"
   },
   {
     "name": "Signin",
     "path": "/Signin",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Signin.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Signin.vue",
     "chunkName": "pages/Signin",
-    "_name": "_63b9e5e9"
+    "_name": "_2e08f018"
   },
   {
     "name": "SignUp",
     "path": "/SignUp",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/SignUp.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/SignUp.vue",
     "chunkName": "pages/SignUp",
-    "_name": "_41b5287f"
+    "_name": "_72126aec"
   },
   {
     "name": "Watching",
     "path": "/Watching",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/Watching.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/Watching.vue",
     "chunkName": "pages/Watching",
-    "_name": "_4db4fa8c"
+    "_name": "_1486ce05"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/home/abbas/Documents/GitHub/cinema_front/movie/online-anime/pages/index.vue",
+    "component": "/Users/asrorshodiyev/ASROR/cinema_front/movie/online-anime/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_0261cbfb"
+    "_name": "_06ae3c90"
   }
 ]
