@@ -18,7 +18,7 @@
 							<!-- profile user -->
 							<div class="profile__user">
 								<div class="profile__avatar">
-									<img src="img/user.svg" alt="">
+									<img src="/img/user.svg" alt="">
 								</div>
 								<!-- or red -->
 								<div v-if="this.user.pan" class="profile__meta profile__meta--green">
@@ -1193,7 +1193,7 @@
 				<div class="modal-content">
 					<div class="modal__content modal__content--view">
 						<div class="comments__autor">
-							<img class="comments__avatar" src="img/user.svg" alt="">
+							<img class="comments__avatar" src="/img/user.svg" alt="">
 							<span class="comments__name">{{ item.creatorName }}</span>
 							<span class="comments__time">{{ (item.time_create).slice(0, 10) }}, {{ (item.time_create).slice(11, 16)
 							}}</span>
@@ -1248,7 +1248,7 @@
 				<div class="modal-content">
 					<div class="modal__content modal__content--view">
 						<div class="reviews__autor">
-							<img class="reviews__avatar" src="img/user.svg" alt="">
+							<img class="reviews__avatar" src="/img/user.svg" alt="">
 							<span class="reviews__name">{{ item.creatorName1 }}</span>
 							<span class="reviews__time">{{ (item.time_create).slice(0, 10) }}, {{ (item.time_create).slice(11, 16) }} by
 								{{ item.creatorName1 }}</span>

@@ -561,7 +561,7 @@
 			<div class="modal-content">
 				<div class="modal__content modal__content--view">
 					<div class="reviews__autor">
-						<img class="reviews__avatar" src="img/user.svg" alt="">
+						<img class="reviews__avatar" src="/img/user.svg" alt="">
 						<span class="reviews__name">{{ item.title }}</span>
 						<span class="reviews__time">{{ (item.time_create).slice(0,10) }}, {{ (item.time_create).slice(11,16) }} by {{ item.creatorName }}</span>
 

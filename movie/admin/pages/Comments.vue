@@ -525,7 +525,7 @@
 				<div class="modal-content">
 					<div class="modal__content modal__content--view">
 						<div class="comments__autor">
-							<img class="comments__avatar" src="img/user.svg" alt="">
+							<img class="comments__avatar" src="/img/user.svg" alt="">
 							<span class="comments__name">{{ item.creatorName }}</span>
 							<span class="comments__time">{{ (item.time_create).slice(0, 10) }}, {{ (item.time_create).slice(11, 16)
 							}}</span>

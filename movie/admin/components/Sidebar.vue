@@ -11,7 +11,7 @@
       <!-- sidebar user -->
       <div class="sidebar__user">
         <div class="sidebar__user-img">
-          <img src="img/user.svg" alt="" />
+          <img src="/img/user.svg" alt="" />
         </div>
 
         <div class="sidebar__user-title">

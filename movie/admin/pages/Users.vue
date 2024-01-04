@@ -59,7 +59,7 @@
 										<td>
 											<div class="catalog__user">
 												<div class="catalog__avatar">
-													<img src="img/user.svg" alt="">
+													<img src="/img/user.svg" alt="">
 												</div>
 												<div class="catalog__meta">
 													<h3>{{ item.name }}</h3>
@@ -120,7 +120,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Gene Graham</h3>
@@ -178,7 +178,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Rosa Lee</h3>
@@ -236,7 +236,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Matt Jones</h3>
@@ -294,7 +294,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Brian Cranston</h3>
@@ -352,7 +352,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Louis Leterrier</h3>
@@ -410,7 +410,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Son Gun</h3>
@@ -468,7 +468,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Jordana Brewster</h3>
@@ -526,7 +526,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Tyreese Gibson</h3>
@@ -584,7 +584,7 @@
 									<td>
 										<div class="catalog__user">
 											<div class="catalog__avatar">
-												<img src="img/user.svg" alt="">
+												<img src="/img/user.svg" alt="">
 											</div>
 											<div class="catalog__meta">
 												<h3>Charlize Theron</h3>

@@ -1,0 +1,33 @@
+{
+  "entry": "server.js",
+  "files": {
+    "pages/404error.js": "pages/404error.js",
+    "pages/About.js": "pages/About.js",
+    "pages/Catalog.js": "pages/Catalog.js",
+    "pages/Contacts.js": "pages/Contacts.js",
+    "pages/Faq.js": "pages/Faq.js",
+    "pages/Forgot.js": "pages/Forgot.js",
+    "pages/Pricing.js": "pages/Pricing.js",
+    "pages/Profile.js": "pages/Profile.js",
+    "pages/SignUp.js": "pages/SignUp.js",
+    "pages/Signin.js": "pages/Signin.js",
+    "pages/Watching.js": "pages/Watching.js",
+    "pages/index.js": "pages/index.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "pages/404error.js": "pages/404error.js.map",
+    "pages/About.js": "pages/About.js.map",
+    "pages/Catalog.js": "pages/Catalog.js.map",
+    "pages/Contacts.js": "pages/Contacts.js.map",
+    "pages/Faq.js": "pages/Faq.js.map",
+    "pages/Forgot.js": "pages/Forgot.js.map",
+    "pages/Pricing.js": "pages/Pricing.js.map",
+    "pages/Profile.js": "pages/Profile.js.map",
+    "pages/SignUp.js": "pages/SignUp.js.map",
+    "pages/Signin.js": "pages/Signin.js.map",
+    "pages/Watching.js": "pages/Watching.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "server.js": "server.js.map"
+  }
+}
