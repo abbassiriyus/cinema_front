@@ -899,25 +899,27 @@ export default {
 						})
 					}
 
+					axios.get('https://api.uzdub.uz/api/v1/carousel').then(res10=>{
+					const Filter=res10.data.filter(item=>item.id==res.data.id)
 					if (document.querySelector("#cinema_carusel").value == 0) {
+						if(Filter.length==0){
 						var formdata4 = new FormData()
 						formdata4.append("cinema_id", res.data.id)
 						axios.post(`https://api.uzdub.uz/api/v1/carousel`, formdata4).then(res => {
 
 						})
+						}
 					}else{
-						axios.get('https://api.uzdub.uz/api/v1/carousel').then(res10=>{
-							const Filter=res10.data.filter(item=>item.id==res.data.id)
-							axios.delete(`https://api.uzdub.uz/api/v1/carousel/${Filter[0].car_id}`).then(res1 => {
+						axios.delete(`https://api.uzdub.uz/api/v1/carousel/${Filter[0].car_id}`).then(res1 => {
 
-							})
 						})
 					}
+					})
 
 					document.querySelector("#alert_modal").style = "display:block"
 					document.querySelector("#alert_text").innerHTML = "Media o'zgartirildi"
 					setTimeout(() => {
-						// window.location.reload()
+						window.location.reload()
 					}, 1000)
 				}).catch(err => {
 					document.querySelector("#alert_modal").style = "display:block"

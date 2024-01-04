@@ -44,7 +44,7 @@
 														</NuxtLink>
 													</p>
 													<div class="hero__actions">
-														<button @click="handleClick(item.id)" class="hero__btn">
+														<button @click="handleClick(item.id,item.looking)" class="hero__btn">
 															<span>Ko'rish</span>
 														</button>
 													</div>
@@ -263,7 +263,7 @@
 									<ul class="splide__list">
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<div @click="handleClick(item.id,item.looking)" v-if="item.images.length > 0" to="watching"
+												<div @click="handleClick(item.id,item.looking)" v-if="item.images.length > 0"
 													class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
