@@ -357,7 +357,7 @@ export default {
 				).slice(0, 10)
 				var a = catalog.data
 				if (sessionStorage.getItem('search')) {
-					this.catalog = a.filter(item => item.title.includes(sessionStorage.getItem('search')))
+					this.catalog = a.filter(item => (item.title).toLowerCase().includes(sessionStorage.getItem('search').toLowerCase()))
 					sessionStorage.clear()
 				} else {
 					this.catalog = a

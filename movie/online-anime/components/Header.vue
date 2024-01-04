@@ -56,8 +56,8 @@
 
 							<!-- header actions -->
 							<div class="header__actions">
-								<form action="#" class="header__search">
-									<input type="text" placeholder="Qidirish" class="search_data" />
+								<div class="header__search">
+									<input @change="getData()" type="text" placeholder="Qidirish" class="search_data" />
 									<button type="button" @click="getData()">
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 											<path
@@ -65,7 +65,7 @@
 											</path>
 										</svg>
 									</button>
-								</form>
+								</div>
 								<div class=""></div>
 								<NuxtLink v-if="token" to="profile" class="profile__avatar m-0">
 									<img src="/img/user.svg" alt="">
@@ -96,8 +96,8 @@
 		<!-- mobile menu -->
 		<div class="menu">
 			<!-- menu search -->
-			<form action="#" class="menu__search">
-				<input type="text" placeholder="Qidirish" class="search_data1" />
+			<div  class="menu__search">
+				<input @change="getData1()" type="text" placeholder="Qidirish" class="search_data1" />
 				<button type="button">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path @click="getData1()"
@@ -105,7 +105,7 @@
 						</path>
 					</svg>
 				</button>
-			</form>
+			</div>
 			<!-- end menu search -->
 
 			<!-- menu nav -->
