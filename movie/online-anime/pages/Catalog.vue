@@ -100,7 +100,7 @@
 							index >= (select_page - 1) * page_card
 							" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="item">
-								<div @click="handleClick(item.id)" class="item__cover">
+								<div @click="handleClick(item.id,item.looking)" class="item__cover">
 									<img v-if="item.images.length > 0" :src="item.images[0].image" alt="" />
 									<div v-if="item.payment != 'Free'"
 										class="d-flex aligin-items-center justify-content-center premium-icon">
@@ -114,9 +114,9 @@
 									</span>
 								</div>
 								<div class="item__content">
-									<h3 class="item__title item__title-two" @click="handleClick(item.id)">{{ item.title }}</h3>
-									<span class="item__category">
-										<NuxtLink v-for=" item2  in  item.janrlar " :key="item2.id" to="#">{{ item2.title }}</NuxtLink>
+									<h3 class="item__title item__title-two" @click="handleClick(item.id,item.looking)">{{ item.title }}</h3>
+									<span @click="handleClick(item.id,item.looking)" class="item__category">
+										<NuxtLink v-for=" item2  in  item.janrlar " :key="item2.id" to="">{{ item2.title }}</NuxtLink>
 									</span>
 									<span class="item__rate">{{ item.mark.toFixed(1) }}</span>
 								</div>
@@ -236,7 +236,7 @@
 									<ul class="splide__list">
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<NuxtLink v-if="item.images.length > 0" to="watching" class="item__cover">
+												<div @click="handleClick(item.id,item.looking)" v-if="item.images.length > 0" to="" class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
@@ -249,13 +249,13 @@
 																d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z" />
 														</svg>
 													</span>
-												</NuxtLink>
+												</div>
 												<div class="item__content">
-													<h3 class="item__title ">
-														<NuxtLink to="watching">{{ item.title }}</NuxtLink>
+													<h3 @click="handleClick(item.id,item.looking)" class="item__title ">
+														<NuxtLink to="">{{ item.title }}</NuxtLink>
 													</h3>
-													<span class="item__category">
-														<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="#">
+													<span @click="handleClick(item.id,item.looking)" class="item__category">
+														<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="">
 															{{ item1.title }}
 														</NuxtLink>
 													</span>
@@ -318,6 +318,16 @@
 				<button @click="Allfilter(1)" class="mfilter__apply" type="button"><span>Filter</span></button>
 			</div>
 			<!-- end mobile filter -->
+			<div id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
+				<div class="d-flex">
+					<div id="alert_text" class="toast-body">
+						Hello, world! This is a toast message.
+					</div>
+					<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" @click="AlertNone()"
+						aria-label="Close"></button>
+				</div>
+
+			</div>
 		</div>
 	</div>
 </template>
@@ -580,11 +590,22 @@ export default {
 				}
 			}
 		},
-		handleClick(index) {
-			const selectedItem = index;
-			localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
-			window.location = "/watching"
+		handleClick(index,ban) {
+			if(ban){
+				const selectedItem = index;
+				localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
+				window.location = "/watching"
+			}else{
+			document.querySelector("#alert_modal").style="display:block"
+			document.querySelector("#alert_text").innerHTML="Admin tomondan taqiqlangan kino"
+			setTimeout(() => {
+				document.querySelector("#alert_modal").style="display:none"
+			}, 3000);
+			}
 		},
+		AlertNone() {
+			document.querySelector("#alert_modal").style = "display:none"
+		}
 	},
 	mounted() {
 		this.getData()

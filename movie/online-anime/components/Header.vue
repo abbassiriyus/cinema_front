@@ -46,7 +46,7 @@
 								<!-- end dropdown -->
 
 								<li class="header__nav-item">
-									<NuxtLink class="header__nav-link" to="catalog">Katalog</NuxtLink>
+									<NuxtLink class="header__nav-link" to="/catalog">Katalog</NuxtLink>
 								</li>
 								<!-- <li class="header__nav-item">
 									<NuxtLink class="header__nav-link" to="pricing">Narxlar</NuxtLink>

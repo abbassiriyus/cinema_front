@@ -640,10 +640,21 @@ export default {
 			window.location = "/"
 		},
 		ProfilBosil(index) {
-			// console.log(index, "hello")
+			axios.get("https://api.uzdub.uz/api/v1/cinema").then(res=>{
+			const Filter=res.data.filter(item=>item.id==index)
+			if(Filter[0].looking){
 			const selectedItem = index;
 			localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
 			window.location = "/watching"
+			}else{
+            document.querySelector("#alert_modal").style="display:block"
+			document.querySelector("#alert_text").innerHTML="Admin tomondan taqiqlangan kino"
+			setTimeout(() => {
+				document.querySelector("#alert_modal").style="display:none"
+			}, 3000);
+			}
+			})
+
 		},
 		async postDataWithToken() {
 			try {

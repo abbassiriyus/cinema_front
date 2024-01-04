@@ -1,13 +1,5 @@
 <template>
 	<div>
-	<div id="home_anime">
-		<div style="min-height: 70px; width: 100%;"></div>
-		<Header />
-		<nav>
-			<Nuxt />
-		</nav>
-		<Footer />
-	</div>
 	<div id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
 				<div class="d-flex">
 					<div id="alert_text" class="toast-body">
@@ -18,6 +10,14 @@
 				</div>
 
 	</div>
+	<div id="home_anime">
+		<div style="min-height: 70px; width: 100%;"></div>
+		<Header />
+		<nav>
+			<Nuxt />
+		</nav>
+		<Footer />
+	</div>
 	</div>
 </template>
 <script src="//code.jivo.ru/widget/LInicwK8BK" async></script>
@@ -27,7 +27,9 @@ export default {
 	name: 'DefaultLayout',
 
 	mounted() {
+	setInterval(() => {
 		this.get()
+	}, 1000);
 	},
 	methods: {
 		get(){
@@ -38,14 +40,15 @@ export default {
 				const Filter=res.data.filter(item=>item.id==a)
 				if(Filter[0].pan){
 					document.querySelector("#home_anime").style="display:block"
+					document.querySelector("#alert_modal").style="display:none"
 				}else{
-					document.querySelector("#home_anime").style="display:none"
 					document.querySelector("#alert_modal").style="display:block"
 					document.querySelector("#alert_text").innerHTML="Siz admin tomondan ban oldingiz!"
+					document.querySelector("#home_anime").style="display:none"
 				}
 				if(Filter[0].token!=b){
 					localStorage.clear()
-					window.location="Signin"
+					window.location="signin"
 					// setTimeout(() => {
 					// document.querySelector("#alert_modal").style="display:block"
 					// document.querySelector("#alert_text").innerHTML="Siz akkauntingizdan boshqa odam kirdi!"

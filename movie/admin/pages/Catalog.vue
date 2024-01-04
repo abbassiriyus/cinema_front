@@ -757,21 +757,17 @@ export default {
 		try {
 			const kino = await axios.get('https://api.uzdub.uz/api/v1/cinema')
 			for (let i = 0; i < kino.data.length; i++) {
-				if (kino.data[i].appearance == 1) {
-					kino.data[i].category = "Movie"
-				} else {
-					if (kino.data[i].appearance == 2) {
-						kino.data[i].category = "Series"
+					if (kino.data[i].appearance == 1) {
+						kino.data[i].category = "Anime"
 					} else {
-						if (kino.data[i].appearance == 3) {
-							kino.data[i].category = "TV Series"
+						if (kino.data[i].appearance == 2) {
+							kino.data[i].category = "Series"
 						} else {
-							if (kino.data[i].appearance == 4) {
-								kino.data[i].category = "Cartoon"
-							}
+							if (kino.data[i].appearance == 3) {
+								kino.data[i].category = "Ongoin"
+							} 
 						}
 					}
-				}
 			}
 			this.media = kino.data
 			var for_w = this.media.length / this.page_card
@@ -856,18 +852,14 @@ export default {
 			axios.get('https://api.uzdub.uz/api/v1/cinema').then(kino => {
 				for (let i = 0; i < kino.data.length; i++) {
 					if (kino.data[i].appearance == 1) {
-						kino.data[i].category = "Movie"
+						kino.data[i].category = "Anime"
 					} else {
 						if (kino.data[i].appearance == 2) {
 							kino.data[i].category = "Series"
 						} else {
 							if (kino.data[i].appearance == 3) {
-								kino.data[i].category = "TV Series"
-							} else {
-								if (kino.data[i].appearance == 4) {
-									kino.data[i].category = "Cartoon"
-								}
-							}
+								kino.data[i].category = "Ongoin"
+							} 
 						}
 					}
 				}
