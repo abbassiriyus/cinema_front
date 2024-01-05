@@ -888,7 +888,7 @@ export default {
 					
 							
 					const Filter2 = this.image_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
-
+					Filter2.sort((a, b) => a.id - b.id)
 					for (let i = 0; i < document.querySelectorAll("#sign__gallery-upload").length; i++) {
 						var formdata3 = new FormData()
 						formdata3.append("cinema_id", sessionStorage.getItem("cinemaId"))
