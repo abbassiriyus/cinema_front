@@ -44,7 +44,7 @@
 														</NuxtLink>
 													</p>
 													<div class="hero__actions">
-														<button @click="handleClick(item.id,item.looking)" class="hero__btn">
+														<button @click="handleClick(item.id, item.looking)" class="hero__btn">
 															<span>Ko'rish</span>
 														</button>
 													</div>
@@ -108,7 +108,7 @@
 								<!-- item -->
 								<div v-for="cinema in cinemaData" :key="cinema.id" class="col-6 col-sm-12 col-lg-6 col-xxl-4">
 									<div class="item item--list">
-										<div @click="handleClick(cinema.id,cinema.looking)" class="item__cover">
+										<div @click="handleClick(cinema.id, cinema.looking)" class="item__cover">
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
 												<img style="height:40px;" src="/img/USD.svg" alt="" />
@@ -122,10 +122,10 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title" style="color:white" @click="handleClick(cinema.id,cinema.looking)">
+											<h3 class="item__title" style="color:white" @click="handleClick(cinema.id, cinema.looking)">
 												{{ cinema.title }}
 											</h3>
-											<span @click="handleClick(cinema.id,cinema.looking)" class="item__category">
+											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
 												<NuxtLink style="color:white" v-for="item1 in cinema.janrlar" :key="item1.id" to="">
 													{{ item1.title }}
 												</NuxtLink>
@@ -156,7 +156,7 @@
 								<!-- item -->
 								<div v-for="cinema in Serial" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 									<div class="item">
-										<div @click="handleClick(cinema.id,cinema.looking)" class="item__cover">
+										<div @click="handleClick(cinema.id, cinema.looking)" class="item__cover">
 											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
@@ -170,10 +170,11 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title item__title-two" style="color:white" @click="handleClick(cinema.id,cinema.looking)">
+											<h3 class="item__title item__title-two" style="color:white"
+												@click="handleClick(cinema.id, cinema.looking)">
 												{{ cinema.title }}
 											</h3>
-											<span @click="handleClick(cinema.id,cinema.looking)" class="item__category">
+											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
 												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to=""> {{ item1.title }}</NuxtLink>
 											</span>
 											<span class="item__rate">{{ cinema.mark.toFixed(1) }}</span>
@@ -190,7 +191,7 @@
 								<!-- item -->
 								<div v-for="cinema in ongoin" :key="cinema.id" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 									<div class="item">
-										<div @click="handleClick(cinema.id,cinema.looking)" class="item__cover">
+										<div @click="handleClick(cinema.id, cinema.looking)" class="item__cover">
 											<img v-if="cinema.images.length > 0" :src="cinema.images[0].image" alt="" class="item-cover__img" />
 											<div v-if="cinema.payment != 'Free'"
 												class="d-flex aligin-items-center justify-content-center premium-icon">
@@ -204,10 +205,11 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title item__title-two" style="color:white" @click="handleClick(cinema.id,cinema.looking)">
+											<h3 class="item__title item__title-two" style="color:white"
+												@click="handleClick(cinema.id, cinema.looking)">
 												{{ cinema.title }}
 											</h3>
-											<span @click="handleClick(cinema.id,cinema.looking)" class="item__category">
+											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
 												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
 											</span>
 											<span class="item__rate">{{ cinema.mark.toFixed(1) }}</span>
@@ -263,8 +265,7 @@
 									<ul class="splide__list">
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<div @click="handleClick(item.id,item.looking)" v-if="item.images.length > 0"
-													class="item__cover">
+												<div @click="handleClick(item.id, item.looking)" v-if="item.images.length > 0" class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
@@ -279,10 +280,10 @@
 													</span>
 												</div>
 												<div class="item__content">
-													<h3 @click="handleClick(item.id,item.looking)" class="item__title item__title-two">
+													<h3 @click="handleClick(item.id, item.looking)" class="item__title item__title-two">
 														<NuxtLink to="">{{ item.title }}</NuxtLink>
 													</h3>
-													<span @click="handleClick(item.id,item.looking)" class="item__category">
+													<span @click="handleClick(item.id, item.looking)" class="item__category">
 														<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="">
 															{{ item1.title }}
 														</NuxtLink>
@@ -482,14 +483,13 @@
 		</div>
 		<!-- end plan modal -->
 		<div id="alert_modal" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="false">
-				<div class="d-flex">
-					<div id="alert_text" class="toast-body">
-						Hello, world! This is a toast message.
-					</div>
-					<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" @click="AlertNone()"
-						aria-label="Close"></button>
+			<div class="d-flex">
+				<div id="alert_text" class="toast-body">
+					Hello, world! This is a toast message.
 				</div>
-
+				<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" @click="AlertNone()"
+					aria-label="Close"></button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -512,17 +512,17 @@ export default {
 		this.getCinemaData();
 	},
 	methods: {
-		handleClick(index,ban) {
-			if(ban){
-			const selectedItem = index;
-			localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
-			window.location = "/watching"
-			}else{
-            document.querySelector("#alert_modal").style="display:block"
-			document.querySelector("#alert_text").innerHTML="Admin tomondan taqiqlangan kino"
-			setTimeout(() => {
-				document.querySelector("#alert_modal").style="display:none"
-			}, 3000);
+		handleClick(index, ban) {
+			if (ban) {
+				const selectedItem = index;
+				localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
+				window.location = "/watching"
+			} else {
+				document.querySelector("#alert_modal").style = "display:block"
+				document.querySelector("#alert_text").innerHTML = "Admin tomondan taqiqlangan kino"
+				setTimeout(() => {
+					document.querySelector("#alert_modal").style = "display:none"
+				}, 3000);
 			}
 		},
 		async getCinemaData() {
