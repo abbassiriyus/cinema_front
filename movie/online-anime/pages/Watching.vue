@@ -447,6 +447,9 @@ export default {
 				mainBg.style.backgroundSize = 'cover'
 			}
 		}
+		axios.get('https://api.uzdub.uz/api/v1/cinema').then(response=>{
+			this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking).slice(0, 6)
+		})
 	},
 	methods: {
 		getData() {
@@ -466,7 +469,6 @@ export default {
 			try {
 				var data12 = await axios.post("https://api.uzdub.uz/api/lookme", { cinema_id: JSON.parse(localStorage.getItem("selectedItemData")), user_id: JSON.parse((localStorage.getItem("user_data"))).id })
 				const response = await axios.get('https://api.uzdub.uz/api/v1/cinema');
-				this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking).slice(0, 6)
 			} catch (error) {
 				console.error(error, 'xato')
 			}
