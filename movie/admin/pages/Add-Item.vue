@@ -575,7 +575,6 @@
 <style></style>
 
 <script>
-import axios from 'axios';
 
 export default {
 	name: "AddItemPage",
@@ -657,7 +656,7 @@ export default {
 		}
 
 
-		axios.get('https://api.uzdub.uz/api/v1/janr').then(res => {
+		this.$axios.get('https://api.uzdub.uz/api/v1/janr').then(res => {
 			this.janr = res.data
 			setTimeout(() => {
 				if (document.querySelector('#sign__genre')) {
@@ -670,7 +669,7 @@ export default {
 				}
 			}, 100);
 		})
-		axios.get('https://api.uzdub.uz/api/v1/tarjima').then(res => {
+		this.$axios.get('https://api.uzdub.uz/api/v1/tarjima').then(res => {
 			this.tarjima = res.data
 			setTimeout(() => {
 				if (document.querySelector('#sign__director')) {
@@ -684,7 +683,7 @@ export default {
 			}, 100);
 			var a = sessionStorage.getItem("cinemaId")
 			if (a) {
-				axios.get("https://api.uzdub.uz/api/v1/cinema").then(res => {
+				this.$axios.get("https://api.uzdub.uz/api/v1/cinema").then(res => {
 					const Filter = res.data.filter(item => item.id == a)
 					Filter.map(item => {
 						document.querySelector("#cinema_title").value = item.title
@@ -704,7 +703,7 @@ export default {
 						document.querySelectorAll("#sign__gallery-upload")[0].value = item.images[0].image
 						document.querySelectorAll("#sign__gallery-upload")[1].value = item.images[1].image
 
-						axios.get('https://api.uzdub.uz/seriallar').then(res1 => {
+						this.$axios.get('https://api.uzdub.uz/seriallar').then(res1 => {
 							const Filter1 = res1.data.rows.filter(item => item.cinema_id == Filter[0].id)
 							if (Filter1.length > 0) {
 								this.mavsum = Filter1
@@ -719,9 +718,9 @@ export default {
 						})
 					})
 				})
-				axios.get("https://api.uzdub.uz/api/v1/tarjima_cinema").then(res => {
-					axios.get("https://api.uzdub.uz/api/v1/janr_cinema").then(res1 => {
-						axios.get("https://api.uzdub.uz/api/v1/image_cinema").then(res2 => {
+				this.$axios.get("https://api.uzdub.uz/api/v1/tarjima_cinema").then(res => {
+					this.$axios.get("https://api.uzdub.uz/api/v1/janr_cinema").then(res1 => {
+						this.$axios.get("https://api.uzdub.uz/api/v1/image_cinema").then(res2 => {
 							this.tarjima_cinema = res.data
 							this.janr_cinema = res1.data
 							this.image_cinema = res2.data
@@ -753,7 +752,7 @@ export default {
 				formdata.append("treler", document.querySelector("#cinema_treyler").value)
 				formdata.append("more_loking", 0)
 
-				axios.post(`https://api.uzdub.uz/api/v1/cinema`, formdata).then(res => {
+				this.$axios.post(`https://api.uzdub.uz/api/v1/cinema`, formdata).then(res => {
 					for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
 						var a = false
 						for (let j = 0; j < document.querySelectorAll(".sign__director_option").length; j++) {
@@ -767,7 +766,7 @@ export default {
 							formdata2.append("cinema_id", res.data.id)
 							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-							axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema", formdata2).then(res2 => {
+							this.$axios.post("https://api.uzdub.uz/api/v1/tarjima_cinema", formdata2).then(res2 => {
 
 							})
 						}
@@ -785,7 +784,7 @@ export default {
 							formdata1.append("cinema_id", res.data.id)
 							formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
 
-							axios.post("https://api.uzdub.uz/api/v1/janr_cinema", formdata1).then(res1 => {
+							this.$axios.post("https://api.uzdub.uz/api/v1/janr_cinema", formdata1).then(res1 => {
 
 							})
 							// console.log(document.querySelectorAll(".ss-value")[j].getAttribute("data-id"),"janr")
@@ -797,7 +796,7 @@ export default {
 						formdata3.append("cinema_id", res.data.id)
 						formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
 
-						axios.post('https://api.uzdub.uz/api/v1/image_cinema', formdata3).then(res3 => {
+						this.$axios.post('https://api.uzdub.uz/api/v1/image_cinema', formdata3).then(res3 => {
 
 
 
@@ -808,7 +807,7 @@ export default {
 					if (document.querySelector("#cinema_carusel").value == 0) {
 						var formdata4 = new FormData()
 						formdata4.append("cinema_id", res.data.id)
-						axios.post(`https://api.uzdub.uz/api/v1/carousel`, formdata4).then(res => {
+						this.$axios.post(`https://api.uzdub.uz/api/v1/carousel`, formdata4).then(res => {
 
 						})
 					}
@@ -842,7 +841,7 @@ export default {
 				formdata.append("treler", document.querySelector("#cinema_treyler").value)
 				formdata.append("more_loking", 0)
 
-				axios.put(`https://api.uzdub.uz/api/v1/cinema/${sessionStorage.getItem("cinemaId")}`, formdata).then(res => {
+				this.$axios.put(`https://api.uzdub.uz/api/v1/cinema/${sessionStorage.getItem("cinemaId")}`, formdata).then(res => {
 					const Filter = this.tarjima_cinema.filter(item => item.cinema_id == sessionStorage.getItem("cinemaId"))
 
 					for (let i = 0; i < document.querySelectorAll(".ss-value").length; i++) {
@@ -857,7 +856,7 @@ export default {
 							formdata2.append("cinema_id", sessionStorage.getItem("cinemaId"))
 							formdata2.append("tarjimon_id", document.querySelectorAll(".ss-value")[i].getAttribute("data-id"))
 
-							axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`, formdata2).then(res2 => {
+							this.$axios.put(`https://api.uzdub.uz/api/v1/tarjima_cinema/${Filter[i].id}`, formdata2).then(res2 => {
 
 							})
 						}
@@ -880,7 +879,7 @@ export default {
 									formdata1.append("cinema_id", sessionStorage.getItem("cinemaId"))
 									formdata1.append("janr_id", document.querySelectorAll(".ss-value")[j].getAttribute("data-id"))
 
-									axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[j].id}`, formdata1).then(res1 => {
+									this.$axios.put(`https://api.uzdub.uz/api/v1/janr_cinema/${Filter1[j].id}`, formdata1).then(res1 => {
 
 									})
 							}
@@ -894,23 +893,23 @@ export default {
 						formdata3.append("cinema_id", sessionStorage.getItem("cinemaId"))
 						formdata3.append("image", document.querySelectorAll("#sign__gallery-upload")[i].value)
 
-						axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[i].id}`, formdata3).then(res3 => {
+						this.$axios.put(`https://api.uzdub.uz/api/v1/image_cinema/${Filter2[i].id}`, formdata3).then(res3 => {
 
 						})
 					}
 
-					axios.get('https://api.uzdub.uz/api/v1/carousel').then(res10=>{
+					this.$axios.get('https://api.uzdub.uz/api/v1/carousel').then(res10=>{
 					const Filter=res10.data.filter(item=>item.id==res.data.id)
 					if (document.querySelector("#cinema_carusel").value == 0) {
 						if(Filter.length==0){
 						var formdata4 = new FormData()
 						formdata4.append("cinema_id", res.data.id)
-						axios.post(`https://api.uzdub.uz/api/v1/carousel`, formdata4).then(res => {
+						this.$axios.post(`https://api.uzdub.uz/api/v1/carousel`, formdata4).then(res => {
 
 						})
 						}
 					}else{
-						axios.delete(`https://api.uzdub.uz/api/v1/carousel/${Filter[0].car_id}`).then(res1 => {
+						this.$axios.delete(`https://api.uzdub.uz/api/v1/carousel/${Filter[0].car_id}`).then(res1 => {
 
 						})
 					}
@@ -938,7 +937,7 @@ export default {
 					if (a[i] == 1) {
 						this.mavsum.splice(key, 1)
 					} else {
-						axios.delete(`https://api.uzdub.uz/seriallar/${a[i].id}`).then(res => {
+						this.$axios.delete(`https://api.uzdub.uz/seriallar/${a[i].id}`).then(res => {
 							document.querySelector("#alert_modal").style = "display:block"
 							document.querySelector("#alert_text").innerHTML = "Serial o'chirildi"
 						}).catch(err => {

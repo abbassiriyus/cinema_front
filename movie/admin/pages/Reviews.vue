@@ -614,7 +614,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 
 export default {
     name: "ReviewsPage",
@@ -639,9 +639,9 @@ export default {
 	    }
 		document.querySelector(".filter__select").addEventListener("change",this.ReviewFilter)
 		try{
-        axios.get('https://api.uzdub.uz/api/v1/sharx').then(sharhGet=>{
-            axios.get('https://api.uzdub.uz/api/v1/cinema').then(cinema=>{
-				axios.get('https://api.uzdub.uz/users').then(res=>{
+        this.$axios.get('https://api.uzdub.uz/api/v1/sharx').then(sharhGet=>{
+            this.$axios.get('https://api.uzdub.uz/api/v1/cinema').then(cinema=>{
+				this.$axios.get('https://api.uzdub.uz/users').then(res=>{
 					for (let i = 0; i < sharhGet.data.length; i++) {
 		      			for (let j = 0; j < cinema.data.length; j++) {
 							if(sharhGet.data[i].cinema_id==cinema.data[j].id){
@@ -675,9 +675,9 @@ export default {
     },
 	methods:{
 		ReviewSearch(){
-			axios.get('https://api.uzdub.uz/api/v1/sharx').then(sharhGet=>{
-            axios.get('https://api.uzdub.uz/api/v1/cinema').then(cinema=>{
-				axios.get('https://api.uzdub.uz/users').then(res=>{
+			this.$axios.get('https://api.uzdub.uz/api/v1/sharx').then(sharhGet=>{
+            this.$axios.get('https://api.uzdub.uz/api/v1/cinema').then(cinema=>{
+				this.$axios.get('https://api.uzdub.uz/users').then(res=>{
 					for (let i = 0; i < sharhGet.data.length; i++) {
 		      			for (let j = 0; j < cinema.data.length; j++) {
 							if(sharhGet.data[i].cinema_id==cinema.data[j].id){
@@ -719,15 +719,15 @@ export default {
             this.deleteId=id
 		},
 		ReviewDelete(){
-           axios.delete(`https://api.uzdub.uz/api/v1/sharx/${this.deleteId}`).then(res=>{
+           this.$axios.delete(`https://api.uzdub.uz/api/v1/sharx/${this.deleteId}`).then(res=>{
 			document.querySelector("#alert_modal").style="display:block"
 			document.querySelector("#alert_text").innerHTML="Ma'lumot o'chirildi"
 			setTimeout(()=>{
 				window.location.reload()
 			},1000)
-			// axios.get('https://api.uzdub.uz/api/v1/sharx').then(sharhGet=>{
-            // axios.get('https://api.uzdub.uz/api/v1/cinema').then(cinema=>{
-			// 	axios.get('https://api.uzdub.uz/users').then(res=>{
+			// this.$axios.get('https://api.uzdub.uz/api/v1/sharx').then(sharhGet=>{
+            // this.$axios.get('https://api.uzdub.uz/api/v1/cinema').then(cinema=>{
+			// 	this.$axios.get('https://api.uzdub.uz/users').then(res=>{
 			// 		for (let i = 0; i < sharhGet.data.length; i++) {
 		    //   			for (let j = 0; j < cinema.data.length; j++) {
 			// 				if(sharhGet.data[i].cinema_id==cinema.data[j].id){

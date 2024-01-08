@@ -739,7 +739,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 
 export default {
 	name: 'IndexPage',
@@ -755,7 +755,7 @@ export default {
 	},
 	async mounted() {
 		try {
-			const kino = await axios.get('https://api.uzdub.uz/api/v1/cinema')
+			const kino = await this.$axios.get('https://api.uzdub.uz/api/v1/cinema')
 			for (let i = 0; i < kino.data.length; i++) {
 					if (kino.data[i].appearance == 1) {
 						kino.data[i].category = "Anime"
@@ -806,7 +806,7 @@ export default {
 		bannedCinema() {
 			var formData = new FormData()
 			formData.append("looking", this.Looking ? false : true)
-			axios.put(`https://api.uzdub.uz/api/v1/cinema/look/${this.Id}`, formData).then(res => {
+			this.$axios.put(`https://api.uzdub.uz/api/v1/cinema/look/${this.Id}`, formData).then(res => {
 				document.querySelector("#alert_modal").style = "display:block"
 				document.querySelector("#alert_text").innerHTML = "Kino holati o'zgartirildi"
 				setTimeout(() => {
@@ -818,10 +818,10 @@ export default {
 			})
 		},
 		cinemaDelete() {
-			axios.delete(`https://api.uzdub.uz/api/v1/cinema/${this.Id}`).then(res => {
-				axios.get(`https://api.uzdub.uz/api/v1/carousel`).then(res=>{
+			this.$axios.delete(`https://api.uzdub.uz/api/v1/cinema/${this.Id}`).then(res => {
+				this.$axios.get(`https://api.uzdub.uz/api/v1/carousel`).then(res=>{
                    const Filter=res.data.filter(item=>item.id==this.Id)
-				   axios.delete(`https://api.uzdub.uz/api/v1/carousel/${Filter[0].id}`).then(res1=>{
+				   this.$axios.delete(`https://api.uzdub.uz/api/v1/carousel/${Filter[0].id}`).then(res1=>{
 
 				   })
 				})
@@ -849,7 +849,7 @@ export default {
 			}
 		},
 		CinemaSearch() {
-			axios.get('https://api.uzdub.uz/api/v1/cinema').then(kino => {
+			this.$axios.get('https://api.uzdub.uz/api/v1/cinema').then(kino => {
 				for (let i = 0; i < kino.data.length; i++) {
 					if (kino.data[i].appearance == 1) {
 						kino.data[i].category = "Anime"

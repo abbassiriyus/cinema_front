@@ -587,7 +587,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 
 export default {
 	name: 'CommentsPage',
@@ -613,10 +613,10 @@ export default {
 			document.querySelector(".filter__select").addEventListener("change", this.FilterReyting)
 		}
 		try {
-			axios.get('https://api.uzdub.uz/api/v1/comment').then(res => {
-				axios.get('https://api.uzdub.uz/api/v1/cinema').then(res1 => {
-					axios.get('https://api.uzdub.uz/users').then(res2 => {
-						axios.get('https://api.uzdub.uz/api/v1/comment_mark').then(res3 => {
+			this.$axios.get('https://api.uzdub.uz/api/v1/comment').then(res => {
+				this.$axios.get('https://api.uzdub.uz/api/v1/cinema').then(res1 => {
+					this.$axios.get('https://api.uzdub.uz/users').then(res2 => {
+						this.$axios.get('https://api.uzdub.uz/api/v1/comment_mark').then(res3 => {
 							for (let i = 0; i < res.data.length; i++) {
 								for (let j = 0; j < res1.data.length; j++) {
 									if (res.data[i].cinema_id == res1.data[j].id) {
@@ -659,10 +659,10 @@ export default {
 	},
 	methods: {
 		CommentSearch() {
-			axios.get('https://api.uzdub.uz/api/v1/comment').then(res => {
-				axios.get('https://api.uzdub.uz/api/v1/cinema').then(res1 => {
-					axios.get('https://api.uzdub.uz/users').then(res2 => {
-						axios.get('https://api.uzdub.uz/api/v1/comment_mark').then(res3 => {
+			this.$axios.get('https://api.uzdub.uz/api/v1/comment').then(res => {
+				this.$axios.get('https://api.uzdub.uz/api/v1/cinema').then(res1 => {
+					this.$axios.get('https://api.uzdub.uz/users').then(res2 => {
+						this.$axios.get('https://api.uzdub.uz/api/v1/comment_mark').then(res3 => {
 							for (let i = 0; i < res.data.length; i++) {
 								for (let j = 0; j < res1.data.length; j++) {
 									if (res.data[i].cinema_id == res1.data[j].id) {
@@ -703,7 +703,7 @@ export default {
 			this.deleteId = id
 		},
 		CommentDelete() {
-			axios.delete(`https://api.uzdub.uz/api/v1/comment/${this.deleteId}`).then(res => {
+			this.$axios.delete(`https://api.uzdub.uz/api/v1/comment/${this.deleteId}`).then(res => {
 				document.querySelector("#alert_modal").style = "display:block"
 				document.querySelector("#alert_text").innerHTML = "Ma'lumot o'chirildi"
 				setTimeout(() => {

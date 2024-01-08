@@ -64,7 +64,7 @@
     </div>
   </template>
   <script>
-  import axios from 'axios';
+
   export default {
     name: 'SignInPage',
     data(){
@@ -92,8 +92,8 @@
        data.append("email",this.inputEmail)
        data.append("password",this.inputPassword)
 
-       axios.post("https://api.uzdub.uz/login",data).then(response=>{
-         axios.get("https://api.uzdub.uz/user",{headers:{"Authorization":"Bearer "+response.data.token}}).then(user=>{
+       this.$axios.post("https://api.uzdub.uz/login",data).then(response=>{
+         this.$axios.get("https://api.uzdub.uz/user",{headers:{"Authorization":"Bearer "+response.data.token}}).then(user=>{
           if (user.data.superadmin) {
           sessionStorage.setItem("oneuser",JSON.stringify(user.data))
           sessionStorage.setItem("token",response.data.token)

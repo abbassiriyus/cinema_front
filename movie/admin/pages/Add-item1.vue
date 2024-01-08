@@ -72,7 +72,7 @@
 <style></style>
 
 <script>
-import axios from 'axios';
+
 
 export default {
 	name: "AddItemPage",
@@ -92,14 +92,14 @@ export default {
 	mounted() {
 		/* add page */
 
-		axios.get('https://api.uzdub.uz/api/v1/janr').then(res => {
+		this.$axios.get('https://api.uzdub.uz/api/v1/janr').then(res => {
 			this.janr = res.data
             const Filter=res.data.filter(item=>item.id==sessionStorage.getItem("janrId"))
             Filter.map(item=>{
                 document.querySelector("#janr_title").value=item.title
             })
 		})
-		axios.get('https://api.uzdub.uz/api/v1/tarjima').then(res => {
+		this.$axios.get('https://api.uzdub.uz/api/v1/tarjima').then(res => {
 			this.tarjima = res.data
             const Filter=res.data.filter(item=>item.id==sessionStorage.getItem("tarjimonId"))
             Filter.map(item=>{
@@ -114,7 +114,7 @@ export default {
         if(!sessionStorage.getItem("janrId")){
         var formdata=new FormData()
         formdata.append("title",document.querySelector("#janr_title").value)
-        axios.post('https://api.uzdub.uz/api/v1/janr',formdata).then(res=>{
+        this.$axios.post('https://api.uzdub.uz/api/v1/janr',formdata).then(res=>{
          document.querySelector("#alert_modal").style="display:block;"
          document.querySelector("#alert_text").innerHTML="Janr qo'shildi"
          setTimeout(() => {
@@ -126,7 +126,7 @@ export default {
         }else{
         var formdata=new FormData()
         formdata.append("title",document.querySelector("#janr_title").value)
-        axios.put(`https://api.uzdub.uz/api/v1/janr/${sessionStorage.getItem("janrId")}`,formdata).then(res=>{
+        this.$axios.put(`https://api.uzdub.uz/api/v1/janr/${sessionStorage.getItem("janrId")}`,formdata).then(res=>{
          document.querySelector("#alert_modal").style="display:block;"
          document.querySelector("#alert_text").innerHTML="Janr o'zgartirildi"
          setTimeout(() => {
@@ -141,7 +141,7 @@ export default {
         if(!sessionStorage.getItem("tarjimonId")){
             var formdata=new FormData()
         formdata.append("full_name",document.querySelector("#tarjimon_title").value)
-        axios.post('https://api.uzdub.uz/api/v1/tarjima',formdata).then(res=>{
+        this.$axios.post('https://api.uzdub.uz/api/v1/tarjima',formdata).then(res=>{
          document.querySelector("#alert_modal").style="display:block;"
          document.querySelector("#alert_text").innerHTML="Tarjimon qo'shildi"
          setTimeout(() => {
@@ -153,7 +153,7 @@ export default {
         }else{
             var formdata=new FormData()
         formdata.append("full_name",document.querySelector("#tarjimon_title").value)
-        axios.put(`https://api.uzdub.uz/api/v1/tarjima/${sessionStorage.getItem("tarjimonId")}`,formdata).then(res=>{
+        this.$axios.put(`https://api.uzdub.uz/api/v1/tarjima/${sessionStorage.getItem("tarjimonId")}`,formdata).then(res=>{
          document.querySelector("#alert_modal").style="display:block;"
          document.querySelector("#alert_text").innerHTML="Tarjimon o'zgartirildi"
          setTimeout(() => {

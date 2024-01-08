@@ -1348,7 +1348,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 
 export default {
@@ -1369,11 +1368,11 @@ export default {
 	},
 	mounted() {
 		try {
-			axios.get('https://api.uzdub.uz/users').then(res => {
+			this.$axios.get('https://api.uzdub.uz/users').then(res => {
 				const Filter = res.data.filter(item => item.id == sessionStorage.getItem("userEdit"))
 				sessionStorage.setItem("userEditBan", Filter[0].pan ? 1 : 0)
-				axios.get('https://api.uzdub.uz/api/v1/comment').then(res1 => {
-					axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2 => {
+				this.$axios.get('https://api.uzdub.uz/api/v1/comment').then(res1 => {
+					this.$axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2 => {
 						for (let i = 0; i < Filter.length; i++) {
 							Filter[i].commentLength = []
 							for (let j = 0; j < res1.data.length; j++) {
@@ -1390,8 +1389,8 @@ export default {
 							}
 						}
 						Filter.map(item => {
-							axios.get('https://api.uzdub.uz/api/v1/cinema').then(res3 => {
-								axios.get("https://api.uzdub.uz/api/v1/comment_mark").then(res4 => {
+							this.$axios.get('https://api.uzdub.uz/api/v1/cinema').then(res3 => {
+								this.$axios.get("https://api.uzdub.uz/api/v1/comment_mark").then(res4 => {
 									for (let i = 0; i < item.commentLength.length; i++) {
 										for (let j = 0; j < res3.data.length; j++) {
 											if (item.commentLength[i].cinema_id == res3.data[j].id) {
@@ -1470,7 +1469,7 @@ export default {
 			this.deleteId = id
 		},
 		userCommentDelete() {
-			axios.delete(`https://api.uzdub.uz/api/v1/comment/${this.deleteId}`).then(res => {
+			this.$axios.delete(`https://api.uzdub.uz/api/v1/comment/${this.deleteId}`).then(res => {
 				document.querySelector("#alert_modal").style="display:block"
 				document.querySelector("#alert_text").innerHTML="Ma'lumot o'chirildi"
 				setTimeout(()=>{
@@ -1486,7 +1485,7 @@ export default {
 			this.userSharh = Filter
 		},
 		userReviewDelete() {
-			axios.delete(`https://api.uzdub.uz/api/v1/sharx/${this.deleteId}`).then(res => {
+			this.$axios.delete(`https://api.uzdub.uz/api/v1/sharx/${this.deleteId}`).then(res => {
 				document.querySelector("#alert_modal").style="display:block"
 				document.querySelector("#alert_text").innerHTML="Ma'lumot o'chirildi"
 				setTimeout(()=>{
@@ -1498,7 +1497,7 @@ export default {
 			})
 		},
 		UserDelete() {
-			axios.delete(`https://api.uzdub.uz/users/${sessionStorage.getItem("userEdit")}`).then(res => {
+			this.$axios.delete(`https://api.uzdub.uz/users/${sessionStorage.getItem("userEdit")}`).then(res => {
 				document.querySelector("#alert_modal").style="display:block"
 				document.querySelector("#alert_text").innerHTML="Ma'lumot o'chirildi"
 				setTimeout(()=>{
@@ -1513,7 +1512,7 @@ export default {
 			var a = sessionStorage.getItem("userEditBan")
 			var formdata = new FormData()
 			formdata.append("pan", a == 1 ? false : true)
-			axios.put(`https://api.uzdub.uz/panu/${sessionStorage.getItem("userEdit")}`, formdata).then(res => {
+			this.$axios.put(`https://api.uzdub.uz/panu/${sessionStorage.getItem("userEdit")}`, formdata).then(res => {
 				document.querySelector("#alert_modal").style="display:block"
 				document.querySelector("#alert_text").innerHTML="User holati o'zgartirildi"
 				setTimeout(()=>{
@@ -1530,7 +1529,7 @@ export default {
 			formdata.append("password", document.querySelector("#newpass").value)
 			formdata.append("repit_password", document.querySelector("#confirmpass").value)
 
-			axios.put(`https://api.uzdub.uz/reset/${sessionStorage.getItem("userEdit")}`, formdata).then(res => {
+			this.$axios.put(`https://api.uzdub.uz/reset/${sessionStorage.getItem("userEdit")}`, formdata).then(res => {
 				document.querySelector("#alert_modal").style="display:block"
 				document.querySelector("#alert_text").innerHTML="User paroli o'zgardi"
 				setTimeout(()=>{
@@ -1573,11 +1572,11 @@ export default {
 			formdata.append("email", document.querySelector("#email2").value)
 			formdata.append("familiya", document.querySelector("#lastname").value)
 			formdata.append("superadmin", document.querySelector("#rights").value)
-			axios.put(`https://api.uzdub.uz/users/${sessionStorage.getItem("userEdit")}`, formdata).then(res => {
+			this.$axios.put(`https://api.uzdub.uz/users/${sessionStorage.getItem("userEdit")}`, formdata).then(res => {
 				if (document.querySelector("#subscription").value == 0) {
-					axios.get('https://api.uzdub.uz/api/pay').then(res => {
+					this.$axios.get('https://api.uzdub.uz/api/pay').then(res => {
 						const Filter = res.data.filter(item => item.user_id == sessionStorage.getItem("userEdit"))
-						axios.delete(`https://api.uzdub.uz/api/pay/${Filter[0].id}`).then(res => {
+						this.$axios.delete(`https://api.uzdub.uz/api/pay/${Filter[0].id}`).then(res => {
 							// alert("User ma'lumoti o'zgartirildi")
 							// window.location.reload()
 						})
@@ -1586,7 +1585,7 @@ export default {
 					var formdata1 = new FormData()
 					formdata1.append("month", document.querySelector("#subscription").value)
 					formdata1.append("user_id", sessionStorage.getItem("userEdit"))
-					axios.post(`https://api.uzdub.uz/api/pay`, formdata1).then(res => {
+					this.$axios.post(`https://api.uzdub.uz/api/pay`, formdata1).then(res => {
 					}).catch(err => { console.log(err) })
 				}
 				document.querySelector("#alert_modal").style="display:block"

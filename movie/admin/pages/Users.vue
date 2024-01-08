@@ -769,7 +769,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 
 export default {
 	name: "ReviewsPage",
@@ -794,9 +794,9 @@ export default {
 		}
 		document.querySelector(".filter__select").addEventListener("change", this.FilterReyting)
 		try {
-			axios.get('https://api.uzdub.uz/users').then(res => {
-				axios.get('https://api.uzdub.uz/api/v1/comment').then(res1 => {
-					axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2 => {
+			this.$axios.get('https://api.uzdub.uz/users').then(res => {
+				this.$axios.get('https://api.uzdub.uz/api/v1/comment').then(res1 => {
+					this.$axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2 => {
 						for (let i = 0; i < res.data.length; i++) {
 							res.data[i].commentLength = []
 							for (let j = 0; j < res1.data.length; j++) {
@@ -842,7 +842,7 @@ export default {
 			document.querySelector("#alert_modal").style = "display:none"
 		},
 		UserDelete() {
-			axios.delete(`https://api.uzdub.uz/users/${this.deleteId}`).then(res => {
+			this.$axios.delete(`https://api.uzdub.uz/users/${this.deleteId}`).then(res => {
 				document.querySelector("#alert_modal").style = "display:block"
 				document.querySelector("#alert_text").innerHTML = "Ma'lumot o'chirildi"
 				setTimeout(() => {
@@ -859,7 +859,7 @@ export default {
 		UserBanned() {
 			var formdata = new FormData()
 			formdata.append("pan", this.Ban ? false : true)
-			axios.put(`https://api.uzdub.uz/panu/${this.deleteId}`, formdata).then(res => {
+			this.$axios.put(`https://api.uzdub.uz/panu/${this.deleteId}`, formdata).then(res => {
 				document.querySelector("#alert_modal").style = "display:block"
 				document.querySelector("#alert_text").innerHTML = "User holati o'zgartirildi"
 				setTimeout(() => {
@@ -874,9 +874,9 @@ export default {
 			})
 		},
 		UserSearch() {
-			axios.get('https://api.uzdub.uz/users').then(res => {
-				axios.get('https://api.uzdub.uz/api/v1/comment').then(res1 => {
-					axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2 => {
+			this.$axios.get('https://api.uzdub.uz/users').then(res => {
+				this.$axios.get('https://api.uzdub.uz/api/v1/comment').then(res1 => {
+					this.$axios.get('https://api.uzdub.uz/api/v1/sharx').then(res2 => {
 						for (let i = 0; i < res.data.length; i++) {
 							res.data[i].commentLength = []
 							for (let j = 0; j < res1.data.length; j++) {

@@ -577,7 +577,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 
 export default {
     name: 'CommentsPage',
@@ -603,7 +603,7 @@ export default {
 
         }
 		try{
-         axios.get('https://api.uzdub.uz/api/v1/janr').then(res=>{
+         this.$axios.get('https://api.uzdub.uz/api/v1/janr').then(res=>{
 				  	this.izoh=res.data
 					var for_w=this.izoh.length/this.page_card
             		var daad=[]
@@ -619,7 +619,7 @@ export default {
     },
 	methods:{
 		CommentSearch(){
-			axios.get('https://api.uzdub.uz/api/v1/janr').then(res=>{
+			this.$axios.get('https://api.uzdub.uz/api/v1/janr').then(res=>{
 					const a=res.data.filter(item=>((item.title).toLowerCase()).includes((document.querySelector("#commentSearch").value).toLowerCase()))
 			        this.izoh=a
                     var for_w=this.izoh.length/this.page_card
@@ -638,7 +638,7 @@ export default {
             this.deleteId=id
 		},
 		CommentDelete(){
-           axios.delete(`https://api.uzdub.uz/api/v1/janr/${this.deleteId}`).then(res=>{
+           this.$axios.delete(`https://api.uzdub.uz/api/v1/janr/${this.deleteId}`).then(res=>{
 			document.querySelector("#alert_modal").style="display:block"
 			document.querySelector("#alert_text").innerHTML="Ma'lumot o'chirildi"
 			setTimeout(()=>{
