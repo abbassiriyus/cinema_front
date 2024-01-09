@@ -59,6 +59,9 @@
 											<span>Davomiyligi:</span> {{ data_get.time }} min
 										</li>
 										<li v-if="data_get">
+											<span>Yili:</span> {{ data_get.year }}
+										</li>
+										<li v-if="data_get">
 											<span>Mamlakat:</span>
 											<a role="button">{{ data_get.country }}</a>
 										</li>

@@ -533,7 +533,8 @@ export default {
 				this.Serial = response.data.filter(item => item.appearance == 2).slice(0, 6);
 				this.ongoin = response.data.filter(item => item.appearance == 3).slice(0, 6);
 				const carousel2 = await axios.get('https://api.uzdub.uz/api/v1/carousel')
-				this.carousel2 = carousel2.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10))
+				// console.log(carousel2.data[0].time_create.slice(14,16),"salom");
+				this.carousel2 = carousel2.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10) || (b.time_create).slice(11, 13) - (a.time_create).slice(11, 13) || (b.time_create).slice(14, 16) - (a.time_create).slice(14, 16))
 				setTimeout(() => {
 					this.getData()
 				}, 1000);

@@ -2206,6 +2206,23 @@ body::-webkit-scrollbar-thumb {
   padding: 0 20px;
   font-family: 'Open Sans', sans-serif;
 }
+.additem_img_style{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.additem_img_style_img{
+  object-fit: cover;
+}
+.additem_img_style_img:nth-child(1){
+  width: 100px;
+  height: 150px;
+}
+.additem_img_style_img:nth-child(2){
+  width: 145px;
+  height: 150px;
+}
 
 .sign__input:hover,
 .sign__input:focus {
@@ -2215,7 +2232,7 @@ body::-webkit-scrollbar-thumb {
 .sign__textarea {
   background-color: #2b2b31;
   border: 1px solid transparent;
-  height: 120px;
+  height: 220px;
   position: relative;
   color: #fff;
   font-size: 16px;
