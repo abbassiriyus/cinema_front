@@ -696,7 +696,6 @@ export default {
 			}
 		})
 
-
 	},
 	methods: {
 		CinemaPost() {
