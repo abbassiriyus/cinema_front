@@ -2467,6 +2467,7 @@ body::-webkit-scrollbar-thumb {
 	width: 100%;
 	margin-top: 20px;
 	position: relative;
+	cursor: pointer;
 }
 
 .premium-icon {
@@ -4776,6 +4777,7 @@ body::-webkit-scrollbar-thumb {
 .comments__actions-two {
 	min-height: 54px;
 }
+
 .comments__actions button {
 	display: flex;
 	flex-direction: row;

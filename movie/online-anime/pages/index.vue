@@ -122,11 +122,11 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title" style="color:white" @click="handleClick(cinema.id, cinema.looking)">
+											<h3 class="item__title" @click="handleClick(cinema.id, cinema.looking)">
 												{{ cinema.title }}
 											</h3>
 											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
-												<NuxtLink style="color:white" v-for="item1 in cinema.janrlar" :key="item1.id" to="">
+												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="">
 													{{ item1.title }}
 												</NuxtLink>
 											</span>
@@ -170,8 +170,7 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title item__title-two" style="color:white"
-												@click="handleClick(cinema.id, cinema.looking)">
+											<h3 class="item__title item__title-two" @click="handleClick(cinema.id, cinema.looking)">
 												{{ cinema.title }}
 											</h3>
 											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
@@ -205,8 +204,7 @@
 											</span>
 										</div>
 										<div class="item__content">
-											<h3 class="item__title item__title-two" style="color:white"
-												@click="handleClick(cinema.id, cinema.looking)">
+											<h3 class="item__title item__title-two" @click="handleClick(cinema.id, cinema.looking)">
 												{{ cinema.title }}
 											</h3>
 											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
@@ -265,7 +263,8 @@
 									<ul class="splide__list">
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<div @click="handleClick(item.id, item.looking)" v-if="item.images.length > 0" class="item__cover">
+												<div @click="handleClick(item.id, item.looking)" v-if="item.images.length > 0"
+													class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
@@ -519,7 +518,7 @@ export default {
 				window.location = "/watching"
 			} else {
 				document.querySelector("#alert_modal").style = "display:block"
-				document.querySelector("#alert_text").innerHTML = "Admin tomondan taqiqlangan kino"
+				document.querySelector("#alert_text").innerHTML = "Vaqtinchalik bloklangan..."
 				setTimeout(() => {
 					document.querySelector("#alert_modal").style = "display:none"
 				}, 3000);

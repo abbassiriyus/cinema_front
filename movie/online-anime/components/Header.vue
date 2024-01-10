@@ -10,33 +10,6 @@
 							<NuxtLink to="/" class="header__logo">
 								<img src="/img/logo.svg" alt="logo" />
 							</NuxtLink>
-							<!-- end header logo -->
-							<!-- header categories -->
-							<!-- <div class="header__categories">
-								<button class="header__categories-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<span></span>
-									<span></span>
-								</button>
-
-								<div class="dropdown-menu header__dropdown-menu header__dropdown-menu--categories">
-									<ul class="header__categories-list">
-										<li>
-											<NuxtLink to="catalog">Film</NuxtLink>
-										</li>
-										<li>
-											<NuxtLink to="catalog2">Serial</NuxtLink>
-										</li>
-										<li>
-											<NuxtLink to="catalog">Ongoing</NuxtLink>
-										</li>
-										<li>
-											<NuxtLink to="catalog2">OVA</NuxtLink>
-										</li>
-									</ul>
-								</div>
-							</div> -->
-							<!-- end header categories -->
-
 							<!-- header nav -->
 							<ul class="header__nav">
 								<!-- dropdown -->
@@ -48,9 +21,6 @@
 								<li class="header__nav-item">
 									<NuxtLink class="header__nav-link" to="/catalog">Katalog</NuxtLink>
 								</li>
-								<!-- <li class="header__nav-item">
-									<NuxtLink class="header__nav-link" to="pricing">Narxlar</NuxtLink>
-								</li> -->
 							</ul>
 							<!-- end header nav -->
 

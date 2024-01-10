@@ -100,7 +100,7 @@
 							index >= (select_page - 1) * page_card
 							" class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="item">
-								<div @click="handleClick(item.id,item.looking)" class="item__cover">
+								<div @click="handleClick(item.id, item.looking)" class="item__cover">
 									<img v-if="item.images.length > 0" :src="item.images[0].image" alt="" />
 									<div v-if="item.payment != 'Free'"
 										class="d-flex aligin-items-center justify-content-center premium-icon">
@@ -114,8 +114,8 @@
 									</span>
 								</div>
 								<div class="item__content">
-									<h3 class="item__title item__title-two" @click="handleClick(item.id,item.looking)">{{ item.title }}</h3>
-									<span @click="handleClick(item.id,item.looking)" class="item__category">
+									<h3 class="item__title item__title-two" @click="handleClick(item.id, item.looking)">{{ item.title }}</h3>
+									<span @click="handleClick(item.id, item.looking)" class="item__category">
 										<NuxtLink v-for=" item2  in  item.janrlar " :key="item2.id" to="">{{ item2.title }}</NuxtLink>
 									</span>
 									<span class="item__rate">{{ item.mark.toFixed(1) }}</span>
@@ -236,7 +236,8 @@
 									<ul class="splide__list">
 										<li v-for="item in top_look" :key="item.id" class="splide__slide">
 											<div class="item item--carousel">
-												<div @click="handleClick(item.id,item.looking)" v-if="item.images.length > 0" to="" class="item__cover">
+												<div @click="handleClick(item.id, item.looking)" v-if="item.images.length > 0" to=""
+													class="item__cover">
 													<img v-if="item.images.length > 0" class="item-cover__img very--view__img"
 														:src="item.images[0].image" alt="" />
 													<div v-if="item.payment != 'Free'"
@@ -251,10 +252,10 @@
 													</span>
 												</div>
 												<div class="item__content">
-													<h3 @click="handleClick(item.id,item.looking)" class="item__title ">
+													<h3 @click="handleClick(item.id, item.looking)" class="item__title ">
 														<NuxtLink to="">{{ item.title }}</NuxtLink>
 													</h3>
-													<span @click="handleClick(item.id,item.looking)" class="item__category">
+													<span @click="handleClick(item.id, item.looking)" class="item__category">
 														<NuxtLink v-for="item1 in item.janrlar" :key="item1.id" to="">
 															{{ item1.title }}
 														</NuxtLink>
@@ -590,17 +591,17 @@ export default {
 				}
 			}
 		},
-		handleClick(index,ban) {
-			if(ban){
+		handleClick(index, ban) {
+			if (ban) {
 				const selectedItem = index;
 				localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
 				window.location = "/watching"
-			}else{
-			document.querySelector("#alert_modal").style="display:block"
-			document.querySelector("#alert_text").innerHTML="Admin tomondan taqiqlangan kino"
-			setTimeout(() => {
-				document.querySelector("#alert_modal").style="display:none"
-			}, 3000);
+			} else {
+				document.querySelector("#alert_modal").style = "display:block"
+				document.querySelector("#alert_text").innerHTML = "Vaqtinchalik bloklangan..."
+				setTimeout(() => {
+					document.querySelector("#alert_modal").style = "display:none"
+				}, 3000);
 			}
 		},
 		AlertNone() {

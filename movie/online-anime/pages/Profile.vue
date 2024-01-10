@@ -648,7 +648,7 @@ export default {
 			window.location = "/watching"
 			}else{
             document.querySelector("#alert_modal").style="display:block"
-			document.querySelector("#alert_text").innerHTML="Admin tomondan taqiqlangan kino"
+			document.querySelector("#alert_text").innerHTML="Vaqtinchalik bloklangan..."
 			setTimeout(() => {
 				document.querySelector("#alert_modal").style="display:none"
 			}, 3000);
