@@ -175,10 +175,9 @@
 															</div>
 														</td>
 														<td>
-															<div v-if="item.appearance == 1" class="dashbox__table-text">Movie</div>
+															<div v-if="item.appearance == 1" class="dashbox__table-text">Anime</div>
 															<div v-if="item.appearance == 2" class="dashbox__table-text">Serial</div>
-															<div v-if="item.appearance == 3" class="dashbox__table-text">TV Serial</div>
-															<div v-if="item.appearance == 4" class="dashbox__table-text">Cartoon</div>
+															<div v-if="item.appearance == 3" class="dashbox__table-text">Ongoing</div>
 														</td>
 														<td>
 															<div class="dashbox__table-text dashbox__table-text--rate">
