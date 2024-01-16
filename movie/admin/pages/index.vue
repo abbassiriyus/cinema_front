@@ -580,7 +580,7 @@ export default {
 	async mounted() {
 		try {
 			var a = new Date()
-			var b = (a.getMonth() * 1) + 1
+			var b = `${(a.getMonth() * 1) + 1}`.padStart(2, "0")
 			var date = a.getFullYear() + "-" + b
 			var day = date + "-" + `${a.getDate()}`.padStart(2, "0")
 			const response = await this.$axios.get('https://api.uzdub.uz/api/v1/cinema');
@@ -590,7 +590,6 @@ export default {
 			for (let i = 0; i < response.data.length; i++) {
 				if ((response.data[i].time_create).slice(0, 7) == date) {
 					korish = korish + response.data[i].more_loking
-					sharhlar = sharhlar + response.data[i].mark
 					var s = 0
 					s = response.data[i] ? 1 : 0
 					kinolar = kinolar + s
@@ -600,88 +599,66 @@ export default {
 			const izoh = await this.$axios.get('https://api.uzdub.uz/api/v1/comment');
 			for (let i = 0; i < izoh.data.length; i++) {
 				if ((izoh.data[i].time_create).slice(0, 7) == date) {
-					var s = 0
-					s = izoh.data[i] ? 1 : 0
-					izohlar = izohlar + s
+					izohlar += izoh.data[i] ? 1 : 0
 				}
 			}
-			document.querySelector("#izohlar_diogramma").innerHTML = izohlar
-			document.querySelector("#kinolar_diogramma").innerHTML = kinolar
-			document.querySelector("#tomoshalar_diogramma").innerHTML = korish
-			document.querySelector("#sharhlar_diogramma").innerHTML = sharhlar
-			var madiaYaxshi = []
-			for (let i = 0; i < response.data.length; i++) {
-				if ((response.data[i].time_create).slice(0, 7) == date && response.data[i].mark >= 8) {
-					madiaYaxshi.push(response.data[i])
-				}
-			}
+			const FilterYaxshi=response.data.filter(item=>(item.time_create).slice(0, 7) == date)
+			var madiaYaxshi = FilterYaxshi.sort((a,b)=>b.mark-a.mark)
 			for (let i = 0; i < madiaYaxshi.length; i++) {
 				if (madiaYaxshi[i].appearance == 1) {
-					madiaYaxshi[i].category = "Movie"
+					madiaYaxshi[i].category = "Anime"
 				} else {
 					if (madiaYaxshi[i].appearance == 2) {
 						madiaYaxshi[i].category = "Series"
 					} else {
 						if (madiaYaxshi[i].appearance == 3) {
-							madiaYaxshi[i].category = "TV Series"
-						} else {
-							if (madiaYaxshi[i].appearance == 4) {
-								madiaYaxshi[i].category = "Cartoon"
-							}
+							madiaYaxshi[i].category = "Ongoin"
 						}
 					}
 				}
 			}
 			this.yaxshiMedia = madiaYaxshi.slice(0,10)
-			var mediaSonggi = []
-			for (let i = 0; i < response.data.length; i++) {
-				if ((response.data[i].time_create).slice(0, 10) == day) {
-					mediaSonggi.push(response.data[i])
-				}
-			}
+			var mediaSonggi = response.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10) || (b.time_create).slice(11, 13) - (a.time_create).slice(11, 13) || (b.time_create).slice(14, 16) - (a.time_create).slice(14, 16) || (b.time_create).slice(17, 19) - (a.time_create).slice(17, 19))
 			for (let i = 0; i < mediaSonggi.length; i++) {
 				if (mediaSonggi[i].appearance == 1) {
-					mediaSonggi[i].category = "Movie"
+					mediaSonggi[i].category = "Anime"
 				} else {
 					if (mediaSonggi[i].appearance == 2) {
 						mediaSonggi[i].category = "Series"
 					} else {
 						if (mediaSonggi[i].appearance == 3) {
-							mediaSonggi[i].category = "TV Series"
-						} else {
-							if (mediaSonggi[i].appearance == 4) {
-								mediaSonggi[i].category = "Cartoon"
-							}
+							mediaSonggi[i].category = "Ongoin"
 						}
 					}
 				}
 			}
 			this.songgiMedia = mediaSonggi.slice(0,10)
 
-			var usersData = []
 			const users = await this.$axios.get('https://api.uzdub.uz/users');
-			for (let i = 0; i < users.data.length; i++) {
-				if ((users.data[i].time_create).slice(0, 10) == day) {
-					usersData.push(users.data[i])
-				}
-			}
+			var usersData = users.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10) || (b.time_create).slice(11, 13) - (a.time_create).slice(11, 13) || (b.time_create).slice(14, 16) - (a.time_create).slice(14, 16) || (b.time_create).slice(17, 19) - (a.time_create).slice(17, 19))
+
 			this.User = usersData.slice(0,10)
 
-			var SharhGetM = []
 			const SharhGet = await this.$axios.get('https://api.uzdub.uz/api/v1/sharx');
 			for (let i = 0; i < SharhGet.data.length; i++) {
-				for (let j = 0; j < users.data.data.length; j++) {
-					if (SharhGet.data[i].creator == users.data.data[j].id) {
-						SharhGet.data[i].name = users.data.data[j].name
+				if ((SharhGet.data[i].time_create).slice(0, 7) == date) {
+					sharhlar +=SharhGet.data[i]?1:0
+				}
+			}
+			for (let i = 0; i < SharhGet.data.length; i++) {
+				for (let j = 0; j < users.data.length; j++) {
+					if (SharhGet.data[i].creator == users.data[j].id) {
+						SharhGet.data[i].name = users.data[j].name
 					}
 				}
 			}
-			for (let i = 0; i < SharhGet.data.length; i++) {
-				if ((SharhGet.data[i].time_create).slice(0, 10) == day) {
-					SharhGetM.push(SharhGet.data[i])
-				}
-			}
-			this.songgiSharx = SharhGetM.slice(0,10)
+			SharhGet.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10) || (b.time_create).slice(11, 13) - (a.time_create).slice(11, 13) || (b.time_create).slice(14, 16) - (a.time_create).slice(14, 16) || (b.time_create).slice(17, 19) - (a.time_create).slice(17, 19))
+
+			this.songgiSharx = SharhGet.data.slice(0,10)
+			document.querySelector("#izohlar_diogramma").innerHTML = izohlar
+			document.querySelector("#kinolar_diogramma").innerHTML = kinolar
+			document.querySelector("#tomoshalar_diogramma").innerHTML = korish
+			document.querySelector("#sharhlar_diogramma").innerHTML = sharhlar
 
 		} catch (error) {
 			console.error(error);

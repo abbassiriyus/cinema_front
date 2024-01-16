@@ -354,7 +354,7 @@ export default {
 				const catalog = await axios.get('https://api.uzdub.uz/api/v1/cinema')
 				const category = await axios.get('https://api.uzdub.uz/api/v1/janr')
 				this.top_look = catalog.data.sort(
-					(a, b) => a.more_loking - b.more_loking
+					(a, b) => b.more_loking - a.more_loking
 				).slice(0, 10)
 				var a = catalog.data
 				if (sessionStorage.getItem('search')) {

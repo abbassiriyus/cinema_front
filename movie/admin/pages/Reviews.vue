@@ -685,15 +685,8 @@ export default {
 							}
 						}
 					}
-					for (let i = 0; i < res.data.length; i++) {
-					   for (let j = 0; j < sharhGet.data.length; j++) {
-						if(res.data[i].id==sharhGet.data[j].creator){
-							sharhGet.data[j].creatorName=res.data[i].name
-						}
-					   }						
-					}
 					
-					const a=sharhGet.data.filter(item=>((item.creatorName).toLowerCase()).includes((document.querySelector("#reviewSearch").value).toLowerCase()))
+					const a=sharhGet.data.filter(item=>((item.cinemaName).toLowerCase()).includes((document.querySelector("#reviewSearch").value).toLowerCase()))
 					this.sharh=a
 				})
 			})

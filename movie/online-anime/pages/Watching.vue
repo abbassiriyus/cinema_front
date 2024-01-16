@@ -451,7 +451,7 @@ export default {
 			}
 		}
 		axios.get('https://api.uzdub.uz/api/v1/cinema').then(response=>{
-			this.top_look = response.data.sort((a, b) => a.more_loking - b.more_loking).slice(0, 6)
+			this.top_look = response.data.sort((a, b) => b.more_loking - a.more_loking).slice(0, 6)
 		})
 	},
 	methods: {
