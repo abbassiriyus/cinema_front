@@ -293,7 +293,7 @@
           <!-- end section text -->
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-12">
             <div class="partners">
               <NuxtLink to="#" class="partners__item">
@@ -330,7 +330,7 @@
               </NuxtLink>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
     <!-- end partners -->

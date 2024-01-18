@@ -65,10 +65,6 @@
 								<h3><img src="img/award.svg" alt="" />Eng yaxshi medialar</h3>
 
 								<div class="dashbox__wrap">
-									<NuxtLink class="dashbox__refresh" to="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-											<path
-												d="M21,11a1,1,0,0,0-1,1,8.05,8.05,0,1,1-2.22-5.5h-2.4a1,1,0,0,0,0,2h4.53a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4.77A10,10,0,1,0,22,12,1,1,0,0,0,21,11Z" />
-										</svg></NuxtLink>
 									<NuxtLink class="dashbox__more" to="catalog">Hammasi</NuxtLink>
 								</div>
 							</div>
@@ -196,10 +192,6 @@
 								<h3><img src="img/film.svg" alt="" />Eng so'nggi medialar</h3>
 
 								<div class="dashbox__wrap">
-									<NuxtLink class="dashbox__refresh" to=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-											<path
-												d="M21,11a1,1,0,0,0-1,1,8.05,8.05,0,1,1-2.22-5.5h-2.4a1,1,0,0,0,0,2h4.53a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4.77A10,10,0,1,0,22,12,1,1,0,0,0,21,11Z" />
-										</svg></NuxtLink>
 									<NuxtLink class="dashbox__more" to="reviews">Hammasi</NuxtLink>
 								</div>
 							</div>
@@ -329,10 +321,6 @@
 								</h3>
 
 								<div class="dashbox__wrap">
-									<NuxtLink class="dashbox__refresh" to="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-											<path
-												d="M21,11a1,1,0,0,0-1,1,8.05,8.05,0,1,1-2.22-5.5h-2.4a1,1,0,0,0,0,2h4.53a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4.77A10,10,0,1,0,22,12,1,1,0,0,0,21,11Z" />
-										</svg></NuxtLink>
 									<NuxtLink class="dashbox__more" to="reviews">Hammasi</NuxtLink>
 								</div>
 							</div>
@@ -434,10 +422,6 @@
 								</h3>
 
 								<div class="dashbox__wrap">
-									<NuxtLink class="dashbox__refresh" to="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-											<path
-												d="M21,11a1,1,0,0,0-1,1,8.05,8.05,0,1,1-2.22-5.5h-2.4a1,1,0,0,0,0,2h4.53a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4.77A10,10,0,1,0,22,12,1,1,0,0,0,21,11Z" />
-										</svg></NuxtLink>
 									<NuxtLink class="dashbox__more" to="reviews">Hammasi</NuxtLink>
 								</div>
 							</div>

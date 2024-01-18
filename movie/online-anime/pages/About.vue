@@ -265,7 +265,7 @@
 					</div>
 					<!-- end section text -->
 				</div>
-
+				<!-- 
 				<div class="row">
 					<div class="col-12">
 						<div class="partners">
@@ -294,7 +294,7 @@
 							</NuxtLink>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</section>
 		<!-- end partners -->
