@@ -658,7 +658,7 @@ export default {
 						document.querySelector("#age_limit").value = item.age_limit
 						document.querySelector("#sign__country").value = item.country
 						document.querySelector("#sign__tayming").value = item.tayming
-						document.querySelector("#cinema_payment").value = item.payment
+						
 						document.querySelector("#cinema_year").value = item.year
 						document.querySelector("#cinema_appearance").value = item.appearance
 						document.querySelector("#cinema_treyler").value = item.treler
