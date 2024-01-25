@@ -356,7 +356,7 @@ export default {
 				this.top_look = catalog.data.sort(
 					(a, b) => b.more_loking - a.more_loking
 				).slice(0, 10)
-				var a = catalog.data
+				var a = catalog.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10) || (b.time_create).slice(11, 13) - (a.time_create).slice(11, 13) || (b.time_create).slice(14, 16) - (a.time_create).slice(14, 16) || (b.time_create).slice(17, 19) - (a.time_create).slice(17, 19))
 				if (sessionStorage.getItem('search')) {
 					this.catalog = a.filter(item => (item.title).toLowerCase().includes(sessionStorage.getItem('search').toLowerCase()))
 					sessionStorage.clear()
