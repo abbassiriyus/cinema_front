@@ -96,10 +96,8 @@
 				<div class="container">
 					<div class="row">
 						<!-- item -->
-						<div v-for="( item, index ) in  catalog " :key="item.id" v-if="index < select_page * page_card &&
-							index >= (select_page - 1) * page_card
-							" class="col-6 col-sm-4 col-lg-3 col-xl-2">
-							<div class="item">
+						<div class="col-6 col-sm-4 col-lg-3 col-xl-2" v-for="( item, index ) in  catalog " :key="item.id">
+							<div class="item" v-if="index < select_page * page_card && index >= (select_page - 1) * page_card">
 								<div @click="handleClick(item.id, item.looking)" class="item__cover">
 									<img v-if="item.images.length > 0" :src="item.images[0].image" alt="" />
 									<div v-if="item.payment != 'Free'"
@@ -114,7 +112,8 @@
 									</span>
 								</div>
 								<div class="item__content">
-									<h3 class="item__title item__title-two" @click="handleClick(item.id, item.looking)">{{ item.title }}</h3>
+									<h3 class="item__title item__title-two" @click="handleClick(item.id, item.looking)">{{ item.title }}
+									</h3>
 									<span @click="handleClick(item.id, item.looking)" class="item__category">
 										<NuxtLink v-for=" item2  in  item.janrlar " :key="item2.id" to="">{{ item2.title }}</NuxtLink>
 									</span>
@@ -595,7 +594,7 @@ export default {
 			if (ban) {
 				const selectedItem = index;
 				localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
-				window.location = "/watching"
+				window.location = `/watching/${index}`
 			} else {
 				document.querySelector("#alert_modal").style = "display:block"
 				document.querySelector("#alert_text").innerHTML = "Vaqtinchalik bloklangan..."

@@ -209,7 +209,7 @@
 													<tr>
 														<th>ID</th>
 														<th>ANIME NOMI</th>
-														<th>MUALLIF</th>
+														<th>Sarlavha</th>
 														<th>REYTING</th>
 													</tr>
 												</thead>
@@ -219,8 +219,8 @@
 															<div class="dashbox__table-text">{{ item.id }}</div>
 														</td>
 														<td>
-															<div class="dashbox__table-text">
-																<NuxtLink to="Watching">{{ item.titlea }}</NuxtLink>
+															<div class="dashbox__table-text" @click="ProfilBosil(item.cinema_id)">
+																<NuxtLink to="">{{ item.titlea }}</NuxtLink>
 															</div>
 														</td>
 														<td>
@@ -639,19 +639,19 @@ export default {
 			window.location = "/"
 		},
 		ProfilBosil(index) {
-			axios.get("https://api.uzdub.uz/api/v1/cinema").then(res=>{
-			const Filter=res.data.filter(item=>item.id==index)
-			if(Filter[0].looking){
-			const selectedItem = index;
-			localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
-			window.location = "/watching"
-			}else{
-            document.querySelector("#alert_modal").style="display:block"
-			document.querySelector("#alert_text").innerHTML="Vaqtinchalik bloklangan..."
-			setTimeout(() => {
-				document.querySelector("#alert_modal").style="display:none"
-			}, 3000);
-			}
+			axios.get("https://api.uzdub.uz/api/v1/cinema").then(res => {
+				const Filter = res.data.filter(item => item.id == index)
+				if (Filter[0].looking) {
+					const selectedItem = index;
+					localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
+					window.location = `/watching/${index}`
+				} else {
+					document.querySelector("#alert_modal").style = "display:block"
+					document.querySelector("#alert_text").innerHTML = "Vaqtinchalik bloklangan..."
+					setTimeout(() => {
+						document.querySelector("#alert_modal").style = "display:none"
+					}, 3000);
+				}
 			})
 
 		},
