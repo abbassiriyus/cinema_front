@@ -260,7 +260,7 @@
 							yangi imkoniyatlarni ko'rib chiqish. Agar siz bizning hamkorimiz
 							bo'lishni istasangiz, biz har doim yangi takliflarga ochiq va
 							sizdan xabar kutib qolamiz.
-							<NuxtLink to="contacts">Hamkor bo'ling</NuxtLink>
+							<NuxtLink to="/contacts">Hamkor bo'ling</NuxtLink>
 						</p>
 					</div>
 					<!-- end section text -->
@@ -269,27 +269,27 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="partners">
-							<NuxtLink to="#" class="partners__item">
+							<NuxtLink to="/#" class="partners__item">
 								<img src="img/partners/themeforest-light-background.png" alt="" />
 							</NuxtLink>
 
-							<NuxtLink to="#" class="partners__item">
+							<NuxtLink to="/#" class="partners__item">
 								<img src="img/partners/audiojungle-light-background.png" alt="" />
 							</NuxtLink>
 
-							<NuxtLink to="#" class="partners__item">
+							<NuxtLink to="/#" class="partners__item">
 								<img src="img/partners/codecanyon-light-background.png" alt="" />
 							</NuxtLink>
 
-							<NuxtLink to="#" class="partners__item">
+							<NuxtLink to="/#" class="partners__item">
 								<img src="img/partners/photodune-light-background.png" alt="" />
 							</NuxtLink>
 
-							<NuxtLink to="#" class="partners__item partners__item--prelast">
+							<NuxtLink to="/#" class="partners__item partners__item--prelast">
 								<img src="img/partners/activeden-light-background.png" alt="" />
 							</NuxtLink>
 
-							<NuxtLink to="#" class="partners__item partners__item--last">
+							<NuxtLink to="/#" class="partners__item partners__item--last">
 								<img src="img/partners/3docean-light-background.png" alt="" />
 							</NuxtLink>
 						</div>

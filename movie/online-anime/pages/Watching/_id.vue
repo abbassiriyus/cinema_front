@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!-- Modal -->
 		<div v-if="!data_get" class="lodaing_page">
 			<div class="loading">
 				<span>UZDUB</span>
@@ -13,6 +14,27 @@
 					:style="'background: url(' + data_get.allimage[1].image + ') center center / cover no-repeat'"></div>
 				<!-- end details background -->
 				<!-- details content -->
+				<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content modal-treyler--content">
+							<div class="modal-header">
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+									<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M15 26.25C13.5226 26.25 12.0597 25.959 10.6948 25.3936C9.3299 24.8283 8.08971 23.9996 7.04505 22.955C6.00039 21.9103 5.17172 20.6701 4.60635 19.3052C4.04099 17.9403 3.75 16.4774 3.75 15C3.75 13.5226 4.04099 12.0597 4.60636 10.6948C5.17172 9.3299 6.00039 8.08971 7.04505 7.04505C8.08971 6.00039 9.3299 5.17172 10.6948 4.60635C12.0597 4.04099 13.5226 3.75 15 3.75C16.4774 3.75 17.9403 4.04099 19.3052 4.60636C20.6701 5.17172 21.9103 6.00039 22.955 7.04505C23.9996 8.08971 24.8283 9.3299 25.3936 10.6948C25.959 12.0597 26.25 13.5226 26.25 15C26.25 16.4774 25.959 17.9403 25.3936 19.3052C24.8283 20.6701 23.9996 21.9103 22.9549 22.955C21.9103 23.9996 20.6701 24.8283 19.3052 25.3936C17.9403 25.959 16.4774 26.25 15 26.25L15 26.25Z"
+											stroke="white" stroke-linecap="round" />
+										<path d="M11.25 11.25L18.75 18.75" stroke="white" stroke-linecap="round" />
+										<path d="M18.75 11.25L11.25 18.75" stroke="white" stroke-linecap="round" />
+									</svg>
+								</button>
+							</div>
+							<div class="modal-body modal-treyler">
+								<iframe :src="data_get.treler" allow="autoplay; fullscreen; picture-in-picture; encrypted-media;"
+									frameborder="0" allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="container">
 					<div class="row">
 						<!-- title -->
@@ -97,16 +119,29 @@
 							</div>
 						</div>
 						<!-- end content -->
-
 						<!-- player -->
 						<div class="col-12 col-xl-6">
 							<div class="cinema-iframe" v-if="data_get && data_get.video">
 								<iframe :src="data_get.video" allow="autoplay; fullscreen; picture-in-picture; encrypted-media;"
-									frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0"></iframe>
+									frameborder="0" allowfullscreen></iframe>
+								<button v-if="!data_get.treler.length == ''" type="button" class="sign__btn mt-2" data-bs-toggle="modal"
+									data-bs-target="#exampleModal">
+									<span>Treylerni tomosha qiling</span>
+								</button>
 							</div>
-							<div v-if="!data_get.video" class="cinema-iframe">
-								<iframe :src="data_get.treler" allow="autoplay; fullscreen; picture-in-picture; encrypted-media;"
-									frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0"></iframe>
+							<div v-if="!data_get.video" class="cinema-iframe cinema-vip">
+								<iframe v-if="!data_get.treler.length == ''" :src="data_get.treler"
+									allow="autoplay; fullscreen; picture-in-picture; encrypted-media;" frameborder="0"
+									allowfullscreen></iframe>
+								<div class="get-vip">
+									<p>
+										Ushbu mediani ko'rish uchun obuna bo'ling! <br>
+										UZDUB PRIME obunasiga kirishingiz bilan bepul animelar, serial, ongoing va boshqa Premium medialardan
+										ham foydalanishingiz mumkin.</p>
+									<a href="https://t.me/W_339A" class="sign__btn">
+										<span>Obuna bo'lish</span>
+									</a>
+								</div>
 							</div>
 						</div>
 						<!-- end player -->
@@ -428,6 +463,11 @@ export default {
 			string_data: '',
 		}
 	},
+	computed: {
+		_id() {
+			return this.$route.params.id
+		},
+	},
 	mounted() {
 		this.getCinemaData()
 		this.getData()
@@ -450,19 +490,19 @@ export default {
 				mainBg.style.backgroundSize = 'cover'
 			}
 		}
-		axios.get('https://api.uzdub.uz/api/v1/cinema').then(response=>{
+		axios.get('https://api.uzdub.uz/api/v1/cinema').then(response => {
 			this.top_look = response.data.sort((a, b) => b.mark - a.mark).slice(0, 6)
 		})
 	},
 	methods: {
 		getData() {
-			axios.get(`https://api.uzdub.uz/api/v1/cinema/${localStorage.getItem("selectedItemData")}`, {
+			axios.get(`https://api.uzdub.uz/api/v1/cinema/${this._id}`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`
 				}
 			})
 				.then(response => {
-					this.data_get = response.data
+					this.data_get = response.data;
 				})
 				.catch(error => {
 					console.error(error)
@@ -470,8 +510,7 @@ export default {
 		},
 		async getCinemaData() {
 			try {
-				var data12 = await axios.post("https://api.uzdub.uz/api/lookme", { cinema_id: JSON.parse(localStorage.getItem("selectedItemData")), user_id: JSON.parse((localStorage.getItem("user_data"))).id })
-				const response = await axios.get('https://api.uzdub.uz/api/v1/cinema');
+				var data12 = await axios.post("https://api.uzdub.uz/api/lookme", { cinema_id: JSON.parse(this._id), user_id: JSON.parse((localStorage.getItem("user_data"))).id })
 			} catch (error) {
 				console.error(error, 'xato')
 			}
@@ -483,7 +522,7 @@ export default {
 
 					var data = new FormData()
 
-					data.append('cinema_id', JSON.parse(localStorage.getItem("selectedItemData")))
+					data.append('cinema_id', JSON.parse(this._id))
 					data.append('supcomment', this.comment_id)
 					data.append('description', document.querySelector(".sign__textarea").value)
 					data.append('creator', JSON.parse((localStorage.getItem("user_data"))).id)
@@ -534,11 +573,6 @@ export default {
 							data.append('creator', JSON.parse((localStorage.getItem("user_data"))).id)
 							axios.post(url, data)
 								.then(response => {
-									// document.querySelector('#alert_modal').style = 'display:block'
-									// setTimeout(() => {
-									// 	document.querySelector('#alert_modal').style = 'display:none'
-									// }, 3000)
-									// document.querySelector('#alert_text').innerHTML = 'Saqlandi'
 									this.getData()
 								})
 								.catch(error => {
@@ -587,7 +621,6 @@ export default {
 
 		},
 		clicksharx() {
-
 			if (localStorage.getItem("user_data")) {
 				if (document.querySelector("#sharx_m").value == "") {
 					document.querySelector("#sharx_m").style = "border-color: #ff55a5;"
@@ -603,7 +636,7 @@ export default {
 				if (document.querySelector('#sharx_m').value != "" && document.querySelector('#sharx_d').value != "") {
 					var data = new FormData()
 					data.append("rating", document.querySelector('#rating').value)
-					data.append("cinema_id", JSON.parse(localStorage.getItem("selectedItemData")))
+					data.append("cinema_id", JSON.parse(this._id))
 					data.append("description", document.querySelector('#sharx_m').value)
 					data.append("title", document.querySelector('#sharx_d').value)
 					data.append("creator", JSON.parse((localStorage.getItem("user_data"))).id)
@@ -615,7 +648,7 @@ export default {
 						.then(response => {
 							var formdata = new FormData()
 							formdata.append("title", document.querySelector("#rating").value)
-							formdata.append("cinema_id", JSON.parse(localStorage.getItem("selectedItemData")))
+							formdata.append("cinema_id", JSON.parse(this._id))
 
 							axios.post(`https://api.uzdub.uz/api/v1/mark`, formdata).then(res => {
 
@@ -662,7 +695,7 @@ export default {
 			if (ban) {
 				const selectedItem = index;
 				localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
-				window.location = "/watching"
+				window.location = `/watching/${index}`;
 			} else {
 				document.querySelector("#alert_modal").style = "display:block"
 				document.querySelector("#alert_text").innerHTML = "Vaqtinchalik bloklangan..."

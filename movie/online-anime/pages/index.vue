@@ -174,7 +174,8 @@
 												{{ cinema.title }}
 											</h3>
 											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
-												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to=""> {{ item1.title }}</NuxtLink>
+												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to=""> {{
+													item1.title }}</NuxtLink>
 											</span>
 											<span class="item__rate">{{ cinema.mark.toFixed(1) }}</span>
 										</div>
@@ -208,7 +209,8 @@
 												{{ cinema.title }}
 											</h3>
 											<span @click="handleClick(cinema.id, cinema.looking)" class="item__category">
-												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{ item1.title }}</NuxtLink>
+												<NuxtLink v-for="item1 in cinema.janrlar" :key="item1.id" to="#"> {{
+													item1.title }}</NuxtLink>
 											</span>
 											<span class="item__rate">{{ cinema.mark.toFixed(1) }}</span>
 										</div>
@@ -311,7 +313,6 @@
 						</div>
 						<!-- end section title -->
 					</div>
-
 					<div class="row">
 						<!-- price -->
 						<div class="col-12 col-md-6 col-lg-4 order-md-2 order-lg-1">
@@ -386,7 +387,6 @@
 						</div>
 						<!-- end section text -->
 					</div>
-
 					<!-- <div class="row">
 						<div class="col-12">
 							<div class="partners">
@@ -504,7 +504,7 @@ export default {
 			Serial: null,
 			ongoin: null,
 			top_look: null,
-			carousel2: null
+			carousel2: null,
 		};
 	},
 	mounted() {
@@ -515,13 +515,13 @@ export default {
 			if (ban) {
 				const selectedItem = index;
 				localStorage.setItem('selectedItemData', JSON.stringify(selectedItem));
-				window.location = "/watching"
+				window.location = `/watching/${index}`;
 			} else {
 				document.querySelector("#alert_modal").style = "display:block"
 				document.querySelector("#alert_text").innerHTML = "Vaqtinchalik bloklangan..."
 				setTimeout(() => {
 					document.querySelector("#alert_modal").style = "display:none"
-				}, 3000);
+				}, 0);
 			}
 		},
 		async getCinemaData() {
@@ -532,11 +532,10 @@ export default {
 				this.Serial = response.data.filter(item => item.appearance == 2).slice(0, 12);
 				this.ongoin = response.data.filter(item => item.appearance == 3).slice(0, 12);
 				const carousel2 = await axios.get('https://api.uzdub.uz/api/v1/carousel')
-				// console.log(carousel2.data[0].time_create.slice(14,16),"salom");
 				this.carousel2 = carousel2.data.sort((a, b) => (b.time_create).slice(0, 4) - (a.time_create).slice(0, 4) || (b.time_create).slice(5, 7) - (a.time_create).slice(5, 7) || (b.time_create).slice(8, 10) - (a.time_create).slice(8, 10) || (b.time_create).slice(11, 13) - (a.time_create).slice(11, 13) || (b.time_create).slice(14, 16) - (a.time_create).slice(14, 16))
 				setTimeout(() => {
 					this.getData()
-				}, 1000);
+				}, 0);
 			} catch (error) {
 				console.error(error, "xato");
 			}
@@ -702,6 +701,16 @@ export default {
 		AlertNone() {
 			document.querySelector("#alert_modal").style = "display:none"
 		}
-	}
+	},
+	head: {
+		title: 'UZDUBGO - tarjima animelar',
+		meta: [
+			{
+				hid: 'description',
+				name: 'description',
+				content: `UZDUB.UZ - tarjima animelar online ko'rish sayti, dunyoning har qanday joyidan o'zbek tilida eng so'nggi va sevimli animelarni taqdim etadi. Bu saytda, animelarni onlayn ko'rish uchun tez-tez yangilanadigan ma'lumotlar bilan birga, o'zbek tilidagi tarjimalar bilan tanishing. Foydalanuvchilar uchun sodda va qulay interfeys, boshqa foydalanuvchilar bilan tajribalarni almashish imkoniyati, va animelar haqida tafsilotlar, reytinglar, va sharhlar bilan birgalikda yangi animelarni topish imkoniyatini taklif qiladi. Bu sayt orqali, animeni sevganlar o'zbek tilida sevimli animelarini tomosha qilib, yangi va qulay tarjimalardan foydalanishlari mumkin.`
+			}
+		],
+	},
 }
 </script>

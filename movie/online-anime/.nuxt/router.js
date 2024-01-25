@@ -4,18 +4,18 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _4f75f737 = () => interopDefault(import('../pages/404error.vue' /* webpackChunkName: "pages/404error" */))
-const _5a1c1116 = () => interopDefault(import('../pages/About.vue' /* webpackChunkName: "pages/About" */))
-const _07608f62 = () => interopDefault(import('../pages/Catalog.vue' /* webpackChunkName: "pages/Catalog" */))
-const _78f1a65a = () => interopDefault(import('../pages/Contacts.vue' /* webpackChunkName: "pages/Contacts" */))
-const _62259742 = () => interopDefault(import('../pages/Faq.vue' /* webpackChunkName: "pages/Faq" */))
-const _f6e69e2c = () => interopDefault(import('../pages/Forgot.vue' /* webpackChunkName: "pages/Forgot" */))
-const _bf6f9ee2 = () => interopDefault(import('../pages/Pricing.vue' /* webpackChunkName: "pages/Pricing" */))
-const _4e0070f2 = () => interopDefault(import('../pages/Profile.vue' /* webpackChunkName: "pages/Profile" */))
-const _63b9e5e9 = () => interopDefault(import('../pages/Signin.vue' /* webpackChunkName: "pages/Signin" */))
-const _41b5287f = () => interopDefault(import('../pages/SignUp.vue' /* webpackChunkName: "pages/SignUp" */))
-const _4db4fa8c = () => interopDefault(import('../pages/Watching.vue' /* webpackChunkName: "pages/Watching" */))
-const _0261cbfb = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _768eede9 = () => interopDefault(import('../pages/404error.vue' /* webpackChunkName: "pages/404error" */))
+const _33a830b8 = () => interopDefault(import('../pages/About.vue' /* webpackChunkName: "pages/About" */))
+const _62560b20 = () => interopDefault(import('../pages/Catalog.vue' /* webpackChunkName: "pages/Catalog" */))
+const _bfeac5e8 = () => interopDefault(import('../pages/Contacts.vue' /* webpackChunkName: "pages/Contacts" */))
+const _03055326 = () => interopDefault(import('../pages/Faq.vue' /* webpackChunkName: "pages/Faq" */))
+const _7a77ac1c = () => interopDefault(import('../pages/Forgot.vue' /* webpackChunkName: "pages/Forgot" */))
+const _67bc9b9d = () => interopDefault(import('../pages/Pricing.vue' /* webpackChunkName: "pages/Pricing" */))
+const _1574dc00 = () => interopDefault(import('../pages/Profile.vue' /* webpackChunkName: "pages/Profile" */))
+const _59a4e11b = () => interopDefault(import('../pages/Signin.vue' /* webpackChunkName: "pages/Signin" */))
+const _37a023b1 = () => interopDefault(import('../pages/SignUp.vue' /* webpackChunkName: "pages/SignUp" */))
+const _e31cbaee = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _19e79dd2 = () => interopDefault(import('../pages/Watching/_id.vue' /* webpackChunkName: "pages/Watching/_id" */))
 
 const emptyFn = () => {}
 
@@ -30,52 +30,52 @@ export const routerOptions = {
 
   routes: [{
     path: "/404error",
-    component: _4f75f737,
+    component: _768eede9,
     name: "404error"
   }, {
     path: "/About",
-    component: _5a1c1116,
+    component: _33a830b8,
     name: "About"
   }, {
     path: "/Catalog",
-    component: _07608f62,
+    component: _62560b20,
     name: "Catalog"
   }, {
     path: "/Contacts",
-    component: _78f1a65a,
+    component: _bfeac5e8,
     name: "Contacts"
   }, {
     path: "/Faq",
-    component: _62259742,
+    component: _03055326,
     name: "Faq"
   }, {
     path: "/Forgot",
-    component: _f6e69e2c,
+    component: _7a77ac1c,
     name: "Forgot"
   }, {
     path: "/Pricing",
-    component: _bf6f9ee2,
+    component: _67bc9b9d,
     name: "Pricing"
   }, {
     path: "/Profile",
-    component: _4e0070f2,
+    component: _1574dc00,
     name: "Profile"
   }, {
     path: "/Signin",
-    component: _63b9e5e9,
+    component: _59a4e11b,
     name: "Signin"
   }, {
     path: "/SignUp",
-    component: _41b5287f,
+    component: _37a023b1,
     name: "SignUp"
   }, {
-    path: "/Watching",
-    component: _4db4fa8c,
-    name: "Watching"
-  }, {
     path: "/",
-    component: _0261cbfb,
+    component: _e31cbaee,
     name: "index"
+  }, {
+    path: "/Watching/:id?",
+    component: _19e79dd2,
+    name: "Watching-id"
   }],
 
   fallback: false
