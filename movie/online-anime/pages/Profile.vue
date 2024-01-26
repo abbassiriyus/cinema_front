@@ -106,8 +106,8 @@
 								<div class="col-12 col-sm-6 col-xl-3">
 									<div class="stats">
 										<span>Obuna</span>
-										<p v-if="pay">Premium</p>
-										<p v-if="!pay">Teki1n</p>
+										<p v-if="!this.pay">Tekin</p>
+										<p v-if="this.pay">Premium</p>
 										<img src="img/credit-card.svg" alt="" />
 									</div>
 								</div>
@@ -616,7 +616,6 @@ export default {
 				this.fikr_length = response.data.fikr
 				this.sharx = response.data.sharx.filter(item => item.titlea).slice(0, 10)
 				this.cinema_data = response.data.all.filter(item => item.title).slice(0, 10)
-				this.pay = response.data.pay
 			} catch (error) {
 				console.error(error);
 			}
@@ -629,6 +628,7 @@ export default {
 					},
 				});
 				this.one_user = response.data
+				// console.log(one_user.pay,"salom");
 			} catch (error) {
 				// Xatolikni qaytarish
 				console.error(error);
@@ -736,6 +736,12 @@ export default {
 		};
 		this.fetchData()
 		this.fetchDataWithToken(localStorage.getItem('token'))
+		this.$axios.get('https://api.uzdub.uz/user', {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`,},}).then(res1=>{
+			this.$axios.get('https://api.uzdub.uz/users').then(res=>{
+			const Filter=res.data.filter(item=>item.id==res1.data.id)
+				this.pay = Filter[0].pay
+			})
+		})
 
 	},
 
