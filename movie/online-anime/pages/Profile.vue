@@ -107,7 +107,7 @@
 									<div class="stats">
 										<span>Obuna</span>
 										<p v-if="pay">Premium</p>
-										<p v-else>Tekin</p>
+										<p v-if="!pay">Teki1n</p>
 										<img src="img/credit-card.svg" alt="" />
 									</div>
 								</div>
